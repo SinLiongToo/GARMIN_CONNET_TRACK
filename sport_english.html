@@ -543,23 +543,102 @@
                             <th class="py-2.5 px-3">縮寫 (Acronym)</th>
                             <th class="py-2.5 px-3 text-sky-400">英文全稱 (Full English Term)</th>
                             <th class="py-2.5 px-3 text-emerald-400">繁體中文釋義 (Mandarin Meaning)</th>
+                            <th class="py-2.5 px-3 text-amber-400">權威正常範圍與指標解讀 (Normal Ranges & Guidance)</th>
                             <th class="py-2.5 px-3 text-slate-400">實戰應用情境 (Context & Usage)</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-800">
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-amber-400">PB / PR</td><td class="py-2 px-3">Personal Best / Personal Record</td><td class="py-2 px-3 text-emerald-400 font-medium">個人最佳紀錄</td><td class="py-2 px-3 text-xs text-slate-400">指選手在某個特定距離跑出的歷史最快成績。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-amber-400">BQ</td><td class="py-2 px-3">Boston Qualifier</td><td class="py-2 px-3 text-emerald-400 font-medium">波士頓馬拉松參賽門檻</td><td class="py-2 px-3 text-xs text-slate-400">業餘跑者的夢想指標，依年齡與性別訂定嚴格完賽門檻。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-rose-400">DNF</td><td class="py-2 px-3">Did Not Finish</td><td class="py-2 px-3 text-rose-400 font-medium">未完賽 / 中途棄賽</td><td class="py-2 px-3 text-xs text-slate-400">因受傷、失溫、抽筋或超時未能越過終點線。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-slate-400">DNS</td><td class="py-2 px-3">Did Not Start</td><td class="py-2 px-3 text-slate-400 font-medium">未起跑 / 未出賽</td><td class="py-2 px-3 text-xs text-slate-400">雖報名賽事但賽前因故未出現在起跑線。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-sky-400">LSD</td><td class="py-2 px-3">Long Slow Distance</td><td class="py-2 px-3 text-emerald-400 font-medium">長距離慢跑</td><td class="py-2 px-3 text-xs text-slate-400">低心率長時長慢跑（通常 20~35 公里），打底有氧微血管網絡。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-sky-400">MP / HMP</td><td class="py-2 px-3">Marathon Pace / Half Marathon Pace</td><td class="py-2 px-3 text-emerald-400 font-medium">馬拉松目標配速 / 半馬配速</td><td class="py-2 px-3 text-xs text-slate-400">特定賽事距離預計維持的穩定目標速度。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-purple-400">RPE</td><td class="py-2 px-3">Rate of Perceived Exertion</td><td class="py-2 px-3 text-emerald-400 font-medium">自覺用力程度評級</td><td class="py-2 px-3 text-xs text-slate-400">主觀感受強度量表（Borg 6-20 或 1-10 分級），不依賴儀器。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-emerald-400">HRV</td><td class="py-2 px-3">Heart Rate Variability</td><td class="py-2 px-3 text-emerald-400 font-medium">心率變異度</td><td class="py-2 px-3 text-xs text-slate-400">連續心跳間隙之微小波動，反映副交感與交感神經平衡。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-rose-400">RHR</td><td class="py-2 px-3">Resting Heart Rate</td><td class="py-2 px-3 text-emerald-400 font-medium">靜止心率</td><td class="py-2 px-3 text-xs text-slate-400">清晨清醒狀態下之基礎心率，常隨有氧耐力提升而顯著下降。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-purple-400">VO2 Max</td><td class="py-2 px-3">Maximal Oxygen Uptake</td><td class="py-2 px-3 text-emerald-400 font-medium">最大攝氧量</td><td class="py-2 px-3 text-xs text-slate-400">每公斤體重每分鐘最大利用氧氣量，心肺耐力之黃金指標。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-amber-400">LT / LT2</td><td class="py-2 px-3">Lactate Threshold</td><td class="py-2 px-3 text-emerald-400 font-medium">乳酸閾值 / 門檻</td><td class="py-2 px-3 text-xs text-slate-400">乳酸生成速度超越清除速度之臨界強度（約可維持 1 小時之全力配速）。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-rose-400">DOMS</td><td class="py-2 px-3">Delayed Onset Muscle Soreness</td><td class="py-2 px-3 text-rose-400 font-medium">延遲性肌肉酸痛</td><td class="py-2 px-3 text-xs text-slate-400">運動後 24~72 小時達到高峰的肌肉微創撕裂與修復反應。</td></tr>
-                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-sky-400">TSS</td><td class="py-2 px-3">Training Stress Score</td><td class="py-2 px-3 text-emerald-400 font-medium">訓練壓力分數</td><td class="py-2 px-3 text-xs text-slate-400">綜合運動時長與強度計算出的總訓練負荷負擔。</td></tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-amber-400">PB / PR</td>
+                            <td class="py-2.5 px-3">Personal Best / Personal Record</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-medium">個人最佳紀錄</td>
+                            <td class="py-2.5 px-3 text-xs text-amber-300 font-mono">個人歷史最高峰</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">選手在某特定距離（如 5K, 10K, 半馬, 全馬）跑出的歷史最快官方成績。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-amber-400">BQ</td>
+                            <td class="py-2.5 px-3">Boston Qualifier</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-medium">波士頓馬拉松參賽門檻</td>
+                            <td class="py-2.5 px-3 text-xs text-amber-300 font-mono">男 3:00~3:25 / 女 3:30~3:55 (依年齡)</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">全球業餘馬拉松跑者的聖盃級門檻指標。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-rose-400">DNF</td>
+                            <td class="py-2.5 px-3">Did Not Finish</td>
+                            <td class="py-2.5 px-3 text-rose-400 font-medium">未完賽 / 中途棄賽</td>
+                            <td class="py-2.5 px-3 text-xs text-rose-300 font-mono">賽事狀態標記</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">因受傷、失溫、嚴重抽筋或關門超時而未能越過終點線。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-slate-400">DNS</td>
+                            <td class="py-2.5 px-3">Did Not Start</td>
+                            <td class="py-2.5 px-3 text-slate-400 font-medium">未起跑 / 未出賽</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400 font-mono">賽事狀態標記</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">雖已完成報名，但賽前因傷病或突發狀況未站在起跑線。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-sky-400">LSD</td>
+                            <td class="py-2.5 px-3">Long Slow Distance</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-medium">長距離慢跑</td>
+                            <td class="py-2.5 px-3 text-xs text-sky-300 font-mono">時長 90~180 min / 心率 Zone 2 (65~75% HRmax)</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">週末低心率長距離奠基跑（通常 20~35 公里），打底毛細血管與脂肪燃燒效率。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-sky-400">MP / HMP</td>
+                            <td class="py-2.5 px-3">Marathon Pace / Half Marathon Pace</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-medium">馬拉松目標配速 / 半馬配速</td>
+                            <td class="py-2.5 px-3 text-xs text-sky-300 font-mono">心率 Zone 3 (75~84% HRmax)</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">特定賽事距離預計維持的穩定巡航速度與節省肝醣戰術配速。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-purple-400">RPE</td>
+                            <td class="py-2.5 px-3">Rate of Perceived Exertion</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-medium">自覺用力程度評級</td>
+                            <td class="py-2.5 px-3 text-xs text-purple-300 font-mono">輕鬆 1~3 / 舒適 4~5 / 吃力 6~7 / 極限 8~10</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">主觀體感用力量表（Borg 1~10 分級），不依賴 GPS 錶，用身心傾聽真實負荷。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-emerald-400">HRV</td>
+                            <td class="py-2.5 px-3">Heart Rate Variability</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-medium">心率變異度 (夜間 RMSSD)</td>
+                            <td class="py-2.5 px-3 text-xs text-emerald-300 font-mono">常人 30~60 ms / 跑者 50~100+ ms (重個人基準線)</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">自主神經平衡之黃金鑰匙；若落入 UNBALANCED / LOW 警示自律神經緊繃，需加倍休息。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-rose-400">RHR</td>
+                            <td class="py-2.5 px-3">Resting Heart Rate</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-medium">靜止心率 (清晨靜息心率)</td>
+                            <td class="py-2.5 px-3 text-xs text-rose-300 font-mono">常人 60~100 bpm / 跑者 45~58 bpm / 菁英 35~45 bpm</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">心臟每搏輸出量指標；若晨起 RHR 比基準線飆升 5~8+ bpm，常為過度疲勞或生病前兆。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-purple-400">VO2 Max</td>
+                            <td class="py-2.5 px-3">Maximal Oxygen Uptake</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-medium">最大攝氧量 (ml/kg/min)</td>
+                            <td class="py-2.5 px-3 text-xs text-purple-300 font-mono">常人 35~45 / 良好跑者 48~58 / 菁英 65~80+</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">每公斤體重每分鐘氧氣最大攝取利用量，有氧引擎天花板之黃金指標。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-amber-400">LT / LT2</td>
+                            <td class="py-2.5 px-3">Lactate Threshold</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-medium">乳酸閾值 / 門檻強度</td>
+                            <td class="py-2.5 px-3 text-xs text-amber-300 font-mono">約 85~90% HRmax / 血乳酸 4.0 mmol/L (可撐 45~60 min)</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">乳酸生成與排除速度相抵之臨界點，是半馬與萬米成績進步的決定性槓桿。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-rose-400">DOMS</td>
+                            <td class="py-2.5 px-3">Delayed Onset Muscle Soreness</td>
+                            <td class="py-2.5 px-3 text-rose-400 font-medium">延遲性肌肉酸痛</td>
+                            <td class="py-2.5 px-3 text-xs text-rose-300 font-mono">運動後 24~72 小時達高峰 / 4~7 天消退</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">離心收縮引發的肌纖維微創發炎修復；DOMS 期應以低心率動態恢復促進血液循環。</td>
+                        </tr>
+                        <tr class="hover:bg-slate-800/50">
+                            <td class="py-2.5 px-3 font-bold font-mono text-sky-400">TSS</td>
+                            <td class="py-2.5 px-3">Training Stress Score</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-medium">訓練壓力分數</td>
+                            <td class="py-2.5 px-3 text-xs text-sky-300 font-mono">輕度 &lt;150 / 中度 150~300 / 重度 300~450 / 賽事 450+</td>
+                            <td class="py-2.5 px-3 text-xs text-slate-400">以閾值配速 1 小時全力=100 為基準，綜合運動時長與強度計算之總生理負荷。</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
