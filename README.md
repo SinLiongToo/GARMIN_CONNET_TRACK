@@ -11,11 +11,47 @@ This repository is ready for instant deployment to **GitHub Pages**:
 - 🏃‍♂️ **Sport English & Principles Project**: `sport_english.html`
 - 🤖 **Automated CI/CD**: `.github/workflows/deploy.yml` (Deploys automatically upon git push)
 
-### 🚀 How to Enable GitHub Pages
-1. Push your repository to GitHub.
-2. Go to **Settings** $\rightarrow$ **Pages**.
-3. Under **Build and deployment** $\rightarrow$ **Source**, choose **GitHub Actions** (or deploy directly from branch `main` root `/`).
-4. Your personal health tracker and Sport English hub will be live at: `https://<your-username>.github.io/<repo-name>/`
+### 🚀 Live Website
+- 👉 **GitHub Pages**: [https://sinliongtoo.github.io/GARMIN_CONNET_TRACK/](https://sinliongtoo.github.io/GARMIN_CONNET_TRACK/)
+
+---
+
+## 📁 專案檔案架構與功能對照表 (Project Manifest)
+
+```text
+GARMIN_CONNET_TRACK/
+├── 🌐 GitHub Pages 靜態網站發布檔案 (Web Frontend)
+│   ├── index.html                   # 預設首頁：純數值個人健康與耐力分析儀表板
+│   ├── garmin_health_dashboard.html # 完整健康儀表板（獨立離線版）
+│   ├── sport_english.html           # 運動英語辭典、十大黃金訓練原則、熱身音訊與傷病防護指南
+│   └── quotes_data.js               # 運動員激勵金句與運動哲學資料集
+│
+├── ⚙️ Python 資料同步與分析後端 (Data Pipeline)
+│   ├── main.py                      # 主程式：負責抓取、增量快取、統計分析與 HTML 產生
+│   ├── garmin_client.py             # Garmin Connect API 連線與 Token/MFA 認證管理
+│   ├── health_analyzer.py           # 健康指標分析器（月度聚合、睡眠分期、去噪演算法）
+│   ├── html_generator.py            # 動態渲染生成 Chart.js 互動式儀表板 HTML
+│   ├── insights_engine.py           # 智慧洞察引擎（生成運動與生理恢復建議）
+│   ├── generate_pages.py            # 隱私去識別化產出 GitHub Pages index.html
+│   └── download_gpx.py              # 批量下載 Garmin GPS 運動軌跡（自動跳過跑步機等室內運動）
+│
+├── 🚀 部署與自動化批次檔 (Automation & Deployment)
+│   ├── deploy.py                    # 核心自動化發布腳本（安全挑選前端檔案、建立 commit 並推送）
+│   ├── deploy.bat                   # 一鍵執行 deploy.py 的 Windows 快速入口
+│   ├── 一鍵推送至GitHub.bat          # 繁體中文 Windows 快速部署入口（呼叫 deploy.bat）
+│   └── 一鍵更新健康儀表板.bat        # 本地一鍵增量同步 Garmin 數據 + 下載軌跡並更新儀表板
+│
+├── 🔒 隱私與配置設定 (Configuration & Security)
+│   ├── .gitignore                   # 嚴格排除個人憑證、Token、JSON 原始檔與 GPX 軌跡
+│   ├── .env.example                 # 環境變數設定範例（Garmin 帳號密碼，選填）
+│   ├── requirements.txt             # 專案 Python 依賴清單
+│   └── .github/workflows/deploy.yml # GitHub Actions 自動化部署工作流程
+│
+└── 🗂️ 本地快取與未追蹤資料（自動排除於 Git 之外）
+    ├── marathon_gpx/                # 本地儲存的 GPX 軌跡檔案（⚠️ 隱私保護，不納入版本控制）
+    ├── garmin_health_history.json   # 1000 天完整生理快取資料（⚠️ 隱私保護，不納入版本控制）
+    └── session_cache/ & tokens.json # Garmin 授權憑證（⚠️ 隱私保護，不納入版本控制）
+```
 
 ---
 
@@ -24,6 +60,7 @@ This repository is ready for instant deployment to **GitHub Pages**:
 To protect personal privacy when publishing to GitHub Pages:
 - 🚫 **Zero Personal Identifiers**: All user account GUIDs, user profile IDs, emails, display names, and device serial numbers are permanently stripped.
 - 🚫 **No Location / GPS Leakage**: Activity names with specific cities, districts, parks, or streets are automatically sanitized into generic athletic classifications (e.g., `路跑 (Road Running)`, `10K+ 長跑 (Long Run)`, `全馬 (Marathon)`, `跑步機 (Treadmill)`).
+- 🚫 **GPX 軌跡永久排除**: 所有 GPX 運動軌跡與 `marathon_gpx/` 目錄均已寫入 `.gitignore`，確保包含真實經緯度與訓練路線的 GPS 檔案絕不被 Commit 上傳至公開網路。
 - ✅ **Just Health & Athletic Numbers**: Only objective physiological and performance metrics are published:
   - 靜止心率 (RHR) & 心率變異度 (HRV)
   - 睡眠分期堆疊時長 (深層、REM、淺層、清醒) 與睡眠分數
@@ -43,12 +80,13 @@ To protect personal privacy when publishing to GitHub Pages:
 - **📚 80+ 專業運動英語分類辭典 (Categorized Sport English Glossary)**：
   - 涵蓋 6 大領域：跑步與賽事、運動生理與穿戴指標、肌力與體能、營養與恢復、週期化訓練、跑鞋與科技裝備。
   - 每個詞彙皆附音標、詞性、繁中釋義、詳細運動科學解說、英漢雙語實戰情境例句。
-  - 🔊 **支援瀏覽器原生 Web Speech API 英文真人口音語音發音**。
+  - 🔊 **支援瀏覽器原生 Web Speech API 英文真人口音語音發音與自動循環播放**。
 - **🎴 互動式單字卡測驗模式 (Interactive Flashcard Mode)**：
   - 支援「全部顯示」、「隱藏中文（測驗英翻中）」、「隱藏英文（測驗中翻英）」，點擊卡片即可翻開複習。
 - **🧭 跑者常用英美賽事縮寫速查表 (Runner's Acronyms Cheat Sheet)**：
   - PR, PB, BQ, DNF, DNS, LSD, MP, HMP, RPE, HRV, RHR, VO2 Max, LT, DOMS, TSS 等速查。
-- **🗣️ 賽道與跑團實戰常用英文口語 (Race Day Idioms & Running Phrases)**。
+- **🩹 跑者常見運動傷害預防與 RAMP 動態熱身示範**：
+  - 整合足底筋膜炎、ITBS 髂脛束症候群、髕骨肌腱炎等防護要點與精選示範影片。
 
 ### 2. 📅 跨月份歷史對比與「平均每月睡眠時長/階段分佈堆疊圖」
 - **平均每月睡眠時長與階段分佈堆疊圖 (Monthly Stacked Sleep Stages Chart)**：
@@ -71,24 +109,53 @@ To protect personal privacy when publishing to GitHub Pages:
 - **馬拉松與長距離賽事分級統計**：全馬/超馬（$\ge 42\text{ km}$）、半馬/LSD（$21\sim 42\text{ km}$）、10K 中長跑（$10\sim 21\text{ km}$）、歷史最長單次跑量。
 - **跑量與卡路里燃燒統計**：總跑量、週均跑量、跑步總消耗卡路里、每公里平均燃燒熱量（kcal/km）。
 
-### 6. 📊 每日走勢圖 vs 月度統計圖 雙模式
-- **📈 每日走勢圖 (Daily Plots)**：逐日點圖（RHR、HRV、每日睡眠分期、身體電量充放、步數與強度）。
-- **📅 月度統計圖 (Monthly Plots)**：逐月柱狀/折線圖（月睡眠分期堆疊、月跑量、月均心率/HRV、月卡路里）。
-- **📋 每日原始明細表**：支援日期與運動名稱即時搜尋。
+---
+
+## 💻 快速使用指南 (Quick Start)
+
+### 🌟 方式 1：Windows 桌面雙擊更新（推薦）
+
+1. **同步 Garmin 資料並產生新儀表板**：
+   雙擊 👉 **`一鍵更新健康儀表板.bat`**
+   （自動同步 1000 天歷史健康數據，下載最新 GPX 軌跡，並在預設瀏覽器開啟儀表板）
+
+2. **發布最新儀表板到 GitHub Pages**：
+   雙擊 👉 **`一鍵推送至GitHub.bat`** 或 **`deploy.bat`**
+   （安全加入網頁發布檔案，自動 Commit 並推送至 GitHub main 分支觸發 GitHub Actions）
 
 ---
 
-## 💻 快速使用指南
+### 🖥️ 方式 2：Command Line 命令列操作
 
-### 🌟 方式 1：Windows 一鍵更新（追蹤至 1000 天）
-直接在資料夾中雙擊：
-👉 **`一鍵更新健康儀表板.bat`**
-
-### 🖥️ 方式 2：指令操作
 ```bash
-# 增量同步 1000 天歷史並自動生成 GitHub Pages index.html 與本地儀表板
+# 1. 安裝所需依賴套件
+pip install -r requirements.txt
+
+# 2. 增量同步 1000 天歷史並自動生成 GitHub Pages index.html 與本地儀表板
 python main.py --sync --days 1000 --open
 
-# 離線產出並開啟儀表板（不連網，使用現有快取）
+# 3. 批量下載 Garmin 運動 GPX 軌跡（自動跳過跑步機，存放於 marathon_gpx/）
+python download_gpx.py --mode all --limit 50
+
+# 4. 離線產出並開啟儀表板（不連網，使用現有快取資料）
 python main.py --report --open
+
+# 5. 安全發布至 GitHub Pages
+python deploy.py
 ```
+
+---
+
+## 🔧 常見問答與疑難排解 (FAQ)
+
+### Q1: 為什麼第一次執行會要求輸入代碼？
+**答**：Garmin Connect 啟用了雙重認證（2FA/MFA）。初次登入時終端機提示輸入由 Email 或手機簡訊收到的驗證碼，驗證成功後會將安全 Token 儲存在使用者目錄（`~/.garminconnect`），後續執行即可直接免密碼靜默登入。
+
+### Q2: 為什麼 GitHub 上看不到我的 GPX 檔案或 JSON 檔案？
+**答**：這是專案的**隱私保護設計**。GPX 檔案含有真實的 GPS 跑步路線與私人地址資訊，JSON 檔案含有個人帳號識別碼；專案透過 [.gitignore](file:///c:/Users/tu-hs/OneDrive/文件/2022_0308_MASA/2022-0708/Projects_antigravity/GARMIN_CONNET_TRACK/.gitignore) 與 [deploy.py](file:///c:/Users/tu-hs/OneDrive/文件/2022_0308_MASA/2022-0708/Projects_antigravity/GARMIN_CONNET_TRACK/deploy.py) 嚴格過濾，只會將去識別化後「純生理數據」的靜態 HTML 與 JS 部署上線。
+
+---
+
+## 📜 授權協議 (License)
+
+本專案採 MIT 授權條款釋出。歡迎耐力運動愛好者、馬拉松跑者與運動科學研究者自由使用與客製化。
