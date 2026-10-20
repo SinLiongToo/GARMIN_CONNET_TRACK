@@ -1152,16 +1152,36 @@
                 </div>
             </div>
 
-            <!-- Sub-section 1: 典型路跑下肢運動傷害與致死急症 -->
-            <div class="mb-3 flex items-center justify-between">
-                <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></span>
-                    <span>🏃‍♂️ 第一篇：典型路跑下肢過度使用傷害與臨床急症 (Musculoskeletal & Acute Conditions)</span>
-                </h3>
-                <span class="text-[10px] font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20 hidden sm:inline-block">
-                    6 Clinical Modules
-                </span>
+            <!-- Injury & Warm-up Interactive Tab Navigation -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 border-b border-slate-700/60 no-scrollbar">
+                <button onclick="switchInjuryTab('all')" id="itab-btn-all" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm" title="瀏覽全部 20 大傷害防護與熱身模組">
+                    <span>📑</span> <span>全部展開 (All 20)</span>
+                </button>
+                <button onclick="switchInjuryTab('musculoskeletal')" id="itab-btn-musculoskeletal" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="典型路跑下肢傷害與急症">
+                    <span>🏃‍♂️</span> <span>下肢傷害與急症 (6)</span>
+                </button>
+                <button onclick="switchInjuryTab('weather')" id="itab-btn-weather" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="極端天氣與環境風險防護">
+                    <span>🌤️</span> <span>天氣與環境風險 (4)</span>
+                </button>
+                <button onclick="switchInjuryTab('trail')" id="itab-btn-trail" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="長途越野賽與山徑實戰風險">
+                    <span>🏔️</span> <span>長途越野賽防護 (4)</span>
+                </button>
+                <button onclick="switchInjuryTab('warmup')" id="itab-btn-warmup" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="科學跑者動態熱身與神經啟動指南">
+                    <span>🔥</span> <span>科學動態熱身指南 (6)</span>
+                </button>
             </div>
+
+            <!-- Sub-section 1: 典型路跑下肢運動傷害與致死急症 -->
+            <div id="injury-sub-musculoskeletal" class="injury-sub-pane">
+                <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></span>
+                        <span>🏃‍♂️ 第一篇：典型路跑下肢過度使用傷害與臨床急症 (Musculoskeletal & Acute Conditions)</span>
+                    </h3>
+                    <span class="text-[10px] font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20 hidden sm:inline-block">
+                        6 Clinical Modules
+                    </span>
+                </div>
 
             <!-- 6 Clinical Injury Modules -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -1395,8 +1415,10 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Sub-section 2: 極端天氣與環境氣候防護注意事項 -->
+        <!-- Sub-section 2: 極端天氣與環境氣候防護注意事項 -->
+        <div id="injury-sub-weather" class="injury-sub-pane">
             <div class="mb-4 pt-6 border-t border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <h3 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
@@ -1560,8 +1582,10 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Sub-section 3: 長途越野賽與超馬山徑實戰風險 -->
+        <!-- Sub-section 3: 長途越野賽與超馬山徑實戰風險 -->
+        <div id="injury-sub-trail" class="injury-sub-pane">
             <div class="mb-4 pt-6 border-t border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <h3 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -1725,6 +1749,280 @@
                     </div>
                 </div>
             </div>
+        </div> <!-- End of #injury-sub-trail -->
+
+        <!-- Sub-section 4: 🔥 科學跑者動態熱身與神經啟動指南 -->
+        <div id="injury-sub-warmup" class="injury-sub-pane">
+            <div class="mb-4 pt-6 border-t border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <h3 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-sky-400 animate-pulse"></span>
+                    <span>🔥 第四篇：科學跑者動態熱身與神經啟動指南 (Dynamic Warm-up & Neuromuscular Activation)</span>
+                </h3>
+                <span class="text-[10px] font-mono text-sky-400 bg-sky-500/10 px-2.5 py-0.5 rounded-full border border-sky-500/20 self-start sm:self-auto">
+                    RAMP Protocol • Mobility • Potentiation
+                </span>
+            </div>
+
+            <!-- Warm-up Philosophy & RAMP Protocol Banner -->
+            <div class="mb-6 p-4 rounded-xl bg-slate-950/80 border border-sky-500/30 text-xs text-slate-300 space-y-3">
+                <div class="flex items-center gap-2 font-bold text-sky-400 text-sm">
+                    <span>💡 跑者運動科學核心鐵律：為什麼「跑前動態啟動，跑後靜態拉伸」？</span>
+                </div>
+                <p class="leading-relaxed text-slate-300">
+                    運動生理學研究明確指出：<strong>跑前切忌進行長於 30 秒的靜態拉伸 (Static Stretching)</strong>！靜態拉長會使肌腱失去剛性（降低肌腱伸展收縮循環彈性回饋 SSC），大幅削弱跑步經濟性 (Running Economy)，甚至因本體感覺鈍化而增加扭傷機率。
+                    正確做法是遵循國際運動訓練金科玉律 <strong>RAMP 熱身四部曲</strong>：
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1 text-[11px]">
+                    <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                        <span class="font-bold text-amber-400 font-mono">1. R (Raise 升溫):</span>
+                        <div class="text-slate-400 mt-0.5">慢跑或輕微彈跳 3~5 分鐘，提升核心體溫、心率與微血管血液灌流量。</div>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                        <span class="font-bold text-rose-400 font-mono">2. A (Activate 啟動):</span>
+                        <div class="text-slate-400 mt-0.5">喚醒久坐休眠的關鍵跑步動力肌群（臀中肌、膕旁肌、足底小肌群）。</div>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                        <span class="font-bold text-emerald-400 font-mono">3. M (Mobilize 活動):</span>
+                        <div class="text-slate-400 mt-0.5">在多軸平面動態擴展髖、膝、踝三大主關節之主動活動度 (Active ROM)。</div>
+                    </div>
+                    <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                        <span class="font-bold text-sky-400 font-mono">4. P (Potentiate 增強):</span>
+                        <div class="text-slate-400 mt-0.5">以漸進加速輕快跑 (Strides) 激發「後活化增強效應 (PAP)」，招募快肌纖維。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 Dynamic Warm-up Drills Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- 15. 髖關節前後與左右動態擺腿 -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between injury-card" id="icard-14">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-sky-400 font-mono">髖部靈活 • 動態擺腿</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Dynamic Leg Swings in Sagittal and Frontal Planes')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-sky-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Performing dynamic leg swings in both sagittal and frontal planes loosens tight hip flexors and readies the pelvic girdle for smooth stride turnover.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">髖關節前後與左右動態擺腿</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Dynamic Leg Swings in Sagittal and Frontal Planes</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 動態潤滑髖關節滑囊，放鬆並喚醒髖屈肌 (Iliopsoas)、膕旁肌 (Hamstrings) 與內收肌群，擴增矢狀面與冠狀面活動度。</div>
+                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 單手扶牆或固定物，軀幹保持直立緊繃；前後擺動 15~20 次，橫向左右開闔 15~20 次。幅度由小到大，利用擺動慣性動態拉長肌肉，切忌強烈甩動腰椎。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-sky-300">
+                                <strong>⚠️ 常見失誤:</strong> 骨盆隨擺腿過度前傾後仰借力，或下背腰椎過度反折；應保持核心收緊、僅以髖關節為單一軸心擺動。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-sky-400 font-bold text-[10px]">💬 熱身實戰例句 (Warm-up Context):</div>
+                            <div class="text-slate-200 italic">"Performing dynamic leg swings in both sagittal and frontal planes loosens tight hip flexors and readies the pelvic girdle for smooth stride turnover."</div>
+                            <div class="text-slate-400">在前後與左右平面進行動態擺腿能放鬆緊繃的髖屈肌，並讓骨盆帶為流暢的步頻轉換做好準備。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-sky-400 flex items-center justify-between">
+                        <span>動作頻率: 前後左右各 15~20 次</span>
+                        <span class="text-slate-500 font-mono">#LegSwings</span>
+                    </div>
+                </div>
+
+                <!-- 16. A字彈跳與高抬膝步態啟動 -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between injury-card" id="icard-15">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-emerald-400 font-mono">步態力學 • 三關節伸展</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('A-Skips and High Knees Drills')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('A-skips reinforce proper upright running posture, active foot strike underneath your center of mass, and aggressive triple extension.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">A字彈跳與高抬膝步態啟動</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">A-Skips and High Knees Drills</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 強化跑步核心推進力學：支撐腿「髖、膝、踝三關節完全伸展 (Triple Extension)」與擺動腿「主動屈髖下壓扒地」的神經協調性。</div>
+                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 抬起大腿至與地面平行，腳尖主動勾起背屈 (Dorsiflexion)，前腳掌迅速向下向後彈性質感接觸地面；手臂保持 90 度配合韻律有力前後擺動。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-emerald-300">
+                                <strong>⚠️ 常見失誤:</strong> 上半身過度後仰以補償髖屈肌無力；著地腳未落在重心正下方，導致形成減速剎車力量。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-emerald-400 font-bold text-[10px]">💬 熱身實戰例句 (Warm-up Context):</div>
+                            <div class="text-slate-200 italic">"A-skips reinforce proper upright running posture, active foot strike underneath your center of mass, and aggressive triple extension."</div>
+                            <div class="text-slate-400">A字彈跳能強化正確的直立跑步姿勢、重心正下方的主動著地以及強而有力的髖膝踝三關節伸展。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-emerald-400 flex items-center justify-between">
+                        <span>動作頻率: 進行 2~3 組，每組 20~30 公尺</span>
+                        <span class="text-slate-500 font-mono">#ASkips</span>
+                    </div>
+                </div>
+
+                <!-- 17. 彈力帶怪獸走與蚌殼式臀肌喚醒 -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between injury-card" id="icard-16">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-amber-400 font-mono">臀肌激活 • 杜絕ITBS膝痛</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Glute Activation with Clamshells and Monster Walk')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-amber-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Activating dormant gluteal muscles with resistance band monster walks prevents pelvic drop and safeguards against IT band friction syndrome.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">彈力帶怪獸走與蚌殼式臀肌喚醒</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Glute Activation with Clamshells and Monster Walk</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 破解現代人久坐造成的「臀肌失憶症 (Gluteal Amnesia)」，點燃骨盆穩定核心——<strong>臀中肌 (Gluteus Medius)</strong>，杜絕骨盆側傾 (Trendelenburg Gait) 與膝蓋內扣。</div>
+                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 膝蓋上方套上環狀彈力帶，微曲膝髖呈運動站姿；側向螃蟹步走動或斜前跨步（怪獸走），感受臀部外側酸脹燃燒感；每組 15~20 步。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-amber-300">
+                                <strong>⚠️ 常見失誤:</strong> 上半身左右大幅搖晃借力、足尖過度外八；應維持骨盆水平，完全由臀部外側肌群主動抗阻發力。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-amber-400 font-bold text-[10px]">💬 熱身實戰例句 (Warm-up Context):</div>
+                            <div class="text-slate-200 italic">"Activating dormant gluteal muscles with resistance band monster walks prevents pelvic drop and safeguards against IT band friction syndrome."</div>
+                            <div class="text-slate-400">透過彈力帶怪獸走喚醒休眠的臀部肌群，能防止骨盆側傾並杜絕髂脛束摩擦症候群。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-amber-400 flex items-center justify-between">
+                        <span>防護核心: 臀中肌有力是無傷完賽的最強盾牌</span>
+                        <span class="text-slate-500 font-mono">#GluteActivation</span>
+                    </div>
+                </div>
+
+                <!-- 18. 踝關節波戈彈跳與足弓蓄能 -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between injury-card" id="icard-17">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-cyan-400 font-mono">跟腱剛性 • 縮短觸地時間</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Ankle Pogo Hops and Windlass Mechanism')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Rapid ankle pogo hops prime your Achilles tendons to act as stiff biological springs, optimizing elastic energy recoil and cutting ground contact time.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">踝關節波戈彈跳與足弓蓄能</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Ankle Pogo Hops and Windlass Mechanism</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 將阿基里斯腱 (Achilles Tendon) 與足底筋膜預先加載為「剛性生物彈簧 (Tendon Stiffness)」，提升觸地能量回彈率，顯著降低觸地時間 (GCT)。</div>
+                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 膝蓋微屈並鎖定角度，僅利用踝關節與前腳掌做快速垂直點地連環彈跳；想像地面如滾燙熱鐵板，觸地即迅速拔起，每次連續 20~30 下。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-cyan-300">
+                                <strong>⚠️ 常見失誤:</strong> 膝蓋深蹲屈曲過多吸收彈力、腳跟直接重踩沉底；必須保持踝關節緊繃剛性。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-cyan-400 font-bold text-[10px]">💬 熱身實戰例句 (Warm-up Context):</div>
+                            <div class="text-slate-200 italic">"Rapid ankle pogo hops prime your Achilles tendons to act as stiff biological springs, optimizing elastic energy recoil and cutting ground contact time."</div>
+                            <div class="text-slate-400">快速腳踝波戈彈跳能將阿基里斯腱預先調整為剛性生理彈簧，最佳化彈性能量回彈並縮短觸地時間。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-cyan-400 flex items-center justify-between">
+                        <span>數據對應: Garmin 觸地時間 &lt; 220ms 之必練神技</span>
+                        <span class="text-slate-500 font-mono">#PogoHops</span>
+                    </div>
+                </div>
+
+                <!-- 19. 弓箭步行走伴隨胸椎旋轉 -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 transition-all flex flex-col justify-between injury-card" id="icard-18">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-purple-400 font-mono">髂腰肌拉伸 • 胸椎旋轉釋放</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Walking Lunges with Thoracic Spine Rotation')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-purple-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Walking lunges with thoracic rotation open up tight hip flexors and restore spinal mobility essential for natural arm swing kinematics.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">弓箭步行走伴隨胸椎旋轉</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Walking Lunges with Thoracic Spine Rotation</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 動態延伸後腿緊縮的髂腰肌 (Psoas) 與股直肌，同時釋放胸椎旋轉活動度 (Thoracic Mobility)，強化對角線對稱擺臂與核心抗旋轉穩定。</div>
+                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 向前跨出弓箭步，雙膝保持 90 度，雙臂平舉；緩慢將胸椎向「前腳同側」旋轉 45~90 度，感受後腿根部與胸口打開，再前跨換邊，連續 10~12 步。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-purple-300">
+                                <strong>⚠️ 常見失誤:</strong> 前膝內扣扭曲、以腰椎代償旋轉；旋轉動作應由中上背胸椎發起，下背與骨盆保持鎖定不動。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-purple-400 font-bold text-[10px]">💬 熱身實戰例句 (Warm-up Context):</div>
+                            <div class="text-slate-200 italic">"Walking lunges with thoracic rotation open up tight hip flexors and restore spinal mobility essential for natural arm swing kinematics."</div>
+                            <div class="text-slate-400">弓箭步行走結合胸椎旋轉能打開緊繃的髖屈肌，並恢復自然擺臂力學所需的脊椎旋轉活動度。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-purple-400 flex items-center justify-between">
+                        <span>動作頻率: 進行 2 組，每組左右交替 10~12 步</span>
+                        <span class="text-slate-500 font-mono">#WalkingLunges</span>
+                    </div>
+                </div>
+
+                <!-- 20. 漸進加速輕快跑 -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-19">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-rose-400 font-mono">神經招募 • 後活化增強效應</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Strides and Build-up Sprints')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-rose-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Finishing your warm-up routine with four 80-meter strides induces post-activation potentiation, making race pace feel effortless from the starting gun.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">漸進加速輕快跑</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Strides and Build-up Sprints</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 熱身最後的壓軸環節！激發中樞神經<strong>「後活化增強效應 (PAP)」</strong>，招募快肌纖維 (Type IIx)，使正式開跑後的目標配速顯得無比輕盈放鬆。</div>
+                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 進行 4~6 趟 80~100 公尺短跑：前 30m 循序平穩加速至 90~95% 速度，中間 30m 保持最高速巡航與流暢擺臂，後 30m 自然滑行減速；趟間充分慢走 45~60 秒恢復。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-rose-300">
+                                <strong>⚠️ 常見失誤:</strong> 當成 100m 全力緊繃衝刺而咬牙聳肩；輕快跑核心在於「極速中的放鬆感」，趟間必須完全慢走深呼吸，不可累積乳酸疲勞。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-rose-400 font-bold text-[10px]">💬 熱身實戰例句 (Warm-up Context):</div>
+                            <div class="text-slate-200 italic">"Finishing your warm-up routine with four 80-meter strides induces post-activation potentiation, making race pace feel effortless from the starting gun."</div>
+                            <div class="text-slate-400">以四趟八十公尺漸進加速跑結束熱身流程能引發後活化增強效應，讓起跑槍響後的目標配速感覺格外輕鬆不費力。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
+                        <span>起跑關鍵: 槍響前 10 分鐘完成 4 趟 Strides</span>
+                        <span class="text-slate-500 font-mono">#Strides</span>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End of #injury-sub-warmup -->
         </section>
 
         <!-- Section 4: 🗣️ Race Day & Group Run English Idioms -->
@@ -3520,8 +3818,103 @@
                 zh: "山野無援、夜間越野與強制裝備法則",
                 ex_en: "Carrying mandatory survival gear including dual headlamps, a seam-sealed waterproof jacket, and an offline GPS track is non-negotiable for alpine ultra-endurance trails.",
                 ex_zh: "攜帶包括雙頭燈、全壓膠防水風雨衣與離線 GPS 航跡在內的強制生存裝備，是參與高山超長距離越野賽絕不可妥協的鐵律。"
+            },
+            {
+                id: "icard-14",
+                title: "Dynamic Leg Swings in Sagittal and Frontal Planes",
+                zh: "髖關節前後與左右動態擺腿",
+                ex_en: "Performing dynamic leg swings in both sagittal and frontal planes loosens tight hip flexors and readies the pelvic girdle for smooth stride turnover.",
+                ex_zh: "在前後與左右平面進行動態擺腿能放鬆緊繃的髖屈肌，並讓骨盆帶為流暢的步頻轉換做好準備。"
+            },
+            {
+                id: "icard-15",
+                title: "A-Skips and High Knees Drills",
+                zh: "A字彈跳與高抬膝步態啟動",
+                ex_en: "A-skips reinforce proper upright running posture, active foot strike underneath your center of mass, and aggressive triple extension.",
+                ex_zh: "A字彈跳能強化正確的直立跑步姿勢、重心正下方的主動著地以及強而有力的髖膝踝三關節伸展。"
+            },
+            {
+                id: "icard-16",
+                title: "Glute Activation with Clamshells and Monster Walk",
+                zh: "彈力帶怪獸走與蚌殼式臀肌喚醒",
+                ex_en: "Activating dormant gluteal muscles with resistance band monster walks prevents pelvic drop and safeguards against IT band friction syndrome.",
+                ex_zh: "透過彈力帶怪獸走喚醒休眠的臀部肌群，能防止骨盆側傾並杜絕髂脛束摩擦症候群。"
+            },
+            {
+                id: "icard-17",
+                title: "Ankle Pogo Hops and Windlass Mechanism",
+                zh: "踝關節波戈彈跳與足弓蓄能",
+                ex_en: "Rapid ankle pogo hops prime your Achilles tendons to act as stiff biological springs, optimizing elastic energy recoil and cutting ground contact time.",
+                ex_zh: "快速腳踝波戈彈跳能將阿基里斯腱預先調整為剛性生理彈簧，最佳化彈性能量回彈並縮短觸地時間。"
+            },
+            {
+                id: "icard-18",
+                title: "Walking Lunges with Thoracic Spine Rotation",
+                zh: "弓箭步行走伴隨胸椎旋轉",
+                ex_en: "Walking lunges with thoracic rotation open up tight hip flexors and restore spinal mobility essential for natural arm swing kinematics.",
+                ex_zh: "弓箭步行走結合胸椎旋轉能打開緊繃的髖屈肌，並恢復自然擺臂力學所需的脊椎旋轉活動度。"
+            },
+            {
+                id: "icard-19",
+                title: "Strides and Build-up Sprints",
+                zh: "漸進加速輕快跑",
+                ex_en: "Finishing your warm-up routine with four 80-meter strides induces post-activation potentiation, making race pace feel effortless from the starting gun.",
+                ex_zh: "以四趟八十公尺漸進加速跑結束熱身流程能引發後活化增強效應，讓起跑槍響後的目標配速感覺格外輕鬆不費力。"
             }
         ];
+
+        let currentInjuryTab = 'all';
+
+        function switchInjuryTab(tabName) {
+            currentInjuryTab = tabName;
+            const panes = {
+                musculoskeletal: document.getElementById('injury-sub-musculoskeletal'),
+                weather: document.getElementById('injury-sub-weather'),
+                trail: document.getElementById('injury-sub-trail'),
+                warmup: document.getElementById('injury-sub-warmup')
+            };
+
+            const tabBtns = {
+                all: document.getElementById('itab-btn-all'),
+                musculoskeletal: document.getElementById('itab-btn-musculoskeletal'),
+                weather: document.getElementById('itab-btn-weather'),
+                trail: document.getElementById('itab-btn-trail'),
+                warmup: document.getElementById('itab-btn-warmup')
+            };
+
+            // Reset all buttons to inactive style
+            Object.values(tabBtns).forEach(b => {
+                if (!b) return;
+                b.className = 'itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800';
+            });
+
+            // Set active button style
+            const activeBtn = tabBtns[tabName];
+            if (activeBtn) {
+                if (tabName === 'all') {
+                    activeBtn.className = 'itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm';
+                } else if (tabName === 'musculoskeletal') {
+                    activeBtn.className = 'itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-rose-600 text-white border border-rose-500 shadow-md shadow-rose-900/30';
+                } else if (tabName === 'weather') {
+                    activeBtn.className = 'itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-amber-600 text-white border border-amber-500 shadow-md shadow-amber-900/30';
+                } else if (tabName === 'trail') {
+                    activeBtn.className = 'itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-emerald-600 text-white border border-emerald-500 shadow-md shadow-emerald-900/30';
+                } else if (tabName === 'warmup') {
+                    activeBtn.className = 'itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-sky-600 text-white border border-sky-500 shadow-md shadow-sky-900/30';
+                }
+            }
+
+            // Show/hide sub-panes
+            Object.keys(panes).forEach(key => {
+                const pane = panes[key];
+                if (!pane) return;
+                if (tabName === 'all' || tabName === key) {
+                    pane.classList.remove('hidden');
+                } else {
+                    pane.classList.add('hidden');
+                }
+            });
+        }
 
         let isInjuryAutoPlaying = false;
         let injuryPlayIndex = -1;
@@ -3579,6 +3972,16 @@
             injuryPlayIndex = idx;
             const item = INJURY_ITEMS[idx];
 
+            // Auto-switch tab if current tab is not 'all' and not matching the item
+            let targetTab = 'musculoskeletal';
+            if (idx >= 6 && idx <= 9) targetTab = 'weather';
+            else if (idx >= 10 && idx <= 13) targetTab = 'trail';
+            else if (idx >= 14 && idx <= 19) targetTab = 'warmup';
+
+            if (currentInjuryTab !== 'all' && currentInjuryTab !== targetTab) {
+                switchInjuryTab(targetTab);
+            }
+
             document.querySelectorAll('.injury-card').forEach(c => c.classList.remove('active-play-injury', 'active-play-card'));
             const card = document.getElementById(item.id);
             if (card) {
@@ -3586,7 +3989,8 @@
                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
-            showTopMiniPlayer(`🩹 傷害: ${item.zh}`, 'injury');
+            const categoryTag = idx >= 14 ? '🔥 熱身' : (idx >= 10 ? '🏔️ 越野' : (idx >= 6 ? '🌤️ 氣候' : '🩹 傷害'));
+            showTopMiniPlayer(`${categoryTag}: ${item.zh}`, 'injury');
 
             if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
