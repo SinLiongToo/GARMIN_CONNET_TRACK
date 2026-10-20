@@ -75,7 +75,7 @@ def main():
 
     # 5. Commit
     print("\n[4/5] 建立提交 (Commit)...")
-    run_interactive(["git", "commit", "-m", "feat: add smooth auto-scroll sync to playing card and sticky top navigation bar"])
+    run_interactive(["git", "commit", "-m", "feat: add endurance nutrition fueling science and running overuse injury guides with 100+ audio terms"])
 
     # 6. Push
     print("\n[5/5] 推送到 GitHub (main 分支)...")

@@ -236,6 +236,12 @@
                     <a href="#quotes-section" class="px-2.5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
                         <span>🏆</span> <span>200 金句</span>
                     </a>
+                    <a href="#nutrition-section" class="px-2.5 py-1.5 rounded-lg bg-lime-500/20 hover:bg-lime-500/30 text-lime-300 border border-lime-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
+                        <span>🥑</span> <span>補給科學</span>
+                    </a>
+                    <a href="#injury-section" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
+                        <span>🩹</span> <span>傷害防護</span>
+                    </a>
                     <a href="#glossary-section" class="px-2.5 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
                         <span>📚</span> <span>分類辭典</span>
                     </a>
@@ -297,8 +303,8 @@
                     <span>專業運動英文術語</span>
                     <span>📚</span>
                 </div>
-                <div class="text-2xl font-bold text-sky-400 mt-2">80+ Terms</div>
-                <div class="text-xs text-slate-400 mt-1">配速、心率、代謝裝備</div>
+                <div class="text-2xl font-bold text-sky-400 mt-2">100+ Terms</div>
+                <div class="text-xs text-slate-400 mt-1">補給、傷害防護、配速指標</div>
             </div>
 
             <div class="glass-card rounded-xl p-4 border-l-4 border-l-purple-500">
@@ -671,7 +677,10 @@
                     🏋️ 肌力與體能 (Strength)
                 </button>
                 <button onclick="setCategory('nutrition')" id="cat-nutrition" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all">
-                    🥗 營養與恢復 (Nutrition)
+                    🥗 營養與補給 (Nutrition)
+                </button>
+                <button onclick="setCategory('injury')" id="cat-injury" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all">
+                    🩹 傷害與防護 (Injuries)
                 </button>
                 <button onclick="setCategory('periodization')" id="cat-periodization" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all">
                     ⏱️ 週期化訓練 (Periodization)
@@ -806,6 +815,366 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </section>
+
+        <!-- Section: 🥑 長途耐力營養、肝醣超補與賽道補給科學 (Endurance Nutrition & Fueling Science) -->
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-lime-500" id="nutrition-section">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-6 border-b border-slate-700/60 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🥑</span>
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                            長途耐力營養、肝醣超補與賽道補給科學
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-lime-500/20 text-lime-400 font-normal border border-lime-500/30">
+                                Fueling & Hydration Science
+                            </span>
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">
+                            馬拉松與超長距離耐力運動之能量代謝、雙通道碳水化合物吸收與電解質水合指南 (Carbo-loading, Dual-Source Carbs, Electrolyte Balance & Gut Training)
+                        </p>
+                    </div>
+                </div>
+                <span class="text-xs px-3 py-1 rounded-full bg-lime-500/20 text-lime-400 font-mono border border-lime-500/30">
+                    Sports Nutrition
+                </span>
+            </div>
+
+            <!-- 4 Core Pillars Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                <!-- Card 1: 賽前 3 天肝醣超補 -->
+                <div class="p-5 rounded-2xl bg-slate-900/90 border border-lime-500/30 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-lime-500/20 text-lime-400 font-bold">
+                                賽前 36~72 小時 • 儲能階段
+                            </span>
+                            <button onclick="speakText('Carbo-loading and Glycogen Supercompensation')" class="p-1 text-lime-400 hover:text-white text-xs" title="聆聽英文發音">🔊</button>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mt-2 flex items-center gap-2">
+                            <span>肝醣超補與飽和策略</span>
+                            <span class="text-xs font-mono text-lime-400 font-normal">(Carbo-loading & Glycogen Supercompensation)</span>
+                        </h3>
+                        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                            人體骨骼肌與肝臟的肝醣儲存上限約 400~500g（約 2000 大卡），僅足夠維持 90~120 分鐘半馬至全馬強度的消耗。若無妥善超補，25~35 公里必然撞牆崩潰。
+                        </p>
+
+                        <div class="mt-3.5 space-y-2.5 text-xs">
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                                <div class="font-bold text-amber-400">📊 每日建議攝取劑量:</div>
+                                <div class="text-slate-300">
+                                    體重每公斤 <strong>8~10 克碳水化合物 / 天 (g/kg/day)</strong>。例如 60kg 跑者每日需攝取 480~600g 優質碳水（白飯、燕麥、地瓜、香蕉、麥芽糊精水沖劑）。
+                                </div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                                <div class="font-bold text-rose-400">⚠️ 賽前飲食三大黃金鐵律:</div>
+                                <ul class="list-disc list-inside text-slate-300 space-y-1">
+                                    <li><strong>切換至低纖維飲食 (Low-residue diet):</strong> 賽前 48 小時減少粗纖維與生菜沙拉，避免腸道積存過多糞便殘渣導致賽道內急。</li>
+                                    <li><strong>低脂肪與適度蛋白質:</strong> 避免高脂油炸延緩胃排空速率。</li>
+                                    <li><strong>體重微增 1~2kg 是正常儲能:</strong> 人體每儲存 1g 肝醣需結合 <strong>3g 水分子</strong>，賽前體重上升是體內蓄滿水合燃料的必備生理現象。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-800 text-[11px] text-lime-400 flex items-center justify-between">
+                        <span>關鍵術語: Tapering, Glycogen Synthase, Low-residue Diet</span>
+                        <span class="text-slate-500 font-mono">#CarboLoading</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: 賽道補給黃金矩陣與雙通道碳水 -->
+                <div class="p-5 rounded-2xl bg-slate-900/90 border border-amber-500/30 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 font-bold">
+                                賽道實戰進行中 • 每小時 30~90g
+                            </span>
+                            <button onclick="speakText('Dual-Source Carbohydrates and In-Race Energy Gel Protocol')" class="p-1 text-amber-400 hover:text-white text-xs" title="聆聽英文發音">🔊</button>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mt-2 flex items-center gap-2">
+                            <span>雙通道碳水與能量膠補給矩陣</span>
+                            <span class="text-xs font-mono text-amber-400 font-normal">(Dual-Source Carbohydrates & Fueling Matrix)</span>
+                        </h3>
+                        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                            腸道對單純葡萄糖的吸收仰賴 <strong>SGLT1 轉運蛋白</strong>，吸收上限約 60g/小時。單純攝取超量葡萄糖將滯留腸道引發滲透性腹瀉。
+                        </p>
+
+                        <div class="mt-3.5 space-y-2.5 text-xs">
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                                <div class="font-bold text-sky-400">⚡ 雙通道突破上限理論 (1:0.8 / 2:1 比例):</div>
+                                <div class="text-slate-300">
+                                    結合麥芽糊精 (葡萄糖聚合物) 與果糖 (<strong>GLUT5 轉運蛋白</strong>)，雙軌並行吸收，可將外源性碳水氧化率推升至 <strong>90~120g/小時</strong>，大幅延緩肌纖維疲勞。
+                                </div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                                <div class="font-bold text-amber-400">⏱️ 馬拉松實戰補給節奏:</div>
+                                <ul class="list-disc list-inside text-slate-300 space-y-1">
+                                    <li><strong>頻率:</strong> 每 30~45 分鐘 (或每 5~7 公里水站) 服用 1 包能量膠 (含 22~30g 碳水)。</li>
+                                    <li><strong>配水黃金準則:</strong> 能量膠屬於高滲透壓膠體，<strong>必須配純水 (Water) 吞服</strong>，切忌搭配含糖運動飲料，以防腸道滲透壓過高引起胃痙攣絞痛 (GI Distress)。</li>
+                                    <li><strong>咖啡因賽道分配:</strong> 賽前 30 分鐘或賽事 25~30km 疲勞撞牆臨界點補充 (3~6mg/kg 體重)，提升中樞神經興奮度與痛覺耐受力。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-800 text-[11px] text-amber-400 flex items-center justify-between">
+                        <span>關鍵術語: Maltodextrin, Fructose, SGLT1, GLUT5</span>
+                        <span class="text-slate-500 font-mono">#DualSourceCarbs</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: 水合、電解質平衡與低血鈉防護 -->
+                <div class="p-5 rounded-2xl bg-slate-900/90 border border-sky-500/30 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-400 font-bold">
+                                水分流失防護 • 電解質動態平衡
+                            </span>
+                            <button onclick="speakText('Hydration, Electrolyte Balance and Exercise-Associated Hyponatremia')" class="p-1 text-sky-400 hover:text-white text-xs" title="聆聽英文發音">🔊</button>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mt-2 flex items-center gap-2">
+                            <span>水合、出汗率與運動性低血鈉防護</span>
+                            <span class="text-xs font-mono text-sky-400 font-normal">(Hydration & Hyponatremia Prevention)</span>
+                        </h3>
+                        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                            脫水超過體重 2% 會使血容量下降、心率代償性飆升（心血管漂移），但盲目狂飲純水更會造成致命的低血鈉症。
+                        </p>
+
+                        <div class="mt-3.5 space-y-2.5 text-xs">
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                                <div class="font-bold text-rose-400">🚨 運動性低血鈉症 (EAH / 水中毒):</div>
+                                <div class="text-slate-300">
+                                    多見於跑時超過 4 小時之選手，過度飲用純水稀釋血鈉 (&lt;135 mmol/L)，水分子滲入腦細胞造成腦水腫、意識混亂、嗜睡甚至昏迷。
+                                </div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                                <div class="font-bold text-sky-400">💧 科學飲水與電解質配比:</div>
+                                <ul class="list-disc list-inside text-slate-300 space-y-1">
+                                    <li><strong>出汗率測算 (Sweat Rate):</strong> 跑前裸重 - 跑後裸重 + 途中飲水量 = 總出汗量。一般跑者約 400~1000ml/小時。</li>
+                                    <li><strong>補鈉標準:</strong> 每小時補充 <strong>300~600mg 鈉 (Sodium)</strong>，濕熱天或汗鹽過重（衣服浮白鹽霜）者應適當增加鹽錠 (Salt Sticks)。</li>
+                                    <li><strong>低滲透壓 vs 等滲透壓:</strong> 比賽進行中以低滲透 (Hypotonic, 200~250 mOsm/kg) 電解質水吸收最為迅速。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-800 text-[11px] text-sky-400 flex items-center justify-between">
+                        <span>關鍵術語: Sweat Rate, Hyponatremia, Osmolality, Electrolytes</span>
+                        <span class="text-slate-500 font-mono">#HydrationScience</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: 賽後黃金代謝修復期與胃腸道訓練 -->
+                <div class="p-5 rounded-2xl bg-slate-900/90 border border-purple-500/30 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-400 font-bold">
+                                賽後 30 分鐘 • 代謝修復窗口
+                            </span>
+                            <button onclick="speakText('The Anabolic Recovery Window and Gut Training Adaptation')" class="p-1 text-purple-400 hover:text-white text-xs" title="聆聽英文發音">🔊</button>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mt-2 flex items-center gap-2">
+                            <span>賽後黃金代謝修復期與胃腸道訓練</span>
+                            <span class="text-xs font-mono text-purple-400 font-normal">(Anabolic Recovery & Gut Training)</span>
+                        </h3>
+                        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                            完賽後人體處於肌纖維微創發炎與皮質醇高張狀態，把握代謝窗口是抑制分解、重啟合成的關鍵。
+                        </p>
+
+                        <div class="mt-3.5 space-y-2.5 text-xs">
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                                <div class="font-bold text-emerald-400">🥩 3:1 或 4:1 碳水蛋白黃金配比:</div>
+                                <div class="text-slate-300">
+                                    完賽 <strong>30~45 分鐘內</strong>，骨骼肌 GLUT4 轉運蛋白處於高敏開放期。補充 <strong>1.0~1.2g/kg 碳水 + 20~25g 快速吸收乳清蛋白 (Whey Protein)</strong>，能刺激胰島素分泌，將肌肝醣合成速率提升至平時的 3 倍。
+                                </div>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                                <div class="font-bold text-purple-400">🧠 胃腸道訓練 (Gut Training):</div>
+                                <div class="text-slate-300">
+                                    腸道與骨骼肌一樣具備高度可塑性。在週末 LSD 長距離訓練中必須<strong>「模擬賽事全真補給」</strong>，訓練胃部在高心率血液遠離內臟狀態下的排空效率，才能杜絕賽日跑者腹瀉 (Runner's Trots)。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-800 text-[11px] text-purple-400 flex items-center justify-between">
+                        <span>關鍵術語: Anabolic Window, Whey Protein, Gut Adaptation, BCAA</span>
+                        <span class="text-slate-500 font-mono">#RecoveryScience</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: 🩹 長途路跑常見運動傷害、過度使用與急症防護 (Running Injuries, Overuse & Medical Hazards) -->
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-rose-500" id="injury-section">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-6 border-b border-slate-700/60 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🩹</span>
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                            長途路跑常見運動傷害、過度使用與急症防護
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-400 font-normal border border-rose-500/30">
+                                Injuries & Overuse Syndromes
+                            </span>
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">
+                            下肢生物力學失衡、急症警訊、鑑別診斷與跑者運動醫學復健防護 (ITBS, PFPS, Plantar Fasciitis, Stress Fractures, EHS & Rhabdomyolysis)
+                        </p>
+                    </div>
+                </div>
+                <span class="text-xs px-3 py-1 rounded-full bg-rose-500/20 text-rose-400 font-mono border border-rose-500/30">
+                    Sports Medicine
+                </span>
+            </div>
+
+            <!-- 6 Clinical Injury Modules -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- 1. 髂脛束症候群 ITBS -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-rose-400 font-mono">ITBS • 膝外側針刺痛</span>
+                            <button onclick="speakText('Iliotibial Band Syndrome, ITBS')" class="p-1 text-rose-400 text-xs">🔊</button>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">髂脛束摩擦症候群 (ITBS)</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Iliotibial Band Syndrome</div>
+                        
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 疼痛特徵:</strong> 膝蓋關節外側股骨外上髁處呈銳利摩擦痛，常在起跑 3~5 公里時規律發作，下坡時痛感加劇。</div>
+                            <div><strong class="text-amber-400">🔬 生理成因:</strong> 臀中肌 (Gluteus Medius) 無力導致骨盆側傾，大腿過度內旋牽拉髂脛束與滑囊劇烈摩擦。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-emerald-300">
+                                <strong>🛡️ 處方對策:</strong> 滾筒放鬆闊筋膜張肌 (TFL)、強化側棒式抬腿與蚌殼式 (Clamshell)、步頻提升 5% 以縮短觸地時間。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
+                        <span>好發於: 下坡過度跨步跑者</span>
+                        <span class="text-slate-500 font-mono">#ITBS</span>
+                    </div>
+                </div>
+
+                <!-- 2. 跑者膝 / 髕骨股骨疼痛症候群 PFPS -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-rose-400 font-mono">PFPS • 髕骨周圍深層鈍痛</span>
+                            <button onclick="speakText('Patellofemoral Pain Syndrome, Runner\'s Knee')" class="p-1 text-rose-400 text-xs">🔊</button>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">跑者膝 (髕骨股骨症候群)</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Patellofemoral Pain Syndrome</div>
+                        
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 疼痛特徵:</strong> 膝蓋前側、髕骨正下方或周圍瀰漫性鈍痛，下樓梯、下坡與久坐起身 (Movie-goer sign) 痛感強烈。</div>
+                            <div><strong class="text-amber-400">🔬 生理成因:</strong> 股四頭肌內側頭 (VMO) 與外側肌力不平衡，導致髕骨在股骨滑車溝中軌跡偏移外翻磨損。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-emerald-300">
+                                <strong>🛡️ 處方對策:</strong> 強化股四頭肌終端伸膝 (Terminal Knee Extension)、分腿蹲 (Split Squat)、避免下坡過度跨步 (Overstriding)。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
+                        <span>好發於: 跑量暴增、股四頭肌不平衡</span>
+                        <span class="text-slate-500 font-mono">#PFPS</span>
+                    </div>
+                </div>
+
+                <!-- 3. 足底筋膜炎 Plantar Fasciitis -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-rose-400 font-mono">足底撕裂痛 • 晨起第一步</span>
+                            <button onclick="speakText('Plantar Fasciitis')" class="p-1 text-rose-400 text-xs">🔊</button>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">足底筋膜炎</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Plantar Fasciitis</div>
+                        
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 疼痛特徵:</strong> 清晨下床踩地「第一步」足跟內側結節如踩針般劇痛，走動 10 分鐘後稍微舒緩，長跑後再度劇痛。</div>
+                            <div><strong class="text-amber-400">🔬 生理成因:</strong> 小腿比目魚肌過度緊繃，足弓反覆受到離地絞盤機制 (Windlass Mechanism) 微創發炎退化。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-emerald-300">
+                                <strong>🛡️ 處方對策:</strong> 高爾夫球踩滾足底、大腳趾背屈拉伸足底筋膜、換穿支撐性足弓鞋墊、離心提踵訓練。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
+                        <span>好發於: 高足弓/扁平足、緊繃小腿</span>
+                        <span class="text-slate-500 font-mono">#PlantarFasciitis</span>
+                    </div>
+                </div>
+
+                <!-- 4. 阿基里斯腱病變 Achilles Tendinopathy -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-rose-400 font-mono">跟腱腫脹 • 晨間僵硬</span>
+                            <button onclick="speakText('Achilles Tendinopathy')" class="p-1 text-rose-400 text-xs">🔊</button>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">阿基里斯腱病變</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Achilles Tendinopathy</div>
+                        
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 疼痛特徵:</strong> 腳後跟上方 2~6 公分處跟腱體部腫脹僵硬、捏掐劇烈壓痛，起跑初期僵硬，熱身後減緩但跑後加劇。</div>
+                            <div><strong class="text-amber-400">🔬 生理成因:</strong> 突然加入高斜率爬坡跑、換穿零落差 (Zero-drop) 鞋款或間歇衝刺量暴增，跟腱膠原蛋白微纖維退化。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-emerald-300">
+                                <strong>🛡️ 處方對策:</strong> Alfredson 離心下沉提踵訓練 (Eccentric Heel Drop Protocol)、暫停坡度跑與衝刺、避免跟腱處直接強力深層按摩。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
+                        <span>好發於: 衝刺間歇、突然換低落差鞋</span>
+                        <span class="text-slate-500 font-mono">#Achilles</span>
+                    </div>
+                </div>
+
+                <!-- 5. 脛骨壓力症候群 (MTSS) vs 疲勞性骨折 -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-rose-500/40 hover:border-rose-400 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-rose-400 font-mono">骨骼警訊 • 應力性微骨折</span>
+                            <button onclick="speakText('Medial Tibial Stress Syndrome and Stress Fracture')" class="p-1 text-rose-400 text-xs">🔊</button>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">脛前疼痛與疲勞性骨折</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Shin Splints (MTSS) vs Stress Fracture</div>
+                        
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 鑑別診斷關鍵:</strong> MTSS 壓痛呈<strong>大於 5cm 縱向條狀</strong>；若壓痛集中於<strong>硬幣大小的單一局限骨點 (Focal tenderness)</strong> 伴隨敲擊震盪痛，高度懷疑疲勞性骨折！</div>
+                            <div><strong class="text-rose-400">🚨 紅旗警戒:</strong> 疲勞性骨折必須<strong>立刻全面停止跑步 6~8 週</strong>，進行 MRI 或核子骨掃描，絕不可忍痛硬跑否則恐造成完全骨折。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-emerald-300">
+                                <strong>🛡️ 處方對策:</strong> 改以水中跑步 (Aqua jogging) 或自行車維持心肺、評估骨質密度與維生素 D/鈣質攝取。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
+                        <span>紅旗徵兆: 單點骨壓痛必須立即停跑</span>
+                        <span class="text-slate-500 font-mono">#StressFracture</span>
+                    </div>
+                </div>
+
+                <!-- 6. 橫紋肌溶解症與勞力型中暑 (生命威脅急症) -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border-2 border-rose-600/60 hover:border-rose-500 transition-all flex flex-col justify-between shadow-lg shadow-rose-950/30">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-black text-rose-400 font-mono flex items-center gap-1">
+                                <span>🚨</span> <span>致命急症 • 茶色尿與高溫</span>
+                            </span>
+                            <button onclick="speakText('Exertional Heat Stroke and Rhabdomyolysis')" class="p-1 text-rose-400 text-xs">🔊</button>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">橫紋肌溶解症與勞力型中暑</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Rhabdomyolysis & Exertional Heat Stroke</div>
+                        
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-rose-400">🍷 橫紋肌溶解症 (Rhabdo):</strong> 肌纖維大量溶解壞死釋放肌紅蛋白，出現<strong>可樂色/茶色尿 (Myoglobinuria)</strong>、肌肉極度腫脹僵硬。併發急性腎衰竭與高血鉀心律不整，需急診大量輸液洗腎。</div>
+                            <div><strong class="text-amber-400">🔥 勞力型中暑 (EHS):</strong> 核心體溫 &gt;40.5°C、中樞神經失常 (胡言亂語、抽搐、步履蹣跚、昏迷)。致死率極高！</div>
+                            <div class="p-2 rounded-lg bg-rose-950/40 border border-rose-500/40 text-[11px] text-rose-300">
+                                <strong>⚡ 中暑急救鐵律:</strong> <strong>「先降溫、後送醫」(Cool First, Transport Second)</strong>，立刻全身浸入 2~10°C 冰水浴 (CWI)，在 30 分鐘內將核心體溫降至 38.8°C。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
+                        <span>致死急症: 茶色尿與中樞神經失常</span>
+                        <span class="text-slate-500 font-mono">#MedicalEmergency</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1270,6 +1639,217 @@
                 ex_en: "Instead of staying glued to the couch, a 20-minute active recovery walk cleared residual soreness from Sunday's long run.",
                 ex_zh: "與其整天躺在沙發上，20 分鐘的動態恢復散步有效清除了週日長跑後的殘餘痠痛。",
                 metric: "心率保持在 Zone 1 漫步或輕鬆踩踏"
+            },
+            {
+                cat: "nutrition",
+                en: "Dual-Source Carbohydrates",
+                phonetic: "/ˈduː.əl sɔːrs ˌkɑːr.boʊˈhaɪ.dreɪts/",
+                pos: "n.",
+                zh: "雙通道碳水化合物 (麥芽糊精與果糖比例配方)",
+                def: "A combination of maltodextrin (glucose) and fructose in 2:1 or 1:0.8 ratio, utilizing different intestinal transporters (SGLT1 and GLUT5) to exceed the 60g/h absorption ceiling up to 90-120g/h.",
+                ex_en: "Elite marathoners consume dual-source energy gels to sustain an intake of 90 grams of carbs per hour without stomach upset.",
+                ex_zh: "頂尖馬拉松跑者攝取雙通道能量膠，以每小時 90 克的高碳水吸收速率奔馳，且不引發腸胃不適。",
+                metric: "賽事能量膠補給策略: 90~120g/h"
+            },
+            {
+                cat: "nutrition",
+                en: "Gut Training",
+                phonetic: "/ɡʌt ˈtreɪ.nɪŋ/",
+                pos: "n.",
+                zh: "胃腸道適應訓練 (訓練腸胃吸收力)",
+                def: "The progressive practice of consuming fluids and high amounts of carbohydrates during training runs to improve gastric emptying and reduce GI distress on race day.",
+                ex_en: "You cannot expect to digest 60g of carbs per hour on race day unless you have practiced gut training during your long weekend runs.",
+                ex_zh: "除非你在週末長跑中進行過胃腸道適應訓練，否則別指望比賽日能每小時順利消化 60 克碳水。",
+                metric: "LSD 長跑實戰模擬消化吸收"
+            },
+            {
+                cat: "nutrition",
+                en: "Exercise-Associated Hyponatremia (EAH)",
+                phonetic: "/ˌhaɪ.poʊ.nəˈtriː.mi.ə/",
+                pos: "n.",
+                zh: "運動性低血鈉症 (俗稱水中毒)",
+                def: "A potentially fatal drop in blood sodium concentration (<135 mmol/L) caused by excessive fluid intake exceeding sweat loss during long-duration exercise.",
+                ex_en: "Drinking exclusively pure water without sodium during a 5-hour marathon significantly increases the risk of exercise-associated hyponatremia.",
+                ex_zh: "在長達 5 小時的馬拉松中若只盲目狂灌純水而不補鈉，會顯著增加運動性低血鈉水中毒的危險。",
+                metric: "血鈉濃度檢測 & 補充電解質鹽錠"
+            },
+            {
+                cat: "nutrition",
+                en: "Osmolality",
+                phonetic: "/ˌɒz.məˈlæl.ə.ti/",
+                pos: "n.",
+                zh: "滲透壓濃度 (溶液中溶質微粒濃度)",
+                def: "The concentration of dissolved particles per kilogram of solvent; sports drinks can be hypotonic (faster water absorption), isotonic (balanced), or hypertonic (slower emptying).",
+                ex_en: "Hypotonic sports drinks with low osmolality empty from the stomach and enter the bloodstream faster than high-sugar beverages.",
+                ex_zh: "具備較低滲透壓的低張運動飲料，胃排空與進入血液循環的速度遠比高糖濃縮飲料更快。",
+                metric: "低滲透壓水合液: 200-250 mOsm/kg"
+            },
+            {
+                cat: "nutrition",
+                en: "Sweat Rate",
+                phonetic: "/swet reɪt/",
+                pos: "n.",
+                zh: "出汗率 (每小時水分流失量)",
+                def: "The volume of fluid lost via sweat per hour of exercise, calculated by pre-run vs post-run body weight difference plus fluids consumed.",
+                ex_en: "Testing your personal sweat rate in different temperatures allows you to customize a precise hydration schedule.",
+                ex_zh: "在不同氣溫下測算個人出汗率，能讓你量身打造精準的賽道補水計畫。",
+                metric: "Garmin: 體液消耗估算 (Fluid Loss Est.)"
+            },
+            {
+                cat: "nutrition",
+                en: "Low-residue Diet",
+                phonetic: "/loʊ ˈrez.ɪ.djuː daɪ.ət/",
+                pos: "n.",
+                zh: "低殘渣飲食 (賽前減少腸道殘渣)",
+                def: "A dietary strategy that restricts dietary fiber, raw vegetables, and whole grains for 2-3 days before an endurance event to minimize fecal bulk and prevent race-day bathroom emergencies.",
+                ex_en: "Adopting a low-residue diet 48 hours before the gun goes off significantly reduces the urge to stop at portable toilets.",
+                ex_zh: "在鳴槍前 48 小時切換至低殘渣飲食，能大幅降低比賽途中停靠流動廁所的迫切需求。",
+                metric: "賽前 2 天減少粗纖維與生菜"
+            },
+            {
+                cat: "nutrition",
+                en: "Nitrate / Nitric Oxide",
+                phonetic: "/ˈnaɪ.treɪt / ˈnaɪ.trɪk ˈɒk.saɪd/",
+                pos: "n.",
+                zh: "膳食硝酸鹽 / 一氧化氮 (甜菜根汁補劑)",
+                def: "Compounds found in beetroot that the body converts into nitric oxide, promoting vasodilation, improving muscle blood flow, and reducing the oxygen cost of exercise.",
+                ex_en: "Drinking concentrated beetroot juice rich in dietary nitrates two hours before racing improves mitochondrial efficiency.",
+                ex_zh: "賽前 2 小時飲用富含膳食硝酸鹽的濃縮甜菜根汁，能增強線粒體能量轉換效率並降低耗氧量。",
+                metric: "運動補劑: 甜菜根汁 400~500mg 硝酸鹽"
+            },
+
+            // --- Category: injury ---
+            {
+                cat: "injury",
+                en: "Iliotibial Band Syndrome (ITBS)",
+                phonetic: "/ˌɪl.i.oʊˈtɪb.i.əl bænd ˈsɪn.droʊm/",
+                pos: "n.",
+                zh: "髂脛束摩擦症候群 (膝外側刺痛)",
+                def: "An overuse injury causing sharp burning pain on the lateral (outer) aspect of the knee, caused by repetitive friction of the IT band over the femoral epicondyle.",
+                ex_en: "Weak hip abductors and downhill running are the primary culprits behind debilitating iliotibial band syndrome.",
+                ex_zh: "臀部外展肌群無力與下坡奔跑，是引發令人寸步難行的髂脛束摩擦症候群的罪魁禍首。",
+                metric: "Garmin: 左右觸地平衡 (GCT Balance)"
+            },
+            {
+                cat: "injury",
+                en: "Patellofemoral Pain Syndrome (PFPS / Runner's Knee)",
+                phonetic: "/pəˌtel.oʊˈfem.ər.əl/",
+                pos: "n.",
+                zh: "髕骨股骨疼痛症候群 (跑者膝)",
+                def: "Dull aching pain around or behind the patella (kneecap), exacerbated by downhill running, squats, and descending stairs due to abnormal patellar tracking.",
+                ex_en: "Runner's knee is often resolved by strengthening the vastus medialis and avoiding excessive overstriding.",
+                ex_zh: "跑者膝通常能透過強化股內側肌與避免步幅過大過度跨步獲得顯著改善。",
+                metric: "步頻 (Cadence): 提升 5% 減輕膝蓋衝擊"
+            },
+            {
+                cat: "injury",
+                en: "Plantar Fasciitis",
+                phonetic: "/ˈplæn.tər ˌfæʃ.iˈaɪ.tɪs/",
+                pos: "n.",
+                zh: "足底筋膜炎 (晨起下床第一步足跟痛)",
+                def: "Inflammation and micro-tears of the thick band of tissue running across the bottom of the foot, characterized by piercing heel pain upon the first steps in the morning.",
+                ex_en: "Rolling a firm lacrosse ball under the arch and stretching the soleus helps relieve chronic plantar fasciitis.",
+                ex_zh: "用硬式按摩球踩滾足弓並拉伸比目魚肌，有助於舒緩頑固的足底筋膜炎。",
+                metric: "早晨靜態足底伸展與小腿放鬆"
+            },
+            {
+                cat: "injury",
+                en: "Achilles Tendinopathy",
+                phonetic: "/əˈkɪl.iːz ten.dəˈnɒp.ə.θi/",
+                pos: "n.",
+                zh: "阿基里斯腱病變 (跟腱炎 / 跟腱退化)",
+                def: "Overuse degradation of the Achilles tendon causing stiffness, tenderness, and localized swelling 2 to 6 cm above the heel bone.",
+                ex_en: "The Alfredson eccentric heel drop protocol remains the gold standard physical therapy for Achilles tendinopathy.",
+                ex_zh: "Alfredson 離心下沉提踵訓練協議至今仍是治療阿基里斯腱病變的黃金復健標準。",
+                metric: "離心提踵復健: 每日 3 組 × 15 次"
+            },
+            {
+                cat: "injury",
+                en: "Medial Tibial Stress Syndrome (Shin Splints)",
+                phonetic: "/ˈmiː.di.əl ˈtɪb.i.əl stres ˈsɪn.droʊm/",
+                pos: "n.",
+                zh: "內側脛骨壓力症候群 (脛前疼痛)",
+                def: "Pain along the inner edge of the shinbone caused by repetitive stress and traction on the tibial periosteum, common in runners who rapidly ramp up mileage on hard pavement.",
+                ex_en: "Shin splints often flare up when runners transition too quickly from soft trails to concrete roads without adequate conditioning.",
+                ex_zh: "當跑者在缺乏足夠肌力打底的情況下過快從泥土步道轉至水泥硬地時，脛前疼痛常會劇烈爆發。",
+                metric: "每週跑量增幅遵循 10% 原則"
+            },
+            {
+                cat: "injury",
+                en: "Bone Stress Fracture",
+                phonetic: "/stres ˈfræk.tʃər/",
+                pos: "n.",
+                zh: "骨骼疲勞性骨折 (應力性微骨折)",
+                def: "A hairline micro-crack in a bone (often tibia, metatarsal, or fibula) caused by repetitive mechanical overload; presents as pinpoint, focal bone tenderness requiring immediate cessation of running.",
+                ex_en: "Unlike diffuse shin splints, a stress fracture presents with pinpoint bone tenderness and requires complete non-weight-bearing rest.",
+                ex_zh: "與瀰漫性的脛前痛不同，疲勞性骨折表現為單一點的劇烈骨壓痛，需要立即全面停止負重跑步休息。",
+                metric: "紅旗警訊: 停跑 6-8 週，改水中交叉訓練"
+            },
+            {
+                cat: "injury",
+                en: "Exertional Heat Stroke (EHS)",
+                phonetic: "/ɪɡˈzɜː.ʃən.əl hiːt stroʊk/",
+                pos: "n.",
+                zh: "勞力型中暑 (核心體溫 >40.5°C 之致死急症)",
+                def: "A life-threatening medical emergency where internal core temperature exceeds 40.5°C accompanied by central nervous system dysfunction; requires immediate whole-body cold-water immersion before hospital transfer.",
+                ex_en: "The universal emergency rule for exertional heat stroke is cool first, transport second using an ice-water tub.",
+                ex_zh: "勞力型中暑的全球急救鐵律是『先冰水降溫、後送醫』，立即使用冰水盆將體溫降至安全範圍。",
+                metric: "Garmin: 熱適應 (Heat Acclimation) 指標"
+            },
+            {
+                cat: "injury",
+                en: "Rhabdomyolysis",
+                phonetic: "/ˌræb.doʊ.maɪˈɒl.ə.sɪs/",
+                pos: "n.",
+                zh: "橫紋肌溶解症 (可樂色/茶色尿急症)",
+                def: "The breakdown of damaged skeletal muscle tissue releasing myoglobin and creatine kinase into the bloodstream, characterized by tea-colored urine and risk of acute kidney failure.",
+                ex_en: "Running an ultramarathon in extreme heat without proper conditioning can trigger rhabdomyolysis, marked by alarming cola-colored urine.",
+                ex_zh: "在未充分訓練的情況下於高溫中跑超馬恐引發橫紋肌溶解症，其典型徵兆為令人警惕的深褐色可樂尿。",
+                metric: "急診指標: 肌酸激酶 (CK) 檢測與大量輸液"
+            },
+            {
+                cat: "injury",
+                en: "Subungual Hematoma (Runner's Toe)",
+                phonetic: "/sʌbˈʌŋ.ɡwəl ˌhiː.məˈtoʊ.mə/",
+                pos: "n.",
+                zh: "跑者指甲下血腫 (黑趾甲)",
+                def: "A collection of blood underneath the toenail caused by repetitive shearing and impact against the toe box during downhill running or ill-fitting footwear.",
+                ex_en: "To prevent painful runner's black toenails, always buy running shoes with a full thumb's width of extra space ahead of your longest toe.",
+                ex_zh: "為預防痛苦的黑趾甲，購買跑鞋時務必在前腳趾最長處預留一指寬度的緩衝空間。",
+                metric: "跑鞋選碼: 預留 1~1.5cm 腳趾緩衝空間"
+            },
+            {
+                cat: "injury",
+                en: "Friction Blister",
+                phonetic: "/ˈfrɪk.ʃən ˈblɪs.tər/",
+                pos: "n.",
+                zh: "摩擦水泡",
+                def: "A fluid-filled bubble in the outer skin layers caused by repetitive friction and shear forces, exacerbated by moisture, sweat, and grit.",
+                ex_en: "Wearing seamless anti-blister toe socks and applying anti-chafing balm eliminates foot hotspots before blisters form.",
+                ex_zh: "穿著無縫防磨五趾襪並塗抹防磨膏，能在水泡形成之前消除足部的摩擦熱點。",
+                metric: "長跑裝備: 排汗五趾襪與凡士林防護"
+            },
+            {
+                cat: "injury",
+                en: "Runner's Trots (GI Distress)",
+                phonetic: "/ˈrʌn.ərz trɒts/",
+                pos: "n.",
+                zh: "跑者腹瀉 (運動型胃腸絞痛與腹瀉)",
+                def: "Sudden urgent diarrhea and abdominal cramping occurring during or immediately after a run, caused by intestinal ischemia, mechanical jostling, and hypertonic fueling.",
+                ex_en: "Limiting fiber and artificial sweeteners before long runs significantly reduces the chances of suffering runner's trots.",
+                ex_zh: "在長跑前嚴格限制高纖維與人工代糖的攝取，能顯著降低遭遇跑者突發性腹瀉的機率。",
+                metric: "賽前低殘渣飲食與常溫純水補給"
+            },
+            {
+                cat: "injury",
+                en: "Hitting the Wall (Bonking)",
+                phonetic: "/ˈhɪt.ɪŋ ðə wɔːl / bɒŋk.ɪŋ/",
+                pos: "n.",
+                zh: "撞牆期 (急性低血糖與肝醣耗竭)",
+                def: "A sudden catastrophic state of extreme exhaustion and cognitive fog occurring when liver and muscle glycogen stores are fully depleted, forcing the body to rely entirely on slower fat oxidation.",
+                ex_en: "He hit the wall at kilometer 32 because he skipped two crucial gel stations and ran out of glycogen.",
+                ex_zh: "他在 32 公里處嚴重撞牆，因為中途漏掉了兩處關鍵能量膠水站導致體內肝醣完全見底。",
+                metric: "緊急急救: 立即攝取 30g 快速吸收液態糖"
             },
 
             // --- Category: periodization ---
@@ -1832,7 +2412,8 @@
                 running: "🏃‍♂️ 跑步與賽事",
                 physiology: "🫀 生理與指標",
                 strength: "🏋️ 肌力與體能",
-                nutrition: "🥗 營養與恢復",
+                nutrition: "🥗 營養與補給",
+                injury: "🩹 傷害與防護",
                 periodization: "⏱️ 週期化訓練",
                 gear: "👟 跑鞋與裝備"
             };
