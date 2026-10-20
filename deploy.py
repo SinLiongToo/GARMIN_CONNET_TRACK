@@ -53,8 +53,12 @@ def main():
 
     # 3. Configure Remote
     print("\n[2/5] 設定遠端儲存庫 Origin...")
-    run_interactive(["git", "remote", "remove", "origin"])
-    run_interactive(["git", "remote", "add", "origin", "https://github.com/SinLiongToo/GARMIN_CONNET_TRACK.git"])
+    target_url = "https://github.com/SinLiongToo/GARMIN_CONNET_TRACK.git"
+    check_remote = subprocess.run(["git", "remote", "get-url", "origin"], capture_output=True, text=True)
+    if check_remote.returncode == 0:
+        run_interactive(["git", "remote", "set-url", "origin", target_url])
+    else:
+        run_interactive(["git", "remote", "add", "origin", target_url])
     run_interactive(["git", "remote", "-v"])
 
     # 4. Stage Files
