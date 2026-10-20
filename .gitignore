@@ -4,6 +4,9 @@ __pycache__/
 *$py.class
 *.env
 .env
+.venv/
+env/
+venv/
 
 # Garmin tokens / credentials cache
 .garmin_tokens/
@@ -15,3 +18,22 @@ tokens.json
 *.json
 !requirements.txt
 reports/
+
+# GPX activity files & GPS tracks (Excluded from commit for privacy & size)
+*.gpx
+marathon_gpx/
+
+# Temporary, scratch & test files
+test_*.py
+test_run.py
+[Source]
+*.tmp
+*.log
+*.bak
+
+# OS & Editor generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
