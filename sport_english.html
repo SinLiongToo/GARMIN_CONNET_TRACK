@@ -105,6 +105,13 @@
             box-shadow: 0 4px 14px rgba(0, 124, 195, 0.35) !important;
         }
 
+        .quote-filter-pill.active {
+            background: #d97706 !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4) !important;
+        }
+
         /* Flashcard Hiding States */
         .hide-mandarin .term-mandarin {
             filter: blur(6px);
@@ -124,6 +131,21 @@
         }
         .hide-english .term-english:hover {
             filter: blur(0);
+        }
+
+        /* Auto-play Card Highlight & Smooth Animation */
+        .active-play-card {
+            border-color: #10b981 !important;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.45), 0 8px 16px rgba(0, 0, 0, 0.3) !important;
+            transform: scale(1.025) !important;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        html.dark .active-play-card {
+            background: rgba(6, 78, 59, 0.35) !important;
+        }
+        html:not(.dark) .active-play-card {
+            background: rgba(209, 250, 229, 0.95) !important;
+            border-color: #059669 !important;
         }
 
         /* Scrollbar */
@@ -186,41 +208,50 @@
         </header>
 
         <!-- Quick Stats Hero Cards -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
             <div class="glass-card rounded-xl p-4 border-l-4 border-l-emerald-500">
                 <div class="text-xs text-slate-400 font-medium flex items-center justify-between">
-                    <span>運動訓練十大黃金原則</span>
+                    <span>運動訓練十大原則</span>
                     <span>📜</span>
                 </div>
                 <div class="text-2xl font-bold text-emerald-400 mt-2">10 Principles</div>
-                <div class="text-xs text-slate-400 mt-1">科學化訓練核心哲學</div>
+                <div class="text-xs text-slate-400 mt-1">科學化訓練哲學</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-4 border-l-4 border-l-amber-500">
+                <div class="text-xs text-slate-400 font-medium flex items-center justify-between">
+                    <span>傳奇運動家經典金句</span>
+                    <span>🏆</span>
+                </div>
+                <div class="text-2xl font-bold text-amber-400 mt-2">15 Quotes</div>
+                <div class="text-xs text-slate-400 mt-1">基普喬蓋、柯比、阿里</div>
             </div>
 
             <div class="glass-card rounded-xl p-4 border-l-4 border-l-sky-500">
                 <div class="text-xs text-slate-400 font-medium flex items-center justify-between">
-                    <span>專業運動英文術語庫</span>
+                    <span>專業運動英文術語</span>
                     <span>📚</span>
                 </div>
                 <div class="text-2xl font-bold text-sky-400 mt-2">80+ Terms</div>
-                <div class="text-xs text-slate-400 mt-1">配速、心率、代謝與裝備</div>
+                <div class="text-xs text-slate-400 mt-1">配速、心率、代謝裝備</div>
             </div>
 
             <div class="glass-card rounded-xl p-4 border-l-4 border-l-purple-500">
                 <div class="text-xs text-slate-400 font-medium flex items-center justify-between">
-                    <span>雙語情境實戰造句</span>
+                    <span>雙語實戰情境例句</span>
                     <span>💬</span>
                 </div>
-                <div class="text-2xl font-bold text-purple-400 mt-2">100% Bilingual</div>
-                <div class="text-xs text-slate-400 mt-1">英漢對照例句與真人口音發音</div>
+                <div class="text-2xl font-bold text-purple-400 mt-2">100% Audio</div>
+                <div class="text-xs text-slate-400 mt-1">真人口音連續自動朗讀</div>
             </div>
 
-            <div class="glass-card rounded-xl p-4 border-l-4 border-l-orange-500">
+            <div class="glass-card rounded-xl p-4 border-l-4 border-l-orange-500 col-span-2 sm:col-span-1">
                 <div class="text-xs text-slate-400 font-medium flex items-center justify-between">
-                    <span>穿戴裝置與指標對應</span>
+                    <span>穿戴生理指標對應</span>
                     <span>⌚</span>
                 </div>
-                <div class="text-2xl font-bold text-orange-400 mt-2">Garmin Metrics</div>
-                <div class="text-xs text-slate-400 mt-1">VO2 Max, HRV, TSS, Readiness</div>
+                <div class="text-2xl font-bold text-orange-400 mt-2">Garmin Hub</div>
+                <div class="text-xs text-slate-400 mt-1">VO2 Max, HRV, TSS</div>
             </div>
         </div>
 
@@ -248,7 +279,103 @@
             </div>
         </section>
 
-        <!-- Section 2: 📚 Interactive Sport English Glossary & Flashcards -->
+        <!-- Section 2: 🏆 傳奇運動家金句與心智力量 (Legendary Athletes' Wisdom & Quotes) -->
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-amber-500" id="quotes-section">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 border-b border-slate-700/60 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🏆</span>
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                            傳奇運動家金句與心智力量 (Legendary Athlete Wisdom & Quotes)
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">
+                            汲取馬拉松傳奇、奧運冠軍與體壇巨星的心靈力量 (Inspirational Mindset, Discipline & Resilience)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Auto Play Quotes Button & Shuffle -->
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleQuotesAutoPlay()" id="btn-quotes-autoplay" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs sm:text-sm font-semibold text-amber-400 border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer">
+                        <span id="quotes-play-icon">▶️</span>
+                        <span id="quotes-play-text">自動朗讀金句</span>
+                    </button>
+                    <button onclick="shuffleSpotlightQuote()" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs sm:text-sm font-semibold text-sky-400 border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer" title="隨機換一句金句">
+                        <span>🔀</span>
+                        <span>隨機金句</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Spotlight Featured Quote Banner -->
+            <div class="relative overflow-hidden rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-amber-950/40 via-slate-900/90 to-slate-900 border-2 border-amber-500/40 shadow-xl mb-6" id="spotlight-quote-card">
+                <div class="absolute -right-4 -bottom-6 text-8xl text-amber-500/10 font-serif select-none pointer-events-none">“</div>
+                <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div class="space-y-3 flex-1">
+                        <div class="flex items-center gap-2 text-xs font-semibold text-amber-400">
+                            <span id="spotlight-avatar" class="text-lg">🏃‍♂️</span>
+                            <span id="spotlight-cat" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/30">🛡️ 自律與自由</span>
+                            <span class="text-slate-500">• 精選運動家箴言</span>
+                        </div>
+                        <blockquote class="text-lg sm:text-2xl font-bold text-white tracking-tight leading-snug font-serif" id="spotlight-en">
+                            "Only the disciplined ones in life are free. If you are undisciplined, you are a slave to your moods and your passions."
+                        </blockquote>
+                        <p class="text-sm sm:text-base font-semibold text-amber-300" id="spotlight-zh">
+                            「唯有自律的人，才享有真正的自由。缺乏自律的人，只會淪為情緒與短暫慾望的奴隸。」
+                        </p>
+                        <div class="text-xs text-slate-300 pt-1" id="spotlight-takeaway">
+                            💡 <strong>心智啟發:</strong> 自律並非剝奪樂趣，而是將身心從怠惰與藉口中解放，是支撐跑者千日規律訓練的哲學基石。
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-start md:items-end justify-between self-stretch flex-shrink-0 border-t md:border-t-0 md:border-l border-slate-800 pt-3 md:pt-0 md:pl-6 space-y-3">
+                        <div class="text-left md:text-right">
+                            <div class="text-base font-bold text-white flex items-center md:justify-end gap-1.5" id="spotlight-author-en">
+                                Eliud Kipchoge
+                            </div>
+                            <div class="text-xs text-amber-400 font-medium" id="spotlight-author-zh">
+                                埃利烏德·基普喬蓋
+                            </div>
+                            <div class="text-[11px] text-slate-400 mt-1 max-w-[200px]" id="spotlight-title">
+                                肯亞馬拉松傳奇 • 2屆奧運馬拉松冠軍 • 全馬破2第一人
+                            </div>
+                        </div>
+                        <button onclick="speakSpotlightQuote()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-600/30 transition-all hover:scale-[1.02] cursor-pointer">
+                            <span>🔊</span>
+                            <span>聆聽英文金句</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quote Category Filter Pills -->
+            <div class="flex flex-wrap items-center gap-2 mb-6" id="quote-category-pills">
+                <button onclick="filterQuotes('all')" id="qcat-all" class="quote-filter-pill active px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
+                    🌟 全部金句 (All) (<span id="count-quotes">15</span>)
+                </button>
+                <button onclick="filterQuotes('endurance')" id="qcat-endurance" class="quote-filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
+                    🏃‍♂️ 耐力與馬拉松 (Endurance)
+                </button>
+                <button onclick="filterQuotes('discipline')" id="qcat-discipline" class="quote-filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
+                    🛡️ 自律與曼巴精神 (Discipline)
+                </button>
+                <button onclick="filterQuotes('limits')" id="qcat-limits" class="quote-filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
+                    ⚡ 突破極限與痛苦洞穴 (Limits)
+                </button>
+                <button onclick="filterQuotes('grit')" id="qcat-grit" class="quote-filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
+                    🔥 純粹毅力與天賦 (Grit)
+                </button>
+                <button onclick="filterQuotes('mindset')" id="qcat-mindset" class="quote-filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
+                    🧠 冠軍心智與韌性 (Mindset)
+                </button>
+            </div>
+
+            <!-- Quotes Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="quotes-grid">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- Section 3: 📚 Interactive Sport English Glossary & Flashcards -->
         <section class="glass-card rounded-2xl p-6" id="glossary-section">
             <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-6 border-b border-slate-700/60 pb-4">
                 <div class="flex items-center gap-3">
@@ -282,6 +409,85 @@
                         <span>🎴</span>
                         <span id="flashcard-text">模式: 全部顯示</span>
                     </button>
+                </div>
+            </div>
+
+            <!-- 🔊 英文連續自動朗讀播放控制台 (Audio Playback Console) -->
+            <div class="glass-card rounded-2xl p-4 sm:p-5 mb-6 border-2 border-emerald-500/40 bg-gradient-to-br from-slate-900/90 via-slate-900/80 to-emerald-950/30 shadow-lg shadow-emerald-950/20" id="auto-play-hub">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <!-- Play / Pause / Prev / Next / Stop buttons -->
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <button onclick="toggleAutoPlay()" id="btn-auto-play" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition-all hover:scale-[1.02] cursor-pointer">
+                            <span id="auto-play-icon">▶️</span>
+                            <span id="auto-play-text">開始英文自動播放 (Auto-Play)</span>
+                        </button>
+                        <button onclick="prevWord()" id="btn-prev-word" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs transition-all cursor-pointer" title="上一個詞彙 (Previous)">
+                            ⏮️
+                        </button>
+                        <button onclick="nextWord()" id="btn-next-word" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-xs transition-all cursor-pointer" title="下一個詞彙 (Next)">
+                            ⏭️
+                        </button>
+                        <button onclick="stopAutoPlay()" id="btn-stop-word" class="p-2.5 rounded-xl bg-slate-800 hover:bg-rose-950/60 text-slate-400 hover:text-rose-400 border border-slate-700 text-xs transition-all cursor-pointer" title="停止播放 (Stop)">
+                            ⏹️
+                        </button>
+                    </div>
+
+                    <!-- Progress and Current Playing Info -->
+                    <div class="flex items-center gap-3 text-xs flex-1 max-w-md w-full">
+                        <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden border border-slate-700/80">
+                            <div id="auto-play-progress-bar" class="bg-gradient-to-r from-emerald-500 via-sky-400 to-indigo-400 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <span id="auto-play-status" class="text-emerald-400 font-mono font-bold whitespace-nowrap">0 / 0</span>
+                    </div>
+                </div>
+
+                <!-- Playback Options and Controls (Speed, Delay, Modes) -->
+                <div class="mt-3.5 pt-3.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-300">
+                    <!-- Currently Playing Word Display -->
+                    <div class="flex items-center gap-2" id="current-word-display">
+                        <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30">🔊 待播放</span>
+                        <span class="text-slate-400 text-xs">點擊「開始英文自動播放」將循序朗讀詞彙與例句</span>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3">
+                        <!-- Include Example Sentence Checkbox -->
+                        <label class="flex items-center gap-1.5 cursor-pointer hover:text-white select-none">
+                            <input type="checkbox" id="opt-speak-example" class="rounded bg-slate-800 border-slate-700 text-emerald-500 focus:ring-0">
+                            <span>連同例句朗讀 (Examples)</span>
+                        </label>
+
+                        <!-- Auto-pronounce on Click Checkbox -->
+                        <label class="flex items-center gap-1.5 cursor-pointer hover:text-white select-none">
+                            <input type="checkbox" id="opt-click-pronounce" checked class="rounded bg-slate-800 border-slate-700 text-emerald-500 focus:ring-0">
+                            <span>點擊卡片即發音</span>
+                        </label>
+
+                        <!-- Speed Selector -->
+                        <div class="flex items-center gap-1 bg-slate-900/90 px-2.5 py-1 rounded-lg border border-slate-700">
+                            <span class="text-slate-400 text-[11px]">語速:</span>
+                            <select id="opt-speech-rate" class="bg-transparent text-emerald-400 font-semibold outline-none text-xs cursor-pointer">
+                                <option value="0.8" class="bg-slate-900 text-white">0.8x 慢速研讀</option>
+                                <option value="0.95" selected class="bg-slate-900 text-white">1.0x 標準自然</option>
+                                <option value="1.2" class="bg-slate-900 text-white">1.2x 快速複習</option>
+                            </select>
+                        </div>
+
+                        <!-- Interval Selector -->
+                        <div class="flex items-center gap-1 bg-slate-900/90 px-2.5 py-1 rounded-lg border border-slate-700">
+                            <span class="text-slate-400 text-[11px]">間隔:</span>
+                            <select id="opt-speech-delay" class="bg-transparent text-sky-400 font-semibold outline-none text-xs cursor-pointer">
+                                <option value="1200" class="bg-slate-900 text-white">1.2 秒</option>
+                                <option value="2000" selected class="bg-slate-900 text-white">2.0 秒</option>
+                                <option value="3500" class="bg-slate-900 text-white">3.5 秒</option>
+                            </select>
+                        </div>
+
+                        <!-- Loop Option -->
+                        <label class="flex items-center gap-1.5 cursor-pointer hover:text-white select-none">
+                            <input type="checkbox" id="opt-speech-loop" checked class="rounded bg-slate-800 border-slate-700 text-emerald-500 focus:ring-0">
+                            <span>循環清單</span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
@@ -916,10 +1122,418 @@
         ];
 
         // ==========================================
+        // 2. DATA: Legendary Athletes' Wisdom & Quotes (傳奇運動家金句)
+        // ==========================================
+        const ATHLETE_QUOTES_DATA = [
+            {
+                id: "kipchoge-1",
+                quote_en: "Only the disciplined ones in life are free. If you are undisciplined, you are a slave to your moods and your passions.",
+                quote_zh: "唯有自律的人，才享有真正的自由。缺乏自律的人，只會淪為情緒與短暫慾望的奴隸。",
+                athlete_en: "Eliud Kipchoge",
+                athlete_zh: "埃利烏德·基普喬蓋",
+                title: "肯亞馬拉松傳奇 • 2屆奧運全馬冠軍 • 馬拉松破2第一人 (1:59:40)",
+                cat: "discipline",
+                cat_zh: "🛡️ 自律與自由",
+                avatar: "🏃‍♂️",
+                takeaway: "自律並非剝奪享樂，而是將身心從怠惰與藉口中解放，是支撐跑者千日規律訓練的哲學基石。"
+            },
+            {
+                id: "kipchoge-2",
+                quote_en: "No human is limited. It's not about the legs; it's about the heart and the mind.",
+                quote_zh: "人類沒有極限。這無關雙腿有多強壯，而在於心靈與意志有多堅定。",
+                athlete_en: "Eliud Kipchoge",
+                athlete_zh: "埃利烏德·基普喬蓋",
+                title: "馬拉松前世界紀錄保持者 • INEOS 1:59 挑戰創舉者",
+                cat: "limits",
+                cat_zh: "⚡ 突破極限",
+                avatar: "⚡",
+                takeaway: "在長跑進入生理臨界點時，決定你能否持續推進的從來不是乳酸，而是大腦對未知的信念。"
+            },
+            {
+                id: "prefontaine",
+                quote_en: "To give anything less than your best is to sacrifice the gift.",
+                quote_zh: "付出任何未達極限的努力，都是對自身天賦的褻瀆與辜負。",
+                athlete_en: "Steve Prefontaine",
+                athlete_zh: "史蒂夫·普雷方丹",
+                title: "美國傳奇中長跑先驅 • 2000m~10000m 7項全美紀錄保持者",
+                cat: "grit",
+                cat_zh: "🔥 純粹毅力",
+                avatar: "🎽",
+                takeaway: "跑步不是與對手較量，而是將身體當作畫布，用純粹的全力以赴向自己的潛能極致致敬。"
+            },
+            {
+                id: "zatopek",
+                quote_en: "If you want to run, run a mile. If you want to experience another life, run a marathon.",
+                quote_zh: "如果你想奔跑，跑一英里即可；但若你想體驗另一種截然不同的人生，去跑一場馬拉松吧。",
+                athlete_en: "Emil Zátopek",
+                athlete_zh: "埃米爾·扎托佩克",
+                title: "捷克火車頭 • 1952赫爾辛基奧運 5000m/10000m/馬拉松 傳奇三金得主",
+                cat: "endurance",
+                cat_zh: "🏃‍♂️ 耐力與靈魂",
+                avatar: "🏅",
+                takeaway: "42.195 公里是一場濃縮人生的朝聖旅程，涵蓋希望、苦痛、深層絕望與最終的靈魂昇華。"
+            },
+            {
+                id: "kobe",
+                quote_en: "Those times when you get up early and you work hard, those times when you stay up late and you work hard, those times when you don't feel like working, you're too tired, you don't want to push yourself, but you do it anyway. That is actually the dream.",
+                quote_zh: "那些清晨早起刻苦訓練的時刻，那些疲憊不堪卻依然堅持推進自我的日子——這不是通往夢想的過程，這本身就是夢想。",
+                athlete_en: "Kobe Bryant",
+                athlete_zh: "柯比·布萊恩",
+                title: "NBA 傳奇巨星 • 5屆總冠軍 • 曼巴精神 (Mamba Mentality) 創始者",
+                cat: "discipline",
+                cat_zh: "🛡️ 曼巴精神",
+                avatar: "🐍",
+                takeaway: "熱愛不在於終點線上的獎牌，而在於每一個與自己的軟弱對峙、最終穿上跑鞋出門的清晨。"
+            },
+            {
+                id: "courtney",
+                quote_en: "The pain cave is a real place that I visualize. When I enter it, I tell myself: grab a chisel, get to work, and make that cave a little bigger.",
+                quote_zh: "痛苦洞穴（Pain Cave）是我腦海中真實存在的地方。每當我走入其中，我對自己說：拿起鑿子，動手開工，把這個洞穴鑿得更深、更寬廣。",
+                athlete_en: "Courtney Dauwalter",
+                athlete_zh: "考特妮·道沃爾特",
+                title: "當代超馬越野女王 • 同年囊括 UTMB / Western States / Hardrock 100 歷史首人",
+                cat: "limits",
+                cat_zh: "⚡ 痛苦洞穴",
+                avatar: "🏔️",
+                takeaway: "不要逃避痛苦，學會與痛苦並肩作戰。每一次在臨界點的堅持，都在拓寬你承受風浪的心理容器。"
+            },
+            {
+                id: "ali",
+                quote_en: "I hated every minute of training, but I said, 'Don't quit. Suffer now and live the rest of your life as a champion.'",
+                quote_zh: "我厭惡訓練的每一分每一秒，但我告訴自己：『絕不放棄。現在吞下這份痛苦，下半輩子你將以冠軍的姿態活著。』",
+                athlete_en: "Muhammad Ali",
+                athlete_zh: "穆罕默德·阿里",
+                title: "20世紀最偉大拳王 • 3屆世界重量級冠軍",
+                cat: "grit",
+                cat_zh: "🔥 純粹毅力",
+                avatar: "🥊",
+                takeaway: "痛苦是暫時的，但放棄帶來的遺憾是永恆的。黎明前的艱苦課表，造就破風前行的底氣。"
+            },
+            {
+                id: "bannister",
+                quote_en: "The man who can drive himself further once the effort gets painful is the man who will win.",
+                quote_zh: "在痛苦降臨之際，仍能驅使自己向前再推一步的人，最終將奪得勝利。",
+                athlete_en: "Sir Roger Bannister",
+                athlete_zh: "羅傑·班尼斯特 爵士",
+                title: "英國神經學家與傳奇跑者 • 人類史上首位 1 英里跑進 4 分鐘內 (3:59.4)",
+                cat: "limits",
+                cat_zh: "⚡ 突破極限",
+                avatar: "⏱️",
+                takeaway: "心理障礙往往遠大於生理障礙。當你敢於踏出舒適圈的邊界，所謂的『不可能』將瞬間崩解。"
+            },
+            {
+                id: "gebrselassie",
+                quote_en: "Once you have commitment, you need the discipline and hard work to lead you to where you want to be.",
+                quote_zh: "一旦下了決心，唯有毫不動搖的自律與苦練，才能引領你抵達夢想的彼岸。",
+                athlete_en: "Haile Gebrselassie",
+                athlete_zh: "海勒·格布雷西拉西耶",
+                title: "衣索比亞長跑皇帝 • 2屆奧運萬米金牌 • 27項世界紀錄打破者",
+                cat: "discipline",
+                cat_zh: "🛡️ 自律與自由",
+                avatar: "👑",
+                takeaway: "承諾只是起點，唯有年復一年嚴格遵循訓練課表、睡眠與營養週期，才能將天賦轉化為傳奇。"
+            },
+            {
+                id: "jordan",
+                quote_en: "I've missed more than 9,000 shots in my career. I've lost almost 300 games. 26 times, I've been trusted to take the game winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed.",
+                quote_zh: "在我的生涯中，我投失了超過 9,000 球，輸了近 300 場比賽；有 26 次絕殺球我失手了。我一生經歷了一次又一次的失敗——而這正是為什麼我能獲得成功。",
+                athlete_en: "Michael Jordan",
+                athlete_zh: "麥可·喬丹",
+                title: "籃球之神 • 6屆 NBA 總冠軍 • 5座 MVP",
+                cat: "mindset",
+                cat_zh: "🧠 韌性與失敗",
+                avatar: "🏀",
+                takeaway: "撞牆期、傷病、破PB失敗都是訓練的必然養分。頂尖強者之所以頂尖，是因為他們消化失敗的速度比常人更快。"
+            },
+            {
+                id: "switzer",
+                quote_en: "If you are losing faith in human nature, go out and watch a marathon.",
+                quote_zh: "如果你對人性漸失信心，不妨走出戶外，去親眼看一場馬拉松。",
+                athlete_en: "Kathrine Switzer",
+                athlete_zh: "凱薩琳·斯威策",
+                title: "女性長跑先鋒 • 首位正式配戴號碼布完賽波士頓馬拉松的女性 (1967)",
+                cat: "endurance",
+                cat_zh: "🏃‍♂️ 耐力與靈魂",
+                avatar: "🌸",
+                takeaway: "馬拉松賽道是純粹人性的展現：素不相識的跑者互相遞水、為步履蹣跚者加油，在共同的考驗中展現深切溫暖。"
+            },
+            {
+                id: "bolt",
+                quote_en: "I trained 4 years to run 9 seconds, and people give up when they don't see results in 2 months.",
+                quote_zh: "我埋頭苦練了整整四年，只為了在賽道上奔馳 9 秒；而許多人卻在努力了兩個月看不到成效時，就輕易選擇放棄。",
+                athlete_en: "Usain Bolt",
+                athlete_zh: "尤塞恩·博爾特",
+                title: "牙買加閃電 • 8面奧運金牌 • 100m (9.58s) & 200m 世界紀錄保持者",
+                cat: "grit",
+                cat_zh: "🔥 純粹毅力",
+                avatar: "⚡",
+                takeaway: "生理適應與有氧耐力是時間的複利工程。不要用幾週的急躁，去衡量需要數年沈澱的偉大成果。"
+            },
+            {
+                id: "serena",
+                quote_en: "A champion is defined not by their wins, but by how they can recover when they fall.",
+                quote_zh: "定義一個真正冠軍的，從來不是他的勝利次數，而是他在跌倒之時，如何以驚人韌性重新站起。",
+                athlete_en: "Serena Williams",
+                athlete_zh: "小威廉絲 (瑟琳娜·威廉絲)",
+                title: "女子網壇歷史巨星 • 23座大滿貫單打冠軍",
+                cat: "mindset",
+                cat_zh: "🧠 韌性與失敗",
+                avatar: "🎾",
+                takeaway: "運動生理學的『超補償』在心智上也同樣適用：真正的強大，誕生於每一次從低谷復原（Recovery）之後。"
+            },
+            {
+                id: "bowerman",
+                quote_en: "If you have a body, you are an athlete.",
+                quote_zh: "只要你擁有身體，你就是一名運動員。",
+                athlete_en: "Bill Bowerman",
+                athlete_zh: "比爾·鮑爾曼",
+                title: "Nike 共同創辦人 • 傳奇奧運田徑總教練 • 現代慢跑運動倡導者",
+                cat: "mindset",
+                cat_zh: "🧠 賦能與信念",
+                avatar: "👟",
+                takeaway: "放下對配速或身材的焦慮。每一次雙腳落地，都是你作為運動員在探索生命潛能的勇敢實踐。"
+            },
+            {
+                id: "owens",
+                quote_en: "We all have dreams. But in order to make dreams come into reality, it takes an awful lot of determination, dedication, self-discipline, and effort.",
+                quote_zh: "我們心中皆有夢想。但要讓夢想化為現實，需要極其巨大的決心、奉獻精神、自律與不懈的奮鬥。",
+                athlete_en: "Jesse Owens",
+                athlete_zh: "傑西·歐文斯",
+                title: "1936 柏林奧運 4 面田徑金牌傳奇 • 打破種族藩籬的世紀英雄",
+                cat: "discipline",
+                cat_zh: "🛡️ 自律與自由",
+                avatar: "🦅",
+                takeaway: "在逆境與質疑面前，唯一的答案就是賽道上無可挑剔的汗水與專注。"
+            }
+        ];
+
+        // ==========================================
+        // 2.5 ATHLETE QUOTES CONTROLLER
+        // ==========================================
+        let currentQuoteCategory = 'all';
+        let currentQuotesList = ATHLETE_QUOTES_DATA;
+        let spotlightQuoteIndex = 0;
+        let isQuotesAutoPlaying = false;
+        let quotesAutoPlayTimeout = null;
+        let quotesPlayIndex = -1;
+
+        function setSpotlightQuote(q) {
+            if (!q) return;
+            const card = document.getElementById('spotlight-quote-card');
+            const avatar = document.getElementById('spotlight-avatar');
+            const cat = document.getElementById('spotlight-cat');
+            const en = document.getElementById('spotlight-en');
+            const zh = document.getElementById('spotlight-zh');
+            const takeaway = document.getElementById('spotlight-takeaway');
+            const authorEn = document.getElementById('spotlight-author-en');
+            const authorZh = document.getElementById('spotlight-author-zh');
+            const title = document.getElementById('spotlight-title');
+
+            if (avatar) avatar.innerText = q.avatar;
+            if (cat) cat.innerText = q.cat_zh;
+            if (en) en.innerText = `"${q.quote_en}"`;
+            if (zh) zh.innerText = `「${q.quote_zh}」`;
+            if (takeaway) takeaway.innerHTML = `💡 <strong>心智啟發:</strong> ${q.takeaway}`;
+            if (authorEn) authorEn.innerText = q.athlete_en;
+            if (authorZh) authorZh.innerText = q.athlete_zh;
+            if (title) title.innerText = q.title;
+
+            if (card) {
+                card.classList.add('ring-2', 'ring-amber-400');
+                setTimeout(() => card.classList.remove('ring-2', 'ring-amber-400'), 600);
+            }
+        }
+
+        function shuffleSpotlightQuote() {
+            let nextIdx;
+            do {
+                nextIdx = Math.floor(Math.random() * ATHLETE_QUOTES_DATA.length);
+            } while (nextIdx === spotlightQuoteIndex && ATHLETE_QUOTES_DATA.length > 1);
+            spotlightQuoteIndex = nextIdx;
+            setSpotlightQuote(ATHLETE_QUOTES_DATA[spotlightQuoteIndex]);
+            speakSpotlightQuote();
+        }
+
+        function speakSpotlightQuote() {
+            const q = ATHLETE_QUOTES_DATA[spotlightQuoteIndex];
+            if (q) {
+                speakText(`${q.quote_en} ... By ${q.athlete_en}`);
+            }
+        }
+
+        function renderQuotes(quotes) {
+            currentQuotesList = quotes;
+            const grid = document.getElementById('quotes-grid');
+            const countEl = document.getElementById('count-quotes');
+            if (countEl) countEl.innerText = quotes.length;
+            if (!grid) return;
+
+            grid.innerHTML = quotes.map((q, idx) => `
+                <div class="glass-card rounded-2xl p-5 flex flex-col justify-between hover:scale-[1.01] transition-all border border-amber-500/30 hover:border-amber-400 quote-card cursor-pointer group"
+                     id="qcard-${idx}"
+                     onclick="setSpotlightQuote(currentQuotesList[${idx}]); playSpecificQuote(${idx})">
+                    <div>
+                        <!-- Header with Category & Avatar -->
+                        <div class="flex items-center justify-between text-xs pb-2 border-b border-slate-800">
+                            <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium">
+                                ${q.cat_zh}
+                            </span>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-base">${q.avatar}</span>
+                                <button onclick="event.stopPropagation(); speakText('${escapeQuotes(q.quote_en)}')" class="p-1 rounded hover:bg-slate-700 text-amber-400 text-xs" title="聆聽英文金句">
+                                    🔊
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Quote English & Mandarin -->
+                        <div class="mt-3 space-y-2">
+                            <blockquote class="text-sm sm:text-base font-bold text-white leading-snug tracking-tight font-serif group-hover:text-amber-300 transition-colors">
+                                "${q.quote_en}"
+                            </blockquote>
+                            <p class="text-xs sm:text-sm font-semibold text-amber-400/90 leading-relaxed">
+                                「${q.quote_zh}」
+                            </p>
+                        </div>
+
+                        <!-- Mindset Takeaway -->
+                        <div class="mt-3 p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-[11px] text-slate-300 leading-relaxed">
+                            <span class="text-amber-400 font-bold">💡 跑者心法:</span> ${q.takeaway}
+                        </div>
+                    </div>
+
+                    <!-- Athlete Footer -->
+                    <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-white">${q.athlete_en}</div>
+                            <div class="text-[11px] text-slate-400">${q.athlete_zh}</div>
+                        </div>
+                        <div class="text-[10px] text-right text-slate-500 max-w-[140px] truncate" title="${q.title}">
+                            ${q.title.split('•')[0]}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterQuotes(cat) {
+            currentQuoteCategory = cat;
+            document.querySelectorAll('.quote-filter-pill').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`qcat-${cat}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (cat === 'all') {
+                renderQuotes(ATHLETE_QUOTES_DATA);
+            } else {
+                const filtered = ATHLETE_QUOTES_DATA.filter(q => q.cat === cat);
+                renderQuotes(filtered);
+            }
+        }
+
+        function playSpecificQuote(idx, continueFlow = false) {
+            if (idx < 0 || idx >= currentQuotesList.length) return;
+            quotesPlayIndex = idx;
+            const q = currentQuotesList[idx];
+
+            document.querySelectorAll('.quote-card').forEach(c => c.classList.remove('ring-2', 'ring-amber-400', 'active-play-card'));
+            const card = document.getElementById(`qcard-${idx}`);
+            if (card) {
+                card.classList.add('ring-2', 'ring-amber-400', 'active-play-card');
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            if (quotesAutoPlayTimeout) clearTimeout(quotesAutoPlayTimeout);
+
+            const utterance = new SpeechSynthesisUtterance(`${q.quote_en} ... By ${q.athlete_en}`);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.95;
+
+            utterance.onend = () => {
+                if (isQuotesAutoPlaying || continueFlow) {
+                    quotesAutoPlayTimeout = setTimeout(() => {
+                        if (!isQuotesAutoPlaying) return;
+                        if (quotesPlayIndex + 1 < currentQuotesList.length) {
+                            quotesPlayIndex++;
+                            playSpecificQuote(quotesPlayIndex, true);
+                        } else {
+                            quotesPlayIndex = 0;
+                            playSpecificQuote(quotesPlayIndex, true);
+                        }
+                    }, 2500);
+                }
+            };
+
+            utterance.onerror = () => {
+                if (isQuotesAutoPlaying || continueFlow) {
+                    quotesAutoPlayTimeout = setTimeout(() => {
+                        quotesPlayIndex = (quotesPlayIndex + 1) % currentQuotesList.length;
+                        playSpecificQuote(quotesPlayIndex, true);
+                    }, 2500);
+                }
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function toggleQuotesAutoPlay() {
+            if (isQuotesAutoPlaying) {
+                stopQuotesAutoPlay();
+            } else {
+                startQuotesAutoPlay();
+            }
+        }
+
+        function startQuotesAutoPlay() {
+            if (currentQuotesList.length === 0) return;
+            isQuotesAutoPlaying = true;
+            const icon = document.getElementById('quotes-play-icon');
+            const text = document.getElementById('quotes-play-text');
+            const btn = document.getElementById('btn-quotes-autoplay');
+            if (icon) icon.innerText = '⏸️';
+            if (text) text.innerText = '暫停朗讀金句';
+            if (btn) {
+                btn.classList.add('bg-amber-600', 'text-white');
+                btn.classList.remove('text-amber-400');
+            }
+
+            if (quotesPlayIndex < 0 || quotesPlayIndex >= currentQuotesList.length) {
+                quotesPlayIndex = 0;
+            }
+            playSpecificQuote(quotesPlayIndex, true);
+        }
+
+        function stopQuotesAutoPlay() {
+            isQuotesAutoPlaying = false;
+            if (quotesAutoPlayTimeout) clearTimeout(quotesAutoPlayTimeout);
+            window.speechSynthesis.cancel();
+            const icon = document.getElementById('quotes-play-icon');
+            const text = document.getElementById('quotes-play-text');
+            const btn = document.getElementById('btn-quotes-autoplay');
+            if (icon) icon.innerText = '▶️';
+            if (text) text.innerText = '自動朗讀金句';
+            if (btn) {
+                btn.classList.remove('bg-amber-600', 'text-white');
+                btn.classList.add('text-amber-400');
+            }
+            document.querySelectorAll('.quote-card').forEach(c => c.classList.remove('ring-2', 'ring-amber-400', 'active-play-card'));
+        }
+
+        // ==========================================
         // 3. UI RENDERING & INTERACTION LOGIC
         // ==========================================
         let currentCategory = 'all';
         let flashcardMode = 0; // 0: Show All, 1: Hide Mandarin, 2: Hide English
+        let currentFilteredList = [];
+        let autoPlayIndex = -1;
+        let isAutoPlaying = false;
+        let autoPlayTimeout = null;
+
+        function escapeQuotes(str) {
+            if (!str) return '';
+            return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+        }
 
         function renderPrinciples() {
             const container = document.getElementById('principles-container');
@@ -939,9 +1553,14 @@
                                 </h3>
                             </div>
                         </div>
-                        <button onclick="speakText('${p.en}')" class="self-start sm:self-auto px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-sky-400 flex items-center gap-1 border border-slate-700" title="聆聽英文發音">
-                            <span>🔊</span> <span>發音</span>
-                        </button>
+                        <div class="flex items-center gap-1.5 self-start sm:self-auto">
+                            <button onclick="speakText('${escapeQuotes(p.en)}')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-sky-400 flex items-center gap-1 border border-slate-700 transition-all" title="聆聽原則英文發音">
+                                <span>🔊</span> <span>名稱</span>
+                            </button>
+                            <button onclick="speakText('${escapeQuotes(p.maxim)}')" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-emerald-400 flex items-center gap-1 border border-slate-700 transition-all" title="聆聽核心箴言英文朗讀">
+                                <span>💎</span> <span>箴言</span>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="mt-3.5 space-y-2.5 text-xs sm:text-sm">
@@ -970,9 +1589,12 @@
         }
 
         function renderGlossary(items) {
+            currentFilteredList = items;
             const grid = document.getElementById('glossary-grid');
             const noRes = document.getElementById('no-results');
             if (!grid) return;
+
+            updateAutoPlayStatus();
 
             if (items.length === 0) {
                 grid.innerHTML = '';
@@ -991,17 +1613,25 @@
                 gear: "👟 跑鞋與裝備"
             };
 
-            grid.innerHTML = items.map(item => `
-                <div class="glass-card rounded-xl p-4 flex flex-col justify-between hover:scale-[1.01] transition-all border border-slate-700/60" onclick="revealCard(this)">
+            grid.innerHTML = items.map((item, idx) => `
+                <div class="glass-card rounded-xl p-4 flex flex-col justify-between hover:scale-[1.01] transition-all border border-slate-700/60 glossary-card cursor-pointer" 
+                     id="card-${idx}" 
+                     data-idx="${idx}" 
+                     onclick="handleCardClick(this, ${idx})">
                     <div>
                         <!-- Header with Category & Pronunciation -->
                         <div class="flex items-center justify-between text-xs text-slate-400 pb-2 border-b border-slate-800">
                             <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-medium">
                                 ${categoryLabels[item.cat] || item.cat}
                             </span>
-                            <button onclick="event.stopPropagation(); speakText('${item.en}')" class="p-1 rounded hover:bg-slate-700 text-sky-400 text-sm" title="聽發音">
-                                🔊
-                            </button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="event.stopPropagation(); playSpecificWord(${idx}, false)" class="px-2 py-0.5 rounded hover:bg-slate-700 text-sky-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽單字發音">
+                                    <span>🔊</span> <span>單字</span>
+                                </button>
+                                <button onclick="event.stopPropagation(); speakText('${escapeQuotes(item.ex_en)}')" class="px-2 py-0.5 rounded hover:bg-slate-700 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Term Titles -->
@@ -1035,6 +1665,213 @@
                     </div>
                 </div>
             `).join('');
+        }
+
+        function handleCardClick(el, idx) {
+            revealCard(el);
+            const optPronounce = document.getElementById('opt-click-pronounce');
+            if (optPronounce && optPronounce.checked) {
+                playSpecificWord(idx, false);
+            }
+        }
+
+        function updateAutoPlayStatus() {
+            const statusEl = document.getElementById('auto-play-status');
+            const barEl = document.getElementById('auto-play-progress-bar');
+            const total = currentFilteredList.length;
+            const currentNum = (autoPlayIndex >= 0 && autoPlayIndex < total) ? (autoPlayIndex + 1) : 0;
+            
+            if (statusEl) statusEl.innerText = `${currentNum} / ${total}`;
+            if (barEl) {
+                const percent = total > 0 ? (currentNum / total * 100) : 0;
+                barEl.style.width = `${percent}%`;
+            }
+        }
+
+        function highlightCard(idx) {
+            document.querySelectorAll('.glossary-card').forEach(c => c.classList.remove('active-play-card'));
+            const card = document.getElementById(`card-${idx}`);
+            if (card) {
+                card.classList.add('active-play-card');
+                revealCard(card);
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function playSpecificWord(idx, continueFlow = false) {
+            if (idx < 0 || idx >= currentFilteredList.length) return;
+            autoPlayIndex = idx;
+            const item = currentFilteredList[idx];
+
+            highlightCard(idx);
+            updateAutoPlayStatus();
+
+            const displayEl = document.getElementById('current-word-display');
+            if (displayEl) {
+                displayEl.innerHTML = `
+                    <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/30 text-emerald-300 font-bold border border-emerald-500/50 animate-pulse">🔊 正在朗讀</span>
+                    <span class="text-white font-bold text-sm">${item.en}</span>
+                    <span class="text-emerald-400 text-xs font-semibold">(${item.zh})</span>
+                `;
+            }
+
+            const includeExample = document.getElementById('opt-speak-example')?.checked || false;
+            const rate = parseFloat(document.getElementById('opt-speech-rate')?.value || '1.0');
+            const delay = parseInt(document.getElementById('opt-speech-delay')?.value || '2000', 10);
+            const isLoop = document.getElementById('opt-speech-loop')?.checked || false;
+
+            if (!('speechSynthesis' in window)) {
+                alert('您的瀏覽器不支援語音播放 (Web Speech API)。');
+                return;
+            }
+
+            window.speechSynthesis.cancel();
+            if (autoPlayTimeout) clearTimeout(autoPlayTimeout);
+
+            // Step 1: Speak Term
+            const termUtterance = new SpeechSynthesisUtterance(item.en);
+            termUtterance.lang = 'en-US';
+            termUtterance.rate = rate;
+
+            termUtterance.onend = () => {
+                if (includeExample && item.ex_en) {
+                    setTimeout(() => {
+                        const exUtterance = new SpeechSynthesisUtterance(item.ex_en);
+                        exUtterance.lang = 'en-US';
+                        exUtterance.rate = rate;
+
+                        exUtterance.onend = () => {
+                            scheduleNext(delay, isLoop, continueFlow);
+                        };
+                        exUtterance.onerror = () => {
+                            scheduleNext(delay, isLoop, continueFlow);
+                        };
+                        window.speechSynthesis.speak(exUtterance);
+                    }, 400);
+                } else {
+                    scheduleNext(delay, isLoop, continueFlow);
+                }
+            };
+
+            termUtterance.onerror = () => {
+                scheduleNext(delay, isLoop, continueFlow);
+            };
+
+            window.speechSynthesis.speak(termUtterance);
+        }
+
+        function scheduleNext(delay, isLoop, continueFlow) {
+            if (!isAutoPlaying && !continueFlow) return;
+
+            autoPlayTimeout = setTimeout(() => {
+                if (!isAutoPlaying) return;
+                
+                if (autoPlayIndex + 1 < currentFilteredList.length) {
+                    autoPlayIndex++;
+                    playSpecificWord(autoPlayIndex, true);
+                } else if (isLoop) {
+                    autoPlayIndex = 0;
+                    playSpecificWord(autoPlayIndex, true);
+                } else {
+                    stopAutoPlay();
+                }
+            }, delay);
+        }
+
+        function toggleAutoPlay() {
+            if (isAutoPlaying) {
+                pauseAutoPlay();
+            } else {
+                startAutoPlay();
+            }
+        }
+
+        function startAutoPlay() {
+            if (currentFilteredList.length === 0) return;
+            isAutoPlaying = true;
+
+            const icon = document.getElementById('auto-play-icon');
+            const text = document.getElementById('auto-play-text');
+            const btn = document.getElementById('btn-auto-play');
+
+            if (icon) icon.innerText = '⏸️';
+            if (text) text.innerText = '暫停自動播放 (Pause)';
+            if (btn) {
+                btn.classList.remove('from-emerald-600', 'to-emerald-500');
+                btn.classList.add('from-amber-600', 'to-amber-500');
+            }
+
+            if (autoPlayIndex < 0 || autoPlayIndex >= currentFilteredList.length) {
+                autoPlayIndex = 0;
+            }
+
+            playSpecificWord(autoPlayIndex, true);
+        }
+
+        function pauseAutoPlay() {
+            isAutoPlaying = false;
+            if (autoPlayTimeout) clearTimeout(autoPlayTimeout);
+            window.speechSynthesis.cancel();
+
+            const icon = document.getElementById('auto-play-icon');
+            const text = document.getElementById('auto-play-text');
+            const btn = document.getElementById('btn-auto-play');
+
+            if (icon) icon.innerText = '▶️';
+            if (text) text.innerText = '繼續自動播放 (Resume)';
+            if (btn) {
+                btn.classList.remove('from-amber-600', 'to-amber-500');
+                btn.classList.add('from-emerald-600', 'to-emerald-500');
+            }
+
+            const displayEl = document.getElementById('current-word-display');
+            if (displayEl) {
+                displayEl.innerHTML = `
+                    <span class="text-xs px-2 py-0.5 rounded bg-amber-500/30 text-amber-300 font-bold border border-amber-500/50">⏸️ 已暫停</span>
+                    <span class="text-slate-300 text-xs">點擊按鈕可隨時繼續朗讀清單</span>
+                `;
+            }
+        }
+
+        function stopAutoPlay() {
+            isAutoPlaying = false;
+            if (autoPlayTimeout) clearTimeout(autoPlayTimeout);
+            window.speechSynthesis.cancel();
+            autoPlayIndex = -1;
+
+            const icon = document.getElementById('auto-play-icon');
+            const text = document.getElementById('auto-play-text');
+            const btn = document.getElementById('btn-auto-play');
+
+            if (icon) icon.innerText = '▶️';
+            if (text) text.innerText = '開始英文自動播放 (Auto-Play)';
+            if (btn) {
+                btn.classList.remove('from-amber-600', 'to-amber-500');
+                btn.classList.add('from-emerald-600', 'to-emerald-500');
+            }
+
+            document.querySelectorAll('.glossary-card').forEach(c => c.classList.remove('active-play-card'));
+            updateAutoPlayStatus();
+
+            const displayEl = document.getElementById('current-word-display');
+            if (displayEl) {
+                displayEl.innerHTML = `
+                    <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-semibold border border-slate-700">⏹️ 已停止</span>
+                    <span class="text-slate-400 text-xs">點擊「開始英文自動播放」或個別單字進行朗讀</span>
+                `;
+            }
+        }
+
+        function nextWord() {
+            if (currentFilteredList.length === 0) return;
+            autoPlayIndex = (autoPlayIndex + 1) % currentFilteredList.length;
+            playSpecificWord(autoPlayIndex, isAutoPlaying);
+        }
+
+        function prevWord() {
+            if (currentFilteredList.length === 0) return;
+            autoPlayIndex = (autoPlayIndex - 1 + currentFilteredList.length) % currentFilteredList.length;
+            playSpecificWord(autoPlayIndex, isAutoPlaying);
         }
 
         function filterGlossary() {
@@ -1142,6 +1979,8 @@
             if (countEl) countEl.innerText = GLOSSARY_DATA.length;
 
             renderPrinciples();
+            renderQuotes(ATHLETE_QUOTES_DATA);
+            setSpotlightQuote(ATHLETE_QUOTES_DATA[0]);
             renderGlossary(GLOSSARY_DATA);
         });
     </script>
