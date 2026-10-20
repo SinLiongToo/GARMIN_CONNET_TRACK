@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+.env
+
+# Garmin tokens / credentials cache
+.garmin_tokens/
+~/.garminconnect
+session_cache/
+tokens.json
+
+# Reports and exports
+*.json
+!requirements.txt
+reports/

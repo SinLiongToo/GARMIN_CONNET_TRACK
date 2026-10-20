@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>運動英語與訓練黃金原則 | Sport English & Athletic Training Principles</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        garmin: {
+                            blue: '#007cc3',
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            border: '#334155',
+                            accent: '#38bdf8',
+                            green: '#10b981',
+                            amber: '#f59e0b',
+                            rose: '#f43f5e',
+                            purple: '#a855f7',
+                            orange: '#f97316'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Dark Mode Theme */
+        html.dark body {
+            background: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #131b2e 100%);
+            color: #f1f5f9;
+        }
+        html.dark .glass-card {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Light Mode Theme */
+        html:not(.dark) body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+            color: #1e293b;
+        }
+        html:not(.dark) .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(203, 213, 225, 0.85);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            color: #1e293b;
+        }
+        html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3, html:not(.dark) h4 {
+            color: #0f172a !important;
+        }
+        html:not(.dark) .text-slate-100, html:not(.dark) .text-slate-200 {
+            color: #1e293b;
+        }
+        html:not(.dark) .text-slate-300 {
+            color: #334155;
+        }
+        html:not(.dark) .text-slate-400 {
+            color: #64748b;
+        }
+        html:not(.dark) .bg-slate-900, html:not(.dark) .bg-slate-950 {
+            background-color: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        html:not(.dark) [class*="bg-slate-900/"] {
+            background-color: rgba(241, 245, 249, 0.95);
+            border-color: #cbd5e1;
+        }
+        html:not(.dark) .bg-slate-800 {
+            background-color: #e2e8f0;
+            border-color: #cbd5e1;
+            color: #334155;
+        }
+        html:not(.dark) thead.bg-slate-800 {
+            background-color: #e2e8f0;
+            color: #475569;
+        }
+        html:not(.dark) tr:hover {
+            background-color: rgba(241, 245, 249, 0.8);
+        }
+        html:not(.dark) input {
+            background-color: #ffffff;
+            border-color: #cbd5e1;
+            color: #0f172a;
+        }
+
+        .filter-pill.active {
+            background: #007cc3 !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 14px rgba(0, 124, 195, 0.35) !important;
+        }
+
+        /* Flashcard Hiding States */
+        .hide-mandarin .term-mandarin {
+            filter: blur(6px);
+            transition: filter 0.2s ease;
+            user-select: none;
+            cursor: pointer;
+        }
+        .hide-mandarin .term-mandarin:hover {
+            filter: blur(0);
+        }
+
+        .hide-english .term-english {
+            filter: blur(6px);
+            transition: filter 0.2s ease;
+            user-select: none;
+            cursor: pointer;
+        }
+        .hide-english .term-english:hover {
+            filter: blur(0);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #64748b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto space-y-6">
+
+        <!-- Top Header Navigation -->
+        <header class="glass-card rounded-2xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-cyan-500 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-teal-500/30 flex-shrink-0">
+                    SE
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white flex flex-wrap items-center gap-3">
+                        運動英語與運動科學核心原則
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-normal border border-emerald-500/30">
+                            Sport English & Principles
+                        </span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-sky-500/20 text-sky-400 font-normal border border-sky-500/30">
+                            English & Mandarin 雙語
+                        </span>
+                    </h1>
+                    <p class="text-sm text-slate-400 mt-1">
+                        耐力運動員、馬拉松跑者與運動生理學英漢對照指南 &bull; 涵蓋 10 大訓練原則、80+ 專業術語與實戰語境
+                    </p>
+                </div>
+            </div>
+
+            <!-- Header Action Controls -->
+            <div class="flex flex-wrap items-center gap-2 self-stretch md:self-auto">
+                <!-- Return to Health Dashboard -->
+                <a href="garmin_health_dashboard.html" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-xs sm:text-sm font-bold text-white transition-all flex items-center gap-2 shadow-md shadow-sky-600/30 hover:scale-[1.02]">
+                    <span>📊</span>
+                    <span>Garmin 健康儀表板</span>
+                </a>
+
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleTheme()" id="theme-toggle-btn" class="px-3.5 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-xs sm:text-sm font-semibold text-amber-400 hover:text-amber-300 border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm" title="切換淺色 / 深色主題">
+                    <span id="theme-icon">☀️</span>
+                    <span id="theme-text">淺色模式</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Quick Stats Hero Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="glass-card rounded-xl p-4 border-l-4 border-l-emerald-500">
+                <div class="text-xs text-slate-400 font-medium flex items-center justify-between">
+                    <span>運動訓練十大黃金原則</span>
+                    <span>📜</span>
+                </div>
+                <div class="text-2xl font-bold text-emerald-400 mt-2">10 Principles</div>
+                <div class="text-xs text-slate-400 mt-1">科學化訓練核心哲學</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-4 border-l-4 border-l-sky-500">
+                <div class="text-xs text-slate-400 font-medium flex items-center justify-between">
+                    <span>專業運動英文術語庫</span>
+                    <span>📚</span>
+                </div>
+                <div class="text-2xl font-bold text-sky-400 mt-2">80+ Terms</div>
+                <div class="text-xs text-slate-400 mt-1">配速、心率、代謝與裝備</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-4 border-l-4 border-l-purple-500">
+                <div class="text-xs text-slate-400 font-medium flex items-center justify-between">
+                    <span>雙語情境實戰造句</span>
+                    <span>💬</span>
+                </div>
+                <div class="text-2xl font-bold text-purple-400 mt-2">100% Bilingual</div>
+                <div class="text-xs text-slate-400 mt-1">英漢對照例句與真人口音發音</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-4 border-l-4 border-l-orange-500">
+                <div class="text-xs text-slate-400 font-medium flex items-center justify-between">
+                    <span>穿戴裝置與指標對應</span>
+                    <span>⌚</span>
+                </div>
+                <div class="text-2xl font-bold text-orange-400 mt-2">Garmin Metrics</div>
+                <div class="text-xs text-slate-400 mt-1">VO2 Max, HRV, TSS, Readiness</div>
+            </div>
+        </div>
+
+        <!-- Section 1: 📜 The 10 Golden Athletic Principles (Principles Project Style) -->
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-emerald-500" id="principles-section">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-6 border-b border-slate-700/60 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">📜</span>
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                            運動訓練十大黃金原則 (The 10 Golden Athletic Training Principles)
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">
+                            運動生理學、耐力訓練與人體適應之不變真理 (Core Maxims, Scientific Rationale & Practical Running Guidance)
+                        </p>
+                    </div>
+                </div>
+                <span class="text-xs px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-mono border border-emerald-500/30">
+                    The Principles Project
+                </span>
+            </div>
+
+            <div class="space-y-5" id="principles-container">
+                <!-- 10 Principles rendered dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- Section 2: 📚 Interactive Sport English Glossary & Flashcards -->
+        <section class="glass-card rounded-2xl p-6" id="glossary-section">
+            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-6 border-b border-slate-700/60 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">📚</span>
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                            運動英語分類辭典 (Categorized Sport English Glossary)
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">
+                            點擊發音 🔊、即時關鍵字搜尋與互動式單字卡記憶測驗模式
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Search and Flashcard Mode Toggle -->
+                <div class="flex flex-wrap items-center gap-3 self-stretch lg:self-auto">
+                    <!-- Search Input -->
+                    <div class="relative flex-1 sm:w-64">
+                        <input 
+                            type="text" 
+                            id="glossary-search" 
+                            placeholder="搜尋英/中術語 (如: Cadence, 乳酸...)" 
+                            oninput="filterGlossary()"
+                            class="w-full px-3.5 py-2 pl-9 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500 transition-all"
+                        />
+                        <span class="absolute left-3 top-2.5 text-xs text-slate-400">🔍</span>
+                    </div>
+
+                    <!-- Flashcard Mode Cycle Button -->
+                    <button onclick="cycleFlashcardMode()" id="flashcard-btn" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs sm:text-sm font-semibold text-emerald-400 border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm">
+                        <span>🎴</span>
+                        <span id="flashcard-text">模式: 全部顯示</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="flex flex-wrap items-center gap-2 mb-6" id="category-pills">
+                <button onclick="setCategory('all')" id="cat-all" class="filter-pill active px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all">
+                    🌟 全部 (All) (<span id="count-all">0</span>)
+                </button>
+                <button onclick="setCategory('running')" id="cat-running" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all">
+                    🏃‍♂️ 跑步與賽事 (Running)
+                </button>
+                <button onclick="setCategory('physiology')" id="cat-physiology" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all">
+                    🫀 生理與穿戴指標 (Physiology)
+                </button>
+                <button onclick="setCategory('strength')" id="cat-strength" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all">
+                    🏋️ 肌力與體能 (Strength)
+                </button>
+                <button onclick="setCategory('nutrition')" id="cat-nutrition" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all">
+                    🥗 營養與恢復 (Nutrition)
+                </button>
+                <button onclick="setCategory('periodization')" id="cat-periodization" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all">
+                    ⏱️ 週期化訓練 (Periodization)
+                </button>
+                <button onclick="setCategory('gear')" id="cat-gear" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all">
+                    👟 跑鞋與裝備 (Gear)
+                </button>
+            </div>
+
+            <!-- Glossary Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="glossary-grid">
+                <!-- Populated dynamically via JS -->
+            </div>
+            
+            <div id="no-results" class="hidden text-center py-12 text-slate-400 text-sm">
+                找不到相符的術語或原則，請嘗試其他關鍵字。
+            </div>
+        </section>
+
+        <!-- Section 3: 🧭 Runner's Acronyms Cheat Sheet -->
+        <section class="glass-card rounded-2xl p-6" id="acronyms-section">
+            <div class="flex items-center gap-3 mb-4 border-b border-slate-700/60 pb-3">
+                <span class="text-2xl">🧭</span>
+                <div>
+                    <h3 class="text-lg font-bold text-white">跑者常用英美賽事縮寫速查表 (Runner's Acronyms Cheat Sheet)</h3>
+                    <p class="text-xs text-slate-400">賽事紀錄、訓練指標與醫學運動常見簡稱</p>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs sm:text-sm text-slate-300">
+                    <thead class="text-xs uppercase bg-slate-800 text-slate-400 border-b border-slate-700">
+                        <tr>
+                            <th class="py-2.5 px-3">縮寫 (Acronym)</th>
+                            <th class="py-2.5 px-3 text-sky-400">英文全稱 (Full English Term)</th>
+                            <th class="py-2.5 px-3 text-emerald-400">繁體中文釋義 (Mandarin Meaning)</th>
+                            <th class="py-2.5 px-3 text-slate-400">實戰應用情境 (Context & Usage)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800">
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-amber-400">PB / PR</td><td class="py-2 px-3">Personal Best / Personal Record</td><td class="py-2 px-3 text-emerald-400 font-medium">個人最佳紀錄</td><td class="py-2 px-3 text-xs text-slate-400">指選手在某個特定距離跑出的歷史最快成績。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-amber-400">BQ</td><td class="py-2 px-3">Boston Qualifier</td><td class="py-2 px-3 text-emerald-400 font-medium">波士頓馬拉松參賽門檻</td><td class="py-2 px-3 text-xs text-slate-400">業餘跑者的夢想指標，依年齡與性別訂定嚴格完賽門檻。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-rose-400">DNF</td><td class="py-2 px-3">Did Not Finish</td><td class="py-2 px-3 text-rose-400 font-medium">未完賽 / 中途棄賽</td><td class="py-2 px-3 text-xs text-slate-400">因受傷、失溫、抽筋或超時未能越過終點線。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-slate-400">DNS</td><td class="py-2 px-3">Did Not Start</td><td class="py-2 px-3 text-slate-400 font-medium">未起跑 / 未出賽</td><td class="py-2 px-3 text-xs text-slate-400">雖報名賽事但賽前因故未出現在起跑線。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-sky-400">LSD</td><td class="py-2 px-3">Long Slow Distance</td><td class="py-2 px-3 text-emerald-400 font-medium">長距離慢跑</td><td class="py-2 px-3 text-xs text-slate-400">低心率長時長慢跑（通常 20~35 公里），打底有氧微血管網絡。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-sky-400">MP / HMP</td><td class="py-2 px-3">Marathon Pace / Half Marathon Pace</td><td class="py-2 px-3 text-emerald-400 font-medium">馬拉松目標配速 / 半馬配速</td><td class="py-2 px-3 text-xs text-slate-400">特定賽事距離預計維持的穩定目標速度。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-purple-400">RPE</td><td class="py-2 px-3">Rate of Perceived Exertion</td><td class="py-2 px-3 text-emerald-400 font-medium">自覺用力程度評級</td><td class="py-2 px-3 text-xs text-slate-400">主觀感受強度量表（Borg 6-20 或 1-10 分級），不依賴儀器。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-emerald-400">HRV</td><td class="py-2 px-3">Heart Rate Variability</td><td class="py-2 px-3 text-emerald-400 font-medium">心率變異度</td><td class="py-2 px-3 text-xs text-slate-400">連續心跳間隙之微小波動，反映副交感與交感神經平衡。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-rose-400">RHR</td><td class="py-2 px-3">Resting Heart Rate</td><td class="py-2 px-3 text-emerald-400 font-medium">靜止心率</td><td class="py-2 px-3 text-xs text-slate-400">清晨清醒狀態下之基礎心率，常隨有氧耐力提升而顯著下降。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-purple-400">VO2 Max</td><td class="py-2 px-3">Maximal Oxygen Uptake</td><td class="py-2 px-3 text-emerald-400 font-medium">最大攝氧量</td><td class="py-2 px-3 text-xs text-slate-400">每公斤體重每分鐘最大利用氧氣量，心肺耐力之黃金指標。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-amber-400">LT / LT2</td><td class="py-2 px-3">Lactate Threshold</td><td class="py-2 px-3 text-emerald-400 font-medium">乳酸閾值 / 門檻</td><td class="py-2 px-3 text-xs text-slate-400">乳酸生成速度超越清除速度之臨界強度（約可維持 1 小時之全力配速）。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-rose-400">DOMS</td><td class="py-2 px-3">Delayed Onset Muscle Soreness</td><td class="py-2 px-3 text-rose-400 font-medium">延遲性肌肉酸痛</td><td class="py-2 px-3 text-xs text-slate-400">運動後 24~72 小時達到高峰的肌肉微創撕裂與修復反應。</td></tr>
+                        <tr class="hover:bg-slate-800/50"><td class="py-2 px-3 font-bold font-mono text-sky-400">TSS</td><td class="py-2 px-3">Training Stress Score</td><td class="py-2 px-3 text-emerald-400 font-medium">訓練壓力分數</td><td class="py-2 px-3 text-xs text-slate-400">綜合運動時長與強度計算出的總訓練負荷負擔。</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Section 4: 🗣️ Race Day & Group Run English Idioms -->
+        <section class="glass-card rounded-2xl p-6" id="phrases-section">
+            <div class="flex items-center gap-3 mb-4 border-b border-slate-700/60 pb-3">
+                <span class="text-2xl">🗣️</span>
+                <div>
+                    <h3 class="text-lg font-bold text-white">賽道與跑團實戰常用英文口語 (Race Day Idioms & Running Phrases)</h3>
+                    <p class="text-xs text-slate-400">國際馬拉松賽道上常見的加油聲、戰術對話與跑者行話</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+                <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div class="font-bold text-sky-400 text-sm">"Trust your training."</div>
+                    <div class="text-slate-200 font-medium mt-1">相信你的訓練，不要懷疑自己。</div>
+                    <div class="text-slate-400 mt-1">賽前焦慮時教練與隊友最常說的心態建立名言。</div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div class="font-bold text-sky-400 text-sm">"Don't try anything new on race day."</div>
+                    <div class="text-slate-200 font-medium mt-1">比賽日切勿嘗試任何新事物。</div>
+                    <div class="text-slate-400 mt-1">不穿未磨合的新鞋、不吃未試過的能量膠。</div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div class="font-bold text-sky-400 text-sm">"Bank time is a myth."</div>
+                    <div class="text-slate-200 font-medium mt-1">前半程儲蓄時間只是個迷思（注定崩盤）。</div>
+                    <div class="text-slate-400 mt-1">前半程跑太快只會透支肝醣，後半程以雙倍代價奉還。</div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div class="font-bold text-sky-400 text-sm">"On your left!"</div>
+                    <div class="text-slate-200 font-medium mt-1">從您左側超車！借過！</div>
+                    <div class="text-slate-400 mt-1">賽道或步道超車時最基本的禮貌安全提醒語。</div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div class="font-bold text-sky-400 text-sm">"Negative split is the honest split."</div>
+                    <div class="text-slate-200 font-medium mt-1">後半程加速才是真正誠實強大的配速。</div>
+                    <div class="text-slate-400 mt-1">後 21 公里比前 21 公里更快，是世界菁英破紀錄的唯一方程式。</div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <div class="font-bold text-sky-400 text-sm">"Pain is inevitable. Suffering is optional."</div>
+                    <div class="text-slate-200 font-medium mt-1">痛楚不可避免，磨難卻是自己的選擇。</div>
+                    <div class="text-slate-400 mt-1">村上春樹在《關於跑步，我說的其實是…》中引用的跑者箴言。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-800">
+            Garmin Connect Health Tracker &bull; Sport English & Training Principles &bull; 雙語運動科學指南 &bull; 0 個人個資洩漏 &bull; 純健康數據
+        </footer>
+
+    </div>
+
+    <!-- Data & Interactive Logic Script -->
+    <script>
+        // ==========================================
+        // 1. DATA: The 10 Golden Athletic Principles
+        // ==========================================
+        const PRINCIPLES_DATA = [
+            {
+                num: "01",
+                en: "Principle of Progressive Overload",
+                zh: "漸進式超負荷原則",
+                maxim: "To gain strength and aerobic fitness, training stress must systematically and safely increase over time. (要獲得體能與心肺進步，訓練刺激必須循序漸進且安全地隨時間增加。)",
+                science: "神經肌肉與心血管系統會迅速適應當前的訓練強度。若缺乏逐步提升的負荷刺激（跑量、強度、頻率或密度），身體適應將陷入高原停滯期。",
+                garmin: "嚴格遵循「每週跑量增幅不超過 10% 原則 (10% Rule)」。觀察儀表板中【逐月跑量成長率 (MoM % Growth)】與【週均跑量】，避免單週暴增引發脛骨疲勞性骨折或阿基里斯腱炎。",
+                pitfall: "常見錯誤是「週末戰士」平時休跑、假日暴衝 30K；生理結構重塑需要微量而頻繁的階梯式累積。"
+            },
+            {
+                num: "02",
+                en: "Principle of Specificity (SAID Principle)",
+                zh: "特異性原則 / SAID 原則",
+                maxim: "Specific Adaptations to Imposed Demands. (施加何種特定壓力，身體就產生何種專屬適應。)",
+                science: "神經徵召路徑、能量代謝系統（有氧氧化 vs. 糖解無氧）及肌纖維募集（慢肌纖維 vs. 快肌纖維）皆對專項運動動作具備極高特異性。",
+                garmin: "想破全馬 PB 必須練【馬拉松配速跑 (MP)】與【長距離慢跑 (LSD)】來訓練脂肪利用率；高強度衝刺重訓無法直接取代 42 公里所需之節省肝醣能力。",
+                pitfall: "切忌以大量低衝擊交叉訓練（如游泳、單車）完全替代跑步專項；交叉訓練能維持心肺，但無法提供骨骼承受地面反作用力之專項耐受性。"
+            },
+            {
+                num: "03",
+                en: "Principle of Recovery & Supercompensation",
+                zh: "恢復與超補償原則",
+                maxim: "Training causes breakdown; proper recovery builds the athlete stronger. (訓練本質是組織微創與疲勞破壞；唯有在充足恢復中，體能才會超越原本基準線。)",
+                science: "肝醣再合成、肌纖維蛋白質修復及自律神經系統再平衡，幾乎全在副交感神經主導的睡眠期間（特別是深層慢波睡眠 Stage 3）完成。",
+                garmin: "每日檢視【訓練完備度 (Training Readiness)】、【夜間 HRV 恢復狀態 (HRV Status)】與【深層/REM 睡眠黃金佔比】。若 HRV 連續多日呈現 UNBALANCED 或 LOW，果斷安排減量或休跑。",
+                pitfall: "「練越多越強」是耐力運動最大誤區；缺乏修復的過量訓練只會累積慢性皮質醇，導致過度訓練症候群 (Overtraining Syndrome)。"
+            },
+            {
+                num: "04",
+                en: "Principle of Reversibility (Use It or Lose It)",
+                zh: "可逆性原則 / 用進廢退",
+                maxim: "Fitness is a transient physiological adaptation; what is not stimulated decays. (體能是暫時的生理適應；停止刺激，適應即行消退。)",
+                science: "完全停止訓練 10 至 14 天內，人體血漿容積、粒線體氧化酵素活性與最大攝氧量 (VO2 Max) 即開始以可測量速率顯著衰退。",
+                garmin: "在賽前減量期 (Tapering) 採行「減量不減強度」：跑量可大砍 40~60%，但維持少量的目標配速巡航刺激，以保住神經傳導敏捷度與心輸出量。",
+                pitfall: "休賽季或微恙受傷時切勿完全躺平；透過低強度散步、室內滾輪或輕鬆騎乘維持基本有氧微血管活性。"
+            },
+            {
+                num: "05",
+                en: "Principle of Individual Differences",
+                zh: "個別差異原則",
+                maxim: "No two runners share the same genetics, biomechanics, or recovery kinetics. (沒有兩位跑者擁有完全相同的基因型、關節力學結構或恢復速率。)",
+                science: "慢肌與快肌纖維比例、靜止心率基線、最大心率上限、賀爾蒙分泌速率及年齡，決定了每個人對完全相同課表產生截然不同的反應。",
+                garmin: "切勿盲從網路破三神人課表。以自己的 Garmin【靜止心率 (RHR)】、【個人 HRV 平衡區間】與【儲備心率 (HRR)】計算 Zone 2，而非粗糙的 220 減年齡公式。",
+                pitfall: "拿別人的跑量與配速作為衡量自我的標尺，是誘發運動傷害與心理倦怠的最直接原因。"
+            },
+            {
+                num: "06",
+                en: "Principle of Periodization & Variation",
+                zh: "週期化與變化性原則",
+                maxim: "Systematic phasing of volume and intensity prevents plateau and peaks performance. (有系統地規劃週期負荷與動態變化，方能避免停滯並在目標賽事迎來高峰。)",
+                science: "依據一般適應症候群 (GAS)：警覺 $\\rightarrow$ 抗拒 $\\rightarrow$ 耗竭。人體無法無止境承受單一強度刺激，必須透過波浪式週期循環達成最高適應。",
+                garmin: "劃分【大週期 (Macrocycle: 16~24週)】 $\\rightarrow$ 【中週期 (Mesocycle: 基礎打底期、強化門檻期、巔峰比賽期、賽後過渡期)】 $\\rightarrow$ 【微週期 (Microcycle: 每 3~4 週安排一週 Deload 減量週)】。",
+                pitfall: "一年四季都在用同一種速度跑步；沒有低強度的底層有氧基石，就無法支撐高強度的金字塔頂峰。"
+            },
+            {
+                num: "07",
+                en: "The 80/20 Polarized Training Principle",
+                zh: "80/20 兩極化訓練原則",
+                maxim: "Train slow to race fast; 80% easy aerobic volume builds the engine for the 20% hard work. (慢跑夠慢，才能快跑夠快；八成低強度有氧奠定基石，支撐兩成高品質速度刺激。)",
+                science: "Zone 1-2 慢跑能極大化刺激粒線體增生與微血管密度，且自律神經壓力極低；能累積龐大訓練量而不致中樞神經衰竭。",
+                garmin: "檢視每週跑步時間分佈：80% 的總時間應處於 Zone 2 輕鬆有氧跑（呼吸順暢、鼻吸鼻吐、可輕鬆聊天），僅 20% 安排在 Zone 4 乳酸閾值跑或 Zone 5 間歇訓練。",
+                pitfall: "陷入「灰色地帶（Zone 3 垃圾跑量）」——跑得太快無法有效恢復，跑得太慢又無法刺激閾值適應，不上不下最易受傷。"
+            },
+            {
+                num: "08",
+                en: "Principle of Diminishing Returns",
+                zh: "邊際效益遞減原則",
+                maxim: "As conditioning advances, exponentially greater effort is required for incremental gains. (體能水準越高，獲得微小進步所需的付出成倍數遞增。)",
+                science: "初學者初期神經募集改善迅速；當進階至高水平時，生理潛能已接近上限，每進步 1% 都需要極其精準的微調與高昂代價。",
+                garmin: "全馬從 5 小時進步到 4 小時只要規律慢跑即可；但從 3:10 進步到 2:59 (Sub-3)，必須精雕細琢【步頻 (180+ spm)】、垂直振幅、核心肌群與營養時機。",
+                pitfall: "當成績進步停滯時，切忌粗暴加倍跑量；應轉向跑步經濟性 (Running Economy)、睡眠質量與關節活動度優化。"
+            },
+            {
+                num: "09",
+                en: "Principle of Fueling & Hydration",
+                zh: "能量補給與水合原則",
+                maxim: "Even the strongest engine fails without fuel; carbohydrates and fluids dictate endurance stamina. (再強大的引擎沒有燃料也將熄火；碳水化合物與水分電解質主宰耐力持久力。)",
+                science: "人體骨骼肌與肝臟的肝醣儲存上限約 400~500g (約 2000 kcal)；持續長跑超過 90 分鐘若未補給，肝醣耗竭將引發低血糖與「撞牆 (Bonking)」。",
+                garmin: "長距離慢跑 (10K+ 或 90 分鐘以上) 每 30~45 分鐘固定補充 30~60g 碳水能量膠；每消耗 1000 kcal 需按時補充水分與鈉離子，防止【心率飄移 (Cardiac Drift)】。",
+                pitfall: "不要等到口渴才喝水；身體脫水達到體重 2% 時，心率即飆升 10% 且運動表現產生斷崖式下跌。"
+            },
+            {
+                num: "10",
+                en: "Principle of Consistency & Long-Termism",
+                zh: "持之以恆與長期主義原則",
+                maxim: "Consistency compounds; small daily deposits yield extraordinary athletic longevity. (規律與持續性具備複利效應；日復一日的微小積累，鑄就終身強韌體魄。)",
+                science: "肌腱、韌帶、骨質密度以及心臟每搏輸出量 (Stroke Volume) 的膠原蛋白與解剖構造重塑，往往需要數年乃至十年的長期持續刺激。",
+                garmin: "這正是 Garmin 儀表板【1000 天長期歷史追蹤】的終極價值所在：見證安靜心率逐年下降、HRV 基準線穩健擴展、以及一年又一年無重大傷病的可持續奔馳。",
+                pitfall: "急功近利是耐力運動的大忌；「無傷完賽、健康奔跑到老」永遠是這項運動中最極致的榮耀。"
+            }
+        ];
+
+        // ==========================================
+        // 2. DATA: Categorized Sport English Glossary
+        // ==========================================
+        const GLOSSARY_DATA = [
+            // --- Category: running ---
+            {
+                cat: "running",
+                en: "Pace",
+                phonetic: "/peɪs/",
+                pos: "n.",
+                zh: "配速 (每公里或每英里所需時間)",
+                def: "The time taken to cover a specific distance, commonly expressed in minutes per kilometer (min/km) or minutes per mile.",
+                ex_en: "He maintained a steady 4'45\" per kilometer pace throughout the entire marathon.",
+                ex_zh: "他在整場馬拉松中始終維持穩定的每公里 4 分 45 秒配速。",
+                metric: "Garmin: 即時配速 / 平均配速 (min/km)"
+            },
+            {
+                cat: "running",
+                en: "Cadence",
+                phonetic: "/ˈkeɪ.dəns/",
+                pos: "n.",
+                zh: "步頻 (每分鐘雙腳著地總步數)",
+                def: "The number of steps taken per minute (spm) by both feet combined. A higher cadence (175~185 spm) generally reduces ground impact shock.",
+                ex_en: "Increasing your cadence to 180 spm can significantly reduce the impact stress on your knees.",
+                ex_zh: "將步頻提高到每分鐘 180 步能顯著減輕膝蓋所承受的地面衝擊壓力。",
+                metric: "Garmin: 步頻 (spm, 建議 175~185)"
+            },
+            {
+                cat: "running",
+                en: "Negative Split",
+                phonetic: "/ˈneɡ.ə.tɪv splɪt/",
+                pos: "n.",
+                zh: "後半程加速 / 負分段配速",
+                def: "Running the second half of a race significantly faster than the first half, universally regarded as the optimal marathon pacing strategy.",
+                ex_en: "Running a negative split enabled him to overtake thirty runners in the final 10 kilometers.",
+                ex_zh: "後半程加速的配速策略讓他在最後十公里超越了三十多名跑者。",
+                metric: "Garmin: 分段計時 (Lap Pace) 分析"
+            },
+            {
+                cat: "running",
+                en: "Bonking / Hitting the Wall",
+                phonetic: "/bɒŋkɪŋ/",
+                pos: "n. / idiom",
+                zh: "撞牆期 (肝醣完全耗竭引發的體能崩潰)",
+                def: "A state of severe exhaustion and sudden energy collapse caused by the total depletion of glycogen stores in the muscles and liver.",
+                ex_en: "He didn't consume enough energy gels and bonked hard at the 32-kilometer mark.",
+                ex_zh: "他沒有及時補充能量膠，在 32 公里處嚴重撞牆、體力崩潰。",
+                metric: "運動補給: 長跑每 30-45 分鐘補給 30-60g 碳水"
+            },
+            {
+                cat: "running",
+                en: "Tapering",
+                phonetic: "/ˈteɪ.pər.ɪŋ/",
+                pos: "n.",
+                zh: "賽前減量期",
+                def: "The practice of reducing training volume for 2 to 3 weeks prior to a major competition to recover and optimize energy reserves while maintaining intensity.",
+                ex_en: "During the taper phase, we cut total mileage by 40% but maintained race-pace sharpness.",
+                ex_zh: "在賽前減量期，我們將總跑量減少 40%，但維持了比賽目標配速的敏銳刺激。",
+                metric: "Garmin: 訓練完備度恢復與跑量降階"
+            },
+            {
+                cat: "running",
+                en: "LSD (Long Slow Distance)",
+                phonetic: "/lɒŋ sloʊ ˈdɪs.təns/",
+                pos: "n.",
+                zh: "長距離慢跑",
+                def: "A continuous long-duration run performed at a conversational Zone 2 pace to stimulate mitochondrial density and aerobic endurance.",
+                ex_en: "Sunday morning is reserved for our weekly 30-kilometer LSD run in the park.",
+                ex_zh: "週日早晨是我們跑團固定的公園 30 公里長距離慢跑時間。",
+                metric: "Garmin: 10K+ 長跑週期與心率 Zone 2"
+            },
+            {
+                cat: "running",
+                en: "Fartlek",
+                phonetic: "/ˈfɑːt.lek/",
+                pos: "n. (Swedish)",
+                zh: "法特雷克變速跑 (意為「速度遊戲」)",
+                def: "A continuous running session alternating between fast bursts and recovery jogs based on terrain or feel rather than rigid timing.",
+                ex_en: "Fartlek training keeps your body adaptable by randomly switching speeds across undulating trails.",
+                ex_zh: "法特雷克訓練透過在起伏步道上隨機變換快慢速度，保持身體的高度適應性。",
+                metric: "Garmin: 變速配速與心率動態切換"
+            },
+            {
+                cat: "running",
+                en: "Tempo Run / Threshold Run",
+                phonetic: "/ˈtem.poʊ rʌn/",
+                pos: "n.",
+                zh: "節奏跑 / 乳酸門檻跑",
+                def: "A sustained, comfortably hard effort held exactly at or slightly below your lactate threshold, sustainable for roughly 20 to 60 minutes.",
+                ex_en: "Our coach prescribed a 25-minute tempo run at lactate threshold heart rate today.",
+                ex_zh: "教練今天為我們安排了 25 分鐘處於乳酸閾值心率的節奏跑課表。",
+                metric: "Garmin: Zone 4 乳酸閾值心率"
+            },
+            {
+                cat: "running",
+                en: "Stride Length",
+                phonetic: "/straɪd leŋkθ/",
+                pos: "n.",
+                zh: "步幅 (單次前進的邁步跨度)",
+                def: "The distance traveled between the initial contact of one foot and the subsequent contact of the other foot.",
+                ex_en: "Elite marathoners achieve tremendous speeds through an optimal combination of 185 spm cadence and 1.6m stride length.",
+                ex_zh: "菁英馬拉松跑者透過 185 步頻與 1.6 公尺大步幅的黃金結合達成驚人速度。",
+                metric: "Garmin: 步幅 (公尺)"
+            },
+            {
+                cat: "running",
+                en: "Over-striding",
+                phonetic: "/ˌoʊ.vərˈstraɪ.dɪŋ/",
+                pos: "n.",
+                zh: "過度跨步 (著地點遠在身體重心前側之煞車動作)",
+                def: "The common biomechanical flaw of landing with the heel far in front of the center of mass, producing harmful braking forces.",
+                ex_en: "Over-striding creates excessive ground braking forces that often cause tibial stress fractures.",
+                ex_zh: "過度跨步會產生過大的地面反向煞車阻力，常是導致脛骨疲勞性骨折的元兇。",
+                metric: "步態分析: 垂直振幅與觸地時間"
+            },
+
+            // --- Category: physiology ---
+            {
+                cat: "physiology",
+                en: "VO2 Max",
+                phonetic: "/ˌviː.oʊˈtuː mæks/",
+                pos: "n.",
+                zh: "最大攝氧量",
+                def: "The maximum amount of oxygen in milliliters that your body can consume and utilize per kilogram of body weight per minute during maximal exercise.",
+                ex_en: "After six months of structured interval training, his VO2 Max climbed from 48 to 54 mL/(kg·min).",
+                ex_zh: "經過六個月的有系統間歇訓練後，他的最大攝氧量從 48 攀升至 54 mL/(kg·min)。",
+                metric: "Garmin: VO2 Max (跑步有氧適能評估)"
+            },
+            {
+                cat: "physiology",
+                en: "Resting Heart Rate (RHR)",
+                phonetic: "/ˈrestɪŋ hɑːrt reɪt/",
+                pos: "n.",
+                zh: "靜止心率 / 安靜心率",
+                def: "The number of heart beats per minute while completely at rest in the morning, serving as a classic indicator of aerobic conditioning and stroke volume.",
+                ex_en: "His resting heart rate dropped to 44 bpm, demonstrating superior cardiovascular stroke volume.",
+                ex_zh: "他的靜止心率降至每分鐘 44 下，顯示出優異的心血管每搏輸出量與有氧底子。",
+                metric: "Garmin: RHR (bpm, 越低常代表心臟泵血能力越強)"
+            },
+            {
+                cat: "physiology",
+                en: "Heart Rate Variability (HRV)",
+                phonetic: "/hɑːrt reɪt ˌver.i.əˈbɪl.ə.ti/",
+                pos: "n.",
+                zh: "心率變異度",
+                def: "The subtle variation in time intervals between consecutive heartbeats (R-R intervals), reflecting the balance between the sympathetic and parasympathetic nervous systems.",
+                ex_en: "A drop in nightly HRV status indicates accumulated autonomic fatigue or an impending viral infection.",
+                ex_zh: "夜間 HRV 狀態顯著下降通常代表自律神經累積疲勞，或是病毒感染生病的前兆。",
+                metric: "Garmin: HRV Status (Balanced / Unbalanced / Low)"
+            },
+            {
+                cat: "physiology",
+                en: "Lactate Threshold (LT)",
+                phonetic: "/ˈlæk.teɪt ˈθreʃ.hoʊld/",
+                pos: "n.",
+                zh: "乳酸閾值",
+                def: "The exercise intensity at which blood lactate accumulates faster than the body can clear it, marking the boundary between aerobic and anaerobic states.",
+                ex_en: "Training right at your lactate threshold trains your muscles to buffer and clear lactic acid more efficiently.",
+                ex_zh: "在乳酸閾值強度下訓練，能鍛鍊肌肉更有效率地緩衝並清除體內乳酸。",
+                metric: "Garmin: 乳酸閾值心率與配速自動偵測"
+            },
+            {
+                cat: "physiology",
+                en: "Body Battery",
+                phonetic: "/ˈbɒd.i ˈbæt.ər.i/",
+                pos: "n.",
+                zh: "身體電量",
+                def: "Garmin's proprietary metric (0-100) that integrates HRV, stress levels, sleep quality, and physical activity to estimate your real-time energetic reserves.",
+                ex_en: "His Body Battery recharged to 95 after eight hours of uninterrupted deep and REM sleep.",
+                ex_zh: "在經過八小時不中斷的深層與快速動眼睡眠後，他的身體電量充飽至 95 點。",
+                metric: "Garmin: Body Battery 充電 (+Charged) 與消耗 (-Drained)"
+            },
+            {
+                cat: "physiology",
+                en: "Training Readiness",
+                phonetic: "/ˈtreɪ.nɪŋ ˈred.i.nəs/",
+                pos: "n.",
+                zh: "訓練完備度",
+                def: "A comprehensive score (1-100) reflecting how prepared your body is to benefit from a tough workout, based on sleep, recovery time, and acute load.",
+                ex_en: "With a Training Readiness score of only 25, he opted for a gentle recovery spin instead of hard track intervals.",
+                ex_zh: "由於訓練完備度僅有 25 分，他選擇了溫和的動態恢復單車，而不是高強度田徑場間歇。",
+                metric: "Garmin: Training Readiness (Score 1-100)"
+            },
+            {
+                cat: "physiology",
+                en: "Cardiac Drift",
+                phonetic: "/ˈkɑːr.di.æk drɪft/",
+                pos: "n.",
+                zh: "心率飄移",
+                def: "The upward drift in heart rate over time despite running at an identical pace, driven by rising core temperature, dehydration, and reduced stroke volume.",
+                ex_en: "Dehydration in the heat caused noticeable cardiac drift during the second hour of his long run.",
+                ex_zh: "高溫與脫水導致他在長跑的第二個小時出現了明顯的心率飄移現象。",
+                metric: "Garmin: 同一配速下心率逐漸爬升"
+            },
+            {
+                cat: "physiology",
+                en: "EPOC (Excess Post-Exercise Oxygen Consumption)",
+                phonetic: "/ˈiː.pɒk/",
+                pos: "n.",
+                zh: "運動後過量氧耗 (後燃效應)",
+                def: "The measurably increased rate of oxygen consumption following intense exercise, used to restore glycogen, hormone levels, and cellular homeostasis.",
+                ex_en: "High-intensity hill sprints trigger a high EPOC effect, boosting resting metabolic rate for hours afterward.",
+                ex_zh: "高強度爬坡衝刺能觸發強大的運動後過量氧耗，使運動後數小時的基礎代謝率持續提高。",
+                metric: "Garmin: 訓練負荷 (Training Load) 計算核心"
+            },
+
+            // --- Category: strength ---
+            {
+                cat: "strength",
+                en: "Mobility vs. Flexibility",
+                phonetic: "/moʊˈbɪl.ə.ti/",
+                pos: "n.",
+                zh: "關節活動度 vs. 肌肉柔軟度",
+                def: "Flexibility is the passive length of a muscle; mobility is the active motor control and strength to move a joint through its full range of motion.",
+                ex_en: "Hip mobility drills are far more effective for preventing IT band friction than passive static stretching.",
+                ex_zh: "髖關節的主動活動度訓練在預防髂脛束摩擦症候群上，遠比被動靜態伸展有效得多。",
+                metric: "跑前動態熱身: 開髖、弓步轉體、踢臀"
+            },
+            {
+                cat: "strength",
+                en: "Posterior Chain",
+                phonetic: "/pɒsˈtɪə.ri.ər tʃeɪn/",
+                pos: "n.",
+                zh: "後側動力鏈 (下背、臀肌、大腿後側膕繩肌與小腿)",
+                def: "The powerful chain of muscles along the backside of the body responsible for horizontal propulsion and forward hip extension during running.",
+                ex_en: "Deadlifts and kettlebell swings build a rock-solid posterior chain to propel every running stride forward.",
+                ex_zh: "硬舉與壺鈴擺盪能打造堅韌無比的後側動力鏈，為每一步奔跑注入向前推進的力量。",
+                metric: "跑步肌力: 臀肌啟動與膕繩肌離心力量"
+            },
+            {
+                cat: "strength",
+                en: "Eccentric Contraction",
+                phonetic: "/ekˈsen.trɪk/",
+                pos: "n.",
+                zh: "離心收縮 (肌肉在受力拉長狀態下控制煞車)",
+                def: "The lengthening of a muscle while it is generating tension, critical for shock absorption when descending hills or landing each running step.",
+                ex_en: "Running steep downhill sections places brutal eccentric stress on your quadriceps.",
+                ex_zh: "跑陡峭下坡路段會對股四頭肌施加極其嚴苛的離心煞車負擔。",
+                metric: "下坡跑與預防 DOMS 訓練"
+            },
+            {
+                cat: "strength",
+                en: "Plyometrics",
+                phonetic: "/ˌplaɪ.əˈmet.rɪks/",
+                pos: "n.",
+                zh: "增強式訓練 / 彈震式爆發力訓練",
+                def: "Exercises in which muscles exert maximum force in short intervals of time, with a focus on increasing elastic recoil and tendon stiffness (stretch-shortening cycle).",
+                ex_en: "Box jumps and skipping ropes are classic plyometric drills that improve Achilles tendon elasticity.",
+                ex_zh: "跳箱與跳繩是典型的增強式訓練，能鍛鍊阿基里斯腱的彈性反彈效益。",
+                metric: "縮短觸地時間 (Ground Contact Time, GCT)"
+            },
+            {
+                cat: "strength",
+                en: "Core Stability",
+                phonetic: "/kɔːr stəˈbɪl.ə.ti/",
+                pos: "n.",
+                zh: "核心穩定性",
+                def: "The ability of the trunk and deep abdominal muscles to stabilize the pelvis and spine, preventing energy leakage during running fatigue.",
+                ex_en: "Superior core stability prevents late-race posture collapse when running the final 10K of a marathon.",
+                ex_zh: "卓越的核心穩定性能防止跑者在全馬最後 10 公里極度疲勞時出現上身垮塌的姿態。",
+                metric: "垂直振幅率與跑姿對稱性"
+            },
+
+            // --- Category: nutrition ---
+            {
+                cat: "nutrition",
+                en: "Carb-loading",
+                phonetic: "/kɑːrb ˈloʊ.dɪŋ/",
+                pos: "n.",
+                zh: "肝醣超補法",
+                def: "A nutritional strategy of consuming 8 to 10 grams of carbohydrates per kilogram of body weight for 2 to 3 days prior to an endurance race to saturate glycogen stores.",
+                ex_en: "A proper 3-day carb-loading protocol ensures your liver and muscle glycogen tanks are completely filled.",
+                ex_zh: "三天正確的肝醣超補能確保你的肝臟與肌肉肝醣儲備庫完全滿載。",
+                metric: "賽前 48-72 小時高碳低脂低纖維飲食"
+            },
+            {
+                cat: "nutrition",
+                en: "Electrolytes",
+                phonetic: "/iˈlek.trə.laɪts/",
+                pos: "n.",
+                zh: "電解質 (鈉、鉀、鎂、鈣離子)",
+                def: "Essential minerals carrying electric charges that regulate cellular fluid balance, nerve signaling, and muscle contraction.",
+                ex_en: "Sweating heavily on a humid summer run causes sodium loss that triggers severe calf cramping without electrolyte replacement.",
+                ex_zh: "在潮濕悶熱的夏日奔跑中大量流汗會流失鈉離子，若無補充電解質極易引發小腿抽筋。",
+                metric: "鹽錠與運動飲料補充"
+            },
+            {
+                cat: "nutrition",
+                en: "Anabolic Window",
+                phonetic: "/ˌæn.əˈbɒl.ɪk ˈwɪn.doʊ/",
+                pos: "n.",
+                zh: "合成代謝黃金補給窗口",
+                def: "The 30 to 45 minute window following an intense workout when muscles are exceptionally sensitive to nutrient uptake and glycogen resynthesis.",
+                ex_en: "Consuming a 4:1 carb-to-protein recovery shake within the anabolic window accelerates tissue repair.",
+                ex_zh: "在運動後的黃金補給窗口內攝取 4:1 比例的碳水加蛋白質飲品，能加速肌肉組織修復。",
+                metric: "運動後 30 分鐘內立即補充"
+            },
+            {
+                cat: "nutrition",
+                en: "Active Recovery",
+                phonetic: "/ˈæk.tɪv rɪˈkʌv.ər.i/",
+                pos: "n.",
+                zh: "動態恢復",
+                def: "Low-intensity physical movement (such as light cycling, swimming, or easy walking) designed to promote blood circulation and clear metabolic waste.",
+                ex_en: "Instead of staying glued to the couch, a 20-minute active recovery walk cleared residual soreness from Sunday's long run.",
+                ex_zh: "與其整天躺在沙發上，20 分鐘的動態恢復散步有效清除了週日長跑後的殘餘痠痛。",
+                metric: "心率保持在 Zone 1 漫步或輕鬆踩踏"
+            },
+
+            // --- Category: periodization ---
+            {
+                cat: "periodization",
+                en: "Macrocycle",
+                phonetic: "/ˈmæk.roʊˌsaɪ.kəl/",
+                pos: "n.",
+                zh: "宏觀大週期 (整年度或 16-24 週賽季規劃)",
+                def: "The overarching training plan spanning an entire competitive season, traditionally divided into mesocycles and microcycles.",
+                ex_en: "Her annual marathon macrocycle is strategically split into a spring half-marathon and an autumn full marathon build.",
+                ex_zh: "她的年度馬拉松大週期被策略性地劃分為春季半馬測驗與秋季全馬巔峰目標。",
+                metric: "年度賽季目標"
+            },
+            {
+                cat: "periodization",
+                en: "Mesocycle",
+                phonetic: "/ˈmez.oʊˌsaɪ.kəl/",
+                pos: "n.",
+                zh: "中週期 (通常為 3-6 週的專項模組)",
+                def: "A medium-term training phase focused on developing a specific fitness quality (e.g., aerobic base building, VO2 max speed work, or peak sharpening).",
+                ex_en: "We have just entered a 4-week threshold mesocycle to boost our lactate clearance speed.",
+                ex_zh: "我們剛進入為期 4 週的門檻跑中週期，專門強化乳酸代謝清除速度。",
+                metric: "Garmin: 逐月月度統計圖 (Monthly Plots)"
+            },
+            {
+                cat: "periodization",
+                en: "Deload Week",
+                phonetic: "/diːˈloʊd wiːk/",
+                pos: "n.",
+                zh: "減量週 / 恢復週",
+                def: "A planned, scheduled microcycle every 3 to 4 weeks where training volume is cut by 30 to 40% to allow systemic supercompensation to take place.",
+                ex_en: "Never skip your scheduled deload week; adaptation and strength gains materialize when fatigue dissipates.",
+                ex_zh: "切勿跳過既定的減量週；真正的生理適應與體能躍升是在疲勞消退時才具體實現的。",
+                metric: "每 3 週一週減量，預防過度訓練"
+            },
+            {
+                cat: "periodization",
+                en: "Supercompensation",
+                phonetic: "/ˌsuː.pərˌkɒm.penˈseɪ.ʃən/",
+                pos: "n.",
+                zh: "超補償機制",
+                def: "The post-training period during which the trained function has a higher capacity than it did prior to the training period.",
+                ex_en: "If you time the recovery period correctly, supercompensation elevates your aerobic baseline to new heights.",
+                ex_zh: "只要精準掌控恢復時機，超補償機制就會將你的有氧體能基準線推向全新高度。",
+                metric: "訓練完備度反彈上升期"
+            },
+
+            // --- Category: gear ---
+            {
+                cat: "gear",
+                en: "Carbon-plated Shoes (Super Shoes)",
+                phonetic: "/ˈkɑːr.bən pleɪ.tɪd/",
+                pos: "n.",
+                zh: "碳纖維板競速跑鞋 (厚底超級跑鞋)",
+                def: "High-performance racing shoes featuring an embedded curved carbon fiber plate nestled within ultra-resilient PEBA foam to maximize energy return.",
+                ex_en: "Studies demonstrate that carbon-plated super shoes improve running economy by roughly 4 percent.",
+                ex_zh: "多項運動科學研究證實，碳板超級跑鞋能將跑步經濟性提升約 4%。",
+                metric: "賽事裝備: PEBA 超臨界發泡中底 + 碳板"
+            },
+            {
+                cat: "gear",
+                en: "Heel-to-toe Drop",
+                phonetic: "/hiːl tuː toʊ drɒp/",
+                pos: "n.",
+                zh: "足跟落差 (鞋跟高度與前掌高度之差)",
+                def: "The difference in sole height between the heel and the forefoot, typically ranging from 0mm (zero drop) to 10mm.",
+                ex_en: "Switching from a 10mm high-drop shoe to a zero-drop shoe requires months of calf conditioning.",
+                ex_zh: "從 10mm 高落差跑鞋換成零落差跑鞋，需要數個月逐步強化小腿比目魚肌以避免受傷。",
+                metric: "跑鞋規格: 4mm, 8mm, 10mm 落差"
+            },
+            {
+                cat: "gear",
+                en: "Stack Height",
+                phonetic: "/stæk haɪt/",
+                pos: "n.",
+                zh: "中底厚度 / 堆疊高度",
+                def: "The total amount of shoe material between your foot and the ground, regulated by World Athletics with a 40mm maximum limit for road racing.",
+                ex_en: "With a maximal 39.5mm stack height, the racing shoe offers cloud-like cushioning without violating road regulations.",
+                ex_zh: "在符合世界田總 40mm 規範上限下，39.5mm 的中底厚度提供了雲端般極致的緩震保護。",
+                metric: "路跑賽事合規上限: 40mm"
+            },
+            {
+                cat: "gear",
+                en: "Chafing / Anti-chafing",
+                phonetic: "/ˈtʃeɪ.fɪŋ/",
+                pos: "n.",
+                zh: "摩擦破皮 / 防磨膏",
+                def: "Skin irritation caused by repetitive skin-on-skin or fabric-on-skin friction, exacerbated by sweat and salt crystals during long runs.",
+                ex_en: "Apply anti-chafing balm to your inner thighs and underarms before toeing the marathon start line.",
+                ex_zh: "在站在馬拉松起跑線前，務必在大腿內側與腋下均勻塗抹防磨膏，防止摩擦破皮。",
+                metric: "馬拉松長跑必備皮膚防護"
+            }
+        ];
+
+        // ==========================================
+        // 3. UI RENDERING & INTERACTION LOGIC
+        // ==========================================
+        let currentCategory = 'all';
+        let flashcardMode = 0; // 0: Show All, 1: Hide Mandarin, 2: Hide English
+
+        function renderPrinciples() {
+            const container = document.getElementById('principles-container');
+            if (!container) return;
+
+            container.innerHTML = PRINCIPLES_DATA.map(p => `
+                <div class="glass-card rounded-xl p-5 border-l-4 border-l-emerald-500 hover:border-l-sky-500 transition-all">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-700/60 pb-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono font-bold flex items-center justify-center text-sm border border-emerald-500/30 flex-shrink-0">
+                                ${p.num}
+                            </span>
+                            <div>
+                                <h3 class="text-base sm:text-lg font-bold text-white flex flex-wrap items-center gap-2">
+                                    <span>${p.en}</span>
+                                    <span class="text-xs sm:text-sm font-medium text-emerald-400">(${p.zh})</span>
+                                </h3>
+                            </div>
+                        </div>
+                        <button onclick="speakText('${p.en}')" class="self-start sm:self-auto px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-sky-400 flex items-center gap-1 border border-slate-700" title="聆聽英文發音">
+                            <span>🔊</span> <span>發音</span>
+                        </button>
+                    </div>
+
+                    <div class="mt-3.5 space-y-2.5 text-xs sm:text-sm">
+                        <!-- Maxim -->
+                        <div class="p-3 rounded-lg bg-emerald-950/30 border border-emerald-500/30 text-emerald-300 font-medium leading-relaxed">
+                            <span class="font-bold text-emerald-400">💎 核心箴言 (Maxim):</span> ${p.maxim}
+                        </div>
+
+                        <!-- Science -->
+                        <div class="leading-relaxed text-slate-300">
+                            <span class="font-bold text-sky-400">🔬 生理與運動科學機制:</span> ${p.science}
+                        </div>
+
+                        <!-- Practical Garmin Application -->
+                        <div class="leading-relaxed text-slate-300">
+                            <span class="font-bold text-amber-400">🏃‍♂️ 跑者實戰與穿戴數據對應:</span> ${p.garmin}
+                        </div>
+
+                        <!-- Pitfall -->
+                        <div class="leading-relaxed text-rose-300 bg-rose-950/20 p-2.5 rounded-lg border border-rose-500/20">
+                            <span class="font-bold text-rose-400">⚠️ 常見誤區防護:</span> ${p.pitfall}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderGlossary(items) {
+            const grid = document.getElementById('glossary-grid');
+            const noRes = document.getElementById('no-results');
+            if (!grid) return;
+
+            if (items.length === 0) {
+                grid.innerHTML = '';
+                if (noRes) noRes.classList.remove('hidden');
+                return;
+            }
+
+            if (noRes) noRes.classList.add('hidden');
+
+            const categoryLabels = {
+                running: "🏃‍♂️ 跑步與賽事",
+                physiology: "🫀 生理與指標",
+                strength: "🏋️ 肌力與體能",
+                nutrition: "🥗 營養與恢復",
+                periodization: "⏱️ 週期化訓練",
+                gear: "👟 跑鞋與裝備"
+            };
+
+            grid.innerHTML = items.map(item => `
+                <div class="glass-card rounded-xl p-4 flex flex-col justify-between hover:scale-[1.01] transition-all border border-slate-700/60" onclick="revealCard(this)">
+                    <div>
+                        <!-- Header with Category & Pronunciation -->
+                        <div class="flex items-center justify-between text-xs text-slate-400 pb-2 border-b border-slate-800">
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-medium">
+                                ${categoryLabels[item.cat] || item.cat}
+                            </span>
+                            <button onclick="event.stopPropagation(); speakText('${item.en}')" class="p-1 rounded hover:bg-slate-700 text-sky-400 text-sm" title="聽發音">
+                                🔊
+                            </button>
+                        </div>
+
+                        <!-- Term Titles -->
+                        <div class="mt-2.5">
+                            <div class="flex items-baseline gap-2">
+                                <h4 class="term-english text-base sm:text-lg font-bold text-white tracking-tight">${item.en}</h4>
+                                <span class="text-xs text-slate-400 font-mono">${item.phonetic}</span>
+                                <span class="text-[11px] text-amber-400 font-mono italic">${item.pos}</span>
+                            </div>
+                            <div class="term-mandarin text-sm font-semibold text-emerald-400 mt-0.5">
+                                ${item.zh}
+                            </div>
+                        </div>
+
+                        <!-- Definition -->
+                        <p class="text-xs text-slate-300 mt-2.5 leading-relaxed">
+                            ${item.def}
+                        </p>
+
+                        <!-- Example Sentences -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-900/80 border border-slate-800/80 text-[11px] space-y-1">
+                            <div class="text-slate-300 italic">"${item.ex_en}"</div>
+                            <div class="text-slate-400">${item.ex_zh}</div>
+                        </div>
+                    </div>
+
+                    <!-- Footer with Garmin Connection -->
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-sky-400 font-medium flex items-center justify-between">
+                        <span>${item.metric}</span>
+                        <span class="text-slate-500 text-[10px]">#SportSci</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterGlossary() {
+            const query = (document.getElementById('glossary-search').value || '').trim().toLowerCase();
+            
+            let filtered = GLOSSARY_DATA;
+
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(item => item.cat === currentCategory);
+            }
+
+            if (query) {
+                filtered = filtered.filter(item => 
+                    item.en.toLowerCase().includes(query) ||
+                    item.zh.toLowerCase().includes(query) ||
+                    item.def.toLowerCase().includes(query) ||
+                    item.ex_en.toLowerCase().includes(query) ||
+                    item.ex_zh.toLowerCase().includes(query)
+                );
+            }
+
+            renderGlossary(filtered);
+        }
+
+        function setCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.filter-pill').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const activeBtn = document.getElementById(`cat-${cat}`);
+            if (activeBtn) activeBtn.classList.add('active');
+            filterGlossary();
+        }
+
+        function cycleFlashcardMode() {
+            flashcardMode = (flashcardMode + 1) % 3;
+            const body = document.body;
+            const text = document.getElementById('flashcard-text');
+
+            body.classList.remove('hide-mandarin', 'hide-english');
+
+            if (flashcardMode === 0) {
+                text.innerText = '模式: 全部顯示';
+            } else if (flashcardMode === 1) {
+                body.classList.add('hide-mandarin');
+                text.innerText = '模式: 隱藏中文 (測驗英譯中)';
+            } else if (flashcardMode === 2) {
+                body.classList.add('hide-english');
+                text.innerText = '模式: 隱藏英文 (測驗中譯英)';
+            }
+        }
+
+        function revealCard(el) {
+            if (flashcardMode === 1) {
+                const zh = el.querySelector('.term-mandarin');
+                if (zh) zh.style.filter = 'none';
+            } else if (flashcardMode === 2) {
+                const en = el.querySelector('.term-english');
+                if (en) en.style.filter = 'none';
+            }
+        }
+
+        // Web Speech API Voice Pronunciation
+        function speakText(text) {
+            if (!('speechSynthesis' in window)) {
+                alert('您的瀏覽器不支援 Web Speech 語音合成。');
+                return;
+            }
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Theme Toggle
+        function applyTheme(theme) {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            if (theme === 'light') {
+                html.classList.remove('dark');
+                if (icon) icon.innerText = '🌙';
+                if (text) text.innerText = '深色模式';
+                localStorage.setItem('garmin_dashboard_theme', 'light');
+            } else {
+                html.classList.add('dark');
+                if (icon) icon.innerText = '☀️';
+                if (text) text.innerText = '淺色模式';
+                localStorage.setItem('garmin_dashboard_theme', 'dark');
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            applyTheme(isDark ? 'light' : 'dark');
+        }
+
+        // Init
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('garmin_dashboard_theme') || 'dark';
+            applyTheme(savedTheme);
+
+            const countEl = document.getElementById('count-all');
+            if (countEl) countEl.innerText = GLOSSARY_DATA.length;
+
+            renderPrinciples();
+            renderGlossary(GLOSSARY_DATA);
+        });
+    </script>
+</body>
+</html>
