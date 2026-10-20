@@ -136,7 +136,7 @@
         }
 
         /* Auto-play Card Highlight & Smooth Animation */
-        .quote-card, .glossary-card {
+        .quote-card, .glossary-card, .nutrition-card, .injury-card {
             scroll-margin-top: 130px;
             scroll-margin-bottom: 70px;
             transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
@@ -168,6 +168,34 @@
         html:not(.dark) .active-play-quote {
             background: rgba(254, 243, 199, 0.95) !important;
             border-color: #d97706 !important;
+        }
+
+        .active-play-nutrition {
+            border-color: #84cc16 !important;
+            box-shadow: 0 0 28px rgba(132, 204, 22, 0.55), 0 8px 16px rgba(0, 0, 0, 0.4) !important;
+            transform: scale(1.025) !important;
+            z-index: 10;
+        }
+        html.dark .active-play-nutrition {
+            background: rgba(54, 83, 20, 0.4) !important;
+        }
+        html:not(.dark) .active-play-nutrition {
+            background: rgba(236, 252, 203, 0.95) !important;
+            border-color: #65a30d !important;
+        }
+
+        .active-play-injury {
+            border-color: #f43f5e !important;
+            box-shadow: 0 0 28px rgba(244, 63, 94, 0.55), 0 8px 16px rgba(0, 0, 0, 0.4) !important;
+            transform: scale(1.025) !important;
+            z-index: 10;
+        }
+        html.dark .active-play-injury {
+            background: rgba(136, 19, 55, 0.4) !important;
+        }
+        html:not(.dark) .active-play-injury {
+            background: rgba(255, 228, 230, 0.95) !important;
+            border-color: #e11d48 !important;
         }
 
         /* Hide scrollbar for nav horizontal overflow */
@@ -835,21 +863,34 @@
                         </p>
                     </div>
                 </div>
-                <span class="text-xs px-3 py-1 rounded-full bg-lime-500/20 text-lime-400 font-mono border border-lime-500/30">
-                    Sports Nutrition
-                </span>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleNutritionAutoPlay()" id="btn-nutrition-autoplay" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs sm:text-sm font-semibold text-lime-400 border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer">
+                        <span id="nutrition-play-icon">▶️</span>
+                        <span id="nutrition-play-text">自動朗讀補給科學</span>
+                    </button>
+                    <span class="text-xs px-3 py-1 rounded-full bg-lime-500/20 text-lime-400 font-mono border border-lime-500/30 hidden sm:inline-block">
+                        Sports Nutrition
+                    </span>
+                </div>
             </div>
 
             <!-- 4 Core Pillars Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <!-- Card 1: 賽前 3 天肝醣超補 -->
-                <div class="p-5 rounded-2xl bg-slate-900/90 border border-lime-500/30 flex flex-col justify-between space-y-4">
+                <div class="p-5 rounded-2xl bg-slate-900/90 border border-lime-500/30 flex flex-col justify-between space-y-4 nutrition-card" id="ncard-0">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-xs px-2.5 py-0.5 rounded-full bg-lime-500/20 text-lime-400 font-bold">
                                 賽前 36~72 小時 • 儲能階段
                             </span>
-                            <button onclick="speakText('Carbo-loading and Glycogen Supercompensation')" class="p-1 text-lime-400 hover:text-white text-xs" title="聆聽英文發音">🔊</button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Carbo-loading and Glycogen Supercompensation')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-lime-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('A proper three-day carb-loading protocol with white rice and bananas ensures your muscle glycogen tanks are completely saturated before the marathon.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
                         <h3 class="text-lg font-bold text-white mt-2 flex items-center gap-2">
                             <span>肝醣超補與飽和策略</span>
@@ -859,7 +900,7 @@
                             人體骨骼肌與肝臟的肝醣儲存上限約 400~500g（約 2000 大卡），僅足夠維持 90~120 分鐘半馬至全馬強度的消耗。若無妥善超補，25~35 公里必然撞牆崩潰。
                         </p>
 
-                        <div class="mt-3.5 space-y-2.5 text-xs">
+                        <div class="mt-3 space-y-2.5 text-xs">
                             <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
                                 <div class="font-bold text-amber-400">📊 每日建議攝取劑量:</div>
                                 <div class="text-slate-300">
@@ -875,6 +916,20 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <!-- 💬 實戰例句 (Bilingual Example Sentence) -->
+                        <div class="mt-3.5 p-3 rounded-xl bg-slate-950/90 border border-lime-500/20 text-[11px] space-y-1.5">
+                            <div class="text-lime-400 font-bold flex items-center justify-between">
+                                <span>💬 實戰情境例句 (Real-world Running Context):</span>
+                                <span class="text-slate-500 text-[10px]">#CarbLoading</span>
+                            </div>
+                            <div class="text-slate-200 italic font-medium leading-relaxed">
+                                "A proper three-day carb-loading protocol with white rice and bananas ensures your muscle glycogen tanks are completely saturated before the marathon."
+                            </div>
+                            <div class="text-slate-400 leading-relaxed">
+                                賽前三天透過白飯與香蕉進行正確的肝醣超補，能確保你的肌肝醣儲備庫在馬拉松起跑前完全滿載。
+                            </div>
+                        </div>
                     </div>
 
                     <div class="pt-2 border-t border-slate-800 text-[11px] text-lime-400 flex items-center justify-between">
@@ -884,13 +939,20 @@
                 </div>
 
                 <!-- Card 2: 賽道補給黃金矩陣與雙通道碳水 -->
-                <div class="p-5 rounded-2xl bg-slate-900/90 border border-amber-500/30 flex flex-col justify-between space-y-4">
+                <div class="p-5 rounded-2xl bg-slate-900/90 border border-amber-500/30 flex flex-col justify-between space-y-4 nutrition-card" id="ncard-1">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-xs px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 font-bold">
                                 賽道實戰進行中 • 每小時 30~90g
                             </span>
-                            <button onclick="speakText('Dual-Source Carbohydrates and In-Race Energy Gel Protocol')" class="p-1 text-amber-400 hover:text-white text-xs" title="聆聽英文發音">🔊</button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Dual-Source Carbohydrates and In-Race Energy Gel Protocol')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-amber-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Elite runners consume dual-source gels combining maltodextrin and fructose in a one to zero-point-eight ratio to oxidize 90 grams of carbs per hour without stomach upset.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
                         <h3 class="text-lg font-bold text-white mt-2 flex items-center gap-2">
                             <span>雙通道碳水與能量膠補給矩陣</span>
@@ -900,7 +962,7 @@
                             腸道對單純葡萄糖的吸收仰賴 <strong>SGLT1 轉運蛋白</strong>，吸收上限約 60g/小時。單純攝取超量葡萄糖將滯留腸道引發滲透性腹瀉。
                         </p>
 
-                        <div class="mt-3.5 space-y-2.5 text-xs">
+                        <div class="mt-3 space-y-2.5 text-xs">
                             <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
                                 <div class="font-bold text-sky-400">⚡ 雙通道突破上限理論 (1:0.8 / 2:1 比例):</div>
                                 <div class="text-slate-300">
@@ -916,6 +978,20 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <!-- 💬 實戰例句 (Bilingual Example Sentence) -->
+                        <div class="mt-3.5 p-3 rounded-xl bg-slate-950/90 border border-amber-500/20 text-[11px] space-y-1.5">
+                            <div class="text-amber-400 font-bold flex items-center justify-between">
+                                <span>💬 實戰情境例句 (Real-world Running Context):</span>
+                                <span class="text-slate-500 text-[10px]">#DualCarbs</span>
+                            </div>
+                            <div class="text-slate-200 italic font-medium leading-relaxed">
+                                "Elite runners consume dual-source gels combining maltodextrin and fructose in a 1:0.8 ratio to oxidize 90 grams of carbs per hour without stomach upset."
+                            </div>
+                            <div class="text-slate-400 leading-relaxed">
+                                菁英跑者攝取以 1:0.8 比例調配麥芽糊精與果糖的雙通道能量膠，能達到每小時氧化 90 克碳水且不引發腸胃不適。
+                            </div>
+                        </div>
                     </div>
 
                     <div class="pt-2 border-t border-slate-800 text-[11px] text-amber-400 flex items-center justify-between">
@@ -925,13 +1001,20 @@
                 </div>
 
                 <!-- Card 3: 水合、電解質平衡與低血鈉防護 -->
-                <div class="p-5 rounded-2xl bg-slate-900/90 border border-sky-500/30 flex flex-col justify-between space-y-4">
+                <div class="p-5 rounded-2xl bg-slate-900/90 border border-sky-500/30 flex flex-col justify-between space-y-4 nutrition-card" id="ncard-2">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-400 font-bold">
                                 水分流失防護 • 電解質動態平衡
                             </span>
-                            <button onclick="speakText('Hydration, Electrolyte Balance and Exercise-Associated Hyponatremia')" class="p-1 text-sky-400 hover:text-white text-xs" title="聆聽英文發音">🔊</button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Hydration, Electrolyte Balance and Exercise-Associated Hyponatremia')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-sky-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Drinking exclusively pure water during a five-hour marathon dilutes blood sodium and can trigger fatal exercise-associated hyponatremia.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
                         <h3 class="text-lg font-bold text-white mt-2 flex items-center gap-2">
                             <span>水合、出汗率與運動性低血鈉防護</span>
@@ -941,7 +1024,7 @@
                             脫水超過體重 2% 會使血容量下降、心率代償性飆升（心血管漂移），但盲目狂飲純水更會造成致命的低血鈉症。
                         </p>
 
-                        <div class="mt-3.5 space-y-2.5 text-xs">
+                        <div class="mt-3 space-y-2.5 text-xs">
                             <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
                                 <div class="font-bold text-rose-400">🚨 運動性低血鈉症 (EAH / 水中毒):</div>
                                 <div class="text-slate-300">
@@ -957,6 +1040,20 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <!-- 💬 實戰例句 (Bilingual Example Sentence) -->
+                        <div class="mt-3.5 p-3 rounded-xl bg-slate-950/90 border border-sky-500/20 text-[11px] space-y-1.5">
+                            <div class="text-sky-400 font-bold flex items-center justify-between">
+                                <span>💬 實戰情境例句 (Real-world Running Context):</span>
+                                <span class="text-slate-500 text-[10px]">#Hydration</span>
+                            </div>
+                            <div class="text-slate-200 italic font-medium leading-relaxed">
+                                "Drinking exclusively pure water during a five-hour marathon dilutes blood sodium and can trigger fatal exercise-associated hyponatremia."
+                            </div>
+                            <div class="text-slate-400 leading-relaxed">
+                                在長達五小時的馬拉松中若只盲目狂飲純水，會稀釋血鈉並可能誘發致命的運動性低血鈉水中毒。
+                            </div>
+                        </div>
                     </div>
 
                     <div class="pt-2 border-t border-slate-800 text-[11px] text-sky-400 flex items-center justify-between">
@@ -966,13 +1063,20 @@
                 </div>
 
                 <!-- Card 4: 賽後黃金代謝修復期與胃腸道訓練 -->
-                <div class="p-5 rounded-2xl bg-slate-900/90 border border-purple-500/30 flex flex-col justify-between space-y-4">
+                <div class="p-5 rounded-2xl bg-slate-900/90 border border-purple-500/30 flex flex-col justify-between space-y-4 nutrition-card" id="ncard-3">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-xs px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-400 font-bold">
                                 賽後 30 分鐘 • 代謝修復窗口
                             </span>
-                            <button onclick="speakText('The Anabolic Recovery Window and Gut Training Adaptation')" class="p-1 text-purple-400 hover:text-white text-xs" title="聆聽英文發音">🔊</button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('The Anabolic Recovery Window and Gut Training Adaptation')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-purple-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Consuming a four to one carb to protein recovery shake within thirty minutes after the race accelerates muscle glycogen resynthesis and halts muscle breakdown.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
                         <h3 class="text-lg font-bold text-white mt-2 flex items-center gap-2">
                             <span>賽後黃金代謝修復期與胃腸道訓練</span>
@@ -982,7 +1086,7 @@
                             完賽後人體處於肌纖維微創發炎與皮質醇高張狀態，把握代謝窗口是抑制分解、重啟合成的關鍵。
                         </p>
 
-                        <div class="mt-3.5 space-y-2.5 text-xs">
+                        <div class="mt-3 space-y-2.5 text-xs">
                             <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
                                 <div class="font-bold text-emerald-400">🥩 3:1 或 4:1 碳水蛋白黃金配比:</div>
                                 <div class="text-slate-300">
@@ -994,6 +1098,20 @@
                                 <div class="text-slate-300">
                                     腸道與骨骼肌一樣具備高度可塑性。在週末 LSD 長距離訓練中必須<strong>「模擬賽事全真補給」</strong>，訓練胃部在高心率血液遠離內臟狀態下的排空效率，才能杜絕賽日跑者腹瀉 (Runner's Trots)。
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 (Bilingual Example Sentence) -->
+                        <div class="mt-3.5 p-3 rounded-xl bg-slate-950/90 border border-purple-500/20 text-[11px] space-y-1.5">
+                            <div class="text-purple-400 font-bold flex items-center justify-between">
+                                <span>💬 實戰情境例句 (Real-world Running Context):</span>
+                                <span class="text-slate-500 text-[10px]">#RecoveryWindow</span>
+                            </div>
+                            <div class="text-slate-200 italic font-medium leading-relaxed">
+                                "Consuming a 4:1 carb-to-protein recovery shake within thirty minutes after the race accelerates muscle glycogen resynthesis and halts muscle breakdown."
+                            </div>
+                            <div class="text-slate-400 leading-relaxed">
+                                完賽後三十分鐘內攝取 4:1 比例的碳水加蛋白質修復飲品，能加速肌肝醣重新合成並遏止肌肉分解。
                             </div>
                         </div>
                     </div>
@@ -1023,19 +1141,32 @@
                         </p>
                     </div>
                 </div>
-                <span class="text-xs px-3 py-1 rounded-full bg-rose-500/20 text-rose-400 font-mono border border-rose-500/30">
-                    Sports Medicine
-                </span>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleInjuryAutoPlay()" id="btn-injury-autoplay" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs sm:text-sm font-semibold text-rose-400 border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer">
+                        <span id="injury-play-icon">▶️</span>
+                        <span id="injury-play-text">自動朗讀傷害防護</span>
+                    </button>
+                    <span class="text-xs px-3 py-1 rounded-full bg-rose-500/20 text-rose-400 font-mono border border-rose-500/30 hidden sm:inline-block">
+                        Sports Medicine
+                    </span>
+                </div>
             </div>
 
             <!-- 6 Clinical Injury Modules -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- 1. 髂脛束症候群 ITBS -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-0">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-rose-400 font-mono">ITBS • 膝外側針刺痛</span>
-                            <button onclick="speakText('Iliotibial Band Syndrome, ITBS')" class="p-1 text-rose-400 text-xs">🔊</button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Iliotibial Band Syndrome, ITBS')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-rose-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Weak hip abductors and steep downhill running are the primary culprits behind sharp lateral knee pain caused by IT band syndrome.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">髂脛束摩擦症候群 (ITBS)</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Iliotibial Band Syndrome</div>
@@ -1047,6 +1178,13 @@
                                 <strong>🛡️ 處方對策:</strong> 滾筒放鬆闊筋膜張肌 (TFL)、強化側棒式抬腿與蚌殼式 (Clamshell)、步頻提升 5% 以縮短觸地時間。
                             </div>
                         </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-rose-400 font-bold text-[10px]">💬 臨床與實戰例句 (Clinical Example):</div>
+                            <div class="text-slate-200 italic">"Weak hip abductors and steep downhill running are the primary culprits behind sharp lateral knee pain caused by IT band syndrome."</div>
+                            <div class="text-slate-400">臀部外展肌群無力與陡峭下坡奔跑，是引發髂脛束摩擦症候群膝蓋外側針刺般劇痛的罪魁禍首。</div>
+                        </div>
                     </div>
                     <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
                         <span>好發於: 下坡過度跨步跑者</span>
@@ -1055,11 +1193,18 @@
                 </div>
 
                 <!-- 2. 跑者膝 / 髕骨股骨疼痛症候群 PFPS -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-1">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-rose-400 font-mono">PFPS • 髕骨周圍深層鈍痛</span>
-                            <button onclick="speakText('Patellofemoral Pain Syndrome, Runner\'s Knee')" class="p-1 text-rose-400 text-xs">🔊</button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Patellofemoral Pain Syndrome, Runner\'s Knee')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-rose-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Runner\'s knee is often resolved by strengthening the vastus medialis oblique and increasing your step rate by five percent to reduce knee joint impact.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">跑者膝 (髕骨股骨症候群)</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Patellofemoral Pain Syndrome</div>
@@ -1071,6 +1216,13 @@
                                 <strong>🛡️ 處方對策:</strong> 強化股四頭肌終端伸膝 (Terminal Knee Extension)、分腿蹲 (Split Squat)、避免下坡過度跨步 (Overstriding)。
                             </div>
                         </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-rose-400 font-bold text-[10px]">💬 臨床與實戰例句 (Clinical Example):</div>
+                            <div class="text-slate-200 italic">"Runner's knee is often resolved by strengthening the vastus medialis oblique and increasing your step rate by 5% to reduce knee joint impact."</div>
+                            <div class="text-slate-400">跑者膝通常能透過強化股內側肌以及將步頻提高百分之五來減輕膝關節衝擊力，從而獲得顯著改善。</div>
+                        </div>
                     </div>
                     <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
                         <span>好發於: 跑量暴增、股四頭肌不平衡</span>
@@ -1079,11 +1231,18 @@
                 </div>
 
                 <!-- 3. 足底筋膜炎 Plantar Fasciitis -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-2">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-rose-400 font-mono">足底撕裂痛 • 晨起第一步</span>
-                            <button onclick="speakText('Plantar Fasciitis')" class="p-1 text-rose-400 text-xs">🔊</button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Plantar Fasciitis')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-rose-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Piercing heel pain during the first few steps out of bed in the morning is the hallmark diagnostic symptom of plantar fasciitis.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">足底筋膜炎</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Plantar Fasciitis</div>
@@ -1095,6 +1254,13 @@
                                 <strong>🛡️ 處方對策:</strong> 高爾夫球踩滾足底、大腳趾背屈拉伸足底筋膜、換穿支撐性足弓鞋墊、離心提踵訓練。
                             </div>
                         </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-rose-400 font-bold text-[10px]">💬 臨床與實戰例句 (Clinical Example):</div>
+                            <div class="text-slate-200 italic">"Piercing heel pain during the first few steps out of bed in the morning is the hallmark diagnostic symptom of plantar fasciitis."</div>
+                            <div class="text-slate-400">早晨起床下床踩地前幾步足跟如踩針般劇痛，是足底筋膜炎最典型的診斷性特徵。</div>
+                        </div>
                     </div>
                     <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
                         <span>好發於: 高足弓/扁平足、緊繃小腿</span>
@@ -1103,11 +1269,18 @@
                 </div>
 
                 <!-- 4. 阿基里斯腱病變 Achilles Tendinopathy -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-3">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-rose-400 font-mono">跟腱腫脹 • 晨間僵硬</span>
-                            <button onclick="speakText('Achilles Tendinopathy')" class="p-1 text-rose-400 text-xs">🔊</button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Achilles Tendinopathy')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-rose-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('The Alfredson eccentric heel drop protocol performed on a stair step remains the gold standard rehabilitation exercise for chronic Achilles tendinopathy.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">阿基里斯腱病變</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Achilles Tendinopathy</div>
@@ -1119,6 +1292,13 @@
                                 <strong>🛡️ 處方對策:</strong> Alfredson 離心下沉提踵訓練 (Eccentric Heel Drop Protocol)、暫停坡度跑與衝刺、避免跟腱處直接強力深層按摩。
                             </div>
                         </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-rose-400 font-bold text-[10px]">💬 臨床與實戰例句 (Clinical Example):</div>
+                            <div class="text-slate-200 italic">"The Alfredson eccentric heel drop protocol performed on a stair step remains the gold standard rehabilitation exercise for chronic Achilles tendinopathy."</div>
+                            <div class="text-slate-400">在樓梯踏階上進行的 Alfredson 離心下沉提踵訓練協議，至今仍是治療慢性阿基里斯腱病變的黃金復健運動。</div>
+                        </div>
                     </div>
                     <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
                         <span>好發於: 衝刺間歇、突然換低落差鞋</span>
@@ -1127,11 +1307,18 @@
                 </div>
 
                 <!-- 5. 脛骨壓力症候群 (MTSS) vs 疲勞性骨折 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-rose-500/40 hover:border-rose-400 transition-all flex flex-col justify-between">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-rose-500/40 hover:border-rose-400 transition-all flex flex-col justify-between injury-card" id="icard-4">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-rose-400 font-mono">骨骼警訊 • 應力性微骨折</span>
-                            <button onclick="speakText('Medial Tibial Stress Syndrome and Stress Fracture')" class="p-1 text-rose-400 text-xs">🔊</button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Medial Tibial Stress Syndrome and Stress Fracture')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-rose-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Unlike diffuse shin splints, a bone stress fracture presents with pinpoint bone tenderness and requires immediate cessation of all running for six to eight weeks.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">脛前疼痛與疲勞性骨折</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Shin Splints (MTSS) vs Stress Fracture</div>
@@ -1143,6 +1330,13 @@
                                 <strong>🛡️ 處方對策:</strong> 改以水中跑步 (Aqua jogging) 或自行車維持心肺、評估骨質密度與維生素 D/鈣質攝取。
                             </div>
                         </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-rose-400 font-bold text-[10px]">💬 臨床與實戰例句 (Clinical Example):</div>
+                            <div class="text-slate-200 italic">"Unlike diffuse shin splints, a bone stress fracture presents with pinpoint bone tenderness and requires immediate cessation of all running for six to eight weeks."</div>
+                            <div class="text-slate-400">與瀰漫性的脛前痛不同，骨骼疲勞性骨折表現為單一點的劇烈骨壓痛，需要立即全面停止所有跑步運動六至八週。</div>
+                        </div>
                     </div>
                     <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
                         <span>紅旗徵兆: 單點骨壓痛必須立即停跑</span>
@@ -1151,13 +1345,20 @@
                 </div>
 
                 <!-- 6. 橫紋肌溶解症與勞力型中暑 (生命威脅急症) -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border-2 border-rose-600/60 hover:border-rose-500 transition-all flex flex-col justify-between shadow-lg shadow-rose-950/30">
+                <div class="p-4 rounded-xl bg-slate-900/90 border-2 border-rose-600/60 hover:border-rose-500 transition-all flex flex-col justify-between shadow-lg shadow-rose-950/30 injury-card" id="icard-5">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-black text-rose-400 font-mono flex items-center gap-1">
                                 <span>🚨</span> <span>致命急症 • 茶色尿與高溫</span>
                             </span>
-                            <button onclick="speakText('Exertional Heat Stroke and Rhabdomyolysis')" class="p-1 text-rose-400 text-xs">🔊</button>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Exertional Heat Stroke and Rhabdomyolysis')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-rose-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Exertional heat stroke demands immediate whole-body cold water immersion, while tea-colored urine indicates severe rhabdomyolysis requiring emergency hospital care.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">橫紋肌溶解症與勞力型中暑</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Rhabdomyolysis & Exertional Heat Stroke</div>
@@ -1168,6 +1369,13 @@
                             <div class="p-2 rounded-lg bg-rose-950/40 border border-rose-500/40 text-[11px] text-rose-300">
                                 <strong>⚡ 中暑急救鐵律:</strong> <strong>「先降溫、後送醫」(Cool First, Transport Second)</strong>，立刻全身浸入 2~10°C 冰水浴 (CWI)，在 30 分鐘內將核心體溫降至 38.8°C。
                             </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-rose-400 font-bold text-[10px]">💬 臨床與實戰例句 (Clinical Example):</div>
+                            <div class="text-slate-200 italic">"Exertional heat stroke demands immediate whole-body cold water immersion, while tea-colored urine indicates severe rhabdomyolysis requiring emergency hospital care."</div>
+                            <div class="text-slate-400">勞力型中暑需要立刻全身浸入冰水中降溫，而茶色或可樂色尿液則預示著嚴重的橫紋肌溶解症，需立即急診救治。</div>
                         </div>
                     </div>
                     <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
@@ -2674,18 +2882,18 @@
 
         // Global Mini Player Bar Controls (Top Sticky Bar Integration)
         function pauseAnyPlaying() {
-            if (isQuotesAutoPlaying) {
-                stopQuotesAutoPlay();
-            }
-            if (isAutoPlaying) {
-                pauseAutoPlay();
-            }
+            if (isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (isAutoPlaying) pauseAutoPlay();
+            if (isNutritionAutoPlaying) stopNutritionAutoPlay();
+            if (isInjuryAutoPlaying) stopInjuryAutoPlay();
             hideTopMiniPlayer();
         }
 
         function stopAnyPlaying() {
             stopQuotesAutoPlay();
             stopAutoPlay();
+            stopNutritionAutoPlay();
+            stopInjuryAutoPlay();
             hideTopMiniPlayer();
         }
 
@@ -2700,6 +2908,12 @@
             if (type === 'quotes') {
                 el.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-amber-500/50 text-xs shadow-inner';
                 if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-amber-400 animate-ping';
+            } else if (type === 'nutrition') {
+                el.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-lime-500/50 text-xs shadow-inner';
+                if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-lime-400 animate-ping';
+            } else if (type === 'injury') {
+                el.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-rose-500/50 text-xs shadow-inner';
+                if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-rose-400 animate-ping';
             } else {
                 el.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-emerald-500/50 text-xs shadow-inner';
                 if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-ping';
@@ -2712,6 +2926,316 @@
                 el.classList.add('hidden');
                 el.classList.remove('flex');
             }
+        }
+
+        // ==========================================
+        // 2.7 NUTRITION & INJURY AUTO-PLAY ENGINES
+        // ==========================================
+        const NUTRITION_ITEMS = [
+            {
+                id: "ncard-0",
+                title: "Carbo-loading and Glycogen Supercompensation",
+                zh: "肝醣超補與飽和策略",
+                ex_en: "A proper three-day carb-loading protocol with white rice and bananas ensures your muscle glycogen tanks are completely saturated before the marathon.",
+                ex_zh: "賽前三天透過白飯與香蕉進行正確的肝醣超補，能確保你的肌肝醣儲備庫在馬拉松起跑前完全滿載。"
+            },
+            {
+                id: "ncard-1",
+                title: "Dual-Source Carbohydrates and In-Race Energy Gel Protocol",
+                zh: "雙通道碳水與能量膠補給矩陣",
+                ex_en: "Elite runners consume dual-source gels combining maltodextrin and fructose in a 1:0.8 ratio to oxidize 90 grams of carbs per hour without stomach upset.",
+                ex_zh: "菁英跑者攝取以 1:0.8 比例調配麥芽糊精與果糖的雙通道能量膠，能達到每小時氧化 90 克碳水且不引發腸胃不適。"
+            },
+            {
+                id: "ncard-2",
+                title: "Hydration, Electrolyte Balance and Exercise-Associated Hyponatremia",
+                zh: "水合、出汗率與運動性低血鈉防護",
+                ex_en: "Drinking exclusively pure water during a five-hour marathon dilutes blood sodium and can trigger fatal exercise-associated hyponatremia.",
+                ex_zh: "在長達五小時的馬拉松中若只盲目狂飲純水，會稀釋血鈉並可能誘發致命的運動性低血鈉水中毒。"
+            },
+            {
+                id: "ncard-3",
+                title: "The Anabolic Recovery Window and Gut Training Adaptation",
+                zh: "賽後黃金代謝修復期與胃腸道訓練",
+                ex_en: "Consuming a 4:1 carb-to-protein recovery shake within thirty minutes after the race accelerates muscle glycogen resynthesis and halts muscle breakdown.",
+                ex_zh: "完賽後三十分鐘內攝取 4:1 比例的碳水加蛋白質修復飲品，能加速肌肝醣重新合成並遏止肌肉分解。"
+            }
+        ];
+
+        let isNutritionAutoPlaying = false;
+        let nutritionPlayIndex = -1;
+        let nutritionAutoPlayTimeout = null;
+
+        function toggleNutritionAutoPlay() {
+            if (isNutritionAutoPlaying) {
+                stopNutritionAutoPlay();
+            } else {
+                startNutritionAutoPlay();
+            }
+        }
+
+        function startNutritionAutoPlay() {
+            if (isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (isAutoPlaying) stopAutoPlay();
+            if (isInjuryAutoPlaying) stopInjuryAutoPlay();
+
+            isNutritionAutoPlaying = true;
+            const icon = document.getElementById('nutrition-play-icon');
+            const text = document.getElementById('nutrition-play-text');
+            const btn = document.getElementById('btn-nutrition-autoplay');
+            if (icon) icon.innerText = '⏸️';
+            if (text) text.innerText = '暫停朗讀補給';
+            if (btn) {
+                btn.classList.add('bg-lime-600', 'text-white');
+                btn.classList.remove('text-lime-400');
+            }
+
+            if (nutritionPlayIndex < 0 || nutritionPlayIndex >= NUTRITION_ITEMS.length) {
+                nutritionPlayIndex = 0;
+            }
+            playSpecificNutrition(nutritionPlayIndex, true);
+        }
+
+        function stopNutritionAutoPlay() {
+            isNutritionAutoPlaying = false;
+            if (nutritionAutoPlayTimeout) clearTimeout(nutritionAutoPlayTimeout);
+            window.speechSynthesis.cancel();
+            const icon = document.getElementById('nutrition-play-icon');
+            const text = document.getElementById('nutrition-play-text');
+            const btn = document.getElementById('btn-nutrition-autoplay');
+            if (icon) icon.innerText = '▶️';
+            if (text) text.innerText = '自動朗讀補給科學';
+            if (btn) {
+                btn.classList.remove('bg-lime-600', 'text-white');
+                btn.classList.add('text-lime-400');
+            }
+            document.querySelectorAll('.nutrition-card').forEach(c => c.classList.remove('active-play-nutrition', 'active-play-card'));
+            hideTopMiniPlayer();
+        }
+
+        function playSpecificNutrition(idx, continueFlow = false) {
+            if (idx < 0 || idx >= NUTRITION_ITEMS.length) return;
+            nutritionPlayIndex = idx;
+            const item = NUTRITION_ITEMS[idx];
+
+            document.querySelectorAll('.nutrition-card').forEach(c => c.classList.remove('active-play-nutrition', 'active-play-card'));
+            const card = document.getElementById(item.id);
+            if (card) {
+                card.classList.add('active-play-nutrition');
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            showTopMiniPlayer(`🥑 補給: ${item.zh}`, 'nutrition');
+
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            if (nutritionAutoPlayTimeout) clearTimeout(nutritionAutoPlayTimeout);
+
+            const titleUtterance = new SpeechSynthesisUtterance(item.title);
+            titleUtterance.lang = 'en-US';
+            titleUtterance.rate = 0.95;
+
+            titleUtterance.onend = () => {
+                setTimeout(() => {
+                    const exUtterance = new SpeechSynthesisUtterance(item.ex_en);
+                    exUtterance.lang = 'en-US';
+                    exUtterance.rate = 0.92;
+
+                    exUtterance.onend = () => {
+                        if (isNutritionAutoPlaying || continueFlow) {
+                            nutritionAutoPlayTimeout = setTimeout(() => {
+                                if (!isNutritionAutoPlaying) return;
+                                if (nutritionPlayIndex + 1 < NUTRITION_ITEMS.length) {
+                                    nutritionPlayIndex++;
+                                    playSpecificNutrition(nutritionPlayIndex, true);
+                                } else {
+                                    nutritionPlayIndex = 0;
+                                    playSpecificNutrition(nutritionPlayIndex, true);
+                                }
+                            }, 2500);
+                        }
+                    };
+
+                    exUtterance.onerror = () => {
+                        if (isNutritionAutoPlaying || continueFlow) {
+                            nutritionPlayIndex = (nutritionPlayIndex + 1) % NUTRITION_ITEMS.length;
+                            playSpecificNutrition(nutritionPlayIndex, true);
+                        }
+                    };
+
+                    window.speechSynthesis.speak(exUtterance);
+                }, 400);
+            };
+
+            titleUtterance.onerror = () => {
+                if (isNutritionAutoPlaying || continueFlow) {
+                    nutritionPlayIndex = (nutritionPlayIndex + 1) % NUTRITION_ITEMS.length;
+                    playSpecificNutrition(nutritionPlayIndex, true);
+                }
+            };
+
+            window.speechSynthesis.speak(titleUtterance);
+        }
+
+        // --- INJURY AUTO PLAY ENGINE ---
+        const INJURY_ITEMS = [
+            {
+                id: "icard-0",
+                title: "Iliotibial Band Syndrome, ITBS",
+                zh: "髂脛束摩擦症候群",
+                ex_en: "Weak hip abductors and steep downhill running are the primary culprits behind sharp lateral knee pain caused by IT band syndrome.",
+                ex_zh: "臀部外展肌群無力與陡峭下坡奔跑，是引發髂脛束摩擦症候群膝蓋外側針刺般劇痛的罪魁禍首。"
+            },
+            {
+                id: "icard-1",
+                title: "Patellofemoral Pain Syndrome, Runner's Knee",
+                zh: "跑者膝與髕骨股骨症候群",
+                ex_en: "Runner's knee is often resolved by strengthening the vastus medialis oblique and increasing your step rate by 5% to reduce knee joint impact.",
+                ex_zh: "跑者膝通常能透過強化股內側肌以及將步頻提高百分之五來減輕膝關節衝擊力，從而獲得顯著改善。"
+            },
+            {
+                id: "icard-2",
+                title: "Plantar Fasciitis",
+                zh: "足底筋膜炎",
+                ex_en: "Piercing heel pain during the first few steps out of bed in the morning is the hallmark diagnostic symptom of plantar fasciitis.",
+                ex_zh: "早晨起床下床踩地前幾步足跟如踩針般劇痛，是足底筋膜炎最典型的診斷性特徵。"
+            },
+            {
+                id: "icard-3",
+                title: "Achilles Tendinopathy",
+                zh: "阿基里斯腱病變",
+                ex_en: "The Alfredson eccentric heel drop protocol performed on a stair step remains the gold standard rehabilitation exercise for chronic Achilles tendinopathy.",
+                ex_zh: "在樓梯踏階上進行的 Alfredson 離心下沉提踵訓練協議，至今仍是治療慢性阿基里斯腱病變的黃金復健運動。"
+            },
+            {
+                id: "icard-4",
+                title: "Medial Tibial Stress Syndrome and Bone Stress Fracture",
+                zh: "脛前疼痛與骨骼疲勞性骨折",
+                ex_en: "Unlike diffuse shin splints, a bone stress fracture presents with pinpoint bone tenderness and requires immediate cessation of all running for six to eight weeks.",
+                ex_zh: "與瀰漫性的脛前痛不同，骨骼疲勞性骨折表現為單一點的劇烈骨壓痛，需要立即全面停止所有跑步運動六至八週。"
+            },
+            {
+                id: "icard-5",
+                title: "Exertional Heat Stroke and Rhabdomyolysis",
+                zh: "橫紋肌溶解症與勞力型中暑",
+                ex_en: "Exertional heat stroke demands immediate whole-body cold water immersion, while tea-colored urine indicates severe rhabdomyolysis requiring emergency hospital care.",
+                ex_zh: "勞力型中暑需要立刻全身浸入冰水中降溫，而茶色或可樂色尿液則預示著嚴重的橫紋肌溶解症，需立即急診救治。"
+            }
+        ];
+
+        let isInjuryAutoPlaying = false;
+        let injuryPlayIndex = -1;
+        let injuryAutoPlayTimeout = null;
+
+        function toggleInjuryAutoPlay() {
+            if (isInjuryAutoPlaying) {
+                stopInjuryAutoPlay();
+            } else {
+                startInjuryAutoPlay();
+            }
+        }
+
+        function startInjuryAutoPlay() {
+            if (isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (isAutoPlaying) stopAutoPlay();
+            if (isNutritionAutoPlaying) stopNutritionAutoPlay();
+
+            isInjuryAutoPlaying = true;
+            const icon = document.getElementById('injury-play-icon');
+            const text = document.getElementById('injury-play-text');
+            const btn = document.getElementById('btn-injury-autoplay');
+            if (icon) icon.innerText = '⏸️';
+            if (text) text.innerText = '暫停朗讀傷害防護';
+            if (btn) {
+                btn.classList.add('bg-rose-600', 'text-white');
+                btn.classList.remove('text-rose-400');
+            }
+
+            if (injuryPlayIndex < 0 || injuryPlayIndex >= INJURY_ITEMS.length) {
+                injuryPlayIndex = 0;
+            }
+            playSpecificInjury(injuryPlayIndex, true);
+        }
+
+        function stopInjuryAutoPlay() {
+            isInjuryAutoPlaying = false;
+            if (injuryAutoPlayTimeout) clearTimeout(injuryAutoPlayTimeout);
+            window.speechSynthesis.cancel();
+            const icon = document.getElementById('injury-play-icon');
+            const text = document.getElementById('injury-play-text');
+            const btn = document.getElementById('btn-injury-autoplay');
+            if (icon) icon.innerText = '▶️';
+            if (text) text.innerText = '自動朗讀傷害防護';
+            if (btn) {
+                btn.classList.remove('bg-rose-600', 'text-white');
+                btn.classList.add('text-rose-400');
+            }
+            document.querySelectorAll('.injury-card').forEach(c => c.classList.remove('active-play-injury', 'active-play-card'));
+            hideTopMiniPlayer();
+        }
+
+        function playSpecificInjury(idx, continueFlow = false) {
+            if (idx < 0 || idx >= INJURY_ITEMS.length) return;
+            injuryPlayIndex = idx;
+            const item = INJURY_ITEMS[idx];
+
+            document.querySelectorAll('.injury-card').forEach(c => c.classList.remove('active-play-injury', 'active-play-card'));
+            const card = document.getElementById(item.id);
+            if (card) {
+                card.classList.add('active-play-injury');
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            showTopMiniPlayer(`🩹 傷害: ${item.zh}`, 'injury');
+
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            if (injuryAutoPlayTimeout) clearTimeout(injuryAutoPlayTimeout);
+
+            const titleUtterance = new SpeechSynthesisUtterance(item.title);
+            titleUtterance.lang = 'en-US';
+            titleUtterance.rate = 0.95;
+
+            titleUtterance.onend = () => {
+                setTimeout(() => {
+                    const exUtterance = new SpeechSynthesisUtterance(item.ex_en);
+                    exUtterance.lang = 'en-US';
+                    exUtterance.rate = 0.92;
+
+                    exUtterance.onend = () => {
+                        if (isInjuryAutoPlaying || continueFlow) {
+                            injuryAutoPlayTimeout = setTimeout(() => {
+                                if (!isInjuryAutoPlaying) return;
+                                if (injuryPlayIndex + 1 < INJURY_ITEMS.length) {
+                                    injuryPlayIndex++;
+                                    playSpecificInjury(injuryPlayIndex, true);
+                                } else {
+                                    injuryPlayIndex = 0;
+                                    playSpecificInjury(injuryPlayIndex, true);
+                                }
+                            }, 2500);
+                        }
+                    };
+
+                    exUtterance.onerror = () => {
+                        if (isInjuryAutoPlaying || continueFlow) {
+                            injuryPlayIndex = (injuryPlayIndex + 1) % INJURY_ITEMS.length;
+                            playSpecificInjury(injuryPlayIndex, true);
+                        }
+                    };
+
+                    window.speechSynthesis.speak(exUtterance);
+                }, 400);
+            };
+
+            titleUtterance.onerror = () => {
+                if (isInjuryAutoPlaying || continueFlow) {
+                    injuryPlayIndex = (injuryPlayIndex + 1) % INJURY_ITEMS.length;
+                    playSpecificInjury(injuryPlayIndex, true);
+                }
+            };
+
+            window.speechSynthesis.speak(titleUtterance);
         }
 
         function nextWord() {
