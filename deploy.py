@@ -79,7 +79,7 @@ def main():
 
     # 5. Commit
     print("\n[4/5] 建立提交 (Commit)...")
-    run_interactive(["git", "commit", "-m", "feat: add interactive injury tabs and dynamic warm-up drills with RAMP protocol and audio sync"])
+    run_interactive(["git", "commit", "-m", "feat: update Garmin Health Dashboard & Sport English on GitHub Pages"])
 
     # 6. Push
     print("\n[5/5] 推送到 GitHub (main 分支)...")
