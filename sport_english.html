@@ -222,6 +222,128 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #475569;
         }
+    
+        /* === Dynamic Warm-up SVG Looping Animations === */
+        @keyframes legSwingFrontBack {
+            0% { transform: rotate(-30deg); }
+            50% { transform: rotate(35deg); }
+            100% { transform: rotate(-30deg); }
+        }
+        @keyframes legSwingSide {
+            0% { transform: rotate(-22deg); }
+            50% { transform: rotate(22deg); }
+            100% { transform: rotate(-22deg); }
+        }
+        @keyframes aSkipHop {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes aSkipThigh {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-78deg); }
+        }
+        @keyframes aSkipShin {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(85deg); }
+        }
+        @keyframes aSkipArmLeft {
+            0%, 100% { transform: rotate(-25deg); }
+            50% { transform: rotate(45deg); }
+        }
+        @keyframes aSkipArmRight {
+            0%, 100% { transform: rotate(40deg); }
+            50% { transform: rotate(-30deg); }
+        }
+        @keyframes monsterSquat {
+            0%, 100% { transform: translateX(-15px); }
+            50% { transform: translateX(15px); }
+        }
+        @keyframes pogoJump {
+            0%, 100% { transform: translateY(0); }
+            35% { transform: translateY(-16px); }
+            70% { transform: translateY(-16px); }
+            90% { transform: translateY(2px) scaleY(0.95); }
+        }
+        @keyframes pogoRipples {
+            0%, 40% { opacity: 0; transform: scaleX(0.3); }
+            85% { opacity: 0.85; transform: scaleX(1); }
+            100% { opacity: 0; transform: scaleX(1.4); }
+        }
+        @keyframes lungeStepDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(12px); }
+        }
+        @keyframes lungeTwist {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(26deg); }
+        }
+        @keyframes strideRun {
+            0% { transform: translateX(-18px); }
+            50% { transform: translateX(18px) translateY(-8px); }
+            100% { transform: translateX(-18px); }
+        }
+        @keyframes strideLeadLeg {
+            0%, 100% { transform: rotate(-32deg); }
+            50% { transform: rotate(50deg); }
+        }
+        @keyframes strideTrailLeg {
+            0%, 100% { transform: rotate(42deg); }
+            50% { transform: rotate(-38deg); }
+        }
+
+        /* SVG animation helper classes */
+        .anim-swing-leg {
+            transform-origin: 90px 58px;
+            animation: legSwingFrontBack 1.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        }
+        .anim-askip-body {
+            animation: aSkipHop 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+        }
+        .anim-askip-thigh {
+            transform-origin: 95px 65px;
+            animation: aSkipThigh 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+        }
+        .anim-askip-shin {
+            transform-origin: 95px 95px;
+            animation: aSkipShin 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+        }
+        .anim-askip-arm-l {
+            transform-origin: 95px 44px;
+            animation: aSkipArmLeft 0.9s ease-in-out infinite;
+        }
+        .anim-askip-arm-r {
+            transform-origin: 95px 44px;
+            animation: aSkipArmRight 0.9s ease-in-out infinite;
+        }
+        .anim-monster-body {
+            animation: monsterSquat 2.2s ease-in-out infinite;
+        }
+        .anim-pogo-body {
+            animation: pogoJump 0.65s cubic-bezier(0.2, 0.8, 0.3, 1) infinite;
+        }
+        .anim-pogo-ripple {
+            transform-origin: 100px 115px;
+            animation: pogoRipples 0.65s ease-out infinite;
+        }
+        .anim-lunge-body {
+            animation: lungeStepDown 2s ease-in-out infinite;
+        }
+        .anim-lunge-torso {
+            transform-origin: 95px 50px;
+            animation: lungeTwist 2s ease-in-out infinite;
+        }
+        .anim-stride-body {
+            animation: strideRun 1.1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+        }
+        .anim-stride-lead {
+            transform-origin: 95px 65px;
+            animation: strideLeadLeg 1.1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+        }
+        .anim-stride-trail {
+            transform-origin: 95px 65px;
+            animation: strideTrailLeg 1.1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+        }
+
     </style>
 </head>
 <body class="p-4 md:p-8">
@@ -1764,7 +1886,7 @@
             </div>
 
             <!-- Warm-up Philosophy & RAMP Protocol Banner -->
-            <div class="mb-6 p-4 rounded-xl bg-slate-950/80 border border-sky-500/30 text-xs text-slate-300 space-y-3">
+            <div class="mb-4 p-4 rounded-xl bg-slate-950/80 border border-sky-500/30 text-xs text-slate-300 space-y-3">
                 <div class="flex items-center gap-2 font-bold text-sky-400 text-sm">
                     <span>💡 跑者運動科學核心鐵律：為什麼「跑前動態啟動，跑後靜態拉伸」？</span>
                 </div>
@@ -1792,6 +1914,70 @@
                 </div>
             </div>
 
+            <!-- Pre-Run 8-Minute Routine Quick Checklist Banner -->
+            <div class="mb-6 p-4 rounded-xl bg-gradient-to-r from-sky-950/60 via-slate-900 to-indigo-950/60 border border-sky-500/40 text-xs text-slate-300 space-y-3 shadow-lg shadow-sky-950/40">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-sky-500/30 pb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xl">⏱️</span>
+                        <div>
+                            <h4 class="font-bold text-white text-sm sm:text-base flex items-center gap-2">
+                                跑前 8 分鐘極速實戰熱身流程表
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 font-normal border border-sky-500/30">
+                                    8-Min Pre-Run Ready Protocol
+                                </span>
+                            </h4>
+                            <p class="text-[11px] text-slate-400 mt-0.5">出門前或比賽起跑前 15 分鐘，按表操課一條龍完成：</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-lg border border-emerald-500/30 self-start sm:self-auto">
+                        🎯 目標心率: 110~130 bpm
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-[11px]">
+                    <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-amber-400 font-mono">0:00~2:00</span>
+                            <span class="text-[10px] text-slate-500">第一階段</span>
+                        </div>
+                        <div class="font-semibold text-white text-xs">① 核心升溫 (Raise)</div>
+                        <div class="text-slate-400 text-[11px] leading-relaxed">
+                            原地踮步小慢跑 90 秒 + 雙臂前後繞環 30 秒，促進心臟血液泵送至四肢末梢。
+                        </div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-sky-400 font-mono">2:00~4:00</span>
+                            <span class="text-[10px] text-slate-500">第二階段</span>
+                        </div>
+                        <div class="font-semibold text-white text-xs">② 關節動態開展 (Mobilize)</div>
+                        <div class="text-slate-400 text-[11px] leading-relaxed">
+                            前後擺腿 + 左右擺腿（左右各 15 次）+ 弓箭步胸椎旋轉（左右交替 12 步）。
+                        </div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-emerald-400 font-mono">4:00~6:00</span>
+                            <span class="text-[10px] text-slate-500">第三階段</span>
+                        </div>
+                        <div class="font-semibold text-white text-xs">③ 動力肌群喚醒 (Activate)</div>
+                        <div class="text-slate-400 text-[11px] leading-relaxed">
+                            A字彈跳 (2趟x25米) + 彈力帶怪獸走 (各15步) + 踝關節波戈跳 (2組x25下)。
+                        </div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-rose-400 font-mono">6:00~8:00</span>
+                            <span class="text-[10px] text-slate-500">第四階段</span>
+                        </div>
+                        <div class="font-semibold text-white text-xs">④ 神經衝刺增強 (Potentiate)</div>
+                        <div class="text-slate-400 text-[11px] leading-relaxed">
+                            4 趟 80 公尺 Strides 漸進輕快跑，趟間慢走 60 秒徹底放鬆，心率達標即可出發！
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- 6 Dynamic Warm-up Drills Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- 15. 髖關節前後與左右動態擺腿 -->
@@ -1810,11 +1996,70 @@
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">髖關節前後與左右動態擺腿</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Dynamic Leg Swings in Sagittal and Frontal Planes</div>
+                        <!-- 🎬 動作動畫演示 & 影音指引 -->
+                        <div class="mt-3 rounded-xl bg-slate-950 border border-sky-500/30 overflow-hidden">
+                            <div class="p-2 sm:p-2.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                                <span class="text-[10px] font-mono font-bold text-sky-400 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+                                    <span>🎬 動畫演示 • 鐘擺軌跡</span>
+                                </span>
+                                <button onclick="openWarmupVideo('leg-swings')" class="px-2.5 py-1 rounded-lg bg-sky-500/20 hover:bg-sky-500 text-sky-300 hover:text-white border border-sky-500/40 text-[11px] font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-sky-950">
+                                    <span>🎥</span> <span>觀看動作影音</span>
+                                </button>
+                            </div>
+                            <div class="p-3 flex items-center justify-center bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950">
+                                <svg viewBox="0 0 200 125" class="w-full max-w-[210px] h-28" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Wall support -->
+                                    <line x1="45" y1="20" x2="45" y2="115" stroke="#334155" stroke-width="3" stroke-dasharray="4 3"/>
+                                    <text x="40" y="16" fill="#64748b" font-size="8" font-family="monospace" text-anchor="end">支撐面</text>
+                                    
+                                    <!-- Ground -->
+                                    <line x1="20" y1="115" x2="185" y2="115" stroke="#475569" stroke-width="2"/>
+                                    
+                                    <!-- Standing Support Leg (Straight/Micro-bent) -->
+                                    <line x1="90" y1="58" x2="90" y2="115" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+                                    <!-- Torso & Head -->
+                                    <circle cx="90" cy="24" r="7" fill="#38bdf8"/>
+                                    <line x1="90" y1="31" x2="90" y2="58" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round"/>
+                                    <!-- Support Arm to Wall -->
+                                    <line x1="90" y1="38" x2="45" y2="45" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                                    
+                                    <!-- Swing Arc Guideline -->
+                                    <path d="M 55 105 A 50 50 0 0 1 125 105" fill="none" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.6"/>
+                                    <text x="140" y="85" fill="#38bdf8" font-size="8" font-family="monospace">擺動弧度</text>
+                                    
+                                    <!-- Swinging Leg (Animated Group) -->
+                                    <g class="anim-swing-leg">
+                                        <line x1="90" y1="58" x2="90" y2="112" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round"/>
+                                        <circle cx="90" cy="112" r="3.5" fill="#0284c7"/>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+
+                        <!-- 動作口訣徽章 -->
+                        <div class="mt-2.5 p-2 rounded-lg bg-sky-950/40 border border-sky-500/30 text-[11px] text-sky-300 font-medium flex items-center gap-1.5">
+                            <span>💡 口訣：</span>
+                            <span class="font-bold">「脊椎立如青松，雙腿輕如鐘擺」</span>
+                        </div>
+
+                        <!-- 實戰四步分解指引 -->
+                        <div class="mt-3 p-3 rounded-xl bg-slate-950/90 border border-slate-800 space-y-2 text-xs">
+                            <div class="font-bold text-sky-400 flex items-center gap-1.5">
+                                <span>📋 實戰動作 4 步指引 (Execution Protocol):</span>
+                            </div>
+                            <ul class="space-y-1.5 text-slate-300 text-[11px]">
+                                <li><strong>1️⃣ 預備站姿 (Setup):</strong> 單手扶牆或固定物，支撐腳微屈膝保持彈性，骨盆維持水平朝向正前方，核心微收鎖定下背。</li>
+                                <li><strong>2️⃣ 前後擺腿 (Sagittal):</strong> 擺動腿放鬆，向前自然擺動至大腿接近水平（約 60~80 度），向後順勢擺動拉伸臀大肌；幅度由小到大以慣性擺盪。</li>
+                                <li><strong>3️⃣ 左右開闔 (Frontal):</strong> 轉身雙手扶牆，擺動腿在身前左右橫向交叉擺動，向外開展喚醒臀中肌、向內交叉拉伸髂脛束與內收肌。</li>
+                                <li><strong>4️⃣ 節奏頻率 (Tempo):</strong> 前後各 15~20 次，左右各 15~20 次；動作節奏平穩流暢，呼吸自然。</li>
+                            </ul>
+                        </div>
 
                         <div class="mt-3 space-y-1.5 text-xs text-slate-300">
-                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 動態潤滑髖關節滑囊，放鬆並喚醒髖屈肌 (Iliopsoas)、膕旁肌 (Hamstrings) 與內收肌群，擴增矢狀面與冠狀面活動度。</div>
-                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 單手扶牆或固定物，軀幹保持直立緊繃；前後擺動 15~20 次，橫向左右開闔 15~20 次。幅度由小到大，利用擺動慣性動態拉長肌肉，切忌強烈甩動腰椎。</div>
-                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-sky-300">
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 動態潤滑髖關節滑囊，放鬆並喚醒髖屈肌 (Iliopsoas)、膕旁肌 (Hamstrings) 與內收肌群，擴增活動度。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-amber-300">
                                 <strong>⚠️ 常見失誤:</strong> 骨盆隨擺腿過度前傾後仰借力，或下背腰椎過度反折；應保持核心收緊、僅以髖關節為單一軸心擺動。
                             </div>
                         </div>
@@ -1848,11 +2093,77 @@
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">A字彈跳與高抬膝步態啟動</h3>
                         <div class="text-[11px] text-slate-400 font-mono">A-Skips and High Knees Drills</div>
+                        <!-- 🎬 動作動畫演示 & 影音指引 -->
+                        <div class="mt-3 rounded-xl bg-slate-950 border border-emerald-500/30 overflow-hidden">
+                            <div class="p-2 sm:p-2.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                                <span class="text-[10px] font-mono font-bold text-emerald-400 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                    <span>🎬 動畫演示 • 三關節伸展</span>
+                                </span>
+                                <button onclick="openWarmupVideo('a-skips')" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-white border border-emerald-500/40 text-[11px] font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-emerald-950">
+                                    <span>🎥</span> <span>觀看動作影音</span>
+                                </button>
+                            </div>
+                            <div class="p-3 flex items-center justify-center bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950">
+                                <svg viewBox="0 0 200 125" class="w-full max-w-[210px] h-28" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Ground with bounce ripples -->
+                                    <line x1="20" y1="115" x2="185" y2="115" stroke="#475569" stroke-width="2"/>
+                                    
+                                    <g class="anim-askip-body">
+                                        <!-- Torso & Head -->
+                                        <circle cx="95" cy="22" r="7" fill="#34d399"/>
+                                        <line x1="95" y1="29" x2="95" y2="65" stroke="#34d399" stroke-width="4.5" stroke-linecap="round"/>
+                                        
+                                        <!-- Straight Planted Leg (Triple Extension) -->
+                                        <line x1="95" y1="65" x2="95" y2="115" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+                                        
+                                        <!-- High Knee Lift Leg (Thigh + Shin) -->
+                                        <g class="anim-askip-thigh">
+                                            <line x1="95" y1="65" x2="125" y2="65" stroke="#34d399" stroke-width="4.5" stroke-linecap="round"/>
+                                            <line x1="125" y1="65" x2="125" y2="92" stroke="#34d399" stroke-width="4" stroke-linecap="round"/>
+                                            <!-- Dorsiflexed Foot -->
+                                            <line x1="125" y1="92" x2="135" y2="90" stroke="#059669" stroke-width="3" stroke-linecap="round"/>
+                                        </g>
+
+                                        <!-- Arms Running Motion -->
+                                        <g class="anim-askip-arm-l">
+                                            <line x1="95" y1="36" x2="75" y2="52" stroke="#6ee7b7" stroke-width="3" stroke-linecap="round"/>
+                                        </g>
+                                        <g class="anim-askip-arm-r">
+                                            <line x1="95" y1="36" x2="118" y2="48" stroke="#6ee7b7" stroke-width="3" stroke-linecap="round"/>
+                                        </g>
+                                    </g>
+                                    
+                                    <!-- Angle Guideline: 90 deg hip & knee -->
+                                    <text x="135" y="62" fill="#34d399" font-size="8" font-family="monospace">90° 提膝</text>
+                                    <text x="138" y="98" fill="#10b981" font-size="8" font-family="monospace">腳尖上勾</text>
+                                </svg>
+                            </div>
+                        </div>
+
+
+                        <!-- 動作口訣徽章 -->
+                        <div class="mt-2.5 p-2 rounded-lg bg-emerald-950/40 border border-emerald-500/30 text-[11px] text-emerald-300 font-medium flex items-center gap-1.5">
+                            <span>💡 口訣：</span>
+                            <span class="font-bold">「抬膝如折尺，前掌如彈簧，下壓如扒地」</span>
+                        </div>
+
+                        <!-- 實戰四步分解指引 -->
+                        <div class="mt-3 p-3 rounded-xl bg-slate-950/90 border border-slate-800 space-y-2 text-xs">
+                            <div class="font-bold text-emerald-400 flex items-center gap-1.5">
+                                <span>📋 實戰動作 4 步指引 (Execution Protocol):</span>
+                            </div>
+                            <ul class="space-y-1.5 text-slate-300 text-[11px]">
+                                <li><strong>1️⃣ 預備站姿 (Setup):</strong> 身體站直微前傾 2~3 度，下巴微收，雙手握空拳屈肘 90 度置於腰際。</li>
+                                <li><strong>2️⃣ 提膝勾腳 (Lift & Dorsiflex):</strong> 單腿快速提膝至大腿平行地面，腳尖主動往上勾起 (Dorsiflexion)，對側手臂前擺配合。</li>
+                                <li><strong>3️⃣ 彈性扒地 (Recoil Strike):</strong> 前腳掌在「重心正下方」快速下壓點地，觸地瞬間利用跟腱剛性像彈簧般輕快彈起，切換另一側。</li>
+                                <li><strong>4️⃣ 節奏頻率 (Tempo):</strong> 保持「嗒-嗒、嗒-嗒」雙重節奏跳躍前進；進行 2~3 組，每組 20~30 公尺。</li>
+                            </ul>
+                        </div>
 
                         <div class="mt-3 space-y-1.5 text-xs text-slate-300">
-                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 強化跑步核心推進力學：支撐腿「髖、膝、踝三關節完全伸展 (Triple Extension)」與擺動腿「主動屈髖下壓扒地」的神經協調性。</div>
-                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 抬起大腿至與地面平行，腳尖主動勾起背屈 (Dorsiflexion)，前腳掌迅速向下向後彈性質感接觸地面；手臂保持 90 度配合韻律有力前後擺動。</div>
-                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-emerald-300">
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 強化支撐腿「髖膝踝三關節完全伸展 (Triple Extension)」與擺動腿「主動屈髖下壓扒地」的神經協調性。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-amber-300">
                                 <strong>⚠️ 常見失誤:</strong> 上半身過度後仰以補償髖屈肌無力；著地腳未落在重心正下方，導致形成減速剎車力量。
                             </div>
                         </div>
@@ -1886,10 +2197,69 @@
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">彈力帶怪獸走與蚌殼式臀肌喚醒</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Glute Activation with Clamshells and Monster Walk</div>
+                        <!-- 🎬 動作動畫演示 & 影音指引 -->
+                        <div class="mt-3 rounded-xl bg-slate-950 border border-amber-500/30 overflow-hidden">
+                            <div class="p-2 sm:p-2.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                                <span class="text-[10px] font-mono font-bold text-amber-400 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                                    <span>🎬 動畫演示 • 臀中肌抗阻</span>
+                                </span>
+                                <button onclick="openWarmupVideo('monster-walk')" class="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-white border border-amber-500/40 text-[11px] font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-amber-950">
+                                    <span>🎥</span> <span>觀看動作影音</span>
+                                </button>
+                            </div>
+                            <div class="p-3 flex items-center justify-center bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950">
+                                <svg viewBox="0 0 200 125" class="w-full max-w-[210px] h-28" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Ground -->
+                                    <line x1="20" y1="115" x2="185" y2="115" stroke="#475569" stroke-width="2"/>
+                                    
+                                    <g class="anim-monster-body">
+                                        <!-- Head & Torso in Semi-Squat -->
+                                        <circle cx="100" cy="28" r="7" fill="#fbbf24"/>
+                                        <line x1="100" y1="35" x2="100" y2="65" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+                                        
+                                        <!-- Left Leg (Abducted) -->
+                                        <line x1="100" y1="65" x2="80" y2="88" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                                        <line x1="80" y1="88" x2="74" y2="115" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                                        
+                                        <!-- Right Leg (Abducted) -->
+                                        <line x1="100" y1="65" x2="120" y2="88" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                                        <line x1="120" y1="88" x2="126" y2="115" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                                        
+                                        <!-- Resistance Loop Band around Knees -->
+                                        <line x1="80" y1="88" x2="120" y2="88" stroke="#ef4444" stroke-width="4" stroke-dasharray="2 1"/>
+                                        <rect x="76" y="85" width="8" height="6" rx="2" fill="#ef4444"/>
+                                        <rect x="116" y="85" width="8" height="6" rx="2" fill="#ef4444"/>
+                                    </g>
+                                    
+                                    <text x="100" y="82" fill="#ef4444" font-size="8" font-family="monospace" text-anchor="middle">阻力帶張力</text>
+                                    <text x="100" y="15" fill="#fbbf24" font-size="8" font-family="monospace" text-anchor="middle">微蹲骨盆水平</text>
+                                </svg>
+                            </div>
+                        </div>
+
+
+                        <!-- 動作口訣徽章 -->
+                        <div class="mt-2.5 p-2 rounded-lg bg-amber-950/40 border border-amber-500/30 text-[11px] text-amber-300 font-medium flex items-center gap-1.5">
+                            <span>💡 口訣：</span>
+                            <span class="font-bold">「深蹲微坐穩，膝蓋向外抗阻，燒透臀中肌」</span>
+                        </div>
+
+                        <!-- 實戰四步分解指引 -->
+                        <div class="mt-3 p-3 rounded-xl bg-slate-950/90 border border-slate-800 space-y-2 text-xs">
+                            <div class="font-bold text-amber-400 flex items-center gap-1.5">
+                                <span>📋 實戰動作 4 步指引 (Execution Protocol):</span>
+                            </div>
+                            <ul class="space-y-1.5 text-slate-300 text-[11px]">
+                                <li><strong>1️⃣ 預備站姿 (Setup):</strong> 環形彈力帶套於雙膝上方 3cm，雙腳與肩同寬，微曲膝髖成運動半蹲預備姿。</li>
+                                <li><strong>2️⃣ 橫向螃蟹走 (Lateral Walk):</strong> 雙膝對抗彈力帶向外張開，左腳向左橫跨一步，右腳慢收（維持張力不可完全併攏）；走 15 步後換邊。</li>
+                                <li><strong>3️⃣ 斜前怪獸走 (Monster Walk):</strong> 維持半蹲，向左前方與右前方交替跨步前進，每步膝蓋均強力對抗彈力帶內扣力道。</li>
+                                <li><strong>4️⃣ 體感檢查 (Kinesthetic Check):</strong> 臀部兩側（褲袋處）應有強烈酸脹感；上半身鎖死不左右晃動。</li>
+                            </ul>
+                        </div>
 
                         <div class="mt-3 space-y-1.5 text-xs text-slate-300">
-                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 破解現代人久坐造成的「臀肌失憶症 (Gluteal Amnesia)」，點燃骨盆穩定核心——<strong>臀中肌 (Gluteus Medius)</strong>，杜絕骨盆側傾 (Trendelenburg Gait) 與膝蓋內扣。</div>
-                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 膝蓋上方套上環狀彈力帶，微曲膝髖呈運動站姿；側向螃蟹步走動或斜前跨步（怪獸走），感受臀部外側酸脹燃燒感；每組 15~20 步。</div>
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 點燃骨盆穩定核心——<strong>臀中肌 (Gluteus Medius)</strong>，杜絕骨盆側傾與膝蓋內扣。</div>
                             <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-amber-300">
                                 <strong>⚠️ 常見失誤:</strong> 上半身左右大幅搖晃借力、足尖過度外八；應維持骨盆水平，完全由臀部外側肌群主動抗阻發力。
                             </div>
@@ -1924,11 +2294,68 @@
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">踝關節波戈彈跳與足弓蓄能</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Ankle Pogo Hops and Windlass Mechanism</div>
+                        <!-- 🎬 動作動畫演示 & 影音指引 -->
+                        <div class="mt-3 rounded-xl bg-slate-950 border border-cyan-500/30 overflow-hidden">
+                            <div class="p-2 sm:p-2.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                                <span class="text-[10px] font-mono font-bold text-cyan-400 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                                    <span>🎬 動畫演示 • 剛性彈簧</span>
+                                </span>
+                                <button onclick="openWarmupVideo('pogo-hops')" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500 text-cyan-300 hover:text-white border border-cyan-500/40 text-[11px] font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-cyan-950">
+                                    <span>🎥</span> <span>觀看動作影音</span>
+                                </button>
+                            </div>
+                            <div class="p-3 flex items-center justify-center bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950">
+                                <svg viewBox="0 0 200 125" class="w-full max-w-[210px] h-28" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Ground -->
+                                    <line x1="20" y1="115" x2="185" y2="115" stroke="#475569" stroke-width="2"/>
+                                    
+                                    <!-- Shockwave / Recoil Ripples -->
+                                    <ellipse cx="100" cy="115" rx="30" ry="3" fill="none" stroke="#06b6d4" stroke-width="2" class="anim-pogo-ripple"/>
+                                    
+                                    <g class="anim-pogo-body">
+                                        <!-- Upright Posture -->
+                                        <circle cx="100" cy="24" r="7" fill="#22d3ee"/>
+                                        <line x1="100" y1="31" x2="100" y2="65" stroke="#22d3ee" stroke-width="4.5" stroke-linecap="round"/>
+                                        
+                                        <!-- Stiff Stiff Legs (Micro-bent Knee) -->
+                                        <line x1="96" y1="65" x2="96" y2="110" stroke="#06b6d4" stroke-width="3.5" stroke-linecap="round"/>
+                                        <line x1="104" y1="65" x2="104" y2="110" stroke="#06b6d4" stroke-width="3.5" stroke-linecap="round"/>
+                                        
+                                        <!-- Springs at Achilles Tendon -->
+                                        <path d="M 94 95 Q 91 100 96 103 Q 91 106 96 110" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+                                        <path d="M 102 95 Q 107 100 104 103 Q 107 106 104 110" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+                                    </g>
+                                    
+                                    <text x="135" y="103" fill="#22d3ee" font-size="8" font-family="monospace">跟腱剛性彈簧</text>
+                                    <text x="135" y="45" fill="#67e8f9" font-size="8" font-family="monospace">快速回彈 &lt;0.2s</text>
+                                </svg>
+                            </div>
+                        </div>
+
+
+                        <!-- 動作口訣徽章 -->
+                        <div class="mt-2.5 p-2 rounded-lg bg-cyan-950/40 border border-cyan-500/30 text-[11px] text-cyan-300 font-medium flex items-center gap-1.5">
+                            <span>💡 口訣：</span>
+                            <span class="font-bold">「膝微曲鎖死，踝關節蓄能，像踩熱炭瞬間抽起」</span>
+                        </div>
+
+                        <!-- 實戰四步分解指引 -->
+                        <div class="mt-3 p-3 rounded-xl bg-slate-950/90 border border-slate-800 space-y-2 text-xs">
+                            <div class="font-bold text-cyan-400 flex items-center gap-1.5">
+                                <span>📋 實戰動作 4 步指引 (Execution Protocol):</span>
+                            </div>
+                            <ul class="space-y-1.5 text-slate-300 text-[11px]">
+                                <li><strong>1️⃣ 預備站姿 (Setup):</strong> 雙腳與髖同寬站立，雙膝微屈（約 15 度）並全程「鎖定角度」，雙手叉腰或自然擺臂。</li>
+                                <li><strong>2️⃣ 動作軌跡 (Motion):</strong> 膝蓋不向下深蹲蓄力，純粹依靠小腿阿基里斯腱與足弓進行快速垂直連續小跳躍。</li>
+                                <li><strong>3️⃣ 觸地回彈 (Recoil):</strong> 腳尖離地僅 5~10cm，前腳掌落地瞬間像踩到滾燙鋼板一樣立刻彈起，腳跟全程不重踩著地。</li>
+                                <li><strong>4️⃣ 節奏頻率 (Tempo):</strong> 保持高步頻節拍（約 180~200 bpm），每組連續彈跳 25~30 下，進行 2 組。</li>
+                            </ul>
+                        </div>
 
                         <div class="mt-3 space-y-1.5 text-xs text-slate-300">
                             <div><strong class="text-sky-400">🎯 啟動目標:</strong> 將阿基里斯腱 (Achilles Tendon) 與足底筋膜預先加載為「剛性生物彈簧 (Tendon Stiffness)」，提升觸地能量回彈率，顯著降低觸地時間 (GCT)。</div>
-                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 膝蓋微屈並鎖定角度，僅利用踝關節與前腳掌做快速垂直點地連環彈跳；想像地面如滾燙熱鐵板，觸地即迅速拔起，每次連續 20~30 下。</div>
-                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-cyan-300">
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-amber-300">
                                 <strong>⚠️ 常見失誤:</strong> 膝蓋深蹲屈曲過多吸收彈力、腳跟直接重踩沉底；必須保持踝關節緊繃剛性。
                             </div>
                         </div>
@@ -1962,11 +2389,70 @@
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">弓箭步行走伴隨胸椎旋轉</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Walking Lunges with Thoracic Spine Rotation</div>
+                        <!-- 🎬 動作動畫演示 & 影音指引 -->
+                        <div class="mt-3 rounded-xl bg-slate-950 border border-purple-500/30 overflow-hidden">
+                            <div class="p-2 sm:p-2.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                                <span class="text-[10px] font-mono font-bold text-purple-400 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                                    <span>🎬 動畫演示 • 胸椎旋轉開展</span>
+                                </span>
+                                <button onclick="openWarmupVideo('walking-lunge')" class="px-2.5 py-1 rounded-lg bg-purple-500/20 hover:bg-purple-500 text-purple-300 hover:text-white border border-purple-500/40 text-[11px] font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-purple-950">
+                                    <span>🎥</span> <span>觀看動作影音</span>
+                                </button>
+                            </div>
+                            <div class="p-3 flex items-center justify-center bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950">
+                                <svg viewBox="0 0 200 125" class="w-full max-w-[210px] h-28" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Ground -->
+                                    <line x1="20" y1="115" x2="185" y2="115" stroke="#475569" stroke-width="2"/>
+                                    
+                                    <g class="anim-lunge-body">
+                                        <!-- Front Leg: 90 deg thigh & knee -->
+                                        <line x1="110" y1="80" x2="135" y2="80" stroke="#c084fc" stroke-width="4.5" stroke-linecap="round"/>
+                                        <line x1="135" y1="80" x2="135" y2="115" stroke="#c084fc" stroke-width="4" stroke-linecap="round"/>
+                                        
+                                        <!-- Back Leg: 90 deg hip stretch -->
+                                        <line x1="110" y1="80" x2="80" y2="92" stroke="#a855f7" stroke-width="4" stroke-linecap="round"/>
+                                        <line x1="80" y1="92" x2="80" y2="112" stroke="#a855f7" stroke-width="4" stroke-linecap="round"/>
+                                        
+                                        <!-- Torso & Arms Rotating (Twisting) -->
+                                        <g class="anim-lunge-torso">
+                                            <circle cx="110" cy="40" r="7" fill="#e879f9"/>
+                                            <line x1="110" y1="47" x2="110" y2="80" stroke="#e879f9" stroke-width="4.5" stroke-linecap="round"/>
+                                            <!-- Arms Extended for Torso Twist -->
+                                            <line x1="110" y1="55" x2="140" y2="52" stroke="#f0abfc" stroke-width="3" stroke-linecap="round"/>
+                                        </g>
+                                    </g>
+                                    
+                                    <text x="140" y="75" fill="#c084fc" font-size="8" font-family="monospace">前膝 90°</text>
+                                    <text x="50" y="85" fill="#a855f7" font-size="8" font-family="monospace">後髖延伸</text>
+                                    <text x="110" y="25" fill="#e879f9" font-size="8" font-family="monospace" text-anchor="middle">胸椎轉體 45°~90°</text>
+                                </svg>
+                            </div>
+                        </div>
+
+
+                        <!-- 動作口訣徽章 -->
+                        <div class="mt-2.5 p-2 rounded-lg bg-purple-950/40 border border-purple-500/30 text-[11px] text-purple-300 font-medium flex items-center gap-1.5">
+                            <span>💡 口訣：</span>
+                            <span class="font-bold">「跨步下沉雙九十，同側旋轉開胸椎」</span>
+                        </div>
+
+                        <!-- 實戰四步分解指引 -->
+                        <div class="mt-3 p-3 rounded-xl bg-slate-950/90 border border-slate-800 space-y-2 text-xs">
+                            <div class="font-bold text-purple-400 flex items-center gap-1.5">
+                                <span>📋 實戰動作 4 步指引 (Execution Protocol):</span>
+                            </div>
+                            <ul class="space-y-1.5 text-slate-300 text-[11px]">
+                                <li><strong>1️⃣ 跨步下沉 (Setup Lunge):</strong> 大步向前跨出成弓箭步，身體垂直下沉至前腿大腿平行地面，後膝懸空接近地面（前後膝呈 90 度）。</li>
+                                <li><strong>2️⃣ 胸椎旋轉 (Thoracic Twist):</strong> 骨盆正對前方，雙臂平舉胸前；緩慢將胸腔向「前腳那側」旋轉 45~90 度，停留 1 秒深呼吸。</li>
+                                <li><strong>3️⃣ 伸展體感 (Stretch & Recoil):</strong> 感受後腿髖前側（髂腰肌）與胸椎深度拉開；前腳腳跟發力蹬地推回站姿，換腳前進。</li>
+                                <li><strong>4️⃣ 節奏頻率 (Tempo):</strong> 左右交替前進共 12~16 步，動作放慢著重核心抗失衡。</li>
+                            </ul>
+                        </div>
 
                         <div class="mt-3 space-y-1.5 text-xs text-slate-300">
-                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 動態延伸後腿緊縮的髂腰肌 (Psoas) 與股直肌，同時釋放胸椎旋轉活動度 (Thoracic Mobility)，強化對角線對稱擺臂與核心抗旋轉穩定。</div>
-                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 向前跨出弓箭步，雙膝保持 90 度，雙臂平舉；緩慢將胸椎向「前腳同側」旋轉 45~90 度，感受後腿根部與胸口打開，再前跨換邊，連續 10~12 步。</div>
-                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-purple-300">
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 動態延伸後腿緊縮的髂腰肌 (Psoas) 與股直肌，同時釋放胸椎旋轉活動度 (Thoracic Mobility)。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-amber-300">
                                 <strong>⚠️ 常見失誤:</strong> 前膝內扣扭曲、以腰椎代償旋轉；旋轉動作應由中上背胸椎發起，下背與骨盆保持鎖定不動。
                             </div>
                         </div>
@@ -2000,11 +2486,77 @@
                         </div>
                         <h3 class="font-bold text-white text-base mt-2">漸進加速輕快跑</h3>
                         <div class="text-[11px] text-slate-400 font-mono">Strides and Build-up Sprints</div>
+                        <!-- 🎬 動作動畫演示 & 影音指引 -->
+                        <div class="mt-3 rounded-xl bg-slate-950 border border-rose-500/30 overflow-hidden">
+                            <div class="p-2 sm:p-2.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+                                <span class="text-[10px] font-mono font-bold text-rose-400 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
+                                    <span>🎬 動畫演示 • 浮空衝刺</span>
+                                </span>
+                                <button onclick="openWarmupVideo('strides')" class="px-2.5 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500 text-rose-300 hover:text-white border border-rose-500/40 text-[11px] font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm shadow-rose-950">
+                                    <span>🎥</span> <span>觀看動作影音</span>
+                                </button>
+                            </div>
+                            <div class="p-3 flex items-center justify-center bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950">
+                                <svg viewBox="0 0 200 125" class="w-full max-w-[210px] h-28" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Ground -->
+                                    <line x1="20" y1="115" x2="185" y2="115" stroke="#475569" stroke-width="2"/>
+                                    <!-- Speed Lines -->
+                                    <line x1="30" y1="95" x2="60" y2="95" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.7"/>
+                                    <line x1="20" y1="75" x2="50" y2="75" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.7"/>
+                                    <line x1="35" y1="55" x2="65" y2="55" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.7"/>
+                                    
+                                    <g class="anim-stride-body">
+                                        <!-- Forward Lean Torso & Head -->
+                                        <circle cx="102" cy="30" r="7" fill="#fb7185"/>
+                                        <line x1="102" y1="37" x2="95" y2="68" stroke="#fb7185" stroke-width="4.5" stroke-linecap="round"/>
+                                        
+                                        <!-- Lead Leg Extended Forward -->
+                                        <g class="anim-stride-lead">
+                                            <line x1="95" y1="68" x2="125" y2="90" stroke="#f43f5e" stroke-width="4" stroke-linecap="round"/>
+                                            <line x1="125" y1="90" x2="132" y2="112" stroke="#f43f5e" stroke-width="3.5" stroke-linecap="round"/>
+                                        </g>
+                                        
+                                        <!-- Trail Leg Powerful Push-off -->
+                                        <g class="anim-stride-trail">
+                                            <line x1="95" y1="68" x2="70" y2="95" stroke="#e11d48" stroke-width="4" stroke-linecap="round"/>
+                                            <line x1="70" y1="95" x2="58" y2="112" stroke="#e11d48" stroke-width="3.5" stroke-linecap="round"/>
+                                        </g>
+                                        
+                                        <!-- Arm Swing Drive -->
+                                        <line x1="99" y1="46" x2="122" y2="58" stroke="#fda4af" stroke-width="3.5" stroke-linecap="round"/>
+                                        <line x1="99" y1="46" x2="80" y2="60" stroke="#fda4af" stroke-width="3.5" stroke-linecap="round"/>
+                                    </g>
+                                    
+                                    <text x="145" y="45" fill="#fb7185" font-size="8" font-family="monospace">90% 極速浮空</text>
+                                    <text x="145" y="60" fill="#f43f5e" font-size="8" font-family="monospace">大步幅放鬆</text>
+                                </svg>
+                            </div>
+                        </div>
+
+
+                        <!-- 動作口訣徽章 -->
+                        <div class="mt-2.5 p-2 rounded-lg bg-rose-950/40 border border-rose-500/30 text-[11px] text-rose-300 font-medium flex items-center gap-1.5">
+                            <span>💡 口訣：</span>
+                            <span class="font-bold">「前三檔平穩給油，四檔極速浮空，五檔空擋滑行」</span>
+                        </div>
+
+                        <!-- 實戰四步分解指引 -->
+                        <div class="mt-3 p-3 rounded-xl bg-slate-950/90 border border-slate-800 space-y-2 text-xs">
+                            <div class="font-bold text-rose-400 flex items-center gap-1.5">
+                                <span>📋 實戰動作 4 步指引 (Execution Protocol):</span>
+                            </div>
+                            <ul class="space-y-1.5 text-slate-300 text-[11px]">
+                                <li><strong>1️⃣ 距離選定 (Setup):</strong> 挑選 80~100 公尺平整直道或操場直線，深呼吸放鬆全身關節。</li>
+                                <li><strong>2️⃣ 0~30m 循序起步 (Build-up):</strong> 步幅自然開展，循序平穩加速至 85%~90% 目標配速。</li>
+                                <li><strong>3️⃣ 30~70m 極速浮空 (Fast & Relaxed):</strong> 推進至 95% 極速，保持面部與肩膀下沉放鬆、流暢擺臂，體驗浮空巡航體感。</li>
+                                <li><strong>4️⃣ 70~100m 自然滑行 (Coasting):</strong> 停止主動發力蹬地，依靠慣性減速至慢跑並停下；<strong>慢走 60 秒徹底恢復</strong>，重複 4 趟。</li>
+                            </ul>
+                        </div>
 
                         <div class="mt-3 space-y-1.5 text-xs text-slate-300">
-                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 熱身最後的壓軸環節！激發中樞神經<strong>「後活化增強效應 (PAP)」</strong>，招募快肌纖維 (Type IIx)，使正式開跑後的目標配速顯得無比輕盈放鬆。</div>
-                            <div><strong class="text-amber-400">🔬 動作要領:</strong> 進行 4~6 趟 80~100 公尺短跑：前 30m 循序平穩加速至 90~95% 速度，中間 30m 保持最高速巡航與流暢擺臂，後 30m 自然滑行減速；趟間充分慢走 45~60 秒恢復。</div>
-                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-rose-300">
+                            <div><strong class="text-sky-400">🎯 啟動目標:</strong> 熱身最後的壓軸環節！激發中樞神經<strong>「後活化增強效應 (PAP)」</strong>，招募快肌纖維 (Type IIx)。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-amber-300">
                                 <strong>⚠️ 常見失誤:</strong> 當成 100m 全力緊繃衝刺而咬牙聳肩；輕快跑核心在於「極速中的放鬆感」，趟間必須完全慢走深呼吸，不可累積乳酸疲勞。
                             </div>
                         </div>
@@ -2023,6 +2575,79 @@
                 </div>
             </div>
         </div> <!-- End of #injury-sub-warmup -->
+        
+            <!-- 🎬 Warm-up Video / Animation Inspection Modal -->
+            <div id="warmup-video-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 transition-all">
+                <div class="relative w-full max-w-3xl rounded-2xl bg-slate-900 border border-sky-500/50 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+                    <!-- Modal Header -->
+                    <div class="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-slate-950/70">
+                        <div class="flex items-center gap-2.5">
+                            <span class="text-2xl animate-pulse">🎥</span>
+                            <div>
+                                <h3 id="modal-video-title" class="text-white font-bold text-base sm:text-lg flex items-center gap-2">
+                                    動態熱身動作影音指引
+                                </h3>
+                                <div id="modal-video-sub" class="text-xs text-sky-400 font-mono mt-0.5">
+                                    Dynamic Warm-up Video & Biomechanics Guide
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="closeWarmupVideoModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white flex items-center justify-center transition-all cursor-pointer font-bold text-lg" title="關閉視窗 (Esc)">
+                            ✕
+                        </button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="p-4 sm:p-6 overflow-y-auto space-y-4">
+                        <!-- Video Frame Container (YouTube Responsive Embed) -->
+                        <div class="relative w-full rounded-xl overflow-hidden bg-black border border-slate-800 aspect-video shadow-inner">
+                            <iframe id="modal-video-iframe" class="w-full h-full" src="" title="Warm-up Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <div id="modal-video-fallback" class="absolute inset-0 hidden flex-col items-center justify-center bg-slate-950 p-6 text-center space-y-3">
+                                <span class="text-3xl">📡</span>
+                                <div class="text-sm text-slate-200 font-medium">若播放器無法加載，請點擊下方按鈕在新視窗直接開啟 YouTube 觀看：</div>
+                                <a id="modal-yt-direct-btn" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center gap-2 transition-all">
+                                    <span>▶️</span> <span>在 YouTube 上觀看完整示範</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Mental Cue Badge -->
+                        <div class="p-3 rounded-xl bg-sky-950/40 border border-sky-500/30 flex items-center gap-2 text-xs text-sky-300">
+                            <span class="text-base">💡</span>
+                            <div>
+                                <span class="text-slate-400">動作記憶口訣：</span>
+                                <span id="modal-video-cue" class="font-bold text-sky-200"></span>
+                            </div>
+                        </div>
+
+                        <!-- Technical Focus Points -->
+                        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-2 text-xs">
+                            <div class="text-emerald-400 font-bold flex items-center gap-1.5 text-xs sm:text-sm">
+                                <span>🎯</span> <span>生物力學校準重點 (Biomechanical Cueing Points):</span>
+                            </div>
+                            <ul id="modal-video-focus" class="space-y-1.5 text-slate-300 list-disc list-inside leading-relaxed text-[11px] sm:text-xs">
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="p-3 sm:p-4 border-t border-slate-800/80 bg-slate-950/90 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+                        <div class="text-slate-400 text-[11px] flex items-center gap-2">
+                            <span>📽️ 教學來源：</span>
+                            <span id="modal-video-source" class="text-slate-300 font-medium"></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a id="modal-video-yt-link" href="#" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white border border-red-500/40 text-[11px] font-semibold flex items-center gap-1.5 transition-all">
+                                <span>▶️</span> <span>YouTube 原片</span>
+                            </a>
+                            <button onclick="closeWarmupVideoModal()" class="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-semibold transition-all">
+                                關閉 (Close)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <!-- Section 4: 🗣️ Race Day & Group Run English Idioms -->
@@ -3864,6 +4489,130 @@
         ];
 
         let currentInjuryTab = 'all';
+
+        
+        // === Warm-up Video / Animation Modal Controller ===
+        const WARMUP_VIDEOS = {
+    "leg-swings": {
+        "title": "髖關節動態擺腿 (Dynamic Leg Swings)",
+        "subtitle": "Sagittal & Frontal Plane Mobility",
+        "cue": "「脊椎立如青松，雙腿輕如鐘擺」",
+        "ytId": "r48L3M9q6h0",
+        "sourceTitle": "The Run Experience - Essential Runner Hip Mobility",
+        "focus": [
+            "前後擺腿：放鬆大腿由重力與慣性自然擺動，核心收緊下背不反折",
+            "左右擺腿：雙手扶牆，擺動腿在身體正前方橫向畫弧，開展髖關節內外旋"
+        ]
+    },
+    "a-skips": {
+        "title": "A字彈跳與高抬膝步態啟動 (A-Skips Drill)",
+        "subtitle": "Running Mechanics & Triple Extension",
+        "cue": "「抬膝如折尺，前掌如彈簧，下壓如扒地」",
+        "ytId": "pQ7eR5P2b9s",
+        "sourceTitle": "GTN - A-Skip Running Technique Masterclass",
+        "focus": [
+            "抬膝勾腳：膝蓋提至大腿平行，踝關節主動背屈 (Dorsiflexion) 90度",
+            "彈性下壓：前腳掌在重心正下方快速下點，利用阿基里斯腱彈簧回彈"
+        ]
+    },
+    "monster-walk": {
+        "title": "彈力帶怪獸走與臀肌喚醒 (Monster Walk & Clamshells)",
+        "subtitle": "Gluteus Medius Activation",
+        "cue": "「深蹲微坐穩，膝蓋向外抗阻，燒透臀中肌」",
+        "ytId": "Mh9zX6lWc74",
+        "sourceTitle": "Athlean-X / Physical Therapy - Bulletproof Glutes",
+        "focus": [
+            "半蹲微坐：微曲膝髖，軀幹打直微前傾，維持骨盆水平不晃動",
+            "抗阻外展：雙膝強力對抗彈力帶內收拉力，每一步感受臀部外側酸脹"
+        ]
+    },
+    "pogo-hops": {
+        "title": "踝關節波戈彈跳與足弓蓄能 (Ankle Pogo Hops)",
+        "subtitle": "Achilles Tendon Stiffness & Quick Recoil",
+        "cue": "「膝微曲鎖死，踝關節蓄能，像踩熱炭瞬間抽起」",
+        "ytId": "1w5Q2xK_v1E",
+        "sourceTitle": "Track & Field Plyometrics - Tendon Elasticity",
+        "focus": [
+            "膝關節角度固定：微曲約15度並保持剛性，絕不深蹲緩衝",
+            "前腳掌極速回彈：觸地時間小於0.2秒，像踩滾燙鋼板般迅速彈起"
+        ]
+    },
+    "walking-lunge": {
+        "title": "弓箭步行走伴隨胸椎旋轉 (Walking Lunges & Thoracic Twist)",
+        "subtitle": "Hip Flexor Stretch & Spinal Mobility",
+        "cue": "「跨步下沉雙九十，同側旋轉開胸椎」",
+        "ytId": "N9y9m1j4Z8w",
+        "sourceTitle": "Runner's World - Dynamic Lunges with Thoracic Twist",
+        "focus": [
+            "雙膝90度：前腿平行地面，後膝垂直懸空接近地面，骨盆保持正向",
+            "胸椎轉動：胸腔向「前腿同側」轉動45~90度，深度拉開髂腰肌與胸椎"
+        ]
+    },
+    "strides": {
+        "title": "漸進加速輕快跑 (Strides & Build-up Sprints)",
+        "subtitle": "Post-Activation Potentiation (PAP)",
+        "cue": "「前三檔平穩給油，四檔極速浮空，五檔空擋滑行」",
+        "ytId": "kS5pW4vQ87w",
+        "sourceTitle": "Sweat Elite / Olympic Coach - How & Why to Run Strides",
+        "focus": [
+            "平滑加檔：前30m由60%順暢提至90%，30~70m在放鬆下維持極速浮空感",
+            "慣性滑行：最後30m收油門靠慣性自然滑行至停步，趟間完全慢走恢復"
+        ]
+    }
+};
+
+        function openWarmupVideo(key) {
+            const data = WARMUP_VIDEOS[key];
+            if (!data) return;
+
+            const modal = document.getElementById('warmup-video-modal');
+            const titleEl = document.getElementById('modal-video-title');
+            const subEl = document.getElementById('modal-video-sub');
+            const cueEl = document.getElementById('modal-video-cue');
+            const focusEl = document.getElementById('modal-video-focus');
+            const sourceEl = document.getElementById('modal-video-source');
+            const iframe = document.getElementById('modal-video-iframe');
+            const ytLink = document.getElementById('modal-video-yt-link');
+            const directLink = document.getElementById('modal-yt-direct-btn');
+
+            if (titleEl) titleEl.innerText = data.title;
+            if (subEl) subEl.innerText = data.subtitle;
+            if (cueEl) cueEl.innerText = data.cue;
+            if (sourceEl) sourceEl.innerText = data.sourceTitle;
+
+            if (focusEl) {
+                focusEl.innerHTML = data.focus.map(f => `<li>${f}</li>`).join('');
+            }
+
+            const embedUrl = `https://www.youtube-nocookie.com/embed/${data.ytId}?autoplay=1&rel=0&modestbranding=1`;
+            const directUrl = `https://www.youtube.com/watch?v=${data.ytId}`;
+
+            if (iframe) iframe.src = embedUrl;
+            if (ytLink) ytLink.href = directUrl;
+            if (directLink) directLink.href = directUrl;
+
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            }
+        }
+
+        function closeWarmupVideoModal() {
+            const modal = document.getElementById('warmup-video-modal');
+            const iframe = document.getElementById('modal-video-iframe');
+            if (iframe) iframe.src = '';
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        // Close modal on Escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeWarmupVideoModal();
+            }
+        });
 
         function switchInjuryTab(tabName) {
             currentInjuryTab = tabName;
