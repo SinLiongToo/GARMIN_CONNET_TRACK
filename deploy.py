@@ -64,6 +64,7 @@ def main():
         "index.html",
         "garmin_health_dashboard.html",
         "sport_english.html",
+        "quotes_data.js",
         ".github",
         "README.md",
         ".gitignore",

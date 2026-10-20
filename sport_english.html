@@ -6,6 +6,8 @@
     <title>運動英語與訓練黃金原則 | Sport English & Athletic Training Principles</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 200 Athlete Wisdom Quotes Data -->
+    <script src="quotes_data.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -223,8 +225,8 @@
                     <span>傳奇運動家經典金句</span>
                     <span>🏆</span>
                 </div>
-                <div class="text-2xl font-bold text-amber-400 mt-2">15 Quotes</div>
-                <div class="text-xs text-slate-400 mt-1">基普喬蓋、柯比、阿里</div>
+                <div class="text-2xl font-bold text-amber-400 mt-2">200 Quotes</div>
+                <div class="text-xs text-slate-400 mt-1">基普喬蓋、柯比、阿里等 200 句</div>
             </div>
 
             <div class="glass-card rounded-xl p-4 border-l-4 border-l-sky-500">
@@ -347,10 +349,28 @@
                 </div>
             </div>
 
+            <!-- Search & Filter Controls for 200 Quotes -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
+                <div class="relative flex-1">
+                    <input 
+                        type="text" 
+                        id="quotes-search" 
+                        placeholder="🔍 搜尋 200 句金句、運動員或心法 (如: Kipchoge, Kobe, 痛苦, 自律, 破極限...)" 
+                        oninput="searchQuotes()"
+                        class="w-full px-3.5 py-2 pl-9 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-all"
+                    />
+                    <span class="absolute left-3 top-2.5 text-xs text-slate-400">🔍</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-400 self-end sm:self-auto font-mono">
+                    <span>進度:</span>
+                    <span id="quotes-showing-count" class="text-amber-400 font-bold">24 / 200</span>
+                </div>
+            </div>
+
             <!-- Quote Category Filter Pills -->
             <div class="flex flex-wrap items-center gap-2 mb-6" id="quote-category-pills">
                 <button onclick="filterQuotes('all')" id="qcat-all" class="quote-filter-pill active px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
-                    🌟 全部金句 (All) (<span id="count-quotes">15</span>)
+                    🌟 全部金句 (All) (<span id="count-quotes">200</span>)
                 </button>
                 <button onclick="filterQuotes('endurance')" id="qcat-endurance" class="quote-filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
                     🏃‍♂️ 耐力與馬拉松 (Endurance)
@@ -372,6 +392,17 @@
             <!-- Quotes Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="quotes-grid">
                 <!-- Rendered dynamically via JS -->
+            </div>
+
+            <!-- Load More Quotes Controls -->
+            <div class="mt-8 text-center flex flex-col sm:flex-row items-center justify-center gap-3" id="quotes-load-more-container">
+                <button onclick="loadMoreQuotes()" id="btn-load-more-quotes" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs sm:text-sm font-bold text-amber-400 hover:text-amber-300 border border-amber-500/40 hover:border-amber-400 transition-all shadow-md cursor-pointer flex items-center justify-center gap-2">
+                    <span>📖</span>
+                    <span>展開更多金句 (Show More Quotes)</span>
+                </button>
+                <button onclick="showAllQuotes()" id="btn-show-all-quotes" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-slate-700 transition-all cursor-pointer">
+                    ⚡ 一次顯示全部 200 句
+                </button>
             </div>
         </section>
 
@@ -1201,196 +1232,19 @@
         ];
 
         // ==========================================
-        // 2. DATA: Legendary Athletes' Wisdom & Quotes (傳奇運動家金句)
+        // 2. DATA: 200 Legendary Athlete Quotes
         // ==========================================
-        const ATHLETE_QUOTES_DATA = [
-            {
-                id: "kipchoge-1",
-                quote_en: "Only the disciplined ones in life are free. If you are undisciplined, you are a slave to your moods and your passions.",
-                quote_zh: "唯有自律的人，才享有真正的自由。缺乏自律的人，只會淪為情緒與短暫慾望的奴隸。",
-                athlete_en: "Eliud Kipchoge",
-                athlete_zh: "埃利烏德·基普喬蓋",
-                title: "肯亞馬拉松傳奇 • 2屆奧運全馬冠軍 • 馬拉松破2第一人 (1:59:40)",
-                cat: "discipline",
-                cat_zh: "🛡️ 自律與自由",
-                avatar: "🏃‍♂️",
-                takeaway: "自律並非剝奪享樂，而是將身心從怠惰與藉口中解放，是支撐跑者千日規律訓練的哲學基石。"
-            },
-            {
-                id: "kipchoge-2",
-                quote_en: "No human is limited. It's not about the legs; it's about the heart and the mind.",
-                quote_zh: "人類沒有極限。這無關雙腿有多強壯，而在於心靈與意志有多堅定。",
-                athlete_en: "Eliud Kipchoge",
-                athlete_zh: "埃利烏德·基普喬蓋",
-                title: "馬拉松前世界紀錄保持者 • INEOS 1:59 挑戰創舉者",
-                cat: "limits",
-                cat_zh: "⚡ 突破極限",
-                avatar: "⚡",
-                takeaway: "在長跑進入生理臨界點時，決定你能否持續推進的從來不是乳酸，而是大腦對未知的信念。"
-            },
-            {
-                id: "prefontaine",
-                quote_en: "To give anything less than your best is to sacrifice the gift.",
-                quote_zh: "付出任何未達極限的努力，都是對自身天賦的褻瀆與辜負。",
-                athlete_en: "Steve Prefontaine",
-                athlete_zh: "史蒂夫·普雷方丹",
-                title: "美國傳奇中長跑先驅 • 2000m~10000m 7項全美紀錄保持者",
-                cat: "grit",
-                cat_zh: "🔥 純粹毅力",
-                avatar: "🎽",
-                takeaway: "跑步不是與對手較量，而是將身體當作畫布，用純粹的全力以赴向自己的潛能極致致敬。"
-            },
-            {
-                id: "zatopek",
-                quote_en: "If you want to run, run a mile. If you want to experience another life, run a marathon.",
-                quote_zh: "如果你想奔跑，跑一英里即可；但若你想體驗另一種截然不同的人生，去跑一場馬拉松吧。",
-                athlete_en: "Emil Zátopek",
-                athlete_zh: "埃米爾·扎托佩克",
-                title: "捷克火車頭 • 1952赫爾辛基奧運 5000m/10000m/馬拉松 傳奇三金得主",
-                cat: "endurance",
-                cat_zh: "🏃‍♂️ 耐力與靈魂",
-                avatar: "🏅",
-                takeaway: "42.195 公里是一場濃縮人生的朝聖旅程，涵蓋希望、苦痛、深層絕望與最終的靈魂昇華。"
-            },
-            {
-                id: "kobe",
-                quote_en: "Those times when you get up early and you work hard, those times when you stay up late and you work hard, those times when you don't feel like working, you're too tired, you don't want to push yourself, but you do it anyway. That is actually the dream.",
-                quote_zh: "那些清晨早起刻苦訓練的時刻，那些疲憊不堪卻依然堅持推進自我的日子——這不是通往夢想的過程，這本身就是夢想。",
-                athlete_en: "Kobe Bryant",
-                athlete_zh: "柯比·布萊恩",
-                title: "NBA 傳奇巨星 • 5屆總冠軍 • 曼巴精神 (Mamba Mentality) 創始者",
-                cat: "discipline",
-                cat_zh: "🛡️ 曼巴精神",
-                avatar: "🐍",
-                takeaway: "熱愛不在於終點線上的獎牌，而在於每一個與自己的軟弱對峙、最終穿上跑鞋出門的清晨。"
-            },
-            {
-                id: "courtney",
-                quote_en: "The pain cave is a real place that I visualize. When I enter it, I tell myself: grab a chisel, get to work, and make that cave a little bigger.",
-                quote_zh: "痛苦洞穴（Pain Cave）是我腦海中真實存在的地方。每當我走入其中，我對自己說：拿起鑿子，動手開工，把這個洞穴鑿得更深、更寬廣。",
-                athlete_en: "Courtney Dauwalter",
-                athlete_zh: "考特妮·道沃爾特",
-                title: "當代超馬越野女王 • 同年囊括 UTMB / Western States / Hardrock 100 歷史首人",
-                cat: "limits",
-                cat_zh: "⚡ 痛苦洞穴",
-                avatar: "🏔️",
-                takeaway: "不要逃避痛苦，學會與痛苦並肩作戰。每一次在臨界點的堅持，都在拓寬你承受風浪的心理容器。"
-            },
-            {
-                id: "ali",
-                quote_en: "I hated every minute of training, but I said, 'Don't quit. Suffer now and live the rest of your life as a champion.'",
-                quote_zh: "我厭惡訓練的每一分每一秒，但我告訴自己：『絕不放棄。現在吞下這份痛苦，下半輩子你將以冠軍的姿態活著。』",
-                athlete_en: "Muhammad Ali",
-                athlete_zh: "穆罕默德·阿里",
-                title: "20世紀最偉大拳王 • 3屆世界重量級冠軍",
-                cat: "grit",
-                cat_zh: "🔥 純粹毅力",
-                avatar: "🥊",
-                takeaway: "痛苦是暫時的，但放棄帶來的遺憾是永恆的。黎明前的艱苦課表，造就破風前行的底氣。"
-            },
-            {
-                id: "bannister",
-                quote_en: "The man who can drive himself further once the effort gets painful is the man who will win.",
-                quote_zh: "在痛苦降臨之際，仍能驅使自己向前再推一步的人，最終將奪得勝利。",
-                athlete_en: "Sir Roger Bannister",
-                athlete_zh: "羅傑·班尼斯特 爵士",
-                title: "英國神經學家與傳奇跑者 • 人類史上首位 1 英里跑進 4 分鐘內 (3:59.4)",
-                cat: "limits",
-                cat_zh: "⚡ 突破極限",
-                avatar: "⏱️",
-                takeaway: "心理障礙往往遠大於生理障礙。當你敢於踏出舒適圈的邊界，所謂的『不可能』將瞬間崩解。"
-            },
-            {
-                id: "gebrselassie",
-                quote_en: "Once you have commitment, you need the discipline and hard work to lead you to where you want to be.",
-                quote_zh: "一旦下了決心，唯有毫不動搖的自律與苦練，才能引領你抵達夢想的彼岸。",
-                athlete_en: "Haile Gebrselassie",
-                athlete_zh: "海勒·格布雷西拉西耶",
-                title: "衣索比亞長跑皇帝 • 2屆奧運萬米金牌 • 27項世界紀錄打破者",
-                cat: "discipline",
-                cat_zh: "🛡️ 自律與自由",
-                avatar: "👑",
-                takeaway: "承諾只是起點，唯有年復一年嚴格遵循訓練課表、睡眠與營養週期，才能將天賦轉化為傳奇。"
-            },
-            {
-                id: "jordan",
-                quote_en: "I've missed more than 9,000 shots in my career. I've lost almost 300 games. 26 times, I've been trusted to take the game winning shot and missed. I've failed over and over and over again in my life. And that is why I succeed.",
-                quote_zh: "在我的生涯中，我投失了超過 9,000 球，輸了近 300 場比賽；有 26 次絕殺球我失手了。我一生經歷了一次又一次的失敗——而這正是為什麼我能獲得成功。",
-                athlete_en: "Michael Jordan",
-                athlete_zh: "麥可·喬丹",
-                title: "籃球之神 • 6屆 NBA 總冠軍 • 5座 MVP",
-                cat: "mindset",
-                cat_zh: "🧠 韌性與失敗",
-                avatar: "🏀",
-                takeaway: "撞牆期、傷病、破PB失敗都是訓練的必然養分。頂尖強者之所以頂尖，是因為他們消化失敗的速度比常人更快。"
-            },
-            {
-                id: "switzer",
-                quote_en: "If you are losing faith in human nature, go out and watch a marathon.",
-                quote_zh: "如果你對人性漸失信心，不妨走出戶外，去親眼看一場馬拉松。",
-                athlete_en: "Kathrine Switzer",
-                athlete_zh: "凱薩琳·斯威策",
-                title: "女性長跑先鋒 • 首位正式配戴號碼布完賽波士頓馬拉松的女性 (1967)",
-                cat: "endurance",
-                cat_zh: "🏃‍♂️ 耐力與靈魂",
-                avatar: "🌸",
-                takeaway: "馬拉松賽道是純粹人性的展現：素不相識的跑者互相遞水、為步履蹣跚者加油，在共同的考驗中展現深切溫暖。"
-            },
-            {
-                id: "bolt",
-                quote_en: "I trained 4 years to run 9 seconds, and people give up when they don't see results in 2 months.",
-                quote_zh: "我埋頭苦練了整整四年，只為了在賽道上奔馳 9 秒；而許多人卻在努力了兩個月看不到成效時，就輕易選擇放棄。",
-                athlete_en: "Usain Bolt",
-                athlete_zh: "尤塞恩·博爾特",
-                title: "牙買加閃電 • 8面奧運金牌 • 100m (9.58s) & 200m 世界紀錄保持者",
-                cat: "grit",
-                cat_zh: "🔥 純粹毅力",
-                avatar: "⚡",
-                takeaway: "生理適應與有氧耐力是時間的複利工程。不要用幾週的急躁，去衡量需要數年沈澱的偉大成果。"
-            },
-            {
-                id: "serena",
-                quote_en: "A champion is defined not by their wins, but by how they can recover when they fall.",
-                quote_zh: "定義一個真正冠軍的，從來不是他的勝利次數，而是他在跌倒之時，如何以驚人韌性重新站起。",
-                athlete_en: "Serena Williams",
-                athlete_zh: "小威廉絲 (瑟琳娜·威廉絲)",
-                title: "女子網壇歷史巨星 • 23座大滿貫單打冠軍",
-                cat: "mindset",
-                cat_zh: "🧠 韌性與失敗",
-                avatar: "🎾",
-                takeaway: "運動生理學的『超補償』在心智上也同樣適用：真正的強大，誕生於每一次從低谷復原（Recovery）之後。"
-            },
-            {
-                id: "bowerman",
-                quote_en: "If you have a body, you are an athlete.",
-                quote_zh: "只要你擁有身體，你就是一名運動員。",
-                athlete_en: "Bill Bowerman",
-                athlete_zh: "比爾·鮑爾曼",
-                title: "Nike 共同創辦人 • 傳奇奧運田徑總教練 • 現代慢跑運動倡導者",
-                cat: "mindset",
-                cat_zh: "🧠 賦能與信念",
-                avatar: "👟",
-                takeaway: "放下對配速或身材的焦慮。每一次雙腳落地，都是你作為運動員在探索生命潛能的勇敢實踐。"
-            },
-            {
-                id: "owens",
-                quote_en: "We all have dreams. But in order to make dreams come into reality, it takes an awful lot of determination, dedication, self-discipline, and effort.",
-                quote_zh: "我們心中皆有夢想。但要讓夢想化為現實，需要極其巨大的決心、奉獻精神、自律與不懈的奮鬥。",
-                athlete_en: "Jesse Owens",
-                athlete_zh: "傑西·歐文斯",
-                title: "1936 柏林奧運 4 面田徑金牌傳奇 • 打破種族藩籬的世紀英雄",
-                cat: "discipline",
-                cat_zh: "🛡️ 自律與自由",
-                avatar: "🦅",
-                takeaway: "在逆境與質疑面前，唯一的答案就是賽道上無可挑剔的汗水與專注。"
-            }
-        ];
+        // Loaded via external quotes_data.js, with fallback guard
+        const ALL_QUOTES = (typeof ATHLETE_QUOTES_DATA !== 'undefined' && Array.isArray(ATHLETE_QUOTES_DATA)) 
+            ? ATHLETE_QUOTES_DATA 
+            : [];
 
         // ==========================================
-        // 2.5 ATHLETE QUOTES CONTROLLER
+        // 2.5 ATHLETE QUOTES CONTROLLER (200 Quotes Engine)
         // ==========================================
         let currentQuoteCategory = 'all';
-        let currentQuotesList = ATHLETE_QUOTES_DATA;
+        let currentQuotesFiltered = ALL_QUOTES;
+        let quotesDisplayLimit = 24;
         let spotlightQuoteIndex = 0;
         let isQuotesAutoPlaying = false;
         let quotesAutoPlayTimeout = null;
@@ -1424,33 +1278,64 @@
         }
 
         function shuffleSpotlightQuote() {
+            if (ALL_QUOTES.length === 0) return;
             let nextIdx;
             do {
-                nextIdx = Math.floor(Math.random() * ATHLETE_QUOTES_DATA.length);
-            } while (nextIdx === spotlightQuoteIndex && ATHLETE_QUOTES_DATA.length > 1);
+                nextIdx = Math.floor(Math.random() * ALL_QUOTES.length);
+            } while (nextIdx === spotlightQuoteIndex && ALL_QUOTES.length > 1);
             spotlightQuoteIndex = nextIdx;
-            setSpotlightQuote(ATHLETE_QUOTES_DATA[spotlightQuoteIndex]);
+            setSpotlightQuote(ALL_QUOTES[spotlightQuoteIndex]);
             speakSpotlightQuote();
         }
 
         function speakSpotlightQuote() {
-            const q = ATHLETE_QUOTES_DATA[spotlightQuoteIndex];
+            const q = ALL_QUOTES[spotlightQuoteIndex];
             if (q) {
                 speakText(`${q.quote_en} ... By ${q.athlete_en}`);
             }
         }
 
-        function renderQuotes(quotes) {
-            currentQuotesList = quotes;
+        function renderQuotes() {
             const grid = document.getElementById('quotes-grid');
-            const countEl = document.getElementById('count-quotes');
-            if (countEl) countEl.innerText = quotes.length;
+            const totalCountEl = document.getElementById('count-quotes');
+            const showingCountEl = document.getElementById('quotes-showing-count');
+            const loadMoreContainer = document.getElementById('quotes-load-more-container');
+            const loadMoreBtn = document.getElementById('btn-load-more-quotes');
+
+            if (totalCountEl) totalCountEl.innerText = ALL_QUOTES.length;
             if (!grid) return;
 
-            grid.innerHTML = quotes.map((q, idx) => `
+            const totalFiltered = currentQuotesFiltered.length;
+            const toShow = currentQuotesFiltered.slice(0, quotesDisplayLimit);
+
+            if (showingCountEl) {
+                showingCountEl.innerText = `${Math.min(toShow.length, totalFiltered)} / ${totalFiltered} (總庫存: ${ALL_QUOTES.length})`;
+            }
+
+            if (loadMoreContainer) {
+                if (quotesDisplayLimit >= totalFiltered) {
+                    if (loadMoreBtn) loadMoreBtn.classList.add('hidden');
+                } else {
+                    if (loadMoreBtn) {
+                        loadMoreBtn.classList.remove('hidden');
+                        loadMoreBtn.innerHTML = `<span>📖</span> <span>展開更多金句 (尚餘 ${totalFiltered - quotesDisplayLimit} 句)</span>`;
+                    }
+                }
+            }
+
+            if (toShow.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-400 text-sm glass-card rounded-2xl p-8">
+                        找不到符合關鍵字的金句，請嘗試搜尋其他詞彙或切換類別。
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = toShow.map((q, idx) => `
                 <div class="glass-card rounded-2xl p-5 flex flex-col justify-between hover:scale-[1.01] transition-all border border-amber-500/30 hover:border-amber-400 quote-card cursor-pointer group"
                      id="qcard-${idx}"
-                     onclick="setSpotlightQuote(currentQuotesList[${idx}]); playSpecificQuote(${idx})">
+                     onclick="setSpotlightQuote(currentQuotesFiltered[${idx}]); playSpecificQuote(${idx})">
                     <div>
                         <!-- Header with Category & Avatar -->
                         <div class="flex items-center justify-between text-xs pb-2 border-b border-slate-800">
@@ -1495,24 +1380,62 @@
             `).join('');
         }
 
+        function loadMoreQuotes() {
+            quotesDisplayLimit += 24;
+            renderQuotes();
+        }
+
+        function showAllQuotes() {
+            quotesDisplayLimit = ALL_QUOTES.length;
+            renderQuotes();
+        }
+
+        function searchQuotes() {
+            const query = (document.getElementById('quotes-search')?.value || '').trim().toLowerCase();
+            let base = ALL_QUOTES;
+            if (currentQuoteCategory !== 'all') {
+                base = base.filter(q => q.cat === currentQuoteCategory);
+            }
+
+            if (query) {
+                currentQuotesFiltered = base.filter(q => 
+                    q.quote_en.toLowerCase().includes(query) ||
+                    q.quote_zh.toLowerCase().includes(query) ||
+                    q.athlete_en.toLowerCase().includes(query) ||
+                    q.athlete_zh.toLowerCase().includes(query) ||
+                    q.takeaway.toLowerCase().includes(query)
+                );
+            } else {
+                currentQuotesFiltered = base;
+            }
+
+            quotesDisplayLimit = 24;
+            renderQuotes();
+        }
+
         function filterQuotes(cat) {
             currentQuoteCategory = cat;
             document.querySelectorAll('.quote-filter-pill').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById(`qcat-${cat}`);
             if (activeBtn) activeBtn.classList.add('active');
 
+            const searchInput = document.getElementById('quotes-search');
+            if (searchInput) searchInput.value = '';
+
             if (cat === 'all') {
-                renderQuotes(ATHLETE_QUOTES_DATA);
+                currentQuotesFiltered = ALL_QUOTES;
             } else {
-                const filtered = ATHLETE_QUOTES_DATA.filter(q => q.cat === cat);
-                renderQuotes(filtered);
+                currentQuotesFiltered = ALL_QUOTES.filter(q => q.cat === cat);
             }
+
+            quotesDisplayLimit = 24;
+            renderQuotes();
         }
 
         function playSpecificQuote(idx, continueFlow = false) {
-            if (idx < 0 || idx >= currentQuotesList.length) return;
+            if (idx < 0 || idx >= currentQuotesFiltered.length) return;
             quotesPlayIndex = idx;
-            const q = currentQuotesList[idx];
+            const q = currentQuotesFiltered[idx];
 
             document.querySelectorAll('.quote-card').forEach(c => c.classList.remove('ring-2', 'ring-amber-400', 'active-play-card'));
             const card = document.getElementById(`qcard-${idx}`);
@@ -1533,7 +1456,7 @@
                 if (isQuotesAutoPlaying || continueFlow) {
                     quotesAutoPlayTimeout = setTimeout(() => {
                         if (!isQuotesAutoPlaying) return;
-                        if (quotesPlayIndex + 1 < currentQuotesList.length) {
+                        if (quotesPlayIndex + 1 < currentQuotesFiltered.length) {
                             quotesPlayIndex++;
                             playSpecificQuote(quotesPlayIndex, true);
                         } else {
@@ -1547,7 +1470,7 @@
             utterance.onerror = () => {
                 if (isQuotesAutoPlaying || continueFlow) {
                     quotesAutoPlayTimeout = setTimeout(() => {
-                        quotesPlayIndex = (quotesPlayIndex + 1) % currentQuotesList.length;
+                        quotesPlayIndex = (quotesPlayIndex + 1) % currentQuotesFiltered.length;
                         playSpecificQuote(quotesPlayIndex, true);
                     }, 2500);
                 }
@@ -2058,8 +1981,10 @@
             if (countEl) countEl.innerText = GLOSSARY_DATA.length;
 
             renderPrinciples();
-            renderQuotes(ATHLETE_QUOTES_DATA);
-            setSpotlightQuote(ATHLETE_QUOTES_DATA[0]);
+            renderQuotes();
+            if (ALL_QUOTES.length > 0) {
+                setSpotlightQuote(ALL_QUOTES[0]);
+            }
             renderGlossary(GLOSSARY_DATA);
         });
     </script>
