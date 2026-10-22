@@ -24,7 +24,7 @@ GARMIN_CONNET_TRACK/
 │   ├── index.html                   # 預設首頁：純數值個人健康與耐力分析儀表板
 │   ├── garmin_health_dashboard.html # 完整健康儀表板（獨立離線版）
 │   ├── sport_english.html           # 運動英語辭典、十大黃金訓練原則、熱身音訊與傷病防護指南
-│   └── quotes_data.js               # 運動員激勵金句與運動哲學資料集
+│   └── quotes_data.js               # 400 句傳奇運動家經典金句庫與運動心智哲學資料集
 │
 ├── ⚙️ Python 資料同步與分析後端 (Data Pipeline)
 │   ├── main.py                      # 主程式：負責抓取、增量快取、統計分析與 HTML 產生

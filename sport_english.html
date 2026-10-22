@@ -6,7 +6,7 @@
     <title>運動英語與訓練黃金原則 | Sport English & Athletic Training Principles</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 200 Athlete Wisdom Quotes Data -->
+    <!-- 400 Athlete Wisdom Quotes Data -->
     <script src="quotes_data.js"></script>
     <script>
         tailwind.config = {
@@ -366,7 +366,7 @@
                                 </span>
                             </div>
                             <div class="text-[11px] text-slate-400 hidden sm:block">
-                                十大原則 • 200 傳奇金句 • 80+ 專業術語 • 賽事縮寫
+                                十大原則 • 400 傳奇金句 • 80+ 專業術語 • 賽事縮寫
                             </div>
                         </div>
                     </div>
@@ -384,7 +384,7 @@
                         <span>📜</span> <span>十大原則</span>
                     </a>
                     <a href="#quotes-section" class="px-2.5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
-                        <span>🏆</span> <span>200 金句</span>
+                        <span>🏆</span> <span>400 金句</span>
                     </a>
                     <a href="#nutrition-section" class="px-2.5 py-1.5 rounded-lg bg-lime-500/20 hover:bg-lime-500/30 text-lime-300 border border-lime-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
                         <span>🥑</span> <span>補給科學</span>
@@ -444,8 +444,8 @@
                     <span>傳奇運動家經典金句</span>
                     <span>🏆</span>
                 </div>
-                <div class="text-2xl font-bold text-amber-400 mt-2">200 Quotes</div>
-                <div class="text-xs text-slate-400 mt-1">基普喬蓋、柯比、阿里等 200 句</div>
+                <div class="text-2xl font-bold text-amber-400 mt-2">400 Quotes</div>
+                <div class="text-xs text-slate-400 mt-1">基普喬蓋、柯比、阿里等 400 句</div>
             </div>
 
             <div class="glass-card rounded-xl p-4 border-l-4 border-l-sky-500">
@@ -597,7 +597,7 @@
                         <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden border border-slate-700/80">
                             <div id="quotes-progress-bar" class="bg-gradient-to-r from-amber-500 via-orange-400 to-yellow-400 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
                         </div>
-                        <span id="quotes-play-status" class="text-amber-400 font-mono font-bold whitespace-nowrap">0 / 200</span>
+                        <span id="quotes-play-status" class="text-amber-400 font-mono font-bold whitespace-nowrap">0 / 400</span>
                     </div>
                 </div>
 
@@ -639,13 +639,13 @@
                 </div>
             </div>
 
-            <!-- Search & Filter Controls for 200 Quotes -->
+            <!-- Search & Filter Controls for 400 Quotes -->
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
                 <div class="relative flex-1">
                     <input 
                         type="text" 
                         id="quotes-search" 
-                        placeholder="🔍 搜尋 200 句金句、運動員或心法 (如: Kipchoge, Kobe, 痛苦, 自律, 破極限...)" 
+                        placeholder="🔍 搜尋 400 句金句、運動員或心法 (如: Kipchoge, Kobe, 痛苦, 自律, 破極限...)" 
                         oninput="searchQuotes()"
                         class="w-full px-3.5 py-2 pl-9 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-all"
                     />
@@ -653,14 +653,14 @@
                 </div>
                 <div class="flex items-center gap-2 text-xs text-slate-400 self-end sm:self-auto font-mono">
                     <span>進度:</span>
-                    <span id="quotes-showing-count" class="text-amber-400 font-bold">24 / 200</span>
+                    <span id="quotes-showing-count" class="text-amber-400 font-bold">24 / 400</span>
                 </div>
             </div>
 
             <!-- Quote Category Filter Pills -->
             <div class="flex flex-wrap items-center gap-2 mb-6" id="quote-category-pills">
                 <button onclick="filterQuotes('all')" id="qcat-all" class="quote-filter-pill active px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
-                    🌟 全部金句 (All) (<span id="count-quotes">200</span>)
+                    🌟 全部金句 (All) (<span id="count-quotes">400</span>)
                 </button>
                 <button onclick="filterQuotes('endurance')" id="qcat-endurance" class="quote-filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
                     🏃‍♂️ 耐力與馬拉松 (Endurance)
@@ -691,7 +691,7 @@
                     <span>展開更多金句 (Show More Quotes)</span>
                 </button>
                 <button onclick="showAllQuotes()" id="btn-show-all-quotes" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-slate-700 transition-all cursor-pointer">
-                    ⚡ 一次顯示全部 200 句
+                    ⚡ 一次顯示全部 400 句
                 </button>
             </div>
         </section>
@@ -3346,7 +3346,7 @@
         ];
 
         // ==========================================
-        // 2. DATA: 200 Legendary Athlete Quotes
+        // 2. DATA: 400 Legendary Athlete Quotes
         // ==========================================
         // Loaded via external quotes_data.js, with fallback guard
         const ALL_QUOTES = (typeof ATHLETE_QUOTES_DATA !== 'undefined' && Array.isArray(ATHLETE_QUOTES_DATA)) 
@@ -3354,7 +3354,7 @@
             : [];
 
         // ==========================================
-        // 2.5 ATHLETE QUOTES CONTROLLER (200 Quotes Engine)
+        // 2.5 ATHLETE QUOTES CONTROLLER (400 Quotes Engine)
         // ==========================================
         let currentQuoteCategory = 'all';
         let currentQuotesFiltered = ALL_QUOTES;
