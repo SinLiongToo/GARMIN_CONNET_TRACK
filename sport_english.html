@@ -184,6 +184,20 @@
             border-color: #65a30d !important;
         }
 
+        .active-play-muscle {
+            border-color: #8b5cf6 !important;
+            box-shadow: 0 0 28px rgba(139, 92, 246, 0.55), 0 8px 16px rgba(0, 0, 0, 0.4) !important;
+            transform: scale(1.025) !important;
+            z-index: 10;
+        }
+        html.dark .active-play-muscle {
+            background: rgba(76, 29, 149, 0.4) !important;
+        }
+        html:not(.dark) .active-play-muscle {
+            background: rgba(245, 243, 255, 0.95) !important;
+            border-color: #7c3aed !important;
+        }
+
         .active-play-injury {
             border-color: #f43f5e !important;
             box-shadow: 0 0 28px rgba(244, 63, 94, 0.55), 0 8px 16px rgba(0, 0, 0, 0.4) !important;
@@ -5056,13 +5070,11 @@
 
         // Global Mini Player Bar Controls (Top Sticky Bar Integration)
         function pauseAnyPlaying() {
-            if (isQuotesAutoPlaying) stopQuotesAutoPlay();
-            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
-            if (isAutoPlaying) pauseAutoPlay();
-            if (isNutritionAutoPlaying) stopNutritionAutoPlay();
-            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
-            if (isInjuryAutoPlaying) stopInjuryAutoPlay();
-            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
+            if (typeof isQuotesAutoPlaying !== 'undefined' && isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isAutoPlaying !== 'undefined' && isAutoPlaying) pauseAutoPlay();
+            if (typeof isNutritionAutoPlaying !== 'undefined' && isNutritionAutoPlaying) stopNutritionAutoPlay();
+            if (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying) stopInjuryAutoPlay();
+            if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
             hideTopMiniPlayer();
         }
 
@@ -5088,6 +5100,9 @@
             } else if (type === 'nutrition') {
                 el.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-lime-500/50 text-xs shadow-inner';
                 if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-lime-400 animate-ping';
+            } else if (type === 'muscle') {
+                el.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-violet-500/50 text-xs shadow-inner';
+                if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-violet-400 animate-ping';
             } else if (type === 'injury') {
                 el.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-rose-500/50 text-xs shadow-inner';
                 if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-rose-400 animate-ping';
@@ -5152,11 +5167,10 @@
         }
 
         function startNutritionAutoPlay() {
-            if (isQuotesAutoPlaying) stopQuotesAutoPlay();
-            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
-            if (isAutoPlaying) stopAutoPlay();
-            if (isInjuryAutoPlaying) stopInjuryAutoPlay();
-            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
+            if (typeof isQuotesAutoPlaying !== 'undefined' && isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isAutoPlaying !== 'undefined' && isAutoPlaying) pauseAutoPlay();
+            if (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying) stopInjuryAutoPlay();
+            if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
 
             isNutritionAutoPlaying = true;
             const icon = document.getElementById('nutrition-play-icon');
@@ -5443,13 +5457,10 @@
         }
 
         function startMuscleAutoPlay() {
-            if (isQuotesAutoPlaying) stopQuotesAutoPlay();
-            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
-            if (isAutoPlaying) stopAutoPlay();
-            if (isNutritionAutoPlaying) stopNutritionAutoPlay();
-            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
-            if (isInjuryAutoPlaying) stopInjuryAutoPlay();
-            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
+            if (typeof isQuotesAutoPlaying !== 'undefined' && isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isAutoPlaying !== 'undefined' && isAutoPlaying) pauseAutoPlay();
+            if (typeof isNutritionAutoPlaying !== 'undefined' && isNutritionAutoPlaying) stopNutritionAutoPlay();
+            if (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying) stopInjuryAutoPlay();
 
             isMuscleAutoPlaying = true;
             const icon = document.getElementById('muscle-play-icon');
@@ -5482,56 +5493,62 @@
                 btn.classList.add('text-violet-400');
             }
             document.querySelectorAll('.muscle-card').forEach(c => {
-                c.classList.remove('ring-2', 'ring-violet-400');
+                c.classList.remove('active-play-muscle');
             });
+            hideTopMiniPlayer();
         }
 
-        function playSpecificMuscle(index, continueFlow = false) {
-            if (index < 0 || index >= MUSCLE_ITEMS.length) return;
-            musclePlayIndex = index;
-            const item = MUSCLE_ITEMS[index];
+        function playSpecificMuscle(idx, continueFlow = false) {
+            if (idx < 0 || idx >= MUSCLE_ITEMS.length) return;
+            musclePlayIndex = idx;
+            const item = MUSCLE_ITEMS[idx];
 
-            // If card is inside a hidden tab, switch to 'all' so it becomes visible
-            if (currentMuscleTab !== 'all') {
-                switchMuscleTab('all');
+            // Auto-switch tab if current tab is not 'all' and not matching the item
+            let targetTab = 'mechanics';
+            if (idx >= 4 && idx <= 7) targetTab = 'kinetic';
+            else if (idx >= 8 && idx <= 11) targetTab = 'plyo';
+            else if (idx >= 12 && idx <= 15) targetTab = 'programming';
+
+            if (currentMuscleTab !== 'all' && currentMuscleTab !== targetTab) {
+                switchMuscleTab(targetTab);
             }
 
-            // Highlight card
-            document.querySelectorAll('.muscle-card').forEach(c => {
-                c.classList.remove('ring-2', 'ring-violet-400');
-            });
+            document.querySelectorAll('.muscle-card').forEach(c => c.classList.remove('active-play-muscle'));
             const card = document.getElementById(item.id);
             if (card) {
-                card.classList.add('ring-2', 'ring-violet-400');
+                card.classList.add('active-play-muscle');
                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
-            // Speech Synthesis
+            const categoryTag = idx >= 12 ? '📅 週期' : (idx >= 8 ? '⚡ 增強' : (idx >= 4 ? '🦵 後側' : '🧬 力學'));
+            showTopMiniPlayer(`${categoryTag}: ${item.zh}`, 'muscle');
+
+            if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel();
-            const rate = parseFloat(document.getElementById('opt-speech-rate')?.value || '1.0');
-            const selectedVoice = getSelectedVoice();
+            if (muscleAutoPlayTimeout) clearTimeout(muscleAutoPlayTimeout);
 
             const titleUtterance = new SpeechSynthesisUtterance(item.title);
-            titleUtterance.rate = rate;
             titleUtterance.lang = 'en-US';
-            if (selectedVoice) titleUtterance.voice = selectedVoice;
+            titleUtterance.rate = 0.95;
 
             titleUtterance.onend = () => {
-                muscleAutoPlayTimeout = setTimeout(() => {
-                    if (!isMuscleAutoPlaying && !continueFlow) return;
-
+                setTimeout(() => {
                     const exUtterance = new SpeechSynthesisUtterance(item.ex_en);
-                    exUtterance.rate = rate;
                     exUtterance.lang = 'en-US';
-                    if (selectedVoice) exUtterance.voice = selectedVoice;
+                    exUtterance.rate = 0.92;
 
                     exUtterance.onend = () => {
                         if (isMuscleAutoPlaying || continueFlow) {
-                            const delay = parseInt(document.getElementById('opt-speech-delay')?.value || '2000', 10);
                             muscleAutoPlayTimeout = setTimeout(() => {
-                                musclePlayIndex = (musclePlayIndex + 1) % MUSCLE_ITEMS.length;
-                                playSpecificMuscle(musclePlayIndex, true);
-                            }, delay);
+                                if (!isMuscleAutoPlaying) return;
+                                if (musclePlayIndex + 1 < MUSCLE_ITEMS.length) {
+                                    musclePlayIndex++;
+                                    playSpecificMuscle(musclePlayIndex, true);
+                                } else {
+                                    musclePlayIndex = 0;
+                                    playSpecificMuscle(musclePlayIndex, true);
+                                }
+                            }, 2200);
                         }
                     };
 
@@ -5895,11 +5912,10 @@
         }
 
         function startInjuryAutoPlay() {
-            if (isQuotesAutoPlaying) stopQuotesAutoPlay();
-            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
-            if (isAutoPlaying) stopAutoPlay();
-            if (isNutritionAutoPlaying) stopNutritionAutoPlay();
-            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
+            if (typeof isQuotesAutoPlaying !== 'undefined' && isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isAutoPlaying !== 'undefined' && isAutoPlaying) pauseAutoPlay();
+            if (typeof isNutritionAutoPlaying !== 'undefined' && isNutritionAutoPlaying) stopNutritionAutoPlay();
+            if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
 
             isInjuryAutoPlaying = true;
             const icon = document.getElementById('injury-play-icon');
@@ -6088,10 +6104,16 @@
                 alert('您的瀏覽器不支援 Web Speech 語音合成。');
                 return;
             }
+            if (typeof isQuotesAutoPlaying !== 'undefined' && isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isAutoPlaying !== 'undefined' && isAutoPlaying) pauseAutoPlay();
+            if (typeof isNutritionAutoPlaying !== 'undefined' && isNutritionAutoPlaying) stopNutritionAutoPlay();
+            if (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying) stopInjuryAutoPlay();
+            if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
+
             window.speechSynthesis.cancel();
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'en-US';
-            utterance.rate = 0.9;
+            utterance.rate = 0.92;
             window.speechSynthesis.speak(utterance);
         }
 
