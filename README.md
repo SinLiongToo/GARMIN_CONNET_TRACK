@@ -87,6 +87,9 @@ To protect personal privacy when publishing to GitHub Pages:
   - PR, PB, BQ, DNF, DNS, LSD, MP, HMP, RPE, HRV, RHR, VO2 Max, LT, DOMS, TSS 等速查。
 - **🩹 跑者常見運動傷害預防與 RAMP 動態熱身示範**：
   - 整合足底筋膜炎、ITBS 髂脛束症候群、髕骨肌腱炎等防護要點與精選示範影片。
+- **🏋️‍♂️ 耐力跑者肌力與體能訓練科學 (Strength & Conditioning & Kinetic Chain)**：
+  - 深入解析 16 大肌力體能核心模組：收縮力學與漸進超負荷、離心下坡減速、快慢肌纖維轉化、後側動力鏈（臀大肌/膕旁肌）、比目魚肌 8 倍體重承載防護、單腳防骨盆傾斜、抗旋轉核心剛性、牽張縮短循環 (SSC)、跟腱剛性與縮短觸地時間 (GCT)、下落跳與反應力量指數 (RSI)、力量發展率 (RFD)、共存訓練干擾效應破解 (Concurrent Training)、最大肌力神經適應 (85-90% 1RM)、保留次數 (RIR) 自主調節與 DOMS 積極修復。
+  - 搭配 16 篇實戰情境雙語運動科學例句與瀏覽器原生真人連續自動語音朗讀引擎。
 
 ### 2. 📅 跨月份歷史對比與「平均每月睡眠時長/階段分佈堆疊圖」
 - **平均每月睡眠時長與階段分佈堆疊圖 (Monthly Stacked Sleep Stages Chart)**：

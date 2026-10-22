@@ -366,7 +366,7 @@
                                 </span>
                             </div>
                             <div class="text-[11px] text-slate-400 hidden sm:block">
-                                十大原則 • 400 傳奇金句 • 80+ 專業術語 • 賽事縮寫
+                                十大原則 • 400 傳奇金句 • 肌力體能 • 補給科學 • 傷害防護
                             </div>
                         </div>
                     </div>
@@ -388,6 +388,9 @@
                     </a>
                     <a href="#nutrition-section" class="px-2.5 py-1.5 rounded-lg bg-lime-500/20 hover:bg-lime-500/30 text-lime-300 border border-lime-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
                         <span>🥑</span> <span>補給科學</span>
+                    </a>
+                    <a href="#muscle-section" class="px-2.5 py-1.5 rounded-lg bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 border border-violet-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
+                        <span>🏋️‍♂️</span> <span>肌力體能</span>
                     </a>
                     <a href="#injury-section" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
                         <span>🩹</span> <span>傷害防護</span>
@@ -1241,6 +1244,982 @@
                     <div class="pt-2 border-t border-slate-800 text-[11px] text-purple-400 flex items-center justify-between">
                         <span>關鍵術語: Anabolic Window, Whey Protein, Gut Adaptation, BCAA</span>
                         <span class="text-slate-500 font-mono">#RecoveryScience</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <!-- Section: 🏋️‍♂️ 耐力跑者與運動員肌力體能訓練科學專區 (Strength & Conditioning, Hypertrophy & Kinetic Chain) -->
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-violet-500" id="muscle-section">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-6 border-b border-slate-700/60 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🏋️‍♂️</span>
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                            耐力跑者肌力與體能訓練科學
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-violet-500/20 text-violet-400 font-normal border border-violet-500/30">
+                                Strength & Conditioning
+                            </span>
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">
+                            骨骼肌收縮力學、後側動力鏈驅動、牽張縮短循環與週期化阻力訓練 (Hypertrophy, Posterior Chain, SSC Plyometrics & Concurrent Training)
+                        </p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleMuscleAutoPlay()" id="btn-muscle-autoplay" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs sm:text-sm font-semibold text-violet-400 border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer">
+                        <span id="muscle-play-icon">▶️</span>
+                        <span id="muscle-play-text">自動朗讀肌力訓練</span>
+                    </button>
+                    <span class="text-xs px-3 py-1 rounded-full bg-violet-500/20 text-violet-400 font-mono border border-violet-500/30 hidden sm:inline-block">
+                        Kinetic Chain
+                    </span>
+                </div>
+            </div>
+
+            <!-- Muscle Training Interactive Sub-category Tab Navigation -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 border-b border-slate-700/60 no-scrollbar">
+                <button onclick="switchMuscleTab('all')" id="mtab-btn-all" class="mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm" title="瀏覽全部 16 大肌力體能訓練模組">
+                    <span>📑</span> <span>全部展開 (All 16)</span>
+                </button>
+                <button onclick="switchMuscleTab('mechanics')" id="mtab-btn-mechanics" class="mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="肌肉收縮力學與肌纖維生理學">
+                    <span>🧬</span> <span>收縮力學與肌纖維 (4)</span>
+                </button>
+                <button onclick="switchMuscleTab('kinetic')" id="mtab-btn-kinetic" class="mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="跑者關鍵後側動力鏈與抗傷肌群">
+                    <span>🦵</span> <span>後側動力鏈與核心 (4)</span>
+                </button>
+                <button onclick="switchMuscleTab('plyo')" id="mtab-btn-plyo" class="mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="增強式爆發力與肌腱彈性能量">
+                    <span>⚡</span> <span>增強式與肌腱剛性 (4)</span>
+                </button>
+                <button onclick="switchMuscleTab('programming')" id="mtab-btn-programming" class="mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="週期化重訓課表與耐力共存訓練">
+                    <span>📅</span> <span>週期化與耐力共存 (4)</span>
+                </button>
+            </div>
+
+            <!-- Sub-section: mechanics -->
+            <div id="muscle-sub-mechanics" class="muscle-sub-pane mb-8">
+                <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-violet-500 animate-pulse"></span>
+                        <span>第一篇：肌肉收縮力學、超負荷與肌纖維分型 (Contraction Mechanics & Fiber Physiology)</span>
+                    </h3>
+                    <span class="text-[10px] font-mono text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded border border-violet-500/20 hidden sm:inline-block">
+                        4 Mechanics Modules
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card: mcard-0 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-violet-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-0">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-violet-400 font-mono">
+                                    阻力基石 • 神經與肌肉適應
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Progressive Overload')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-violet-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Applying progressive overload through gradual resistance increases ensures continuous muscular adaptation without overloading connective tissues.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>漸進式超負荷原則</span>
+                                <span class="text-xs font-mono text-violet-400 font-normal">(Progressive Overload)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/prəˈɡresɪv ˈoʊvərloʊd/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                阻力訓練與肌肥大適應的核心基石。人體神經系統與肌原纖維僅在承受超越當前常態負荷時才會產生適應性生長。透過週期性遞增訓練負重（Intensity）、反覆次數或組數（Volume）、縮短組間休息、或刻意延長機械張力時間（Time Under Tension, TUT），持續給予骨骼肌微損傷修復與中樞神經徵召信號。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-violet-400">📊 耐力跑者超負荷實踐原則:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    每 1~2 週遞增 <strong>2.5%~5% 負重</strong>，或在維持精準動作行程下增加 1~2 次反覆。切莫單次暴增重量以防結締組織拉傷；以『神經動作協調』為先，『重量數字』為後。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Applying progressive overload through gradual resistance increases ensures continuous muscular adaptation without overloading connective tissues.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Applying progressive overload through gradual resistance increases ensures continuous muscular adaptation without overloading connective tissues."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    透過漸進式增加阻力來落實超負荷，能在不對結締組織造成過度負擔的前提下確保肌肉持續適應。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-violet-400/80 flex items-center justify-between font-mono">
+                            <span>#ProgressiveOverload #MechanicalTension #NeuralDrive #Hypertrophy</span>
+                            <span class="text-slate-500">ID: mcard-0</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-1 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-violet-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-1">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-violet-400 font-mono">
+                                    下坡緩衝 • 離心肌節增生
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Eccentric Contraction & Deceleration Control')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-violet-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Eccentric strength training conditions the quadriceps to absorb punishing downhill braking forces, significantly slashing the risk of patellar tendinopathy.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>離心收縮與減速剎車力量</span>
+                                <span class="text-xs font-mono text-violet-400 font-normal">(Eccentric Contraction & Deceleration Control)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ɪkˈsentrɪk kənˈtrækʃən/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                肌肉在承受外在負載拉力下被動拉長的收縮模式。在跑步下坡或腳掌落地瞬間，股四頭肌與膕旁肌承受高達體重 3~5 倍的巨大離心衝擊。強化離心力量能刺激肌節沿肌纖維縱向串聯增生（Sarcomeres in Series），不僅能大幅增強下坡制動力，更能預防膕旁肌在高速衝刺時發生撕裂傷。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-violet-400">⚙️ 跑者必練離心處方:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    離心下放控制 <strong>3~4 秒</strong>（如離心慢速深蹲、單腳離心下斜板硬舉、北歐腿彎舉 Nordic Hamstring Curl 3組x5次）。顯著減輕隔天下坡跑步後的股四頭肌酸痛。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Eccentric strength training conditions the quadriceps to absorb punishing downhill braking forces, significantly slashing the risk of patellar tendinopathy.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Eccentric strength training conditions the quadriceps to absorb punishing downhill braking forces, significantly slashing the risk of patellar tendinopathy."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    離心肌力訓練能強化股四頭肌吸收下坡時巨大的減速剎車力量，大幅降低髕骨肌腱發炎的風險。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-violet-400/80 flex items-center justify-between font-mono">
+                            <span>#EccentricTraining #NordicCurl #DownhillRunning #Deceleration</span>
+                            <span class="text-slate-500">ID: mcard-1</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-2 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-violet-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-2">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-violet-400 font-mono">
+                                    運動單元 • 終點衝刺儲備
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Muscle Fiber Types: Type I vs Type IIa/IIx')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-violet-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Heavy resistance training activates high-threshold fast-twitch motor units, providing marathon runners with an untapped power reservoir during final sprint surges.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>肌纖維分型與耐力轉化</span>
+                                <span class="text-xs font-mono text-violet-400 font-normal">(Muscle Fiber Types: Type I vs Type IIa/IIx)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈmʌsəl ˈfaɪbər taɪps/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                骨骼肌包含紅肌慢縮肌纖維（Type I：富含粒線體與微血管網，專職有氧代謝與抗疲勞）與白肌快縮肌纖維（Type IIa/IIx：高酵解、神經傳導極快但易疲勞）。複合大重量肌力訓練能提高第二型肌纖維的氧化酶活性，轉化為高抗疲勞的 IIa 型，使跑者在比賽最後 5 公里慢肌耗竭時，依然擁有未疲勞的快肌單元接手推進。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-violet-400">🔬 馬拉松菁英肌纖維構成:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    頂尖長跑跑者下肢慢肌比例達 <strong>70%~90%</strong>。重訓的真正價值不是練大肌肉，而是透過『大小原則（Henneman Size Principle）』徵召平時慢跑用不到的高門檻快肌單位。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Heavy resistance training activates high-threshold fast-twitch motor units, providing marathon runners with an untapped power reservoir during final sprint surges.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Heavy resistance training activates high-threshold fast-twitch motor units, providing marathon runners with an untapped power reservoir during final sprint surges."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    大重量阻力訓練能激活高閾值的快肌運動單位，為馬拉松跑者在終點衝刺時提供未被開發的爆發儲備能量。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-violet-400/80 flex items-center justify-between font-mono">
+                            <span>#MotorUnitRecruitment #SlowTwitch #FastTwitch #MuscleBioenergetics</span>
+                            <span class="text-slate-500">ID: mcard-2</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-3 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-violet-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-3">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-violet-400 font-mono">
+                                    蛋白質代謝 • mTOR 分子信號
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Muscle Protein Synthesis, MPS & Hypertrophy')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-violet-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Consuming twenty-five grams of whey protein rich in leucine within sixty minutes post-workout optimizes muscle protein synthesis and accelerates structural recovery.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>肌肉蛋白質合成與恢復之窗</span>
+                                <span class="text-xs font-mono text-violet-400 font-normal">(Muscle Protein Synthesis, MPS & Hypertrophy)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈmʌsəl ˈproʊtiːn ˈsɪnθəsɪs/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                阻力刺激能活化肌細胞內的 mTORC1 信號途徑，使肌肉蛋白質合成速率（MPS）顯著高於分解速率（MPB），達成淨正蛋白平衡（Net Protein Balance > 0）。必需胺基酸中的白胺酸（Leucine）如同啟動蛋白質合成的鑰匙。耐力跑者常因長跑皮質醇飆升造成肌肉分解流失，適時的阻力刺激與足量蛋白攝取是守護瘦肌肉量（Lean Muscle Mass）的鐵閘。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-violet-400">🥩 跑者重訓營養黃金律:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    重訓後 45~60 分鐘內攝取 <strong>20~30 克高生物價蛋白質</strong>（乳清、大豆分離蛋白或雞胸肉），並富含 <strong>2.5~3g 白胺酸</strong>；全日維持每公斤體重 1.6~2.0g 蛋白質總量。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Consuming twenty-five grams of whey protein rich in leucine within sixty minutes post-workout optimizes muscle protein synthesis and accelerates structural recovery.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Consuming twenty-five grams of whey protein rich in leucine within sixty minutes post-workout optimizes muscle protein synthesis and accelerates structural recovery."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    訓練後六十分鐘內攝取二十五克富含白胺酸的乳清蛋白，能最大化肌肉蛋白質合成並加速肌纖維結構修復。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-violet-400/80 flex items-center justify-between font-mono">
+                            <span>#MuscleProteinSynthesis #LeucineTrigger #mTOR #AnabolicSignaling</span>
+                            <span class="text-slate-500">ID: mcard-3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-section: kinetic -->
+            <div id="muscle-sub-kinetic" class="muscle-sub-pane mb-8">
+                <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                        <span>第二篇：跑者關鍵後側動力鏈、比目魚肌與單腳穩定 (Posterior Chain & Unilateral Stability)</span>
+                    </h3>
+                    <span class="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20 hidden sm:inline-block">
+                        4 Kinetic Chain Modules
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card: mcard-4 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-4">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-indigo-400 font-mono">
+                                    跑步引擎 • 髖伸推進動力
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Posterior Chain & Gluteus Maximus Drive')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-indigo-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Strengthening the posterior chain with Romanian deadlifts and heavy hip thrusts eliminates knee dominance and supercharges horizontal hip drive for longer strides.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>後側動力鏈與臀大肌主動推進</span>
+                                <span class="text-xs font-mono text-indigo-400 font-normal">(Posterior Chain & Gluteus Maximus Drive)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/pɑːˈstɪriər tʃeɪn/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                由臀大肌、膕旁肌、小腿三頭肌與背部豎脊肌共同建構的水平推進複合系統。臀大肌是人體容積與發力潛能最大的單一肌肉，負責強力的伸髖（Hip Extension）推蹬。現代上班族因久坐引發『臀肌失憶症（Gluteal Amnesia）』，跑步時臀部休眠，迫使下背豎脊肌與膝蓋髕骨肌腱代償吸收衝擊，引發跑者膝與足底筋膜炎。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-indigo-400">🏋️ 後側鏈黃金王牌動作:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    槓鈴臀推（Barbell Hip Thrust，峰值收縮 2 秒）、羅馬尼亞硬舉（RDL，感受膕旁肌緊繃張力）、滑輪單腳後踢。每週執行 2 次，徹底喚醒水平驅動引擎。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Strengthening the posterior chain with Romanian deadlifts and heavy hip thrusts eliminates knee dominance and supercharges horizontal hip drive for longer strides.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Strengthening the posterior chain with Romanian deadlifts and heavy hip thrusts eliminates knee dominance and supercharges horizontal hip drive for longer strides."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    透過羅馬尼亞硬舉與大重量臀推強化後側動力鏈，能消除膝蓋主導代償，並大幅提升水平髖伸展推進力以擴大步幅。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-indigo-400/80 flex items-center justify-between font-mono">
+                            <span>#PosteriorChain #HipThrust #GluteAmnesia #RomanianDeadlift</span>
+                            <span class="text-slate-500">ID: mcard-4</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-5 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-5">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-indigo-400 font-mono">
+                                    八倍體重 • 跟腱防護神盾
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Soleus Muscle Conditioning & Plantarflexion')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-indigo-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Because the soleus endures up to eight times body weight during the running stance phase, heavy seated calf raises are crucial for bulletproofing the Achilles tendon.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>比目魚肌強化與足底屈曲耐力</span>
+                                <span class="text-xs font-mono text-indigo-400 font-normal">(Soleus Muscle Conditioning & Plantarflexion)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈsoʊliəs ˈmʌsəl kənˈdɪʃənɪŋ/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                位於腓腸肌深層、高達 80% 慢肌構成的耐力小腿深層肌。跑步站立中期至離地期，比目魚肌需承受高達體重 6~8 倍的地面垂直反作用力，並控制脛骨不過度前傾。比目魚肌無力會直接將衝擊力傾瀉至阿基里斯腱與足底筋膜，是引發跟腱炎、脛前疼痛（Shin Splints）與足底筋膜炎的根本隱形病灶。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-indigo-400">👟 比目魚肌孤立強化技巧:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    必須在<strong>膝關節屈曲 90 度</strong>下進行訓練（此時腓腸肌處於主動不足放鬆狀態）。推薦『坐姿負重提踵（Seated Calf Raise）』3~4 組 x 12~15 次，底部停留 2 秒拉伸跟腱。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Because the soleus endures up to eight times body weight during the running stance phase, heavy seated calf raises are crucial for bulletproofing the Achilles tendon.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Because the soleus endures up to eight times body weight during the running stance phase, heavy seated calf raises are crucial for bulletproofing the Achilles tendon."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    由於比目魚肌在跑步站立期承受高達體重八倍的負荷，大重量坐姿提踵對於打造鋼鐵般的阿基里斯腱至關重要。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-indigo-400/80 flex items-center justify-between font-mono">
+                            <span>#SoleusConditioning #AchillesShield #SeatedCalfRaise #StancePhase</span>
+                            <span class="text-slate-500">ID: mcard-5</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-6 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-6">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-indigo-400 font-mono">
+                                    骨盆水平 • 防膝內扣與 ITBS
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Single-Leg Stability & Gluteus Medius Function')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-indigo-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Bulgarian split squats build unilateral stability, firing the gluteus medius to keep the pelvis level and prevent destructive dynamic knee valgus.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>單腳穩定性與臀中肌抗骨盆傾斜</span>
+                                <span class="text-xs font-mono text-indigo-400 font-normal">(Single-Leg Stability & Gluteus Medius Function)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈsɪŋɡəl leɡ stəˈbɪləti/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                跑步在生物力學上是一連串高速交替的『單腳著地平衡與跳躍』。臀中肌（Gluteus Medius）負責在單腳支撐時鎖死骨盆維持水平（抵抗垂臀 Trendelenburg 徵象）。臀中肌薄弱會導致支撐側大腿骨內旋、膝關節動態外翻塌陷（Dynamic Knee Valgus），迫使髂脛束過度張緊摩擦股骨外上髁。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-indigo-400">🎯 單腳抗失衡必練課表:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    保加利亞分腿蹲（Bulgarian Split Squat，後腳墊高、重心在支撐腳腳後跟）、側向阻力帶怪獸步（Monster Walks）、單腳硬舉（Single-leg RDL），每側 3 組 x 8~10 次。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Bulgarian split squats build unilateral stability, firing the gluteus medius to keep the pelvis level and prevent destructive dynamic knee valgus.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Bulgarian split squats build unilateral stability, firing the gluteus medius to keep the pelvis level and prevent destructive dynamic knee valgus."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    保加利亞分腿蹲能建立卓越的單腳穩定性，激活臀中肌以維持骨盆水平，並防止具毀滅性的動態膝內扣。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-indigo-400/80 flex items-center justify-between font-mono">
+                            <span>#UnilateralStability #GluteMedius #Trendelenburg #SplitSquat</span>
+                            <span class="text-slate-500">ID: mcard-6</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-7 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-7">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-indigo-400 font-mono">
+                                    能量零洩漏 • 軀幹剛性傳遞
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Anti-Rotation Core & Torso Stiffness')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-indigo-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Training anti-rotation core stiffness through Pallof presses and heavy farmer\'s carries prevents torso twisting and eliminates wasted energy leakage during long runs.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>抗旋轉核心與軀幹抗伸展剛性</span>
+                                <span class="text-xs font-mono text-indigo-400 font-normal">(Anti-Rotation Core & Torso Stiffness)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈænti roʊˈteɪʃən kɔːr/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                耐力跑者的核心肌群核心任務不是做仰臥起坐反覆彎折脊椎，而是『抵抗外力造成的脊椎旋轉與過度後仰伸展（Anti-Rotation & Anti-Extension）』。當跑者感到疲憊時，軀幹容易左右劇烈晃動，造成巨大的動能洩漏（Energy Leakage）。強悍的腹橫肌、腹內外斜肌與多裂肌能如緊身胸甲般鎖固軀幹，確保每一焦耳下肢推力皆轉化為純前進向量。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-indigo-400">🛡️ 抗旋轉核心精選動作:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    帕洛夫推舉（Pallof Press，彈力繩側向抗扭）、負重農夫走路（Heavy Farmer's Carry，每側手持 25~35% 體重壺鈴步行 40 米）、抗伸展死蟲式（Deadbug）。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Training anti-rotation core stiffness through Pallof presses and heavy farmer\'s carries prevents torso twisting and eliminates wasted energy leakage during long runs.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Training anti-rotation core stiffness through Pallof presses and heavy farmer's carries prevents torso twisting and eliminates wasted energy leakage during long runs."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    透過帕洛夫推舉與負重農夫走路訓練抗旋轉核心剛性，能防止軀幹多餘扭轉，並徹底消除長跑時的能量無謂洩漏。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-indigo-400/80 flex items-center justify-between font-mono">
+                            <span>#AntiRotation #CoreStiffness #PallofPress #FarmersCarry</span>
+                            <span class="text-slate-500">ID: mcard-7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-section: plyo -->
+            <div id="muscle-sub-plyo" class="muscle-sub-pane mb-8">
+                <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                        <span>第三篇：增強式爆發力、牽張縮短循環與跟腱剛性 (Plyometrics & Elastic Energy Recoil)</span>
+                    </h3>
+                    <span class="text-[10px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 hidden sm:inline-block">
+                        4 Plyometric Modules
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card: mcard-8 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-8">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-amber-400 font-mono">
+                                    天然生物彈簧 • 彈性能量回彈
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Stretch-Shortening Cycle, SSC')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-amber-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Optimizing the stretch-shortening cycle trains your tendon complex to store elastic recoil energy, slashing the metabolic cost of running at marathon race pace.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>牽張縮短循環機制</span>
+                                <span class="text-xs font-mono text-amber-400 font-normal">(Stretch-Shortening Cycle, SSC)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/stretʃ ˈʃɔːrtənɪŋ ˈsaɪkəl/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                肌腱與骨骼肌在承受快速離心拉長（Pre-stretch）時，將機械動能以彈性能量（Elastic Strain Energy）的形式暫存於膠原纖維中；緊接著透過牽張反射（Myotatic Reflex）與向心收縮瞬間引爆釋放。在馬拉松目標配速奔跑時，高達 40%~50% 的每步推進力是由肌腱彈性回彈免費提供的，無需消耗額外的肌肉細胞 ATP 能量。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-amber-400">⏱️ 快速牽張縮短週期條件:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    觸地時間必須小於 <strong>250 毫秒 (ms)</strong>。若著地時間過長（緩慢深蹲或拖泥帶水踏步），儲存的彈性能量將以熱能形式徹底消散，喪失省力優勢。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Optimizing the stretch-shortening cycle trains your tendon complex to store elastic recoil energy, slashing the metabolic cost of running at marathon race pace.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Optimizing the stretch-shortening cycle trains your tendon complex to store elastic recoil energy, slashing the metabolic cost of running at marathon race pace."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    優化牽張縮短循環能訓練肌腱複合體儲存彈性回彈位能，大幅降低在馬拉松目標配速下的代謝能量消耗。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-amber-400/80 flex items-center justify-between font-mono">
+                            <span>#StretchShorteningCycle #SSC #ElasticRecoil #TendonSpring</span>
+                            <span class="text-slate-500">ID: mcard-8</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-9 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-9">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-amber-400 font-mono">
+                                    縮短觸地時間 • 跑步經濟性
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Tendon Stiffness & Ground Contact Time, GCT')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-amber-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Increasing Achilles tendon stiffness through rapid pogo hops reduces ground contact time and provides free elastic bounce with every stride.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>肌腱剛性與觸地時間優化</span>
+                                <span class="text-xs font-mono text-amber-400 font-normal">(Tendon Stiffness & Ground Contact Time, GCT)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈtendən ˈstɪfnəs/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                在運動醫學中，肌腱『剛性（Stiffness）』是指肌腱抵抗拉長變形的能力。菁英跑者的阿基里斯腱與足底筋膜具備極高的結構剛性，如同高磅數的鋼製彈簧。當跑鞋著地瞬間，高剛性肌腱能以極微小的形變承受巨大反作用力並閃電彈射離地，將地面接觸時間（GCT）從業餘跑者的 240~270ms 壓制至菁英級的 180~210ms 內。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-amber-400">⚡ 提升肌腱剛性黃金練習:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    踝關節波戈彈跳（Ankle Pogo Hops，膝蓋微屈鎖死、僅靠腳踝與跟腱高頻反彈，每組 30 次）、跳繩雙搖、草地赤足短距離加速衝刺。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Increasing Achilles tendon stiffness through rapid pogo hops reduces ground contact time and provides free elastic bounce with every stride.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Increasing Achilles tendon stiffness through rapid pogo hops reduces ground contact time and provides free elastic bounce with every stride."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    透過快速踝部波戈彈跳增強阿基里斯腱剛性，能顯著縮短觸地時間，並在每一步中帶來免費的彈性能量反饋。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-amber-400/80 flex items-center justify-between font-mono">
+                            <span>#TendonStiffness #GroundContactTime #PogoHops #RunningEconomy</span>
+                            <span class="text-slate-500">ID: mcard-9</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-10 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-10">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-amber-400 font-mono">
+                                    神經肌肉協調 • 爆發反彈指數
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Drop Jumps & Reactive Strength Index, RSI')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-amber-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Performing low-volume drop jumps from a thirty-centimeter plyo box sharpens your neuromuscular reflex and raises your reactive strength index.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>下落跳與反應力量指數</span>
+                                <span class="text-xs font-mono text-amber-400 font-normal">(Drop Jumps & Reactive Strength Index, RSI)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/drɑːp dʒʌmps & RSI/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                衡量運動員在極端短暫觸地瞬間消化巨大衝擊並立即轉化為最大垂直推力的神經肌肉指標。反應力量指數（RSI = 跳躍高度 / 觸地時間）。透過從 20~30 公分高的跳箱落下著地（Drop Jump），大腦皮質受到前庭與肌梭極限拉扯信號刺激，訓練高位運動神經元在 0.2 秒內以最高頻率發放神經衝動。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-amber-400">📊 跑者 RSI 評級標竿:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    業餘跑者 RSI 常落在 1.2~1.6；進階跑者宜挑戰 <strong>RSI > 2.0</strong>。建議每週僅需 2~3 組 x 5 次高品質下落跳，重質不重量，嚴防神經疲勞過載。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Performing low-volume drop jumps from a thirty-centimeter plyo box sharpens your neuromuscular reflex and raises your reactive strength index.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Performing low-volume drop jumps from a thirty-centimeter plyo box sharpens your neuromuscular reflex and raises your reactive strength index."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    從三十公分跳箱進行低組數下落跳，能鍛造高度敏銳的神經肌肉反射，並提升反應力量指數。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-amber-400/80 flex items-center justify-between font-mono">
+                            <span>#DropJumps #ReactiveStrengthIndex #PlyometricPower #Neuromuscular</span>
+                            <span class="text-slate-500">ID: mcard-10</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-11 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-11">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-amber-400 font-mono">
+                                    毫秒級輸出 • 峰值力加速率
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Rate of Force Development, RFD & Motor Unit Recruitment')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-amber-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Enhancing your rate of force development ensures maximum propulsion is generated during the brief two-hundred-millisecond footstrike window.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>力量發展率與神經徵召速度</span>
+                                <span class="text-xs font-mono text-amber-400 font-normal">(Rate of Force Development, RFD & Motor Unit Recruitment)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/reɪt əv fɔːrs dɪˈveləpmənt/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                力量發展率（RFD）定義為力量隨時間上升的斜率（ΔForce / ΔTime）。人體要發揮絕對最大肌力往往需要 300~500 毫秒，但在跑者步頻 180 SPM 時，每隻腳在地面上的支撐時間僅有 180~220 毫秒。如果你的力量發揮太慢，即便能硬舉 200 公斤也無法在跑步中派上用場。高 RFD 才能在短暫的著地時間窗內榨出最大推力。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-amber-400">🚀 高 RFD 爆發力訓練手段:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    六角槓輕重量快速跳躍硬舉（Trap Bar Jump Shrugs，負重 20~30% 1RM）、藥球雙手向前爆發砸牆（MB Chest Pass）、上坡 60 米全力全力衝刺（Hill Sprints）。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Enhancing your rate of force development ensures maximum propulsion is generated during the brief two-hundred-millisecond footstrike window.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Enhancing your rate of force development ensures maximum propulsion is generated during the brief two-hundred-millisecond footstrike window."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    提升力量發展率能確保在短短兩百毫秒的腳掌著地窗口期內，激發出最強勁的推動力。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-amber-400/80 flex items-center justify-between font-mono">
+                            <span>#RateOfForceDevelopment #RFD #ExplosivePower #HillSprints</span>
+                            <span class="text-slate-500">ID: mcard-11</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-section: programming -->
+            <div id="muscle-sub-programming" class="muscle-sub-pane mb-8">
+                <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
+                        <span>第四篇：週期化阻力課表設計與共存訓練科學 (Periodization & Concurrent Training Science)</span>
+                    </h3>
+                    <span class="text-[10px] font-mono text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-500/20 hidden sm:inline-block">
+                        4 Programming Modules
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card: mcard-12 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-12">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-sky-400 font-mono">
+                                    分子衝突破解 • AMPK vs mTOR
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Concurrent Training & Mitigating the Interference Effect')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-sky-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Separating heavy strength sessions from intense interval runs by at least six hours prevents the molecular interference effect and allows both adaptations to flourish.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>共存訓練與干擾效應破解之道</span>
+                                <span class="text-xs font-mono text-sky-400 font-normal">(Concurrent Training & Mitigating the Interference Effect)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/kənˈkɜːrənt ˈtreɪnɪŋ/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                當運動員在同一個訓練週期同時進行大量耐力訓練與高強度阻力訓練時，耐力激活的 AMPK 分子路徑可能抑制肌肥大與肌力核心的 mTOR 信號途徑，此現象被稱為『干擾效應（Interference Effect）』。運動生理學近年研究證實：只要將訓練時間合理間隔 6~8 小時以上，或遵循『Hard Days Hard（累的日子集中累）』原則，肌力與耐力完全可以雙贏互補！
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-sky-400">📅 跑者重訓每週課表排程鐵律:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    切莫在重訓深蹲力竭後直接去跑乳酸門檻間歇！建議：上午跑高強度間歇，間隔 6 小時補給休息後，下午進行大重量深蹲；隔天安排徹底的低心率輕鬆跑或完全休息。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Separating heavy strength sessions from intense interval runs by at least six hours prevents the molecular interference effect and allows both adaptations to flourish.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Separating heavy strength sessions from intense interval runs by at least six hours prevents the molecular interference effect and allows both adaptations to flourish."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    將大重量肌力課表與高強度間歇跑間隔至少六小時，能阻斷分子級干擾效應，使肌力與耐力兩種生理適應雙雙蓬勃發展。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-sky-400/80 flex items-center justify-between font-mono">
+                            <span>#ConcurrentTraining #InterferenceEffect #AMPKvsMTOR #HardDaysHard</span>
+                            <span class="text-slate-500">ID: mcard-12</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-13 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-13">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-sky-400 font-mono">
+                                    低次數大重量 • 不長肉只漲力量
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Maximum Strength Training (85-90% 1RM)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-sky-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Heavy resistance training at eighty-five percent of one-rep max increases running economy by up to eight percent without adding unwanted muscle bulk.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>最大肌力訓練與神經協調</span>
+                                <span class="text-xs font-mono text-sky-400 font-normal">(Maximum Strength Training (85-90% 1RM))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈmæksɪməm streŋkθ ˈtreɪnɪŋ/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                耐力跑者最常犯的致命誤區是：拿輕啞鈴做 30 下以為在練『肌耐力』。事實上，跑者每週跑上萬步早已不缺肌耐力，最欠缺的是『高階神經徵召與高剛性肌腱』。採用 85%~90% 1RM 的大重量、低次數（3~5 次）複合動作，組間休息 2~3 分鐘，能在完全不增加多餘體重與肌肉體積的前提下，將跑步經濟性顯著提升 4%~8%！
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-sky-400">🏆 跑者三大主力最大肌力動作:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    後背槓深蹲（Back Squat）、六角槓硬舉（Trap Bar Deadlift）、單腳負重登階。每週僅需 2 次，每次 3~4 組 x 3~5 次，組間充分休息 120 秒。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Heavy resistance training at eighty-five percent of one-rep max increases running economy by up to eight percent without adding unwanted muscle bulk.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Heavy resistance training at eighty-five percent of one-rep max increases running economy by up to eight percent without adding unwanted muscle bulk."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    以單次最大重量百分之八十五進行大重量訓練，能在不增加多餘體重肌肉體積的前提下，將跑步經濟性提升多達百分之八。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-sky-400/80 flex items-center justify-between font-mono">
+                            <span>#MaximumStrength #OneRepMax #RunningEconomy #NeuralAdaptation</span>
+                            <span class="text-slate-500">ID: mcard-13</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-14 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-14">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-sky-400 font-mono">
+                                    自覺疲勞調節 • 拒絕每組力竭
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Reps in Reserve, RIR & RPE Scale')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-sky-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Leaving one to two reps in reserve during heavy barbell squats builds neural strength while sparing your central nervous system for tomorrow\'s long run.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>保留次數與自覺疲勞自主調節</span>
+                                <span class="text-xs font-mono text-sky-400 font-normal">(Reps in Reserve, RIR & RPE Scale)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/reps ɪn rɪˈzɜːrv/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                耐力運動員不是健美選手，重訓的目的絕不是將肌肉練到每組完全力竭（0 RIR）。組組力竭會造成長達 48~72 小時的中樞神經系統（CNS）嚴重衰竭，徹底摧毀隨後的長跑訓練品質。採用保留次數機制（Reps in Reserve, RIR）：每組動作在感到『離力竭還能再標準做 1~2 下』時主動停下，既能取得 95% 的神經適應收益，又能快速恢復。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-sky-400">⚖️ 跑者 RIR 與 RPE 對應指標:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    主力複合動作維持 <strong>RIR 1~2（相當於 RPE 8~9）</strong>。長跑賽季高峰期（Peak Phase）調降至 RIR 2~3（RPE 7~8），維持肌力張力而不積累疲勞。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Leaving one to two reps in reserve during heavy barbell squats builds neural strength while sparing your central nervous system for tomorrow\'s long run.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Leaving one to two reps in reserve during heavy barbell squats builds neural strength while sparing your central nervous system for tomorrow's long run."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    在進行大重量槓鈴深蹲時保留一到兩次保留次數，能在強化神經肌力的同時，為明天的長跑保留寶貴的中樞神經系統能量。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-sky-400/80 flex items-center justify-between font-mono">
+                            <span>#RepsInReserve #RIR #RPE #AutoRegulation #CentralNervousSystem</span>
+                            <span class="text-slate-500">ID: mcard-14</span>
+                        </div>
+                    </div>
+                    <!-- Card: mcard-15 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between muscle-card" id="mcard-15">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-sky-400 font-mono">
+                                    肌節微損傷 • 積極排酸指南
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Delayed Onset Muscle Soreness, DOMS Management')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-sky-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Mild active recovery including gentle cycling and dynamic mobility work flushes metabolic byproducts and eases delayed onset muscle soreness far better than complete bed rest.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>遲發性肌肉酸痛與積極性修復</span>
+                                <span class="text-xs font-mono text-sky-400 font-normal">(Delayed Onset Muscle Soreness, DOMS Management)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/dɪˈleɪd ˈɑːnset ˈmʌsəl ˈsɔːrnəs/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                在進行全新重訓動作或高強度離心訓練後 24~48 小時達到巔峰的肌肉酸痛（DOMS），不是乳酸堆積（乳酸在訓後 60 分鐘內即已代謝完畢），而是肌原纖維 Z 盤微觀撕裂與後續無菌性發炎腫脹。處置 DOMS 的最佳方案是輕度的『積極性恢復（Active Recovery）』，透過低強度肌肉泵浦作用加速淋巴與血液循環，清除組織發炎水腫。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="font-bold text-sky-400">🩹 DOMS 快速緩解科學四步法:</div>
+                                <div class="text-slate-300 leading-relaxed">
+                                    1. 隔天進行 20 分鐘 Zone 1 極慢跑或飛輪單車；2. 滾筒輕柔放鬆肌腹（避免過度死壓痛點）；3. 溫水浴或冷熱交替淋浴；4. 補充 Omega-3 魚油與酸櫻桃汁抗發炎。
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs space-y-1">
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                                    <span>實戰英語例句 (Real-world Scenario):</span>
+                                    <button onclick="speakText('Mild active recovery including gentle cycling and dynamic mobility work flushes metabolic byproducts and eases delayed onset muscle soreness far better than complete bed rest.')" class="text-emerald-400 hover:text-emerald-300 text-[11px] flex items-center gap-0.5">
+                                        <span>🔊 朗讀</span>
+                                    </button>
+                                </div>
+                                <div class="text-slate-200 italic font-medium leading-relaxed">
+                                    "Mild active recovery including gentle cycling and dynamic mobility work flushes metabolic byproducts and eases delayed onset muscle soreness far better than complete bed rest."
+                                </div>
+                                <div class="text-slate-400 text-[11px] pt-1">
+                                    包括溫和騎車與動態活動度操在內的輕度積極恢復，比起徹底臥床休息更能有效沖刷代謝副產物並緩解延遲性肌肉酸痛。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 mt-3 border-t border-slate-800/80 text-[10px] text-sky-400/80 flex items-center justify-between font-mono">
+                            <span>#DOMS #ActiveRecovery #MuscleDamage #AntiInflammatory</span>
+                            <span class="text-slate-500">ID: mcard-15</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -4078,9 +5057,12 @@
         // Global Mini Player Bar Controls (Top Sticky Bar Integration)
         function pauseAnyPlaying() {
             if (isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
             if (isAutoPlaying) pauseAutoPlay();
             if (isNutritionAutoPlaying) stopNutritionAutoPlay();
+            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
             if (isInjuryAutoPlaying) stopInjuryAutoPlay();
+            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
             hideTopMiniPlayer();
         }
 
@@ -4171,8 +5153,10 @@
 
         function startNutritionAutoPlay() {
             if (isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
             if (isAutoPlaying) stopAutoPlay();
             if (isInjuryAutoPlaying) stopInjuryAutoPlay();
+            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
 
             isNutritionAutoPlaying = true;
             const icon = document.getElementById('nutrition-play-icon');
@@ -4271,6 +5255,307 @@
 
             window.speechSynthesis.speak(titleUtterance);
         }
+
+        
+        // ==========================================
+        // 4.5 MUSCLE TRAINING & STRENGTH CONTROLLER
+        // ==========================================
+        const MUSCLE_ITEMS = [
+            {
+                id: "mcard-0",
+                title: "Progressive Overload",
+                zh: "漸進式超負荷原則",
+                ex_en: "Applying progressive overload through gradual resistance increases ensures continuous muscular adaptation without overloading connective tissues.",
+                ex_zh: "透過漸進式增加阻力來落實超負荷，能在不對結締組織造成過度負擔的前提下確保肌肉持續適應。"
+            },
+            {
+                id: "mcard-1",
+                title: "Eccentric Contraction & Deceleration Control",
+                zh: "離心收縮與減速剎車力量",
+                ex_en: "Eccentric strength training conditions the quadriceps to absorb punishing downhill braking forces, significantly slashing the risk of patellar tendinopathy.",
+                ex_zh: "離心肌力訓練能強化股四頭肌吸收下坡時巨大的減速剎車力量，大幅降低髕骨肌腱發炎的風險。"
+            },
+            {
+                id: "mcard-2",
+                title: "Muscle Fiber Types: Type I vs Type IIa/IIx",
+                zh: "肌纖維分型與耐力轉化",
+                ex_en: "Heavy resistance training activates high-threshold fast-twitch motor units, providing marathon runners with an untapped power reservoir during final sprint surges.",
+                ex_zh: "大重量阻力訓練能激活高閾值的快肌運動單位，為馬拉松跑者在終點衝刺時提供未被開發的爆發儲備能量。"
+            },
+            {
+                id: "mcard-3",
+                title: "Muscle Protein Synthesis, MPS & Hypertrophy",
+                zh: "肌肉蛋白質合成與恢復之窗",
+                ex_en: "Consuming twenty-five grams of whey protein rich in leucine within sixty minutes post-workout optimizes muscle protein synthesis and accelerates structural recovery.",
+                ex_zh: "訓練後六十分鐘內攝取二十五克富含白胺酸的乳清蛋白，能最大化肌肉蛋白質合成並加速肌纖維結構修復。"
+            },
+            {
+                id: "mcard-4",
+                title: "Posterior Chain & Gluteus Maximus Drive",
+                zh: "後側動力鏈與臀大肌主動推進",
+                ex_en: "Strengthening the posterior chain with Romanian deadlifts and heavy hip thrusts eliminates knee dominance and supercharges horizontal hip drive for longer strides.",
+                ex_zh: "透過羅馬尼亞硬舉與大重量臀推強化後側動力鏈，能消除膝蓋主導代償，並大幅提升水平髖伸展推進力以擴大步幅。"
+            },
+            {
+                id: "mcard-5",
+                title: "Soleus Muscle Conditioning & Plantarflexion",
+                zh: "比目魚肌強化與足底屈曲耐力",
+                ex_en: "Because the soleus endures up to eight times body weight during the running stance phase, heavy seated calf raises are crucial for bulletproofing the Achilles tendon.",
+                ex_zh: "由於比目魚肌在跑步站立期承受高達體重八倍的負荷，大重量坐姿提踵對於打造鋼鐵般的阿基里斯腱至關重要。"
+            },
+            {
+                id: "mcard-6",
+                title: "Single-Leg Stability & Gluteus Medius Function",
+                zh: "單腳穩定性與臀中肌抗骨盆傾斜",
+                ex_en: "Bulgarian split squats build unilateral stability, firing the gluteus medius to keep the pelvis level and prevent destructive dynamic knee valgus.",
+                ex_zh: "保加利亞分腿蹲能建立卓越的單腳穩定性，激活臀中肌以維持骨盆水平，並防止具毀滅性的動態膝內扣。"
+            },
+            {
+                id: "mcard-7",
+                title: "Anti-Rotation Core & Torso Stiffness",
+                zh: "抗旋轉核心與軀幹抗伸展剛性",
+                ex_en: "Training anti-rotation core stiffness through Pallof presses and heavy farmer's carries prevents torso twisting and eliminates wasted energy leakage during long runs.",
+                ex_zh: "透過帕洛夫推舉與負重農夫走路訓練抗旋轉核心剛性，能防止軀幹多餘扭轉，並徹底消除長跑時的能量無謂洩漏。"
+            },
+            {
+                id: "mcard-8",
+                title: "Stretch-Shortening Cycle, SSC",
+                zh: "牽張縮短循環機制",
+                ex_en: "Optimizing the stretch-shortening cycle trains your tendon complex to store elastic recoil energy, slashing the metabolic cost of running at marathon race pace.",
+                ex_zh: "優化牽張縮短循環能訓練肌腱複合體儲存彈性回彈位能，大幅降低在馬拉松目標配速下的代謝能量消耗。"
+            },
+            {
+                id: "mcard-9",
+                title: "Tendon Stiffness & Ground Contact Time, GCT",
+                zh: "肌腱剛性與觸地時間優化",
+                ex_en: "Increasing Achilles tendon stiffness through rapid pogo hops reduces ground contact time and provides free elastic bounce with every stride.",
+                ex_zh: "透過快速踝部波戈彈跳增強阿基里斯腱剛性，能顯著縮短觸地時間，並在每一步中帶來免費的彈性能量反饋。"
+            },
+            {
+                id: "mcard-10",
+                title: "Drop Jumps & Reactive Strength Index, RSI",
+                zh: "下落跳與反應力量指數",
+                ex_en: "Performing low-volume drop jumps from a thirty-centimeter plyo box sharpens your neuromuscular reflex and raises your reactive strength index.",
+                ex_zh: "從三十公分跳箱進行低組數下落跳，能鍛造高度敏銳的神經肌肉反射，並提升反應力量指數。"
+            },
+            {
+                id: "mcard-11",
+                title: "Rate of Force Development, RFD & Motor Unit Recruitment",
+                zh: "力量發展率與神經徵召速度",
+                ex_en: "Enhancing your rate of force development ensures maximum propulsion is generated during the brief two-hundred-millisecond footstrike window.",
+                ex_zh: "提升力量發展率能確保在短短兩百毫秒的腳掌著地窗口期內，激發出最強勁的推動力。"
+            },
+            {
+                id: "mcard-12",
+                title: "Concurrent Training & Mitigating the Interference Effect",
+                zh: "共存訓練與干擾效應破解之道",
+                ex_en: "Separating heavy strength sessions from intense interval runs by at least six hours prevents the molecular interference effect and allows both adaptations to flourish.",
+                ex_zh: "將大重量肌力課表與高強度間歇跑間隔至少六小時，能阻斷分子級干擾效應，使肌力與耐力兩種生理適應雙雙蓬勃發展。"
+            },
+            {
+                id: "mcard-13",
+                title: "Maximum Strength Training (85-90% 1RM)",
+                zh: "最大肌力訓練與神經協調",
+                ex_en: "Heavy resistance training at eighty-five percent of one-rep max increases running economy by up to eight percent without adding unwanted muscle bulk.",
+                ex_zh: "以單次最大重量百分之八十五進行大重量訓練，能在不增加多餘體重肌肉體積的前提下，將跑步經濟性提升多達百分之八。"
+            },
+            {
+                id: "mcard-14",
+                title: "Reps in Reserve, RIR & RPE Scale",
+                zh: "保留次數與自覺疲勞自主調節",
+                ex_en: "Leaving one to two reps in reserve during heavy barbell squats builds neural strength while sparing your central nervous system for tomorrow's long run.",
+                ex_zh: "在進行大重量槓鈴深蹲時保留一到兩次保留次數，能在強化神經肌力的同時，為明天的長跑保留寶貴的中樞神經系統能量。"
+            },
+            {
+                id: "mcard-15",
+                title: "Delayed Onset Muscle Soreness, DOMS Management",
+                zh: "遲發性肌肉酸痛與積極性修復",
+                ex_en: "Mild active recovery including gentle cycling and dynamic mobility work flushes metabolic byproducts and eases delayed onset muscle soreness far better than complete bed rest.",
+                ex_zh: "包括溫和騎車與動態活動度操在內的輕度積極恢復，比起徹底臥床休息更能有效沖刷代謝副產物並緩解延遲性肌肉酸痛。"
+            }
+        ];
+
+        let currentMuscleTab = 'all';
+        let isMuscleAutoPlaying = false;
+        let muscleAutoPlayTimeout = null;
+        let musclePlayIndex = -1;
+
+        function switchMuscleTab(tabName) {
+            currentMuscleTab = tabName;
+            const panes = {
+                mechanics: document.getElementById('muscle-sub-mechanics'),
+                kinetic: document.getElementById('muscle-sub-kinetic'),
+                plyo: document.getElementById('muscle-sub-plyo'),
+                programming: document.getElementById('muscle-sub-programming')
+            };
+
+            const tabBtns = {
+                all: document.getElementById('mtab-btn-all'),
+                mechanics: document.getElementById('mtab-btn-mechanics'),
+                kinetic: document.getElementById('mtab-btn-kinetic'),
+                plyo: document.getElementById('mtab-btn-plyo'),
+                programming: document.getElementById('mtab-btn-programming')
+            };
+
+            // Reset all buttons to inactive style
+            Object.values(tabBtns).forEach(b => {
+                if (!b) return;
+                b.className = 'mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800';
+            });
+
+            // Set active button style
+            const activeBtn = tabBtns[tabName];
+            if (activeBtn) {
+                if (tabName === 'all') {
+                    activeBtn.className = 'mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm';
+                } else if (tabName === 'mechanics') {
+                    activeBtn.className = 'mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-violet-600 text-white border border-violet-400 shadow-sm';
+                } else if (tabName === 'kinetic') {
+                    activeBtn.className = 'mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-indigo-600 text-white border border-indigo-400 shadow-sm';
+                } else if (tabName === 'plyo') {
+                    activeBtn.className = 'mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-amber-600 text-white border border-amber-400 shadow-sm';
+                } else if (tabName === 'programming') {
+                    activeBtn.className = 'mtab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-sky-600 text-white border border-sky-400 shadow-sm';
+                }
+            }
+
+            // Show / hide panes
+            if (tabName === 'all') {
+                Object.values(panes).forEach(p => { if (p) p.classList.remove('hidden'); });
+            } else {
+                Object.entries(panes).forEach(([k, p]) => {
+                    if (!p) return;
+                    if (k === tabName) {
+                        p.classList.remove('hidden');
+                    } else {
+                        p.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        function toggleMuscleAutoPlay() {
+            if (isMuscleAutoPlaying) {
+                stopMuscleAutoPlay();
+            } else {
+                startMuscleAutoPlay();
+            }
+        }
+
+        function startMuscleAutoPlay() {
+            if (isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
+            if (isAutoPlaying) stopAutoPlay();
+            if (isNutritionAutoPlaying) stopNutritionAutoPlay();
+            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
+            if (isInjuryAutoPlaying) stopInjuryAutoPlay();
+            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
+
+            isMuscleAutoPlaying = true;
+            const icon = document.getElementById('muscle-play-icon');
+            const text = document.getElementById('muscle-play-text');
+            const btn = document.getElementById('btn-muscle-autoplay');
+            if (icon) icon.innerText = '⏸️';
+            if (text) text.innerText = '暫停朗讀肌力訓練';
+            if (btn) {
+                btn.classList.add('bg-violet-600', 'text-white');
+                btn.classList.remove('text-violet-400');
+            }
+
+            if (musclePlayIndex < 0 || musclePlayIndex >= MUSCLE_ITEMS.length) {
+                musclePlayIndex = 0;
+            }
+            playSpecificMuscle(musclePlayIndex, true);
+        }
+
+        function stopMuscleAutoPlay() {
+            isMuscleAutoPlaying = false;
+            if (muscleAutoPlayTimeout) clearTimeout(muscleAutoPlayTimeout);
+            window.speechSynthesis.cancel();
+            const icon = document.getElementById('muscle-play-icon');
+            const text = document.getElementById('muscle-play-text');
+            const btn = document.getElementById('btn-muscle-autoplay');
+            if (icon) icon.innerText = '▶️';
+            if (text) text.innerText = '自動朗讀肌力訓練';
+            if (btn) {
+                btn.classList.remove('bg-violet-600', 'text-white');
+                btn.classList.add('text-violet-400');
+            }
+            document.querySelectorAll('.muscle-card').forEach(c => {
+                c.classList.remove('ring-2', 'ring-violet-400');
+            });
+        }
+
+        function playSpecificMuscle(index, continueFlow = false) {
+            if (index < 0 || index >= MUSCLE_ITEMS.length) return;
+            musclePlayIndex = index;
+            const item = MUSCLE_ITEMS[index];
+
+            // If card is inside a hidden tab, switch to 'all' so it becomes visible
+            if (currentMuscleTab !== 'all') {
+                switchMuscleTab('all');
+            }
+
+            // Highlight card
+            document.querySelectorAll('.muscle-card').forEach(c => {
+                c.classList.remove('ring-2', 'ring-violet-400');
+            });
+            const card = document.getElementById(item.id);
+            if (card) {
+                card.classList.add('ring-2', 'ring-violet-400');
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // Speech Synthesis
+            window.speechSynthesis.cancel();
+            const rate = parseFloat(document.getElementById('opt-speech-rate')?.value || '1.0');
+            const selectedVoice = getSelectedVoice();
+
+            const titleUtterance = new SpeechSynthesisUtterance(item.title);
+            titleUtterance.rate = rate;
+            titleUtterance.lang = 'en-US';
+            if (selectedVoice) titleUtterance.voice = selectedVoice;
+
+            titleUtterance.onend = () => {
+                muscleAutoPlayTimeout = setTimeout(() => {
+                    if (!isMuscleAutoPlaying && !continueFlow) return;
+
+                    const exUtterance = new SpeechSynthesisUtterance(item.ex_en);
+                    exUtterance.rate = rate;
+                    exUtterance.lang = 'en-US';
+                    if (selectedVoice) exUtterance.voice = selectedVoice;
+
+                    exUtterance.onend = () => {
+                        if (isMuscleAutoPlaying || continueFlow) {
+                            const delay = parseInt(document.getElementById('opt-speech-delay')?.value || '2000', 10);
+                            muscleAutoPlayTimeout = setTimeout(() => {
+                                musclePlayIndex = (musclePlayIndex + 1) % MUSCLE_ITEMS.length;
+                                playSpecificMuscle(musclePlayIndex, true);
+                            }, delay);
+                        }
+                    };
+
+                    exUtterance.onerror = () => {
+                        if (isMuscleAutoPlaying || continueFlow) {
+                            musclePlayIndex = (musclePlayIndex + 1) % MUSCLE_ITEMS.length;
+                            playSpecificMuscle(musclePlayIndex, true);
+                        }
+                    };
+
+                    window.speechSynthesis.speak(exUtterance);
+                }, 400);
+            };
+
+            titleUtterance.onerror = () => {
+                if (isMuscleAutoPlaying || continueFlow) {
+                    musclePlayIndex = (musclePlayIndex + 1) % MUSCLE_ITEMS.length;
+                    playSpecificMuscle(musclePlayIndex, true);
+                }
+            };
+
+            window.speechSynthesis.speak(titleUtterance);
+        }
+
 
         // --- INJURY AUTO PLAY ENGINE ---
         const INJURY_ITEMS = [
@@ -4611,8 +5896,10 @@
 
         function startInjuryAutoPlay() {
             if (isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
             if (isAutoPlaying) stopAutoPlay();
             if (isNutritionAutoPlaying) stopNutritionAutoPlay();
+            if (typeof isMuscleAutoPlaying !== "undefined" && isMuscleAutoPlaying) stopMuscleAutoPlay();
 
             isInjuryAutoPlaying = true;
             const icon = document.getElementById('injury-play-icon');
