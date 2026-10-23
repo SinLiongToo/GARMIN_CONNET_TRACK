@@ -6,7 +6,7 @@
     <title>運動英語與訓練黃金原則 | Sport English & Athletic Training Principles</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 600 Athlete Wisdom Quotes Data -->
+    <!-- 1000 Athlete Wisdom Quotes Data -->
     <script src="quotes_data.js"></script>
     <script>
         tailwind.config = {
@@ -380,7 +380,7 @@
                                 </span>
                             </div>
                             <div class="text-[11px] text-slate-400 hidden sm:block">
-                                十大原則 • 600 傳奇金句 • 肌力體能 • 補給科學 • 傷害防護
+                                十大原則 • 1000 傳奇金句 • 肌力體能 • 補給科學 • 傷害防護
                             </div>
                         </div>
                     </div>
@@ -398,7 +398,7 @@
                         <span>📜</span> <span>十大原則</span>
                     </a>
                     <a href="#quotes-section" class="px-2.5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
-                        <span>🏆</span> <span>600 金句</span>
+                        <span>🏆</span> <span>1000 金句</span>
                     </a>
                     <a href="#nutrition-section" class="px-2.5 py-1.5 rounded-lg bg-lime-500/20 hover:bg-lime-500/30 text-lime-300 border border-lime-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
                         <span>🥑</span> <span>補給科學</span>
@@ -461,8 +461,8 @@
                     <span>傳奇運動家經典金句</span>
                     <span>🏆</span>
                 </div>
-                <div class="text-2xl font-bold text-amber-400 mt-2">600 Quotes</div>
-                <div class="text-xs text-slate-400 mt-1">基普喬蓋、柯比、阿里等 600 句</div>
+                <div class="text-2xl font-bold text-amber-400 mt-2">1000 Quotes</div>
+                <div class="text-xs text-slate-400 mt-1">基普喬蓋、柯比、阿里等 1000 句</div>
             </div>
 
             <div class="glass-card rounded-xl p-4 border-l-4 border-l-sky-500">
@@ -614,7 +614,7 @@
                         <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden border border-slate-700/80">
                             <div id="quotes-progress-bar" class="bg-gradient-to-r from-amber-500 via-orange-400 to-yellow-400 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
                         </div>
-                        <span id="quotes-play-status" class="text-amber-400 font-mono font-bold whitespace-nowrap">0 / 600</span>
+                        <span id="quotes-play-status" class="text-amber-400 font-mono font-bold whitespace-nowrap">0 / 1000</span>
                     </div>
                 </div>
 
@@ -656,13 +656,13 @@
                 </div>
             </div>
 
-            <!-- Search & Filter Controls for 600 Quotes -->
+            <!-- Search & Filter Controls for 1000 Quotes -->
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-4">
                 <div class="relative flex-1">
                     <input 
                         type="text" 
                         id="quotes-search" 
-                        placeholder="🔍 搜尋 600 句金句、運動員或心法 (如: Kipchoge, Kobe, 痛苦, 自律, 破極限...)" 
+                        placeholder="🔍 搜尋 1000 句金句、運動員或心法 (如: Kipchoge, Kobe, 痛苦, 自律, 破極限...)" 
                         oninput="searchQuotes()"
                         class="w-full px-3.5 py-2 pl-9 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500 transition-all"
                     />
@@ -670,14 +670,14 @@
                 </div>
                 <div class="flex items-center gap-2 text-xs text-slate-400 self-end sm:self-auto font-mono">
                     <span>進度:</span>
-                    <span id="quotes-showing-count" class="text-amber-400 font-bold">24 / 600</span>
+                    <span id="quotes-showing-count" class="text-amber-400 font-bold">24 / 1000</span>
                 </div>
             </div>
 
             <!-- Quote Category Filter Pills -->
             <div class="flex flex-wrap items-center gap-2 mb-6" id="quote-category-pills">
                 <button onclick="filterQuotes('all')" id="qcat-all" class="quote-filter-pill active px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
-                    🌟 全部金句 (All) (<span id="count-quotes">600</span>)
+                    🌟 全部金句 (All) (<span id="count-quotes">1000</span>)
                 </button>
                 <button onclick="filterQuotes('endurance')" id="qcat-endurance" class="quote-filter-pill px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-all cursor-pointer">
                     🏃‍♂️ 耐力與馬拉松 (Endurance)
@@ -708,7 +708,7 @@
                     <span>展開更多金句 (Show More Quotes)</span>
                 </button>
                 <button onclick="showAllQuotes()" id="btn-show-all-quotes" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white border border-slate-700 transition-all cursor-pointer">
-                    ⚡ 一次顯示全部 600 句
+                    ⚡ 一次顯示全部 1000 句
                 </button>
             </div>
         </section>
@@ -2252,7 +2252,7 @@
                             </span>
                         </h2>
                         <p class="text-xs text-slate-400 mt-0.5">
-                            下肢生物力學失衡、酷熱低溫氣候警戒、百公里越野山徑地形風險與急症防護 (ITBS, PFPS, Plantar Fasciitis, Stress Fractures, EHS, Hypothermia & Trail Safety)
+                            下肢生物力學失衡、酷熱低溫凍傷警戒、冷空氣氣管與胃痙攣、眼睛防護、山野緊急避難與衛星求救 (ITBS, PFPS, Frostbite, Cold GI Distress, Eye Protection, Shelter & Satellite SOS)
                         </p>
                     </div>
                 </div>
@@ -2269,19 +2269,19 @@
 
             <!-- Injury & Warm-up Interactive Tab Navigation -->
             <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 border-b border-slate-700/60 no-scrollbar">
-                <button onclick="switchInjuryTab('all')" id="itab-btn-all" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm" title="瀏覽全部 20 大傷害防護與熱身模組">
-                    <span>📑</span> <span>全部展開 (All 20)</span>
+                <button onclick="switchInjuryTab('all')" id="itab-btn-all" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm" title="瀏覽全部 27 大傷害急症防護、極端氣候、野外求生與熱身模組">
+                    <span>📑</span> <span>全部展開 (All 27)</span>
                 </button>
-                <button onclick="switchInjuryTab('musculoskeletal')" id="itab-btn-musculoskeletal" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="典型路跑下肢傷害與急症">
-                    <span>🏃‍♂️</span> <span>下肢傷害與急症 (6)</span>
+                <button onclick="switchInjuryTab('musculoskeletal')" id="itab-btn-musculoskeletal" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="下肢生物力學失衡與代謝急症 (7)">
+                    <span>🏃‍♂️</span> <span>下肢傷害與代謝急症 (7)</span>
                 </button>
-                <button onclick="switchInjuryTab('weather')" id="itab-btn-weather" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="極端天氣與環境風險防護">
-                    <span>🌤️</span> <span>天氣與環境風險 (4)</span>
+                <button onclick="switchInjuryTab('weather')" id="itab-btn-weather" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="極端天氣、凍傷、冷空氣胃痛與眼睛防護 (7)">
+                    <span>🌤️</span> <span>天氣、凍傷與感官呼吸 (7)</span>
                 </button>
-                <button onclick="switchInjuryTab('trail')" id="itab-btn-trail" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="長途越野賽與山徑實戰風險">
-                    <span>🏔️</span> <span>長途越野賽防護 (4)</span>
+                <button onclick="switchInjuryTab('trail')" id="itab-btn-trail" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="長途越野賽、緊急避難所、衛星求救與蜂蛇防護 (7)">
+                    <span>🏔️</span> <span>越野避難與衛星求救 (7)</span>
                 </button>
-                <button onclick="switchInjuryTab('warmup')" id="itab-btn-warmup" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="科學跑者動態熱身與神經啟動指南">
+                <button onclick="switchInjuryTab('warmup')" id="itab-btn-warmup" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="科學跑者動態熱身與神經啟動指南 (6)">
                     <span>🔥</span> <span>科學動態熱身指南 (6)</span>
                 </button>
             </div>
@@ -2291,10 +2291,10 @@
                 <div class="mb-3 flex items-center justify-between">
                     <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></span>
-                        <span>🏃‍♂️ 第一篇：典型路跑下肢過度使用傷害與臨床急症 (Musculoskeletal & Acute Conditions)</span>
+                        <span>🏃‍♂️ 第一篇：典型路跑下肢過度使用傷害與臨床代謝急症 (Musculoskeletal & Metabolic Conditions)</span>
                     </h3>
                     <span class="text-[10px] font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20 hidden sm:inline-block">
-                        6 Clinical Modules
+                        7 Clinical & Metabolic Modules
                     </span>
                 </div>
 
@@ -2529,6 +2529,44 @@
                         <span class="text-slate-500 font-mono">#MedicalEmergency</span>
                     </div>
                 </div>
+
+                <!-- 7. 運動型低鈉血症與水中毒 (EAH) -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-6">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-rose-400 font-mono">超馬狂飲純水 • 急性低鈉水中毒</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Exercise-Associated Hyponatremia and Water Intoxication')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-rose-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Overdrinking plain water during ultramarathons dangerously dilutes serum sodium levels, triggering exercise-associated hyponatremia and fatal cerebral edema.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">運動型低鈉血症與致命水中毒 (EAH)</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Exercise-Associated Hyponatremia (EAH) & Water Intoxication</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 症狀特徵:</strong> 手指腳趾水腫發脹如香腸 (Puffy Extremities)、無力嗜睡、劇烈頭痛反胃、步履蹣跚；嚴重者進展為癲癇抽搐、急性肺水腫、昏迷甚至腦疝死亡。</div>
+                            <div><strong class="text-amber-400">🔬 生理成因:</strong> 長途馬拉松因恐懼脫水盲目過量狂飲純水，攝入速率遠超腎臟排水極限；運動中抗利尿激素 (ADH) 持續分泌，導致血鈉急速稀釋 (&lt; 135 mmol/L)，水分子大舉湧入細胞誘發致命性「腦水腫 (Cerebral Edema)」。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-rose-300">
+                                <strong>🛡️ 處方對策:</strong> 恪遵「依口渴感飲水 (Drink to Thirst)」原則，每小時水分攝入上限 400~800ml；長途超馬每小時固定補充 300~600mg 鈉鹽電解質；<strong>疑似低鈉水中毒時絕對禁止再喝白開水</strong>，需立即急診靜脈輸注 3% 高滲透壓食鹽水 (Hypertonic Saline)。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-rose-400 font-bold text-[10px]">💬 臨床與實戰例句 (Clinical Example):</div>
+                            <div class="text-slate-200 italic">"Overdrinking plain water during ultramarathons dangerously dilutes serum sodium levels, triggering exercise-associated hyponatremia and fatal cerebral edema."</div>
+                            <div class="text-slate-400">在超級馬拉松中過量飲用純水會危險地稀釋血清鈉濃度，引發運動型低鈉血症與致命的腦水腫。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
+                        <span>救命鑑別: 水中毒症狀極似脫水，盲目補水恐致腦疝</span>
+                        <span class="text-slate-500 font-mono">#Hyponatremia</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -2537,16 +2575,16 @@
             <div class="mb-4 pt-6 border-t border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <h3 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
-                    <span>🌤️ 第二篇：天氣小心事項與環境氣候防護 (Weather & Environmental Hazards)</span>
+                    <span>🌤️ 第二篇：極端氣候、嚴寒凍傷、冷空氣與眼睛呼吸道防護 (Weather, Frostbite & Sensory Hazards)</span>
                 </h3>
                 <span class="text-[10px] font-mono text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20 self-start sm:self-auto">
-                    WBGT • Wind Chill • Altitude • Rain
+                    WBGT • Frostbite • Cold Air & Stomach • Eye Protection • HAPE/HACE
                 </span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <!-- 7. 酷熱高濕與熱衰竭 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between injury-card" id="icard-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                <!-- 8. 酷熱高濕與熱衰竭 (icard-7) -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between injury-card" id="icard-7">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-amber-400 font-mono">WBGT • 高濕熱衰竭警戒</span>
@@ -2583,8 +2621,8 @@
                     </div>
                 </div>
 
-                <!-- 8. 低溫嚴寒、風寒效應與失溫症 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between injury-card" id="icard-7">
+                <!-- 9. 低溫嚴寒、風寒效應與失溫症 (icard-8) -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between injury-card" id="icard-8">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-sky-400 font-mono">低溫風寒 • 核心失溫</span>
@@ -2621,8 +2659,122 @@
                     </div>
                 </div>
 
-                <!-- 9. 雨天路滑、視線不良與皮膚摩擦磨破 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between injury-card" id="icard-8">
+                <!-- 10. 鼻子、臉頰、耳朵末梢表淺與深層凍傷 (icard-9) [NEW] -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between injury-card" id="icard-9">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-sky-400 font-mono">風寒嚴冬 • 鼻子耳朵末梢凍傷</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Frostnip, Frostbite and Facial Cold Injury')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-sky-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('A breathable balaclava and petroleum jelly barrier shield your nose and ears from insidious frostnip when fierce wind chill threatens rapid tissue freezing.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">鼻子、臉頰、耳朵末梢表淺與深層凍傷 (凍瘡)</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Frostnip, Frostbite and Facial Cold Injury</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 症狀特徵:</strong> 初期表淺凍斑 (Frostnip)：鼻尖、耳廓、面頰蒼白發硬、針刺麻木失去知覺；未處置則惡化為深層凍傷 (Frostbite)：皮膚蠟黃發黑、起大水泡壞死。</div>
+                            <div><strong class="text-amber-400">🔬 生理成因:</strong> 風寒指數 &lt; -10°C 奔跑時，身體為保核心心肺啟動極端末梢血管收縮 (Vasoconstriction)；鼻尖耳朵無肌肉且暴露，微循環驟停、細胞結冰晶刺破壞死。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-sky-300">
+                                <strong>🛡️ 處方對策:</strong> 必備防風透氣巴拉克拉法頭套 (Balaclava) 或羊毛面罩；暴露處厚塗凡士林阻絕風寒；<strong>絕對嚴禁搓揉受凍皮膚或用雪搓擦（會粉碎細胞膜）</strong>；進入避風處以溫暖手掌或 37~39°C 溫水緩慢復溫。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-sky-400 font-bold text-[10px]">💬 氣候實戰例句 (Environmental Context):</div>
+                            <div class="text-slate-200 italic">"A breathable balaclava and petroleum jelly barrier shield your nose and ears from insidious frostnip when fierce wind chill threatens rapid tissue freezing."</div>
+                            <div class="text-slate-400">透氣巴拉克拉法保暖面罩與凡士林防護屏障，能在狂暴風寒效應威脅組織迅速凍結時，保護鼻子與耳朵免於不知不覺的表淺凍傷。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-sky-400 flex items-center justify-between">
+                        <span>急救禁忌: 切勿用火烤或大力搓揉受凍組織</span>
+                        <span class="text-slate-500 font-mono">#FrostbitePrevention</span>
+                    </div>
+                </div>
+
+                <!-- 11. 乾冷空氣吸入、運動性支氣管痙攣與胃部受寒痙攣 (icard-10) [NEW] -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between injury-card" id="icard-10">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-amber-400 font-mono">冷空氣刺激 • 氣管與胃部痙攣</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Cold-Air Induced Bronchoconstriction and Cold Gastric Distress')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-amber-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Inhaling frigid dry air triggers acute exercise-induced bronchoconstriction and visceral stomach cramps unless pre-warmed using a thermal buff over mouth and nose.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">乾冷空氣吸入、運動性支氣管痙攣與胃部受寒痙攣</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Cold-Air Induced Bronchoconstriction & Cold Gastric Distress</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 症狀特徵:</strong> 劇烈乾咳 (Runner's Cough)、胸骨後灼痛喘鳴；同時胃部急遽絞痛痙攣、腹脹反胃、劇烈乾嘔或腹瀉，無法吞嚥補給品。</div>
+                            <div><strong class="text-amber-400">🔬 生理成因:</strong> 高強度跑步換氣量暴增，未經鼻腔加溫加濕的乾冷空氣直接刺激支氣管肥大細胞收縮；腹部受寒致內臟血管急遽收縮 (Splanchnic Vasoconstriction)，喘氣吞入冷氣 (Aerophagia) 引發胃壁平滑肌抽搐。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-amber-300">
+                                <strong>🛡️ 處方對策:</strong> 口鼻拉上多功能魔術頭巾加溫加濕吸入空氣；練習「鼻吸口呼」；穿著防風保暖跑步腹卷保護核心腹部；補給時飲用 25~35°C 溫水小口啜飲，避免灌冰水刺激胃部。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-amber-400 font-bold text-[10px]">💬 氣候實戰例句 (Environmental Context):</div>
+                            <div class="text-slate-200 italic">"Inhaling frigid dry air triggers acute exercise-induced bronchoconstriction and visceral stomach cramps unless pre-warmed using a thermal buff over mouth and nose."</div>
+                            <div class="text-slate-400">吸入乾冷空氣會引發急性運動性支氣管痙攣與內臟胃痙攣，除非利用口鼻處的保暖頭巾預先將空氣加溫加濕。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-amber-400 flex items-center justify-between">
+                        <span>呼吸對策: 舌抵上顎或頭巾覆鼻，防冷空氣直接直擊肺胃</span>
+                        <span class="text-slate-500 font-mono">#ColdAirDistress</span>
+                    </div>
+                </div>
+
+                <!-- 12. 紫外線光害、雪盲症、低垂枝枒與眼睛異物防護 (icard-11) [NEW] -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between injury-card" id="icard-11">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-cyan-400 font-mono">UV400 / 雪盲 • 枝枒劃傷角膜 • 飛砂風鏡</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Eye Protection, Photokeratitis and Corneal Trauma')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Wearing wrap-around UV400 photochromic eyewear prevents catastrophic corneal abrasions from low-hanging branches and shields retinas from debilitating snow blindness on alpine ridges.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">紫外線光害、雪盲症、低垂枝枒與眼睛異物防護</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Eye Protection, Photokeratitis (Snow Blindness) & Corneal Trauma</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 症狀特徵:</strong> 雪盲/光角膜炎 (Photokeratitis)：受紫外線灼傷 6~12 小時後雙眼劇痛、狂流淚畏光、砂礫磨眼感；林道穿行遭低枝抽打導致角膜刮傷 (Corneal Abrasion) 視力模糊；迎風飛砂昆蟲入眼。</div>
+                            <div><strong class="text-amber-400">🔬 生理與環境:</strong> 高山每升高 1,000m 紫外線增強 12%，雪地紫外線反射率高達 80% (柏油路僅 10%)；角膜無角質層易被 UV 灼傷；高速越野動態視力盲區極易撞擊突出細枝。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-cyan-300">
+                                <strong>🛡️ 處方對策:</strong> 全程佩戴全包覆式 UV400 變色防護運動眼鏡 (Photochromic) 或透明護目鏡；異物入眼或枝枒刮傷<strong>絕對嚴禁揉搓眼球</strong>；以無菌生理食鹽水 (Saline Eye Wash) 沖洗，持續疼痛需閉眼紗布覆蓋並送醫。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-cyan-400 font-bold text-[10px]">💬 氣候實戰例句 (Environmental Context):</div>
+                            <div class="text-slate-200 italic">"Wearing wrap-around UV400 photochromic eyewear prevents catastrophic corneal abrasions from low-hanging branches and shields retinas from debilitating snow blindness on alpine ridges."</div>
+                            <div class="text-slate-400">佩戴全包覆式 UV400 變色防護運動眼鏡，能防止低垂樹枝造成災難性的角膜刮傷，並保護視網膜免於高山稜線上致殘的雪盲症傷害。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-cyan-400 flex items-center justify-between">
+                        <span>眼部鐵律: 越野跑太陽眼鏡不僅是遮陽，更是救命護目甲</span>
+                        <span class="text-slate-500 font-mono">#EyeProtection</span>
+                    </div>
+                </div>
+
+                <!-- 13. 雨天路滑、視線不良與皮膚摩擦磨破 (icard-12) -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between injury-card" id="icard-12">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-emerald-400 font-mono">雨戰鋪面 • 防滑防磨破</span>
@@ -2659,13 +2811,13 @@
                     </div>
                 </div>
 
-                <!-- 10. 高海拔低氧環境與急性高山症 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 transition-all flex flex-col justify-between injury-card" id="icard-9">
+                <!-- 14. 高海拔稀薄空氣、低氧、高山肺水腫與腦水腫 (icard-13) -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 transition-all flex flex-col justify-between injury-card" id="icard-13">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-                            <span class="text-[11px] font-bold text-purple-400 font-mono">稀薄空氣 • 缺氧與高山症</span>
+                            <span class="text-[11px] font-bold text-purple-400 font-mono">稀薄空氣 • 缺氧 • HAPE/HACE</span>
                             <div class="flex items-center gap-1.5">
-                                <button onclick="speakText('High Altitude, Hypoxia and Acute Mountain Sickness')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-purple-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                <button onclick="speakText('High Altitude, Hypoxia, Pulmonary and Cerebral Edema')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-purple-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
                                     <span>🔊</span> <span>名稱</span>
                                 </button>
                                 <button onclick="speakText('Rapid ascent without staged acclimatization severely lowers oxygen saturation, triggering acute mountain sickness that mandates immediate descent.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
@@ -2673,14 +2825,14 @@
                                 </button>
                             </div>
                         </div>
-                        <h3 class="font-bold text-white text-base mt-2">高海拔稀薄空氣、低氧與急性高山症</h3>
-                        <div class="text-[11px] text-slate-400 font-mono">High Altitude, Hypoxia and Acute Mountain Sickness</div>
+                        <h3 class="font-bold text-white text-base mt-2">高海拔稀薄空氣、低氧與高山肺/腦水腫</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">High Altitude, Hypoxia, HAPE & HACE</div>
 
                         <div class="mt-3 space-y-1.5 text-xs text-slate-300">
-                            <div><strong class="text-sky-400">📍 症狀特徵:</strong> 海拔 &gt; 2400m，搏動性前額頭痛、噁心嘔吐、食慾不振、失眠與運動性氣喘。若出現步履蹣跚 (Ataxia) 或肺囉音，為腦水腫 (HACE) 或肺水腫 (HAPE) 之極危險徵兆。</div>
-                            <div><strong class="text-amber-400">🔬 生理成因:</strong> 大氣總壓隨海拔上升而驟減，氧分壓降低引發低血氧症 (Hypoxia)；機體過度代償通氣導致呼吸性鹼中毒與腦血管血管性擴張。</div>
+                            <div><strong class="text-sky-400">📍 症狀特徵:</strong> 海拔 &gt; 2400m，搏動性前額頭痛、噁心嘔吐；若靜止坐著亦劇烈喘息、咳出粉紅色泡沫痰為肺水腫 (HAPE)；若步態蹣跚 (Ataxia)、神智混亂為腦水腫 (HACE) 之致命急症。</div>
+                            <div><strong class="text-amber-400">🔬 生理成因:</strong> 大氣壓隨海拔上升驟減，氧分壓降低引發低血氧症 (Hypoxia)；低氧導致肺動脈極端不均勻收縮誘發肺泡微血管破裂，腦微血管滲透性暴增導致缺氧水腫。</div>
                             <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-purple-300">
-                                <strong>🛡️ 處方對策:</strong> 賽前 3~5 天進駐高地適應；遵行「爬高睡低 (Climb High, Sleep Low)」策略；善用 Garmin 脈搏血氧儀 (Pulse Ox) 監控靜態 SpO2；若出現神經失常或劇烈頭痛，唯一解法是<strong>「立即下撤海拔 500~1000m (Immediate Descent)」</strong>。
+                                <strong>🛡️ 處方對策:</strong> 賽前 3~5 天進駐高地適應；遵行「爬高睡低 (Climb High, Sleep Low)」；善用 Garmin 脈搏血氧儀 (Pulse Ox) 監控 SpO2；若出現步態不穩或咳粉紅痰，唯一解法是<strong>「立即向下撤離海拔 500~1000m (Immediate Descent)」</strong>。
                             </div>
                         </div>
 
@@ -2697,23 +2849,21 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Sub-section 3: 長途越野賽與超馬山徑實戰風險 -->
+        </div><!-- Sub-section 3: 長途越野賽與超馬山徑實戰風險 -->
         <div id="injury-sub-trail" class="injury-sub-pane">
             <div class="mb-4 pt-6 border-t border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <h3 class="text-xs sm:text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>🏔️ 第三篇：長途越野賽與超馬山徑實戰風險防護 (Trail Running & Ultra-Trail Mountain Hazards)</span>
+                    <span>🏔️ 第三篇：長途越野賽、荒野避難所、衛星求救與蜂蛇防護 (Trail Hazards, Shelter & SAR)</span>
                 </h3>
                 <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 self-start sm:self-auto">
-                    Technical Terrain • Mandatory Gear • Night Running
+                    Emergency Shelter • inReach SOS • Alpine Distress • Snake & Hornet • Gear
                 </span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- 11. 崎嶇山徑腳踝內翻扭傷 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between injury-card" id="icard-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                <!-- 15. 崎嶇山徑腳踝內翻扭傷 (icard-14) -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between injury-card" id="icard-14">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-emerald-400 font-mono">碎石樹根 • 腳踝內翻扭傷</span>
@@ -2750,8 +2900,8 @@
                     </div>
                 </div>
 
-                <!-- 12. 陡降下坡股四頭肌離心肌力破壞 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between injury-card" id="icard-11">
+                <!-- 16. 陡降下坡股四頭肌離心肌力破壞 (icard-15) -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between injury-card" id="icard-15">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-amber-400 font-mono">千米陡降 • 離心收縮破壞</span>
@@ -2788,8 +2938,8 @@
                     </div>
                 </div>
 
-                <!-- 13. 長途潮濕浸水足與水泡管理 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between injury-card" id="icard-12">
+                <!-- 17. 長途潮濕浸水足與水泡管理 (icard-16) -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between injury-card" id="icard-16">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-cyan-400 font-mono">涉溪水戰 • 浸水足與水泡</span>
@@ -2826,8 +2976,89 @@
                     </div>
                 </div>
 
-                <!-- 14. 山野無援、夜間越野與強制裝備法則 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-13">
+                <!-- 18. 荒野緊急避難所建立與防潮保溫迫降法則 (icard-17) [NEW] -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between injury-card" id="icard-17">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-emerald-400 font-mono">迷途受傷迫降 • 露宿袋避難 • 地面隔熱</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Emergency Wilderness Shelter, Bivy Sacks and Survival Insulation')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Deploying a waterproof emergency bivy sack behind a windbreak boulder and insulating yourself from frozen ground with your backpack prevents fatal hypothermia during a wilderness stranding.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">荒野緊急避難所建立與防潮保溫迫降法則</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Emergency Wilderness Shelter, Bivy Sacks & Survival Insulation</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 致命風險:</strong> 山區遭遇暴風雪迷途或骨折無法行走，強風 (對流) 與冰冷濕地 (傳導導熱速度為空氣 25 倍) 聯合夾擊，受困者會在 2~4 小時內體溫暴跌至致命深層失溫。</div>
+                            <div><strong class="text-amber-400">🔬 生存原則:</strong> 落實 <strong>STOP 原則 (Stop 停下、Think 冷靜、Observe 觀察地形、Plan 避難計畫)</strong>；杜絕盲目亂走消耗最後體能；避難所核心目標為「阻斷風與濕」。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-emerald-300">
+                                <strong>🛡️ 處方對策:</strong> 尋找天然巨石背風面 (Lee side) 或茂密灌木；<strong>首要將背包與枯枝乾葉墊在身下阻絕地面傳導散熱</strong>；鑽入防水透氣緊急露宿袋 (Emergency Bivy) 或太空鋁箔毯採「捲餅包覆法 (Burrito Wrap)」全身緊密封閉；兩人以上緊貼互相分享體溫。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-emerald-400 font-bold text-[10px]">💬 越野實戰例句 (Trail Running Context):</div>
+                            <div class="text-slate-200 italic">"Deploying a waterproof emergency bivy sack behind a windbreak boulder and insulating yourself from frozen ground with your backpack prevents fatal hypothermia during a wilderness stranding."</div>
+                            <div class="text-slate-400">在背風巨石後方展開防水緊急露宿袋，並用背包將自己與冰冷地面隔絕，能在荒野受困期間有效防止致命的失溫症。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-emerald-400 flex items-center justify-between">
+                        <span>求生法則: 先防風隔地保體溫，切勿慌亂亂跑耗竭體力</span>
+                        <span class="text-slate-500 font-mono">#EmergencyShelter</span>
+                    </div>
+                </div>
+
+                <!-- 19. 緊急求救呼叫、衛星通訊器與搜救信標座標指引 (icard-18) [NEW] -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-18">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-rose-400 font-mono">零訊號救援 • inReach 衛星 SOS • 國際哨音</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Calling for Help: Satellite SOS, Emergency Beacons and Alpine Distress Protocols')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-rose-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Triggering a Garmin inReach satellite SOS transmits your precise WGS84 coordinates to emergency search and rescue teams when cellular reception is completely dead.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">緊急求救呼叫、衛星通訊器與搜救信標座標指引</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Calling for Help: Satellite SOS, Emergency Beacons & Alpine Distress Protocols</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 救援痛點:</strong> 深山峽谷手機完全無信號；突發摔落骨折、心搏驟停或失溫受困；慌亂求救未報座標導致搜救隊如大海撈針延誤黃金時效。</div>
+                            <div><strong class="text-amber-400">🔬 搜救通訊體系:</strong> 全球衛星通訊 (Iridium 銥衛星) 突破地面基地台限制；國際高山求救信號 (Alpine Distress) 為山域通用光學與聲學標準。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-rose-300">
+                                <strong>🛡️ 處方對策:</strong>
+                                <ol class="list-decimal pl-4 space-y-0.5">
+                                    <li><strong>衛星求救</strong>: 觸發 Garmin inReach / 衛星手機 SOS，發送 WGS84 經緯度座標與人數傷情；</li>
+                                    <li><strong>高音哨求救</strong>: <strong>每分鐘用力吹響 6 次短音</strong>，間隔 1 分鐘後反覆循環 (回應為每分鐘 3 次)；</li>
+                                    <li><strong>直升機引導</strong>: 雙臂高舉成「Y」字形 (Yes, Need Help)，以亮橘色救生毯鋪地標示風向與空曠吊掛點。</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-rose-400 font-bold text-[10px]">💬 越野實戰例句 (Trail Running Context):</div>
+                            <div class="text-slate-200 italic">"Triggering a Garmin inReach satellite SOS transmits your precise WGS84 coordinates to emergency search and rescue teams when cellular reception is completely dead."</div>
+                            <div class="text-slate-400">當手機通訊信號完全中斷時，觸發 Garmin inReach 衛星 SOS 能將你的精確 WGS84 經緯度座標傳輸給緊急搜救中心。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
+                        <span>通報三要素: 人數傷勢、WGS84 經緯度座標、現場微地形</span>
+                        <span class="text-slate-500 font-mono">#CallForHelp</span>
+                    </div>
+                </div>
+
+                <!-- 20. 山野無援、夜間越野與強制裝備法則 (icard-19) -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-19">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-rose-400 font-mono">夜戰深山 • 強制生存裝備</span>
@@ -2861,6 +3092,44 @@
                     <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-rose-400 flex items-center justify-between">
                         <span>生存鐵律: 強制裝備是救命底線，永遠不可投機減重</span>
                         <span class="text-slate-500 font-mono">#WildernessSurvival</span>
+                    </div>
+                </div>
+
+                <!-- 21. 山徑虎頭蜂螫、毒蛇咬傷與急性過敏性休克防護 (icard-20) [NEW] -->
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between injury-card" id="icard-20">
+                    <div>
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                            <span class="text-[11px] font-bold text-amber-400 font-mono">虎頭蜂群襲 • 過敏性休克 EpiPen • 毒蛇壓迫固定</span>
+                            <div class="flex items-center gap-1.5">
+                                <button onclick="speakText('Trail Wildlife Hazards: Hornet Attacks, Snakebites and Anaphylaxis')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-amber-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽標題發音">
+                                    <span>🔊</span> <span>名稱</span>
+                                </button>
+                                <button onclick="speakText('Carrying an epinephrine auto-injector is life-saving for runners allergic to wasp stings, while venomous snakebites require immediate limb immobilization rather than archaic tourniquets.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all" title="聽例句朗讀">
+                                    <span>🗣️</span> <span>例句</span>
+                                </button>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-white text-base mt-2">山徑虎頭蜂螫、毒蛇咬傷與急性過敏性休克防護</h3>
+                        <div class="text-[11px] text-slate-400 font-mono">Trail Wildlife Hazards: Hornet Attacks, Snakebites & Anaphylaxis</div>
+
+                        <div class="mt-3 space-y-1.5 text-xs text-slate-300">
+                            <div><strong class="text-sky-400">📍 致命危險:</strong> 遭虎頭蜂群襲或單隻螫傷，引發喉頭水腫窒息、血壓暴跌昏厥之過敏性休克 (Anaphylaxis)；或遭赤尾青竹絲、龜殼花等毒蛇咬傷致局部壞死或全身神經癱瘓。</div>
+                            <div><strong class="text-amber-400">🔬 生理病理:</strong> 蜂毒胜肽抗原誘發猛烈全身性肥大細胞脫顆粒，數分鐘內即可致命；毒蛇毒液經淋巴循環擴散，切開吸吮或亂綁止血帶只會加劇組織大範圍缺血壞死。</div>
+                            <div class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-amber-300">
+                                <strong>🛡️ 處方對策:</strong> 遇巡邏蜂保持冷靜壓低身形原路朝順風快步撤離；蜂螫過敏者隨身攜帶<strong>腎上腺素筆 (EpiPen)</strong> 立即刺入大腿外側肌肉；遭毒蛇咬傷<strong>保持平靜減緩血流</strong>、以彈性繃帶施行<strong>「彈性壓迫固定法 (PIT)」</strong>，拍照蛇身特徵並立即呼救送醫注射抗蛇毒血清。
+                            </div>
+                        </div>
+
+                        <!-- 💬 實戰例句 -->
+                        <div class="mt-3 p-2.5 rounded-lg bg-slate-950/90 border border-slate-800 text-[11px] space-y-1">
+                            <div class="text-amber-400 font-bold text-[10px]">💬 越野實戰例句 (Trail Running Context):</div>
+                            <div class="text-slate-200 italic">"Carrying an epinephrine auto-injector is life-saving for runners allergic to wasp stings, while venomous snakebites require immediate limb immobilization rather than archaic tourniquets."</div>
+                            <div class="text-slate-400">隨身攜帶腎上腺素自動注射器對蜂螫過敏跑者是救命關鍵，而遭毒蛇咬傷則需要立即固定患肢，而非使用陳舊錯誤的止血帶。</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-800/80 text-[11px] text-amber-400 flex items-center justify-between">
+                        <span>急救鐵律: 毒蛇咬傷禁切開禁口吸，彈性固定速就醫</span>
+                        <span class="text-slate-500 font-mono">#WildlifeSafety</span>
                     </div>
                 </div>
             </div>
@@ -2974,7 +3243,7 @@
             <!-- 6 Dynamic Warm-up Drills Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- 15. 髖關節前後與左右動態擺腿 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between injury-card" id="icard-14">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-sky-500/50 transition-all flex flex-col justify-between injury-card" id="icard-21">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-sky-400 font-mono">髖部靈活 • 動態擺腿</span>
@@ -3071,7 +3340,7 @@
                 </div>
 
                 <!-- 16. A字彈跳與高抬膝步態啟動 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between injury-card" id="icard-15">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between injury-card" id="icard-22">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-emerald-400 font-mono">步態力學 • 三關節伸展</span>
@@ -3175,7 +3444,7 @@
                 </div>
 
                 <!-- 17. 彈力帶怪獸走與蚌殼式臀肌喚醒 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between injury-card" id="icard-16">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between injury-card" id="icard-23">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-amber-400 font-mono">臀肌激活 • 杜絕ITBS膝痛</span>
@@ -3272,7 +3541,7 @@
                 </div>
 
                 <!-- 18. 踝關節波戈彈跳與足弓蓄能 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between injury-card" id="icard-17">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between injury-card" id="icard-24">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-cyan-400 font-mono">跟腱剛性 • 縮短觸地時間</span>
@@ -3367,7 +3636,7 @@
                 </div>
 
                 <!-- 19. 弓箭步行走伴隨胸椎旋轉 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 transition-all flex flex-col justify-between injury-card" id="icard-18">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 transition-all flex flex-col justify-between injury-card" id="icard-25">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-purple-400 font-mono">髂腰肌拉伸 • 胸椎旋轉釋放</span>
@@ -3464,7 +3733,7 @@
                 </div>
 
                 <!-- 20. 漸進加速輕快跑 -->
-                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-19">
+                <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 transition-all flex flex-col justify-between injury-card" id="icard-26">
                     <div>
                         <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                             <span class="text-[11px] font-bold text-rose-400 font-mono">神經招募 • 後活化增強效應</span>
@@ -4339,7 +4608,7 @@
         ];
 
         // ==========================================
-        // 2. DATA: 600 Legendary Athlete Quotes
+        // 2. DATA: 1000 Legendary Athlete Quotes
         // ==========================================
         // Loaded via external quotes_data.js, with fallback guard
         const ALL_QUOTES = (typeof ATHLETE_QUOTES_DATA !== 'undefined' && Array.isArray(ATHLETE_QUOTES_DATA)) 
@@ -4347,7 +4616,7 @@
             : [];
 
         // ==========================================
-        // 2.5 ATHLETE QUOTES CONTROLLER (600 Quotes Engine)
+        // 2.5 ATHLETE QUOTES CONTROLLER (1000 Quotes Engine)
         // ==========================================
         let currentQuoteCategory = 'all';
         let currentQuotesFiltered = ALL_QUOTES;
@@ -5620,97 +5889,146 @@
             },
             {
                 id: "icard-6",
+                title: "Exercise-Associated Hyponatremia and Water Intoxication",
+                zh: "運動型低鈉血症與水中毒",
+                ex_en: "Overdrinking plain water during ultramarathons dangerously dilutes serum sodium levels, triggering exercise-associated hyponatremia and fatal cerebral edema.",
+                ex_zh: "在超級馬拉松中過量飲用純水會危險地稀釋血清鈉濃度，引發運動型低鈉血症與致命的腦水腫。"
+            },
+            {
+                id: "icard-7",
                 title: "Extreme Heat, High Humidity and Heat Exhaustion",
                 zh: "酷熱高濕與熱衰竭",
                 ex_en: "Running in high humidity severely impairs sweat evaporation, accelerating heart rate drift and triggering acute heat exhaustion.",
                 ex_zh: "在高濕度環境下奔跑會嚴重阻礙汗水蒸發散熱，加速心率漂移並誘發急性熱衰竭。"
             },
             {
-                id: "icard-7",
+                id: "icard-8",
                 title: "Freezing Cold, Wind Chill and Hypothermia",
                 zh: "低溫嚴寒、風寒與失溫症",
                 ex_en: "Wind chill and sweat-soaked clothing rapidly rob your body of core temperature, inducing insidious hypothermia during wet winter marathons.",
                 ex_zh: "風寒效應與濕透的衣物會迅速奪走身體核心溫度，在濕冷的冬季馬拉松中引發不知不覺發生的失溫症。"
             },
             {
-                id: "icard-8",
+                id: "icard-9",
+                title: "Frostnip, Frostbite and Facial Cold Injury",
+                zh: "鼻子、臉頰、耳朵末梢表淺與深層凍傷",
+                ex_en: "A breathable balaclava and petroleum jelly barrier shield your nose and ears from insidious frostnip when fierce wind chill threatens rapid tissue freezing.",
+                ex_zh: "透氣巴拉克拉法保暖面罩與凡士林防護屏障，能在狂暴風寒效應威脅組織迅速凍結時，保護鼻子與耳朵免於不知不覺的表淺凍傷。"
+            },
+            {
+                id: "icard-10",
+                title: "Cold-Air Induced Bronchoconstriction and Cold Gastric Distress",
+                zh: "乾冷空氣吸入、支氣管痙攣與胃部受寒痙攣",
+                ex_en: "Inhaling frigid dry air triggers acute exercise-induced bronchoconstriction and visceral stomach cramps unless pre-warmed using a thermal buff over mouth and nose.",
+                ex_zh: "吸入乾冷空氣會引發急性運動性支氣管痙攣與內臟胃痙攣，除非利用口鼻處的保暖頭巾預先將空氣加溫加濕。"
+            },
+            {
+                id: "icard-11",
+                title: "Eye Protection, Photokeratitis and Corneal Trauma",
+                zh: "紫外線光害、雪盲症、低垂枝枒與眼睛異物防護",
+                ex_en: "Wearing wrap-around UV400 photochromic eyewear prevents catastrophic corneal abrasions from low-hanging branches and shields retinas from debilitating snow blindness on alpine ridges.",
+                ex_zh: "佩戴全包覆式 UV400 變色防護運動眼鏡，能防止低垂樹枝造成災難性的角膜刮傷，並保護視網膜免於高山稜線上致殘的雪盲症傷害。"
+            },
+            {
+                id: "icard-12",
                 title: "Heavy Rain, Wet Traction and Skin Chafing",
                 zh: "雨天路滑、視線不良與皮膚磨破",
                 ex_en: "Applying anti-chafing balm to vulnerable zones and taking shorter strides on wet asphalt prevent painful skin abrasions and catastrophic slips.",
                 ex_zh: "在脆弱易磨部位塗抹防磨膏並在潮濕瀝青路面上採取較小步幅，能防止劇痛的皮膚磨損與災難性的摔倒。"
             },
             {
-                id: "icard-9",
-                title: "High Altitude, Hypoxia and Acute Mountain Sickness",
-                zh: "高海拔缺氧與急性高山症",
+                id: "icard-13",
+                title: "High Altitude, Hypoxia, Pulmonary and Cerebral Edema",
+                zh: "高海拔稀薄空氣、低氧與高山肺/腦水腫",
                 ex_en: "Rapid ascent without staged acclimatization severely lowers oxygen saturation, triggering acute mountain sickness that mandates immediate descent.",
                 ex_zh: "未經分階段適應而快速爬升會嚴重降低血氧飽和度，誘發必須立即向下撤離的急性高山症。"
             },
             {
-                id: "icard-10",
+                id: "icard-14",
                 title: "Inversion Ankle Sprains on Technical Trails",
                 zh: "崎嶇山徑腳踝內翻扭傷",
                 ex_en: "Focusing your eyes three to five meters down the technical trail allows your neuromuscular system to anticipate uneven rocks and dodge inversion ankle sprains.",
                 ex_zh: "視線聚焦於技術型山徑前方三至五公尺處，能讓神經肌肉系統提前預判不平整岩石並避開腳踝內翻扭傷。"
             },
             {
-                id: "icard-11",
+                id: "icard-15",
                 title: "Steep Downhill Eccentric Quad Breakdown",
-                zh: "陡降下坡股四頭肌離心破壞",
+                zh: "陡降下坡股四頭肌離心肌力破壞",
                 ex_en: "Prolonged steep mountain descents place brutal eccentric stress on your quadriceps, causing microtears that destroy braking power unless managed with trekking poles.",
                 ex_zh: "漫長的高山陡降下坡會給股四頭肌帶來殘酷的離心壓力，造成微撕裂並摧毀煞車制動力，除非善用登山杖分擔衝擊。"
             },
             {
-                id: "icard-12",
+                id: "icard-16",
                 title: "Trench Foot, Macerated Skin and Blister Protocol",
                 zh: "長途潮濕浸水足與水泡管理",
                 ex_en: "Trench foot and agonizing friction blisters occur when soggy socks soften the epidermis, making aggressive taping and dry sock changes vital at checkpoints.",
                 ex_zh: "濕透的襪子使表皮軟化時會引發浸水足與痛楚的摩擦水泡，因此在檢查站進行積極防護貼紮與更換乾襪至關重要。"
             },
             {
-                id: "icard-13",
+                id: "icard-17",
+                title: "Emergency Wilderness Shelter, Bivy Sacks and Survival Insulation",
+                zh: "荒野緊急避難所建立與防潮保溫迫降法則",
+                ex_en: "Deploying a waterproof emergency bivy sack behind a windbreak boulder and insulating yourself from frozen ground with your backpack prevents fatal hypothermia during a wilderness stranding.",
+                ex_zh: "在背風巨石後方展開防水緊急露宿袋，並用背包將自己與冰冷地面隔絕，能在荒野受困期間有效防止致命的失溫症。"
+            },
+            {
+                id: "icard-18",
+                title: "Calling for Help: Satellite SOS, Emergency Beacons and Alpine Distress Protocols",
+                zh: "緊急求救呼叫、衛星通訊器與搜救信標座標指引",
+                ex_en: "Triggering a Garmin inReach satellite SOS transmits your precise WGS84 coordinates to emergency search and rescue teams when cellular reception is completely dead.",
+                ex_zh: "當手機通訊信號完全中斷時，觸發 Garmin inReach 衛星 SOS 能將你的精確 WGS84 經緯度座標傳輸給緊急搜救中心。"
+            },
+            {
+                id: "icard-19",
                 title: "Wilderness Night Running and Mandatory Gear Survival",
                 zh: "山野無援、夜間越野與強制裝備法則",
                 ex_en: "Carrying mandatory survival gear including dual headlamps, a seam-sealed waterproof jacket, and an offline GPS track is non-negotiable for alpine ultra-endurance trails.",
                 ex_zh: "攜帶包括雙頭燈、全壓膠防水風雨衣與離線 GPS 航跡在內的強制生存裝備，是參與高山超長距離越野賽絕不可妥協的鐵律。"
             },
             {
-                id: "icard-14",
+                id: "icard-20",
+                title: "Trail Wildlife Hazards: Hornet Attacks, Snakebites and Anaphylaxis",
+                zh: "山徑虎頭蜂螫、毒蛇咬傷與急性過敏性休克防護",
+                ex_en: "Carrying an epinephrine auto-injector is life-saving for runners allergic to wasp stings, while venomous snakebites require immediate limb immobilization rather than archaic tourniquets.",
+                ex_zh: "隨身攜帶腎上腺素自動注射器對蜂螫過敏跑者是救命關鍵，而遭毒蛇咬傷則需要立即固定患肢，而非使用陳舊錯誤的止血帶。"
+            },
+            {
+                id: "icard-21",
                 title: "Dynamic Leg Swings in Sagittal and Frontal Planes",
                 zh: "髖關節前後與左右動態擺腿",
                 ex_en: "Performing dynamic leg swings in both sagittal and frontal planes loosens tight hip flexors and readies the pelvic girdle for smooth stride turnover.",
                 ex_zh: "在前後與左右平面進行動態擺腿能放鬆緊繃的髖屈肌，並讓骨盆帶為流暢的步頻轉換做好準備。"
             },
             {
-                id: "icard-15",
+                id: "icard-22",
                 title: "A-Skips and High Knees Drills",
                 zh: "A字彈跳與高抬膝步態啟動",
                 ex_en: "A-skips reinforce proper upright running posture, active foot strike underneath your center of mass, and aggressive triple extension.",
                 ex_zh: "A字彈跳能強化正確的直立跑步姿勢、重心正下方的主動著地以及強而有力的髖膝踝三關節伸展。"
             },
             {
-                id: "icard-16",
+                id: "icard-23",
                 title: "Glute Activation with Clamshells and Monster Walk",
                 zh: "彈力帶怪獸走與蚌殼式臀肌喚醒",
                 ex_en: "Activating dormant gluteal muscles with resistance band monster walks prevents pelvic drop and safeguards against IT band friction syndrome.",
                 ex_zh: "透過彈力帶怪獸走喚醒休眠的臀部肌群，能防止骨盆側傾並杜絕髂脛束摩擦症候群。"
             },
             {
-                id: "icard-17",
+                id: "icard-24",
                 title: "Ankle Pogo Hops and Windlass Mechanism",
                 zh: "踝關節波戈彈跳與足弓蓄能",
                 ex_en: "Rapid ankle pogo hops prime your Achilles tendons to act as stiff biological springs, optimizing elastic energy recoil and cutting ground contact time.",
                 ex_zh: "快速腳踝波戈彈跳能將阿基里斯腱預先調整為剛性生理彈簧，最佳化彈性能量回彈並縮短觸地時間。"
             },
             {
-                id: "icard-18",
+                id: "icard-25",
                 title: "Walking Lunges with Thoracic Spine Rotation",
                 zh: "弓箭步行走伴隨胸椎旋轉",
                 ex_en: "Walking lunges with thoracic rotation open up tight hip flexors and restore spinal mobility essential for natural arm swing kinematics.",
                 ex_zh: "弓箭步行走結合胸椎旋轉能打開緊繃的髖屈肌，並恢復自然擺臂力學所需的脊椎旋轉活動度。"
             },
             {
-                id: "icard-19",
+                id: "icard-26",
                 title: "Strides and Build-up Sprints",
                 zh: "漸進加速輕快跑",
                 ex_en: "Finishing your warm-up routine with four 80-meter strides induces post-activation potentiation, making race pace feel effortless from the starting gun.",
@@ -5958,9 +6276,9 @@
 
             // Auto-switch tab if current tab is not 'all' and not matching the item
             let targetTab = 'musculoskeletal';
-            if (idx >= 6 && idx <= 9) targetTab = 'weather';
-            else if (idx >= 10 && idx <= 13) targetTab = 'trail';
-            else if (idx >= 14 && idx <= 19) targetTab = 'warmup';
+            if (idx >= 7 && idx <= 13) targetTab = 'weather';
+            else if (idx >= 14 && idx <= 20) targetTab = 'trail';
+            else if (idx >= 21 && idx <= 26) targetTab = 'warmup';
 
             if (currentInjuryTab !== 'all' && currentInjuryTab !== targetTab) {
                 switchInjuryTab(targetTab);
@@ -5973,7 +6291,7 @@
                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
-            const categoryTag = idx >= 14 ? '🔥 熱身' : (idx >= 10 ? '🏔️ 越野' : (idx >= 6 ? '🌤️ 氣候' : '🩹 傷害'));
+            const categoryTag = idx >= 21 ? '🔥 熱身' : (idx >= 14 ? '🏔️ 越野避難' : (idx >= 7 ? '🌤️ 氣候感官' : '🩹 下肢急症'));
             showTopMiniPlayer(`${categoryTag}: ${item.zh}`, 'injury');
 
             if (!('speechSynthesis' in window)) return;
