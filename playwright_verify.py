@@ -154,11 +154,15 @@ def run_tests():
         assert page.evaluate("() => isNutritionAutoPlaying") is False
         print("   Nutrition auto-play verified.")
 
-        # 9.6 Test Muscle Strength Section (16 Modules)
-        print("\n9.6. Testing Muscle Strength Section (16 Modules)...")
+        # 9.6 Test Muscle Strength Section (30 Modules)
+        print("\n9.6. Testing Muscle Strength Section (30 Modules)...")
         m_cards_count = page.locator(".muscle-card").count()
-        print(f"   Total muscle cards in DOM = {m_cards_count} (Expected: 16)")
-        assert m_cards_count == 16
+        print(f"   Total muscle cards in DOM = {m_cards_count} (Expected: 30)")
+        assert m_cards_count == 30
+
+        m_items_count = page.evaluate("() => typeof MUSCLE_ITEMS !== 'undefined' ? MUSCLE_ITEMS.length : -1")
+        print(f"   MUSCLE_ITEMS.length = {m_items_count} (Expected: 30)")
+        assert m_items_count == 30
 
         # 10. Test Injury & Protection Section (All 27 items)
         print("10. Testing Injury & Protection section (36 modules)...")
