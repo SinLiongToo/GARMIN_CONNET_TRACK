@@ -135,6 +135,31 @@ def run_tests():
         print(f"   Quotes auto-playing after stop = {is_playing_after} (Expected: False)")
         assert is_playing_after == False
 
+        # 9.5 Test Nutrition Science Section (10 Modules)
+        print("\n9.5. Testing Nutrition Science Section (10 Modules)...")
+        nut_cards_count = page.locator(".nutrition-card").count()
+        print(f"   Total nutrition cards in DOM = {nut_cards_count} (Expected: 10)")
+        assert nut_cards_count == 10
+
+        nut_items_count = page.evaluate("() => typeof NUTRITION_ITEMS !== 'undefined' ? NUTRITION_ITEMS.length : -1")
+        print(f"   NUTRITION_ITEMS.length = {nut_items_count} (Expected: 10)")
+        assert nut_items_count == 10
+
+        # Toggle Nutrition auto-play
+        page.locator("#btn-nutrition-autoplay").click()
+        time.sleep(0.3)
+        assert page.evaluate("() => isNutritionAutoPlaying") is True
+        page.locator("#btn-nutrition-autoplay").click()
+        time.sleep(0.3)
+        assert page.evaluate("() => isNutritionAutoPlaying") is False
+        print("   Nutrition auto-play verified.")
+
+        # 9.6 Test Muscle Strength Section (16 Modules)
+        print("\n9.6. Testing Muscle Strength Section (16 Modules)...")
+        m_cards_count = page.locator(".muscle-card").count()
+        print(f"   Total muscle cards in DOM = {m_cards_count} (Expected: 16)")
+        assert m_cards_count == 16
+
         # 10. Test Injury & Protection Section (All 27 items)
         print("10. Testing Injury & Protection section (27 modules)...")
         injury_cards_count = page.locator(".injury-card").count()
