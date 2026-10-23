@@ -375,6 +375,21 @@
     </script>
 
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Ensure sections clear the fixed sticky top header */
+        section[id$="-section"],
+        #principles-section,
+        #quotes-section,
+        #glossary-section,
+        #nutrition-section,
+        #muscle-section,
+        #injury-section {
+            scroll-margin-top: 125px;
+        }
+
 
         body {
 
@@ -584,7 +599,7 @@
 
         /* Auto-play Card Highlight & Smooth Animation */
 
-        .quote-card, .glossary-card, .nutrition-card, .injury-card {
+        .quote-card, .glossary-card, .nutrition-card, .injury-card, .muscle-card {
 
             scroll-margin-top: 130px;
 
@@ -1300,7 +1315,7 @@
 
         <!-- Section 1: 📜 The 10 Golden Athletic Principles (Principles Project Style) -->
 
-        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-emerald-500" id="principles-section">
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-emerald-500 scroll-mt-28 md:scroll-mt-32" id="principles-section">
 
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-6 border-b border-slate-700/60 pb-4">
 
@@ -1348,7 +1363,7 @@
 
         <!-- Section 2: 🏆 傳奇運動家金句與心智力量 (Legendary Athletes' Wisdom & Quotes) -->
 
-        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-amber-500" id="quotes-section">
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-amber-500 scroll-mt-28 md:scroll-mt-32" id="quotes-section">
 
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 border-b border-slate-700/60 pb-4">
 
@@ -1828,7 +1843,7 @@
 
         <!-- Section 3: 📚 Interactive Sport English Glossary & Flashcards -->
 
-        <section class="glass-card rounded-2xl p-6" id="glossary-section">
+        <section class="glass-card rounded-2xl p-6 scroll-mt-28 md:scroll-mt-32" id="glossary-section">
 
             <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-6 border-b border-slate-700/60 pb-4">
 
@@ -2372,7 +2387,7 @@
 
         <!-- Section: 🥑 長途耐力營養、肝醣超補與賽道補給科學 (Endurance Nutrition & Fueling Science) -->
 
-        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-lime-500" id="nutrition-section">
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-lime-500 scroll-mt-28 md:scroll-mt-32" id="nutrition-section">
 
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-6 border-b border-slate-700/60 pb-4">
 
@@ -4209,7 +4224,7 @@
 
                 <!-- Section: 🏋️‍♂️ 耐力跑者與運動員肌力體能訓練科學專區 (Strength & Conditioning, Hypertrophy & Kinetic Chain) -->
 
-        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-violet-500" id="muscle-section">
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-violet-500 scroll-mt-28 md:scroll-mt-32" id="muscle-section">
 
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-6 border-b border-slate-700/60 pb-4">
 
@@ -6016,7 +6031,7 @@
 
         <!-- Section: 🩹 長途路跑常見運動傷害、過度使用與急症防護 (Running Injuries, Overuse & Medical Hazards) -->
 
-        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-rose-500" id="injury-section">
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-rose-500 scroll-mt-28 md:scroll-mt-32" id="injury-section">
 
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-6 border-b border-slate-700/60 pb-4">
 
