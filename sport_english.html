@@ -7,7 +7,10 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 1000 Athlete Wisdom Quotes Data -->
-    <script src="quotes_data.js"></script>
+    <script>
+        // Synchronously load quotes_data.js: cache-bust for HTTP/HTTPS, clean path for local file:///
+        document.write('<script src="quotes_data.js' + (location.protocol.indexOf('http') === 0 ? '?v=1000_20261023' : '') + '"><\/script>');
+    </script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -577,10 +580,16 @@
                                 肯亞馬拉松傳奇 • 2屆奧運馬拉松冠軍 • 全馬破2第一人
                             </div>
                         </div>
-                        <button onclick="speakSpotlightQuote()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-600/30 transition-all hover:scale-[1.02] cursor-pointer">
-                            <span>🔊</span>
-                            <span>聆聽英文金句</span>
-                        </button>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <button onclick="speakSpotlightQuote()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold text-xs flex items-center gap-1.5 border border-slate-700 shadow-sm transition-all hover:scale-[1.02] cursor-pointer" title="聆聽當前精選金句">
+                                <span>🔊</span>
+                                <span>聆聽此句</span>
+                            </button>
+                            <button onclick="startAutoPlayFromSpotlight()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-amber-600/30 transition-all hover:scale-[1.02] cursor-pointer" title="以當前金句為起點，開始連續自動朗讀">
+                                <span>▶️</span>
+                                <span>自此句開始連續播放</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -609,12 +618,50 @@
                         </button>
                     </div>
 
-                    <!-- Progress and Current Playing Info -->
-                    <div class="flex items-center gap-3 text-xs flex-1 max-w-md w-full">
-                        <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden border border-slate-700/80">
-                            <div id="quotes-progress-bar" class="bg-gradient-to-r from-amber-500 via-orange-400 to-yellow-400 h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    <!-- Progress, Jump Input and Interactive Range Slider -->
+                    <div class="flex flex-col gap-2 flex-1 max-w-xl w-full">
+                        <div class="flex items-center justify-between gap-3 flex-wrap">
+                            <!-- Direct Jump To Quote Input -->
+                            <div class="flex items-center gap-1.5 bg-slate-900/95 px-2.5 py-1 rounded-xl border border-amber-500/40 shadow-inner">
+                                <span class="text-slate-300 text-xs font-semibold whitespace-nowrap">從第</span>
+                                <input type="number" id="input-jump-quote" min="1" max="1000" value="1"
+                                    class="w-16 bg-slate-800 text-amber-400 font-mono font-bold text-center px-1.5 py-0.5 rounded border border-slate-700 focus:border-amber-400 focus:ring-1 focus:ring-amber-400 focus:outline-none text-xs"
+                                    title="輸入金句序號 (1 ~ 1000)"
+                                    onkeydown="if(event.key==='Enter') jumpToQuoteNumber()" />
+                                <span class="text-slate-300 text-xs font-semibold whitespace-nowrap">句開始</span>
+                                <button onclick="jumpToQuoteNumber()" class="px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-xs transition-all flex items-center gap-1 shadow cursor-pointer" title="跳至該句並開始朗讀">
+                                    <span>⏩</span>
+                                    <span>跳轉播放</span>
+                                </button>
+                            </div>
+
+                            <!-- Progress Text Status -->
+                            <div class="flex items-center gap-2">
+                                <span id="quotes-play-status" class="text-amber-400 font-mono font-bold text-xs bg-slate-900/90 px-2.5 py-1 rounded-xl border border-slate-800 shadow-sm whitespace-nowrap">
+                                    0 / 1000
+                                </span>
+                            </div>
                         </div>
-                        <span id="quotes-play-status" class="text-amber-400 font-mono font-bold whitespace-nowrap">0 / 1000</span>
+
+                        <!-- Interactive Range Slider -->
+                        <div class="flex items-center gap-2 w-full">
+                            <input type="range" id="quotes-seek-slider" min="1" max="1000" value="1" step="1"
+                                class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500 hover:accent-amber-400 transition-all focus:outline-none"
+                                title="拖曳直接跳至指定金句序號"
+                                oninput="onQuoteSliderInput(this.value)"
+                                onchange="onQuoteSliderChange(this.value)">
+                        </div>
+
+                        <!-- Milestone Quick Jump Pills -->
+                        <div class="flex items-center gap-1.5 flex-wrap text-[11px] text-slate-400">
+                            <span class="text-slate-500 text-[10px] font-medium">快速起跑段:</span>
+                            <button onclick="jumpToQuoteIndex(0, true)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-amber-600/30 hover:text-amber-300 text-slate-300 border border-slate-700/60 transition-all cursor-pointer">#1 起跑</button>
+                            <button onclick="jumpToQuoteIndex(99, true)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-amber-600/30 hover:text-amber-300 text-slate-300 border border-slate-700/60 transition-all cursor-pointer">#100</button>
+                            <button onclick="jumpToQuoteIndex(249, true)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-amber-600/30 hover:text-amber-300 text-slate-300 border border-slate-700/60 transition-all cursor-pointer">#250</button>
+                            <button onclick="jumpToQuoteIndex(499, true)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-amber-600/30 hover:text-amber-300 text-slate-300 border border-slate-700/60 transition-all cursor-pointer">#500 半程</button>
+                            <button onclick="jumpToQuoteIndex(749, true)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-amber-600/30 hover:text-amber-300 text-slate-300 border border-slate-700/60 transition-all cursor-pointer">#750</button>
+                            <button onclick="jumpToQuoteIndex(999, true)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-amber-600/30 hover:text-amber-300 text-slate-300 border border-slate-700/60 transition-all cursor-pointer">#1000 巔峰</button>
+                        </div>
                     </div>
                 </div>
 
@@ -4786,7 +4833,9 @@
             }
 
             quotesDisplayLimit = 24;
+            quotesPlayIndex = -1;
             renderQuotes();
+            updateQuotesPlayStatus();
         }
 
         function filterQuotes(cat) {
@@ -4805,19 +4854,122 @@
             }
 
             quotesDisplayLimit = 24;
+            quotesPlayIndex = -1;
             renderQuotes();
+            updateQuotesPlayStatus();
         }
 
         function updateQuotesPlayStatus() {
             const statusEl = document.getElementById('quotes-play-status');
-            const barEl = document.getElementById('quotes-progress-bar');
+            const sliderEl = document.getElementById('quotes-seek-slider');
+            const inputEl = document.getElementById('input-jump-quote');
             const total = currentQuotesFiltered.length;
             const currentNum = (quotesPlayIndex >= 0 && quotesPlayIndex < total) ? (quotesPlayIndex + 1) : 0;
             
             if (statusEl) statusEl.innerText = `${currentNum} / ${total}`;
-            if (barEl) {
-                const percent = total > 0 ? (currentNum / total * 100) : 0;
-                barEl.style.width = `${percent}%`;
+            if (sliderEl) {
+                sliderEl.max = total || 1;
+                sliderEl.value = currentNum || 1;
+            }
+            if (inputEl) {
+                inputEl.max = total || 1;
+                if (currentNum > 0) {
+                    inputEl.value = currentNum;
+                }
+            }
+        }
+
+        function jumpToQuoteNumber() {
+            const inputEl = document.getElementById('input-jump-quote');
+            if (!inputEl || currentQuotesFiltered.length === 0) return;
+            let targetNum = parseInt(inputEl.value, 10);
+            if (isNaN(targetNum) || targetNum < 1) targetNum = 1;
+            if (targetNum > currentQuotesFiltered.length) targetNum = currentQuotesFiltered.length;
+            inputEl.value = targetNum;
+            jumpToQuoteIndex(targetNum - 1, true);
+        }
+
+        function jumpToQuoteIndex(idx, autoStart = false) {
+            if (currentQuotesFiltered.length === 0) return;
+            const targetIdx = Math.max(0, Math.min(idx, currentQuotesFiltered.length - 1));
+            quotesPlayIndex = targetIdx;
+            
+            if (autoStart) {
+                isQuotesAutoPlaying = true;
+                syncQuotesPlayButtonState(true);
+                playSpecificQuote(targetIdx, true);
+            } else {
+                playSpecificQuote(targetIdx, isQuotesAutoPlaying);
+            }
+        }
+
+        function onQuoteSliderInput(val) {
+            const num = parseInt(val, 10);
+            const inputEl = document.getElementById('input-jump-quote');
+            const statusEl = document.getElementById('quotes-play-status');
+            const total = currentQuotesFiltered.length;
+            if (inputEl) inputEl.value = num;
+            if (statusEl) statusEl.innerText = `${num} / ${total}`;
+        }
+
+        function onQuoteSliderChange(val) {
+            const num = parseInt(val, 10);
+            if (!isNaN(num) && num >= 1 && num <= currentQuotesFiltered.length) {
+                jumpToQuoteIndex(num - 1, isQuotesAutoPlaying);
+            }
+        }
+
+        function startAutoPlayFromSpotlight() {
+            if (ALL_QUOTES.length === 0) return;
+            let targetIdx = spotlightQuoteIndex;
+            // Map spotlight quote to current filter if applicable
+            const currentObj = ALL_QUOTES[spotlightQuoteIndex];
+            const filterIdx = currentQuotesFiltered.findIndex(q => q.id === currentObj.id);
+            if (filterIdx >= 0) {
+                targetIdx = filterIdx;
+            } else {
+                // If spotlight quote not in current filter, reset filter to 'all'
+                filterQuotes('all');
+                targetIdx = ALL_QUOTES.findIndex(q => q.id === currentObj.id);
+                if (targetIdx < 0) targetIdx = 0;
+            }
+            jumpToQuoteIndex(targetIdx, true);
+        }
+
+        function syncQuotesPlayButtonState(isPlaying) {
+            const iconMain = document.getElementById('quotes-play-icon-main');
+            const textMain = document.getElementById('quotes-play-text-main');
+            const btnMain = document.getElementById('btn-quotes-autoplay-main');
+            const icon = document.getElementById('quotes-play-icon');
+            const text = document.getElementById('quotes-play-text');
+            const btn = document.getElementById('btn-quotes-autoplay');
+
+            if (isPlaying) {
+                if (iconMain) iconMain.innerText = '⏸️';
+                if (textMain) textMain.innerText = '暫停金句朗讀';
+                if (btnMain) {
+                    btnMain.classList.remove('from-amber-600', 'via-orange-600', 'to-amber-500');
+                    btnMain.classList.add('from-emerald-600', 'via-teal-600', 'to-emerald-500');
+                }
+                if (icon) icon.innerText = '⏸️';
+                if (text) text.innerText = '暫停朗讀金句';
+                if (btn) {
+                    btn.classList.add('bg-amber-600', 'text-white');
+                    btn.classList.remove('text-amber-400');
+                }
+            } else {
+                if (iconMain) iconMain.innerText = '▶️';
+                if (textMain) textMain.innerText = '開始金句自動朗讀 (Auto-Play)';
+                if (btnMain) {
+                    btnMain.classList.add('from-amber-600', 'via-orange-600', 'to-amber-500');
+                    btnMain.classList.remove('from-emerald-600', 'via-teal-600', 'to-emerald-500');
+                }
+                if (icon) icon.innerText = '▶️';
+                if (text) text.innerText = '自動朗讀金句';
+                if (btn) {
+                    btn.classList.remove('bg-amber-600', 'text-white');
+                    btn.classList.add('text-amber-400');
+                }
             }
         }
 
@@ -4944,7 +5096,9 @@
             }
 
             if (quotesPlayIndex < 0 || quotesPlayIndex >= currentQuotesFiltered.length) {
-                quotesPlayIndex = 0;
+                const inputEl = document.getElementById('input-jump-quote');
+                const val = inputEl ? parseInt(inputEl.value, 10) : 1;
+                quotesPlayIndex = (val > 0 && val <= currentQuotesFiltered.length) ? (val - 1) : 0;
             }
             playSpecificQuote(quotesPlayIndex, true);
         }
@@ -6470,6 +6624,7 @@
             renderQuotes();
             if (ALL_QUOTES.length > 0) {
                 setSpotlightQuote(ALL_QUOTES[0]);
+                updateQuotesPlayStatus();
             }
             renderGlossary(GLOSSARY_DATA);
         });

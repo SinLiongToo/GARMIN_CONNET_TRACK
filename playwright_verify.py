@@ -175,7 +175,7 @@ def run_tests():
 
         # Capture Screenshot
         screenshot_path = "verification_sport_english_1000.png"
-        page.screenshot(path=screenshot_path, full_page=False)
+        page.locator("#quotes-auto-play-hub").screenshot(path="verification_quotes_hub.png"); page.screenshot(path=screenshot_path, full_page=False)
         print(f"Screenshot captured: {screenshot_path}")
 
         browser.close()
