@@ -161,18 +161,18 @@ def run_tests():
         assert m_cards_count == 16
 
         # 10. Test Injury & Protection Section (All 27 items)
-        print("10. Testing Injury & Protection section (27 modules)...")
+        print("10. Testing Injury & Protection section (36 modules)...")
         injury_cards_count = page.locator(".injury-card").count()
         print(f"   Total injury cards in DOM = {injury_cards_count} (Expected: 27)")
-        assert injury_cards_count == 27
+        assert injury_cards_count == 36
 
         # Check tabs switching
         tabs = [
-            ("itab-btn-weather", 7),          # 7 weather/sensory cards
-            ("itab-btn-trail", 7),            # 7 trail/survival cards
-            ("itab-btn-warmup", 6),           # 6 warm-up cards
-            ("itab-btn-musculoskeletal", 7),  # 7 musculoskeletal cards
-            ("itab-btn-all", 27)              # all 27 cards
+            ("itab-btn-weather", 9),          # 9 weather/sensory cards (3x3 full)
+            ("itab-btn-trail", 9),            # 9 trail/survival cards (3x3 full)
+            ("itab-btn-warmup", 9),           # 9 warm-up cards (3x3 full)
+            ("itab-btn-musculoskeletal", 9),  # 9 musculoskeletal cards (3x3 full)
+            ("itab-btn-all", 36)              # all 36 cards
         ]
         for btn_id, expected_visible in tabs:
             tab_btn = page.locator(f"#{btn_id}")
