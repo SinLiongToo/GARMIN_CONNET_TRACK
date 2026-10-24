@@ -78,6 +78,83 @@ class MonthlyStats:
     yoy_runs_growth_pct: Optional[float] = None
 
 
+def format_duration(minutes: float) -> str:
+    """Format minutes to Hh MMm SSs."""
+    h = int(minutes // 60)
+    mins = int(minutes % 60)
+    s = int(round((minutes * 60) % 60))
+    if s == 60:
+        mins += 1
+        s = 0
+    if mins == 60:
+        h += 1
+        mins = 0
+    return f"{h}h {mins:02d}m {s:02d}s"
+
+
+def format_pace(minutes: float, km: float) -> str:
+    """Format pace to min:sec/km."""
+    if not km or km <= 0:
+        return "-"
+    pace = minutes / km
+    pm = int(pace)
+    ps = int(round((pace - pm) * 60))
+    if ps == 60:
+        pm += 1
+        ps = 0
+    return f"{pm}:{ps:02d}/km"
+
+
+@dataclass
+class AnnualMarathonStats:
+    year: str  # "2024", "2025", "2026", "all"
+    year_label: str  # "2024 年", "全部歷史累計 (All-Time)"
+    
+    # Standard Half Marathon (室外 21.0 <= km < 25.0)
+    std_half_count: int = 0
+    std_half_avg_minutes: Optional[float] = None
+    std_half_avg_time_str: str = "-"
+    std_half_avg_pace_str: str = "-"
+    std_half_avg_km: Optional[float] = None
+    std_half_fastest_time_str: str = "-"
+    std_half_fastest_date: Optional[str] = None
+    std_half_fastest_pace_str: str = "-"
+    std_half_fastest_km: Optional[float] = None
+    
+    # Extended Half Marathon / LSD (室外 21.0 <= km < 42.0)
+    ext_half_count: int = 0
+    ext_half_avg_minutes: Optional[float] = None
+    ext_half_avg_time_str: str = "-"
+    ext_half_avg_pace_str: str = "-"
+    ext_half_avg_km: Optional[float] = None
+    ext_half_fastest_time_str: str = "-"
+    ext_half_fastest_date: Optional[str] = None
+    ext_half_fastest_pace_str: str = "-"
+    ext_half_fastest_km: Optional[float] = None
+    
+    # Standard Full Marathon (室外 42.0 <= km < 45.0)
+    std_full_count: int = 0
+    std_full_avg_minutes: Optional[float] = None
+    std_full_avg_time_str: str = "-"
+    std_full_avg_pace_str: str = "-"
+    std_full_avg_km: Optional[float] = None
+    std_full_fastest_time_str: str = "-"
+    std_full_fastest_date: Optional[str] = None
+    std_full_fastest_pace_str: str = "-"
+    std_full_fastest_km: Optional[float] = None
+
+    # Extended Full Marathon / Ultra (室外 km >= 42.0)
+    ext_full_count: int = 0
+    ext_full_avg_minutes: Optional[float] = None
+    ext_full_avg_time_str: str = "-"
+    ext_full_avg_pace_str: str = "-"
+    ext_full_avg_km: Optional[float] = None
+    ext_full_fastest_time_str: str = "-"
+    ext_full_fastest_date: Optional[str] = None
+    ext_full_fastest_pace_str: str = "-"
+    ext_full_fastest_km: Optional[float] = None
+
+
 @dataclass
 class WindowSummary:
     window_name: str
@@ -478,6 +555,115 @@ class InsightsEngine:
         )
         return summary
 
+    def compute_annual_marathon_stats(self) -> List[AnnualMarathonStats]:
+        """Compute annual outdoor-only average time spent, pace, and counts for half & full marathons."""
+        outdoor_runs = []
+        for r in self.records:
+            d_str = r.get("date", "")
+            y_str = d_str[:4]
+            for act in r.get("activities", []):
+                act_type = (act.get("type") or "").lower()
+                is_indoor = "treadmill" in act_type or "indoor" in act_type
+                dist = act.get("distance_km") or 0.0
+                dur = act.get("duration_minutes") or 0.0
+                if not is_indoor and dist >= 21.0 and dur > 0:
+                    outdoor_runs.append({
+                        "date": d_str,
+                        "year": y_str,
+                        "distance_km": dist,
+                        "duration_minutes": dur,
+                        "name": act.get("name", ""),
+                    })
+
+        years = sorted(list(set(r["year"] for r in outdoor_runs if r["year"])))
+        results: List[AnnualMarathonStats] = []
+
+        def calc_cohort(runs: List[Dict[str, Any]], year_code: str, year_label: str) -> AnnualMarathonStats:
+            stat = AnnualMarathonStats(year=year_code, year_label=year_label)
+            
+            # Standard Half Marathon (室外 21.0 <= km < 25.0)
+            sh = [r for r in runs if 21.0 <= r["distance_km"] < 25.0]
+            if sh:
+                stat.std_half_count = len(sh)
+                tot_dur = sum(r["duration_minutes"] for r in sh)
+                tot_km = sum(r["distance_km"] for r in sh)
+                avg_dur = tot_dur / len(sh)
+                avg_km = tot_km / len(sh)
+                stat.std_half_avg_minutes = round(avg_dur, 1)
+                stat.std_half_avg_time_str = format_duration(avg_dur)
+                stat.std_half_avg_pace_str = format_pace(avg_dur, avg_km)
+                stat.std_half_avg_km = round(avg_km, 2)
+                fastest = min(sh, key=lambda x: x["duration_minutes"])
+                stat.std_half_fastest_time_str = format_duration(fastest["duration_minutes"])
+                stat.std_half_fastest_date = fastest["date"]
+                stat.std_half_fastest_pace_str = format_pace(fastest["duration_minutes"], fastest["distance_km"])
+                stat.std_half_fastest_km = round(fastest["distance_km"], 2)
+
+            # Extended Half Marathon / LSD (室外 21.0 <= km < 42.0)
+            eh = [r for r in runs if 21.0 <= r["distance_km"] < 42.0]
+            if eh:
+                stat.ext_half_count = len(eh)
+                tot_dur = sum(r["duration_minutes"] for r in eh)
+                tot_km = sum(r["distance_km"] for r in eh)
+                avg_dur = tot_dur / len(eh)
+                avg_km = tot_km / len(eh)
+                stat.ext_half_avg_minutes = round(avg_dur, 1)
+                stat.ext_half_avg_time_str = format_duration(avg_dur)
+                stat.ext_half_avg_pace_str = format_pace(avg_dur, avg_km)
+                stat.ext_half_avg_km = round(avg_km, 2)
+                fastest = min(eh, key=lambda x: x["duration_minutes"])
+                stat.ext_half_fastest_time_str = format_duration(fastest["duration_minutes"])
+                stat.ext_half_fastest_date = fastest["date"]
+                stat.ext_half_fastest_pace_str = format_pace(fastest["duration_minutes"], fastest["distance_km"])
+                stat.ext_half_fastest_km = round(fastest["distance_km"], 2)
+
+            # Standard Full Marathon (室外 42.0 <= km < 45.0)
+            sf = [r for r in runs if 42.0 <= r["distance_km"] < 45.0]
+            if sf:
+                stat.std_full_count = len(sf)
+                tot_dur = sum(r["duration_minutes"] for r in sf)
+                tot_km = sum(r["distance_km"] for r in sf)
+                avg_dur = tot_dur / len(sf)
+                avg_km = tot_km / len(sf)
+                stat.std_full_avg_minutes = round(avg_dur, 1)
+                stat.std_full_avg_time_str = format_duration(avg_dur)
+                stat.std_full_avg_pace_str = format_pace(avg_dur, avg_km)
+                stat.std_full_avg_km = round(avg_km, 2)
+                fastest = min(sf, key=lambda x: x["duration_minutes"])
+                stat.std_full_fastest_time_str = format_duration(fastest["duration_minutes"])
+                stat.std_full_fastest_date = fastest["date"]
+                stat.std_full_fastest_pace_str = format_pace(fastest["duration_minutes"], fastest["distance_km"])
+                stat.std_full_fastest_km = round(fastest["distance_km"], 2)
+
+            # Extended Full Marathon / Ultra (室外 km >= 42.0)
+            ef = [r for r in runs if r["distance_km"] >= 42.0]
+            if ef:
+                stat.ext_full_count = len(ef)
+                tot_dur = sum(r["duration_minutes"] for r in ef)
+                tot_km = sum(r["distance_km"] for r in ef)
+                avg_dur = tot_dur / len(ef)
+                avg_km = tot_km / len(ef)
+                stat.ext_full_avg_minutes = round(avg_dur, 1)
+                stat.ext_full_avg_time_str = format_duration(avg_dur)
+                stat.ext_full_avg_pace_str = format_pace(avg_dur, avg_km)
+                stat.ext_full_avg_km = round(avg_km, 2)
+                fastest = min(ef, key=lambda x: x["duration_minutes"])
+                stat.ext_full_fastest_time_str = format_duration(fastest["duration_minutes"])
+                stat.ext_full_fastest_date = fastest["date"]
+                stat.ext_full_fastest_pace_str = format_pace(fastest["duration_minutes"], fastest["distance_km"])
+                stat.ext_full_fastest_km = round(fastest["distance_km"], 2)
+
+            return stat
+
+        # Per Year
+        for y in years:
+            y_runs = [r for r in outdoor_runs if r["year"] == y]
+            results.append(calc_cohort(y_runs, y, f"{y} 年"))
+
+        # All-Time
+        results.append(calc_cohort(outdoor_runs, "all", "全部歷史累計 (All-Time)"))
+        return results
+
     def generate_recommendations(self) -> List[RecommendationItem]:
         """Generate smart, evidence-based health and running recommendations based on multi-window trends."""
         recs: List[RecommendationItem] = []
@@ -528,6 +714,19 @@ class InsightsEngine:
                 description=f"近 30 天跑步運動總計燃燒 {run_stats_30.total_run_calories:,} kcal。每進行一次 10K 長跑約消耗 {run_stats_30.avg_calories_per_km * 10:.0f} 大卡能量。",
                 action="長跑超過 75 分鐘時，建議每 45 分鐘補充 25~30g 能量膠或運動飲料以防撞牆。",
             ))
+
+        # 🎯 標準全馬每小時配速與時速策略建議 (Standard Marathon Pace per Hour Recommendation)
+        recs.append(RecommendationItem(
+            category="長跑與馬拉松",
+            level="good",
+            title="標準全馬每小時配速與時速策略建議 (Marathon Pace / Hourly Speed)",
+            description="依據您 2026 室外半馬最佳 1h 52m 42s (配速 5:20/km) 與全馬歷史最佳 4h 03m 12s (配速 5:46/km)：\n"
+                        "• 🎯 衝刺破四 (Sub-4): 時速 10.55 km/h，每小時前進 10.55 km，均配 5:41/km (心率 Zone 2~3)\n"
+                        "• 🏃 穩健精進 (4h 15m): 時速 9.93 km/h，每小時前進 9.93 km，均配 6:02/km\n"
+                        "• 🛡️ 巡航完賽 (4h 30m): 時速 9.38 km/h，每小時前進 9.38 km，均配 6:24/km (貼合 2025 均速)\n"
+                        "建議採等速或負分段配速（Negative Split），第 1 小時壓制興奮感維持 10.3~10.5 km/h，第 2~3 小時巡航，第 4 小時衝刺剩餘 10.7 km。",
+            action="全馬全程每小時推進約 9.5~10.5 公里；每 45~50 分鐘務必補充 1 包能量膠 (25~30g 碳水) 與 400ml 水/電解質，確保血糖平穩以防撞牆。",
+        ))
 
         # 2. 睡眠與恢復
         if s30.avg_sleep_hours is not None:

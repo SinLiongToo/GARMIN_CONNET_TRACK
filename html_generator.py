@@ -5,7 +5,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 from datetime import datetime
-from insights_engine import InsightsEngine, WindowSummary, RecommendationItem, MonthlyStats
+from insights_engine import InsightsEngine, WindowSummary, RecommendationItem, MonthlyStats, AnnualMarathonStats
 
 
 def generate_dashboard_html(
@@ -86,6 +86,7 @@ def generate_dashboard_html(
     all_summary = engine.compute_summary(all_records, "全部歷史 (All-Time)")
 
     monthly_breakdown = engine.compute_monthly_breakdown()
+    annual_marathons = engine.compute_annual_marathon_stats()
     recommendations = engine.generate_recommendations()
 
     payload = {
@@ -100,6 +101,7 @@ def generate_dashboard_html(
             "all": asdict(all_summary),
         },
         "monthly_breakdown": [asdict(m) for m in monthly_breakdown],
+        "annual_marathons": [asdict(a) for a in annual_marathons],
         "recommendations": [asdict(r) for r in recommendations],
     }
 
@@ -496,6 +498,204 @@ def generate_dashboard_html(
                     <div class="text-xs text-slate-400 mt-1" id="kpi-cal-per-km">平均約 -- kcal / km</div>
                 </div>
 
+            </div>
+
+            <!-- ⏱️ 室外半馬與全馬年度平均耗時專區 (Annual Outdoor Marathon Time Spent - Outside Only) -->
+            <div class="mt-6 pt-5 border-t border-slate-700/60 space-y-4" id="annual-marathon-stats-container">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div class="flex items-center gap-2.5">
+                        <span class="text-xl">⏱️</span>
+                        <div>
+                            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                                室外半馬與全馬年度平均耗時分析 (Annual Outdoor Marathon Time Spent)
+                            </h3>
+                            <p class="text-[11px] text-slate-400">嚴格限定室外路跑與賽事 (Outside Only，排除室內跑步機) &bull; 統計歷年半馬與全馬場次、平均完賽耗時、平均配速與最快成績</p>
+                        </div>
+                    </div>
+                    <!-- Scope Switcher: Standard vs Extended/Ultra -->
+                    <div class="flex items-center bg-slate-900/80 p-1 rounded-lg border border-slate-700/60 text-xs self-start md:self-auto">
+                        <span class="text-slate-400 px-2 font-medium">賽制範圍:</span>
+                        <button onclick="setMarathonScope('standard')" id="btn-mara-std" class="px-2.5 py-1 rounded font-medium transition-all bg-orange-600 text-white shadow-sm" title="標準賽制：半馬 21~25km、全馬 42~45km">
+                            🎯 標準賽制 (Standard)
+                        </button>
+                        <button onclick="setMarathonScope('extended')" id="btn-mara-ext" class="px-2.5 py-1 rounded font-medium transition-all text-slate-400 hover:text-white" title="包含超長距離：半馬/LSD 21~42km、全馬/超馬 ≥42km (含50k~97k越野)">
+                            ⛰️ 含超馬/LSD (Extended)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Annual Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs" id="annual-marathon-cards">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Detailed Side-by-Side Comparison Table -->
+                <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/60">
+                    <table class="w-full text-left text-xs text-slate-300">
+                        <thead class="text-xs uppercase bg-slate-800/90 text-slate-400 border-b border-slate-700">
+                            <tr>
+                                <th class="py-2.5 px-3 font-semibold text-white">年度 (Year)</th>
+                                <th class="py-2.5 px-3 text-emerald-400 font-semibold">🏃‍♂️ 半馬場次</th>
+                                <th class="py-2.5 px-3 text-emerald-300 font-semibold">⏱️ 半馬平均耗時</th>
+                                <th class="py-2.5 px-3 text-slate-400">⚡ 半馬均速</th>
+                                <th class="py-2.5 px-3 text-emerald-400">⚡ 最快半馬紀錄</th>
+                                <th class="py-2.5 px-3 text-rose-400 font-semibold border-l border-slate-700/60">🏅 全馬場次</th>
+                                <th class="py-2.5 px-3 text-rose-300 font-semibold">⏱️ 全馬平均耗時</th>
+                                <th class="py-2.5 px-3 text-slate-400">⚡ 全馬均速</th>
+                                <th class="py-2.5 px-3 text-rose-400">⚡ 最快全馬紀錄</th>
+                            </tr>
+                        </thead>
+                        <tbody id="annual-marathon-table-body" class="divide-y divide-slate-800">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 🎯 標準全馬每小時配速與時速策略建議 (Standard Marathon Pace per Hour & Hourly Pacing Strategy) -->
+                <div class="mt-5 pt-4 border-t border-slate-700/60 space-y-4" id="marathon-pace-suggestion-block">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                        <div class="flex items-center gap-2.5">
+                            <span class="text-xl">🎯</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                                    標準全馬每小時配速與時速策略建議 (Marathon Pace & Speed per Hour)
+                                </h4>
+                                <p class="text-[11px] text-slate-400">標準全馬 42.195 km &bull; 依據您 2026 半馬 1h 55m 與全馬 4h 03m PB 精算各目標檔位之每小時推進時速 (km/h)、公里配速與 4 小時分段補給</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Target Pace Select Buttons -->
+                        <div class="flex flex-wrap items-center bg-slate-900/80 p-1 rounded-lg border border-slate-700/60 text-xs self-start md:self-auto gap-1">
+                            <span class="text-slate-400 px-1 font-medium">目標:</span>
+                            <button onclick="setMarathonTargetPace('sub4')" id="btn-pace-sub4" class="px-2 py-1 rounded font-medium transition-all bg-sky-600 text-white shadow-sm" title="目標 3:59:59 破4小時 (時速 10.55 km/h)">
+                                ⚡ Sub-4 (3h 59m)
+                            </button>
+                            <button onclick="setMarathonTargetPace('sub415')" id="btn-pace-sub415" class="px-2 py-1 rounded font-medium transition-all text-slate-400 hover:text-white" title="目標 4:14:59 (時速 9.93 km/h)">
+                                🏃 4h 15m
+                            </button>
+                            <button onclick="setMarathonTargetPace('sub430')" id="btn-pace-sub430" class="px-2 py-1 rounded font-medium transition-all text-slate-400 hover:text-white" title="目標 4:29:59 (時速 9.38 km/h，貼合2025均速)">
+                                🎯 4h 30m
+                            </button>
+                            <button onclick="setMarathonTargetPace('sub445')" id="btn-pace-sub445" class="px-2 py-1 rounded font-medium transition-all text-slate-400 hover:text-white" title="目標 4:44:59 (時速 8.88 km/h，貼合2026均速)">
+                                🛡️ 4h 45m
+                            </button>
+                            <button onclick="setMarathonTargetPace('sub500')" id="btn-pace-sub500" class="px-2 py-1 rounded font-medium transition-all text-slate-400 hover:text-white" title="目標 4:59:59 破5小時 (時速 8.44 km/h)">
+                                🚶 Sub-5 (4h 59m)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Personalized Form Alignment Notice -->
+                    <div class="p-3 rounded-xl bg-sky-950/30 border border-sky-500/30 flex items-start gap-2.5 text-xs">
+                        <span class="text-base">💡</span>
+                        <div class="space-y-0.5">
+                            <span class="font-bold text-sky-400" id="pace-advice-title">體能對標：具備衝刺 Sub-4 (破4小時) 的強大有氧實力！</span>
+                            <p class="text-slate-300 text-[11px]" id="pace-advice-desc">您在 2026 年室外半馬跑出 1h 52m 42s (均速 5:20/km)，歷史全馬最佳 4h 03m 12s (5:46/km)。依據運動生理學 VDOT 模型，半馬 1h52m 具備全馬 3h 54m ~ 3h 58m 的實力！建議將每小時時速精準控制在 10.55 km/h，配合定時補給即可成功叩關。</p>
+                        </div>
+                    </div>
+
+                    <!-- 4 Core Target Stats Cards -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+                            <div class="text-slate-400">⚡ 建議每小時時速</div>
+                            <div class="text-lg font-bold text-sky-400 font-mono mt-0.5" id="pace-kpi-speed">10.55 km/h</div>
+                            <div class="text-[10px] text-slate-500" id="pace-kpi-dist-hr">每小時推進 10.55 公里</div>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+                            <div class="text-slate-400">⏱️ 每公里平均配速</div>
+                            <div class="text-lg font-bold text-emerald-400 font-mono mt-0.5" id="pace-kpi-pace">5:41 / km</div>
+                            <div class="text-[10px] text-slate-500">建議區間: 5:38 ~ 5:44</div>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+                            <div class="text-slate-400">🚩 半馬折返點預計</div>
+                            <div class="text-lg font-bold text-amber-400 font-mono mt-0.5" id="pace-kpi-half">1h 59m 59s</div>
+                            <div class="text-[10px] text-slate-500">21.0975 km 半程檢核</div>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+                            <div class="text-slate-400">📏 每 5 公里分段耗時</div>
+                            <div class="text-lg font-bold text-purple-400 font-mono mt-0.5" id="pace-kpi-5k">28m 25s</div>
+                            <div class="text-[10px] text-slate-500">10K 耗時約 56m 50s</div>
+                        </div>
+                    </div>
+
+                    <!-- Hourly Progress & Fueling Strategy Breakdown -->
+                    <div class="bg-slate-900/60 rounded-xl border border-slate-800 p-3 space-y-2">
+                        <div class="flex items-center justify-between text-xs text-slate-300 font-semibold border-b border-slate-800 pb-2">
+                            <span class="flex items-center gap-1.5">
+                                <span>📋</span>
+                                <span>全馬 4 小時各階段里程推進與補給作戰方針 (Hourly Progression & Strategy)</span>
+                            </span>
+                            <span class="text-[11px] text-slate-400 font-normal">等速巡航 / 均速推進</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-2.5 text-xs pt-1" id="hourly-progression-cards">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Complete Marathon Pace Benchmark Table -->
+                    <div class="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/40">
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="text-xs uppercase bg-slate-800/90 text-slate-400 border-b border-slate-700">
+                                <tr>
+                                    <th class="py-2 px-3 text-white font-semibold">全馬目標成績</th>
+                                    <th class="py-2 px-3 text-sky-400 font-semibold">⚡ 每小時時速 (Speed)</th>
+                                    <th class="py-2 px-3 text-emerald-400 font-semibold">⏱️ 每公里配速 (Pace)</th>
+                                    <th class="py-2 px-3 text-slate-300">10 km 耗時</th>
+                                    <th class="py-2 px-3 text-amber-300">半馬 21.1k 耗時</th>
+                                    <th class="py-2 px-3 text-purple-300">30 km 耗時</th>
+                                    <th class="py-2 px-3 text-slate-400">心率與體能建議</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800 font-mono text-[11px]">
+                                <tr class="hover:bg-slate-800/50 transition-colors bg-sky-950/20">
+                                    <td class="py-2 px-3 font-bold text-sky-400">⚡ Sub-4 (3:59:59)</td>
+                                    <td class="py-2 px-3 font-bold text-sky-400">10.55 km/h</td>
+                                    <td class="py-2 px-3 font-bold text-emerald-400">5:41 / km</td>
+                                    <td class="py-2 px-3 text-slate-300">56m 52s</td>
+                                    <td class="py-2 px-3 text-amber-400">1h 59m 59s</td>
+                                    <td class="py-2 px-3 text-purple-400">2h 50m 38s</td>
+                                    <td class="py-2 px-3 text-slate-400 font-sans">衝刺破4！對標您半馬 1h52m 與全馬 4h03m PB</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-2 px-3 font-semibold text-white">🏃 Sub-4:15 (4:14:59)</td>
+                                    <td class="py-2 px-3 text-sky-300">9.93 km/h</td>
+                                    <td class="py-2 px-3 text-emerald-300">6:02 / km</td>
+                                    <td class="py-2 px-3 text-slate-300">1h 00m 26s</td>
+                                    <td class="py-2 px-3 text-amber-300">2h 07m 30s</td>
+                                    <td class="py-2 px-3 text-purple-300">3h 01m 18s</td>
+                                    <td class="py-2 px-3 text-slate-400 font-sans">穩健發揮，後段餘力充足，低撞牆風險</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-2 px-3 font-semibold text-white">🎯 Sub-4:30 (4:29:59)</td>
+                                    <td class="py-2 px-3 text-sky-300">9.38 km/h</td>
+                                    <td class="py-2 px-3 text-emerald-300">6:24 / km</td>
+                                    <td class="py-2 px-3 text-slate-300">1h 04m 00s</td>
+                                    <td class="py-2 px-3 text-amber-300">2h 15m 00s</td>
+                                    <td class="py-2 px-3 text-purple-300">3h 12m 00s</td>
+                                    <td class="py-2 px-3 text-slate-400 font-sans">貼合 2025 年全馬均速 (4h 34m)，Zone 2 有氧舒適圈</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-2 px-3 font-semibold text-white">🛡️ Sub-4:45 (4:44:59)</td>
+                                    <td class="py-2 px-3 text-sky-300">8.88 km/h</td>
+                                    <td class="py-2 px-3 text-emerald-300">6:45 / km</td>
+                                    <td class="py-2 px-3 text-slate-300">1h 07m 32s</td>
+                                    <td class="py-2 px-3 text-amber-300">2h 22m 29s</td>
+                                    <td class="py-2 px-3 text-purple-300">3h 22m 41s</td>
+                                    <td class="py-2 px-3 text-slate-400 font-sans">貼合 2026 年全馬均速 (4h 44m)，安全巡航完賽</td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/50 transition-colors">
+                                    <td class="py-2 px-3 font-semibold text-white">🚶 Sub-5:00 (4:59:59)</td>
+                                    <td class="py-2 px-3 text-sky-300">8.44 km/h</td>
+                                    <td class="py-2 px-3 text-emerald-300">7:06 / km</td>
+                                    <td class="py-2 px-3 text-slate-300">1h 11m 06s</td>
+                                    <td class="py-2 px-3 text-amber-300">2h 30m 00s</td>
+                                    <td class="py-2 px-3 text-purple-300">3h 33m 17s</td>
+                                    <td class="py-2 px-3 text-slate-400 font-sans">基礎有氧慢跑，高溫或多坡賽道保守配速</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1824,6 +2024,307 @@ def generate_dashboard_html(
                     kpiFitness.innerText = '良好';
                     if (kpiFitnessSub) kpiFitnessSub.innerText = '心肺健康';
                 }}
+            }}
+
+            // Render Annual Outdoor Half & Full Marathon Stats
+            renderAnnualMarathonStats();
+        }}
+
+        let marathonScopeMode = 'standard'; // 'standard' or 'extended'
+
+        function setMarathonScope(mode) {{
+            marathonScopeMode = mode;
+            const btnStd = document.getElementById('btn-mara-std');
+            const btnExt = document.getElementById('btn-mara-ext');
+            if (btnStd && btnExt) {{
+                if (mode === 'standard') {{
+                    btnStd.className = 'px-2.5 py-1 rounded font-medium transition-all bg-orange-600 text-white shadow-sm';
+                    btnExt.className = 'px-2.5 py-1 rounded font-medium transition-all text-slate-400 hover:text-white';
+                }} else {{
+                    btnStd.className = 'px-2.5 py-1 rounded font-medium transition-all text-slate-400 hover:text-white';
+                    btnExt.className = 'px-2.5 py-1 rounded font-medium transition-all bg-orange-600 text-white shadow-sm';
+                }}
+            }}
+            renderAnnualMarathonStats();
+        }}
+
+        function renderAnnualMarathonStats() {{
+            const list = APP_DATA.annual_marathons || [];
+            if (!list || list.length === 0) return;
+
+            const isStd = marathonScopeMode === 'standard';
+            const cardsContainer = document.getElementById('annual-marathon-cards');
+            const tableBody = document.getElementById('annual-marathon-table-body');
+
+            // 1. Render Cards
+            if (cardsContainer) {{
+                cardsContainer.innerHTML = list.map(item => {{
+                    const isAll = item.year === 'all';
+                    const halfCount = isStd ? item.std_half_count : item.ext_half_count;
+                    const halfTime = isStd ? item.std_half_avg_time_str : item.ext_half_avg_time_str;
+                    const halfPace = isStd ? item.std_half_avg_pace_str : item.ext_half_avg_pace_str;
+                    const halfKm = isStd ? item.std_half_avg_km : item.ext_half_avg_km;
+                    const halfFastest = isStd ? item.std_half_fastest_time_str : item.ext_half_fastest_time_str;
+                    const halfFastDate = isStd ? (item.std_half_fastest_date || '') : (item.ext_half_fastest_date || '');
+
+                    const fullCount = isStd ? item.std_full_count : item.ext_full_count;
+                    const fullTime = isStd ? item.std_full_avg_time_str : item.ext_full_avg_time_str;
+                    const fullPace = isStd ? item.std_full_avg_pace_str : item.ext_full_avg_pace_str;
+                    const fullKm = isStd ? item.std_full_avg_km : item.ext_full_avg_km;
+                    const fullFastest = isStd ? item.std_full_fastest_time_str : item.ext_full_fastest_time_str;
+                    const fullFastDate = isStd ? (item.std_full_fastest_date || '') : (item.ext_full_fastest_date || '');
+
+                    const borderCol = isAll ? 'border-amber-500/40 bg-gradient-to-b from-slate-900/90 to-amber-950/20' : 'border-slate-800 bg-slate-900/70';
+                    const titleBadge = isAll ? '👑 歷史總計 (All-Time)' : `📅 ${{item.year_label}}`;
+
+                    const halfDateBadge = halfFastDate ? halfFastDate.slice(5) : '';
+                    const fullDateBadge = fullFastDate ? fullFastDate.slice(5) : '';
+
+                    return `
+                        <div class="${{borderCol}} p-3.5 rounded-xl border flex flex-col justify-between space-y-3">
+                            <div class="flex items-center justify-between border-b border-slate-700/50 pb-2">
+                                <span class="font-bold ${{isAll ? 'text-amber-400 text-sm' : 'text-white font-mono'}}">${{titleBadge}}</span>
+                                <span class="text-[10px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded-full">室外共 ${{halfCount + fullCount}} 場</span>
+                            </div>
+
+                            <!-- Half Marathon Sub-Block -->
+                            <div class="bg-emerald-950/20 p-2.5 rounded-lg border border-emerald-500/20 space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-emerald-400 font-semibold flex items-center gap-1">
+                                        <span>🏃‍♂️</span>
+                                        <span>${{isStd ? '標準半馬' : '半馬/LSD'}}</span>
+                                    </span>
+                                    <span class="font-mono font-bold text-emerald-400">${{halfCount}} 場</span>
+                                </div>
+                                <div class="flex items-baseline justify-between">
+                                    <span class="text-slate-400 text-[11px]">平均耗時:</span>
+                                    <span class="font-mono text-white font-bold text-sm">${{halfTime}}</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                                    <span>均速: <span class="text-emerald-300 font-mono">${{halfPace}}</span></span>
+                                    <span>均距: <span class="text-slate-300 font-mono">${{halfKm ? halfKm + 'k' : '-'}}</span></span>
+                                </div>
+                                ${{halfFastest !== '-' ? `
+                                    <div class="pt-1 mt-1 border-t border-emerald-500/10 text-[10px] text-emerald-400/90 flex justify-between">
+                                        <span>最快單次:</span>
+                                        <span class="font-mono font-bold">${{halfFastest}} (${{halfDateBadge}})</span>
+                                    </div>
+                                ` : ''}}
+                            </div>
+
+                            <!-- Full Marathon Sub-Block -->
+                            <div class="bg-rose-950/20 p-2.5 rounded-lg border border-rose-500/20 space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-rose-400 font-semibold flex items-center gap-1">
+                                        <span>🏅</span>
+                                        <span>${{isStd ? '標準全馬' : '全馬/超馬'}}</span>
+                                    </span>
+                                    <span class="font-mono font-bold text-rose-400">${{fullCount}} 場</span>
+                                </div>
+                                <div class="flex items-baseline justify-between">
+                                    <span class="text-slate-400 text-[11px]">平均耗時:</span>
+                                    <span class="font-mono text-white font-bold text-sm">${{fullTime}}</span>
+                                </div>
+                                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                                    <span>均速: <span class="text-rose-300 font-mono">${{fullPace}}</span></span>
+                                    <span>均距: <span class="text-slate-300 font-mono">${{fullKm ? fullKm + 'k' : '-'}}</span></span>
+                                </div>
+                                ${{fullFastest !== '-' ? `
+                                    <div class="pt-1 mt-1 border-t border-rose-500/10 text-[10px] text-rose-400/90 flex justify-between">
+                                        <span>最快單次:</span>
+                                        <span class="font-mono font-bold">${{fullFastest}} (${{fullDateBadge}})</span>
+                                    </div>
+                                ` : ''}}
+                            </div>
+                        </div>
+                    `;
+                }}).join('');
+            }}
+
+            // 2. Render Table
+            if (tableBody) {{
+                tableBody.innerHTML = list.map(item => {{
+                    const isAll = item.year === 'all';
+                    const halfCount = isStd ? item.std_half_count : item.ext_half_count;
+                    const halfTime = isStd ? item.std_half_avg_time_str : item.ext_half_avg_time_str;
+                    const halfPace = isStd ? item.std_half_avg_pace_str : item.ext_half_avg_pace_str;
+                    const halfKm = isStd ? item.std_half_avg_km : item.ext_half_avg_km;
+                    const halfFastest = isStd ? item.std_half_fastest_time_str : item.ext_half_fastest_time_str;
+                    const halfFastDate = isStd ? item.std_half_fastest_date : item.ext_half_fastest_date;
+
+                    const fullCount = isStd ? item.std_full_count : item.ext_full_count;
+                    const fullTime = isStd ? item.std_full_avg_time_str : item.ext_full_avg_time_str;
+                    const fullPace = isStd ? item.std_full_avg_pace_str : item.ext_full_avg_pace_str;
+                    const fullKm = isStd ? item.std_full_avg_km : item.ext_full_avg_km;
+                    const fullFastest = isStd ? item.std_full_fastest_time_str : item.ext_full_fastest_time_str;
+                    const fullFastDate = isStd ? item.std_full_fastest_date : item.ext_full_fastest_date;
+
+                    const rowBg = isAll ? 'bg-amber-950/20 font-semibold' : 'hover:bg-slate-800/40';
+                    const yearLabel = isAll ? '<span class="text-amber-400 font-bold">👑 全部歷史 (All-Time)</span>' : `<span class="font-mono font-bold text-white">${{item.year_label}}</span>`;
+
+                    return `
+                        <tr class="${{rowBg}} transition-colors">
+                            <td class="py-2.5 px-3 whitespace-nowrap">${{yearLabel}}</td>
+                            <td class="py-2.5 px-3 text-emerald-400 font-mono font-bold">${{halfCount}} 場</td>
+                            <td class="py-2.5 px-3 text-white font-mono font-bold text-xs">${{halfTime}}</td>
+                            <td class="py-2.5 px-3 text-emerald-300 font-mono">${{halfPace}}</td>
+                            <td class="py-2.5 px-3 text-slate-300 font-mono text-[11px]">${{halfFastest !== '-' ? `${{halfFastest}} <span class="text-slate-500">(${{halfFastDate}})</span>` : '-'}}</td>
+                            <td class="py-2.5 px-3 text-rose-400 font-mono font-bold border-l border-slate-700/60">${{fullCount}} 場</td>
+                            <td class="py-2.5 px-3 text-white font-mono font-bold text-xs">${{fullTime}}</td>
+                            <td class="py-2.5 px-3 text-rose-300 font-mono">${{fullPace}}</td>
+                            <td class="py-2.5 px-3 text-slate-300 font-mono text-[11px]">${{fullFastest !== '-' ? `${{fullFastest}} <span class="text-slate-500">(${{fullFastDate}})</span>` : '-'}}</td>
+                        </tr>
+                    `;
+                }}).join('');
+            }}
+
+            // Render Target Marathon Pace Suggestions
+            renderMarathonPaceSuggestion();
+        }}
+
+        const MARATHON_PACE_TIERS = {{
+            sub4: {{
+                name: 'Sub-4 (破4小時)',
+                time: '3:59:59',
+                speed_kmh: 10.55,
+                pace: '5:41',
+                pace_range: '5:38 ~ 5:44',
+                half_time: '1h 59m 59s',
+                split_5k: '28m 25s',
+                split_10k: '56m 52s',
+                advice_title: '體能對標：具備衝刺 Sub-4 (破4小時) 的強大有氧實力！',
+                advice_desc: '您在 2026 年室外半馬跑出 1h 52m 42s (均速 5:20/km)，歷史全馬最佳 4h 03m 12s (5:46/km)。依據運動生理學 VDOT 模型，半馬 1h52m 具備全馬 3h 54m ~ 3h 58m 的實力！建議將每小時時速精準控制在 10.55 km/h，配合定時補給即可成功叩關。',
+                hours: [
+                    {{ h: '第 1 小時 (0~1h)', range: '0 ~ 10.55 km', speed: '10.55 km/h', note: '壓制起跑興奮感，嚴守 Zone 2 心率區，第 45 分鐘吞第一包能量膠。' }},
+                    {{ h: '第 2 小時 (1~2h)', range: '10.55 ~ 21.10 km', speed: '10.55 km/h', note: '通過半馬感應毯（約 1:59:59），步頻維持 180+，補充電解質鹽錠與水分。' }},
+                    {{ h: '第 3 小時 (2~3h)', range: '21.10 ~ 31.65 km', speed: '10.55 km/h', note: '關鍵 30K 門檻！大腿股四頭肌開始抗疲勞，保持核心收緊，吞第三包咖啡因能量膠。' }},
+                    {{ h: '第 4 小時 (3~4h)', range: '31.65 ~ 42.195 km', speed: '10.60 km/h', note: '意志力決勝階段，倒數 5 公里穩住步幅，最後 1.5 公里微幅開出全力衝向終點拱門！' }}
+                ]
+            }},
+            sub415: {{
+                name: 'Sub-4:15',
+                time: '4:14:59',
+                speed_kmh: 9.93,
+                pace: '6:02',
+                pace_range: '6:00 ~ 6:05',
+                half_time: '2h 07m 30s',
+                split_5k: '30m 13s',
+                split_10k: '1h 00m 26s',
+                advice_title: '體能對標：極佳成功率的穩健衝刺目標',
+                advice_desc: '以均速 6:02/km (時速 9.93 km/h) 推進，後段保留充分體力抗衰減，適合氣候稍熱或略有起伏的認證賽道。',
+                hours: [
+                    {{ h: '第 1 小時 (0~1h)', range: '0 ~ 9.93 km', speed: '9.93 km/h', note: '輕鬆起跑，熱身均速 6:05/km，順暢配合呼吸節奏。' }},
+                    {{ h: '第 2 小時 (1~2h)', range: '9.93 ~ 19.86 km', speed: '9.93 km/h', note: '接近半馬點，每小時補充 1 包能量膠與水站少量多次補水。' }},
+                    {{ h: '第 3 小時 (2~3h)', range: '19.86 ~ 29.79 km', speed: '9.93 km/h', note: '進入 25~30 km 巡航，注意手臂擺動帶動核心，預防小腿緊繃。' }},
+                    {{ h: '第 4 小時+ (3h~4h15m)', range: '29.79 ~ 42.195 km', speed: '9.95 km/h', note: '剩餘 12.4 km 耗時約 75 分鐘，咬住 6 分速列車穩步完賽。' }}
+                ]
+            }},
+            sub430: {{
+                name: 'Sub-4:30',
+                time: '4:29:59',
+                speed_kmh: 9.38,
+                pace: '6:24',
+                pace_range: '6:20 ~ 6:28',
+                half_time: '2h 15m 00s',
+                split_5k: '32m 00s',
+                split_10k: '1h 04m 00s',
+                advice_title: '體能對標：貼合您 2025 年全馬平均實力 (4h 34m)',
+                advice_desc: '您在 2025 年 7 場全馬平均耗時為 4h 34m 37s (6:29/km)。此檔位幾乎處於您的舒適有氧區，能游刃有餘穩定跑完全程。',
+                hours: [
+                    {{ h: '第 1 小時 (0~1h)', range: '0 ~ 9.38 km', speed: '9.38 km/h', note: '舒適 Zone 2 有氧配速 6:24/km，呼吸平穩自如。' }},
+                    {{ h: '第 2 小時 (1~2h)', range: '9.38 ~ 18.76 km', speed: '9.38 km/h', note: '維持均速，進水站喝水或運動飲料，第 50 分鐘補膠。' }},
+                    {{ h: '第 3 小時 (2~3h)', range: '18.76 ~ 28.14 km', speed: '9.38 km/h', note: '通過半馬後持續巡航，檢查心率是否維持在乳酸閥值以下。' }},
+                    {{ h: '第 4 小時+ (3h~4h30m)', range: '28.14 ~ 42.195 km', speed: '9.40 km/h', note: '剩餘 14 km 耗時約 90 分鐘，以 6:24 均速直達終點。' }}
+                ]
+            }},
+            sub445: {{
+                name: 'Sub-4:45',
+                time: '4:44:59',
+                speed_kmh: 8.88,
+                pace: '6:45',
+                pace_range: '6:40 ~ 6:50',
+                half_time: '2h 22m 29s',
+                split_5k: '33m 46s',
+                split_10k: '1h 07m 32s',
+                advice_title: '體能對標：貼合您 2026 年全馬平均實力 (4h 44m)',
+                advice_desc: '您在 2026 年 3 場全馬平均耗時為 4h 44m 38s (6:42/km)。這是您目前最熟悉且能保證 100% 完賽的巡航節奏。',
+                hours: [
+                    {{ h: '第 1 小時 (0~1h)', range: '0 ~ 8.88 km', speed: '8.88 km/h', note: '基礎巡航節奏，心率保持在低有氧區，完全不喘。' }},
+                    {{ h: '第 2 小時 (1~2h)', range: '8.88 ~ 17.76 km', speed: '8.88 km/h', note: '穩定前進，進站補水兼降溫，攝取第一份固態補給。' }},
+                    {{ h: '第 3 小時 (2~3h)', range: '17.76 ~ 26.64 km', speed: '8.88 km/h', note: '過半馬後節奏不變，定時吞鹽錠補充流失鈉離子。' }},
+                    {{ h: '第 4 小時+ (3h~4h45m)', range: '26.64 ~ 42.195 km', speed: '8.90 km/h', note: '剩餘 15.5 km 耗時約 105 分鐘，維持穩健步頻收尾。' }}
+                ]
+            }},
+            sub500: {{
+                name: 'Sub-5 (破5小時)',
+                time: '4:59:59',
+                speed_kmh: 8.44,
+                pace: '7:06',
+                pace_range: '7:00 ~ 7:12',
+                half_time: '2h 30m 00s',
+                split_5k: '35m 33s',
+                split_10k: '1h 11m 06s',
+                advice_title: '體能對標：超馬後恢復賽事或極端炎熱天候適用',
+                advice_desc: '時速 8.44 km/h，配速 7:06/km。對您的體能而言屬於極輕鬆節奏，適合當作背靠背 (Back-to-Back) 或長距離訓練賽。',
+                hours: [
+                    {{ h: '第 1 小時 (0~1h)', range: '0 ~ 8.44 km', speed: '8.44 km/h', note: '超輕鬆慢跑節奏，心率 Zone 1~2。' }},
+                    {{ h: '第 2 小時 (1~2h)', range: '8.44 ~ 16.88 km', speed: '8.44 km/h', note: '享受賽道氛圍，每小時補水 400ml。' }},
+                    {{ h: '第 3 小時 (2~3h)', range: '16.88 ~ 25.32 km', speed: '8.44 km/h', note: '過半馬點，肌肉無明顯疲勞感。' }},
+                    {{ h: '第 4 小時+ (3h~5h00m)', range: '25.32 ~ 42.195 km', speed: '8.45 km/h', note: '後段可視體能微幅提速或輕鬆巡航完賽。' }}
+                ]
+            }}
+        }};
+
+        let currentPaceTier = 'sub4';
+
+        function setMarathonTargetPace(tier) {{
+            currentPaceTier = tier;
+            ['sub4', 'sub415', 'sub430', 'sub445', 'sub500'].forEach(t => {{
+                const btn = document.getElementById(`btn-pace-${{t}}`);
+                if (btn) {{
+                    if (t === tier) {{
+                        btn.className = 'px-2 py-1 rounded font-medium transition-all bg-sky-600 text-white shadow-sm';
+                    }} else {{
+                        btn.className = 'px-2 py-1 rounded font-medium transition-all text-slate-400 hover:text-white';
+                    }}
+                }}
+            }});
+            renderMarathonPaceSuggestion();
+        }}
+
+        function renderMarathonPaceSuggestion() {{
+            const data = MARATHON_PACE_TIERS[currentPaceTier] || MARATHON_PACE_TIERS.sub4;
+            
+            const elSpeed = document.getElementById('pace-kpi-speed');
+            const elDistHr = document.getElementById('pace-kpi-dist-hr');
+            const elPace = document.getElementById('pace-kpi-pace');
+            const elHalf = document.getElementById('pace-kpi-half');
+            const el5k = document.getElementById('pace-kpi-5k');
+            const elTitle = document.getElementById('pace-advice-title');
+            const elDesc = document.getElementById('pace-advice-desc');
+            const elHourly = document.getElementById('hourly-progression-cards');
+
+            if (elSpeed) elSpeed.innerText = `${{data.speed_kmh}} km/h`;
+            if (elDistHr) elDistHr.innerText = `每小時推進 ${{data.speed_kmh}} 公里`;
+            if (elPace) elPace.innerText = `${{data.pace}} / km`;
+            if (elHalf) elHalf.innerText = data.half_time;
+            if (el5k) el5k.innerText = data.split_5k;
+            if (elTitle) elTitle.innerText = data.advice_title;
+            if (elDesc) elDesc.innerText = data.advice_desc;
+
+            if (elHourly) {{
+                elHourly.innerHTML = data.hours.map(hr => `
+                    <div class="bg-slate-800/80 p-2.5 rounded-lg border border-slate-700/60 space-y-1">
+                        <div class="flex items-center justify-between border-b border-slate-700/40 pb-1">
+                            <span class="font-bold text-sky-400 font-mono">${{hr.h}}</span>
+                            <span class="text-[10px] text-emerald-400 font-mono font-bold">${{hr.speed}}</span>
+                        </div>
+                        <div class="text-[11px] font-mono text-slate-200">
+                            里程: <span class="text-white font-bold">${{hr.range}}</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 leading-relaxed pt-0.5">${{hr.note}}</p>
+                    </div>
+                `).join('');
             }}
         }}
 
