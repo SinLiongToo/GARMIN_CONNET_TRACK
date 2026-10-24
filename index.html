@@ -455,11 +455,14 @@
                     <button onclick="setHistTimeMode('trailing')" id="btn-time-trailing" class="px-2.5 py-1 rounded-lg font-medium transition-all bg-slate-800 text-slate-300 hover:bg-slate-700">
                         ⏱️ 滾動時序 (Trailing)
                     </button>
-                    <button onclick="setHistTimeMode('yoy')" id="btn-time-yoy" class="px-2.5 py-1 rounded-lg font-medium transition-all bg-slate-800 text-purple-400 hover:bg-slate-700" title="年對年同比直方圖對比 (例如 2026 vs 2025)">
-                        📈 YoY 年同比對比
+                    <button onclick="setHistTimeMode('yoy_year')" id="btn-time-yoy_year" class="px-2.5 py-1 rounded-lg font-medium transition-all bg-slate-800 text-purple-400 hover:bg-slate-700" title="年度與年度同比直方圖對比 (例如 2026 vs 2025)">
+                        📅 年度 YoY
                     </button>
-                    <button onclick="setHistTimeMode('mom')" id="btn-time-mom" class="px-2.5 py-1 rounded-lg font-medium transition-all bg-slate-800 text-emerald-400 hover:bg-slate-700" title="月對月環比直方圖對比 (例如 本月 vs 上月)">
-                        📊 MoM 月環比對比
+                    <button onclick="setHistTimeMode('yoy_month')" id="btn-time-yoy_month" class="px-2.5 py-1 rounded-lg font-medium transition-all bg-slate-800 text-fuchsia-400 hover:bg-slate-700" title="跨年同月份同比直方圖對比 (例如 2026-10 vs 2025-10)">
+                        🗓️ 月度 YoY
+                    </button>
+                    <button onclick="setHistTimeMode('mom')" id="btn-time-mom" class="px-2.5 py-1 rounded-lg font-medium transition-all bg-slate-800 text-emerald-400 hover:bg-slate-700" title="連續相鄰月份環比直方圖對比 (例如 2026-10 vs 2026-09)">
+                        🔄 月度 MoM
                     </button>
                 </div>
 
@@ -493,17 +496,25 @@
                         </select>
                     </div>
 
-                    <!-- YoY select -->
-                    <div id="hist-yoy-select-wrap" class="hidden flex items-center gap-1.5">
-                        <span class="text-purple-400 font-semibold">YoY 對比組合:</span>
-                        <select id="hist-yoy-select" onchange="onHistYoYChange()" class="bg-slate-800 text-purple-400 border border-purple-500/50 rounded-lg px-2.5 py-1 focus:outline-none focus:border-purple-400 font-mono">
+                    <!-- YoY Year select -->
+                    <div id="hist-yoy-year-select-wrap" class="hidden flex items-center gap-1.5">
+                        <span class="text-purple-400 font-semibold">年度 YoY:</span>
+                        <select id="hist-yoy-year-select" onchange="onHistYoYYearChange()" class="bg-slate-800 text-purple-400 border border-purple-500/50 rounded-lg px-2.5 py-1 focus:outline-none focus:border-purple-400 font-mono">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- YoY Month select -->
+                    <div id="hist-yoy-month-select-wrap" class="hidden flex items-center gap-1.5">
+                        <span class="text-fuchsia-400 font-semibold">月度 YoY:</span>
+                        <select id="hist-yoy-month-select" onchange="onHistYoYMonthChange()" class="bg-slate-800 text-fuchsia-400 border border-fuchsia-500/50 rounded-lg px-2.5 py-1 focus:outline-none focus:border-fuchsia-400 font-mono">
                             <!-- Populated dynamically -->
                         </select>
                     </div>
 
                     <!-- MoM select -->
                     <div id="hist-mom-select-wrap" class="hidden flex items-center gap-1.5">
-                        <span class="text-emerald-400 font-semibold">MoM 對比組合:</span>
+                        <span class="text-emerald-400 font-semibold">月度 MoM:</span>
                         <select id="hist-mom-select" onchange="onHistMoMChange()" class="bg-slate-800 text-emerald-400 border border-emerald-500/50 rounded-lg px-2.5 py-1 focus:outline-none focus:border-emerald-400 font-mono">
                             <!-- Populated dynamically -->
                         </select>
@@ -2573,12 +2584,13 @@
             }
         }
 
-        // 📊 Distance Histogram State & Interactive Logic (次數 vs 公里數, 室內外分組, 年/月/時序篩選, YoY / MoM 對比)
-        let histTimeMode = 'all'; // 'all', 'year', 'month', 'trailing', 'yoy', 'mom'
+        // 📊 Distance Histogram State & Interactive Logic (次數 vs 公里數, 室內外分組, 年/月/時序篩選, 年度YoY / 月度YoY / 月度MoM 對比)
+        let histTimeMode = 'all'; // 'all', 'year', 'month', 'trailing', 'yoy_year', 'yoy_month', 'mom'
         let histSelectedYear = 'all';
         let histSelectedMonth = 'all';
         let histSelectedTrailing = 365;
-        let histSelectedYoY = '';
+        let histSelectedYoYYear = '';
+        let histSelectedYoYMonth = '';
         let histSelectedMoM = '';
         let histGroupMode = 'stacked'; // 'stacked', 'grouped', 'split_trail'
         let histBinMode = 'athletic'; // 'athletic', 'fixed_2k', 'fixed_5k'
@@ -2622,13 +2634,20 @@
 
         function setHistTimeMode(mode) {
             histTimeMode = mode;
-            ['all', 'year', 'month', 'trailing', 'yoy', 'mom'].forEach(m => {
+            ['all', 'year', 'month', 'trailing', 'yoy_year', 'yoy_month', 'mom'].forEach(m => {
                 const btn = document.getElementById(`btn-time-${m}`);
                 if (btn) {
                     if (m === mode) {
-                        btn.className = 'px-2.5 py-1 rounded-lg font-medium transition-all bg-sky-600 text-white shadow-sm';
+                        let activeBg = 'bg-sky-600';
+                        if (m === 'yoy_year') activeBg = 'bg-purple-600';
+                        else if (m === 'yoy_month') activeBg = 'bg-fuchsia-600';
+                        else if (m === 'mom') activeBg = 'bg-emerald-600';
+                        btn.className = `px-2.5 py-1 rounded-lg font-medium transition-all ${activeBg} text-white shadow-sm`;
                     } else {
-                        const textColor = m === 'yoy' ? 'text-purple-400' : (m === 'mom' ? 'text-emerald-400' : 'text-slate-300');
+                        let textColor = 'text-slate-300';
+                        if (m === 'yoy_year') textColor = 'text-purple-400';
+                        else if (m === 'yoy_month') textColor = 'text-fuchsia-400';
+                        else if (m === 'mom') textColor = 'text-emerald-400';
                         btn.className = `px-2.5 py-1 rounded-lg font-medium transition-all bg-slate-800 ${textColor} hover:bg-slate-700`;
                     }
                 }
@@ -2637,13 +2656,15 @@
             const yearWrap = document.getElementById('hist-year-select-wrap');
             const monthWrap = document.getElementById('hist-month-select-wrap');
             const trailWrap = document.getElementById('hist-trailing-select-wrap');
-            const yoyWrap = document.getElementById('hist-yoy-select-wrap');
+            const yoyYearWrap = document.getElementById('hist-yoy-year-select-wrap');
+            const yoyMonthWrap = document.getElementById('hist-yoy-month-select-wrap');
             const momWrap = document.getElementById('hist-mom-select-wrap');
 
             if (yearWrap) yearWrap.classList.toggle('hidden', mode !== 'year');
             if (monthWrap) monthWrap.classList.toggle('hidden', mode !== 'month');
             if (trailWrap) trailWrap.classList.toggle('hidden', mode !== 'trailing');
-            if (yoyWrap) yoyWrap.classList.toggle('hidden', mode !== 'yoy');
+            if (yoyYearWrap) yoyYearWrap.classList.toggle('hidden', mode !== 'yoy_year');
+            if (yoyMonthWrap) yoyMonthWrap.classList.toggle('hidden', mode !== 'yoy_month');
             if (momWrap) momWrap.classList.toggle('hidden', mode !== 'mom');
 
             renderDistanceHistogram();
@@ -2673,10 +2694,18 @@
             }
         }
 
-        function onHistYoYChange() {
-            const select = document.getElementById('hist-yoy-select');
+        function onHistYoYYearChange() {
+            const select = document.getElementById('hist-yoy-year-select');
             if (select) {
-                histSelectedYoY = select.value;
+                histSelectedYoYYear = select.value;
+                renderDistanceHistogram();
+            }
+        }
+
+        function onHistYoYMonthChange() {
+            const select = document.getElementById('hist-yoy-month-select');
+            if (select) {
+                histSelectedYoYMonth = select.value;
                 renderDistanceHistogram();
             }
         }
@@ -2747,42 +2776,52 @@
                 }
             }
 
-            // YoY Options
-            const yoySelect = document.getElementById('hist-yoy-select');
-            if (yoySelect && yoySelect.options.length === 0) {
-                const yoyOpts = [];
+            // 年度 YoY Options (Full year vs full year)
+            const yoyYearSelect = document.getElementById('hist-yoy-year-select');
+            if (yoyYearSelect && yoyYearSelect.options.length === 0) {
+                const yoyYearOpts = [];
                 for (let i = 0; i < years.length - 1; i++) {
-                    yoyOpts.push({
-                        value: `year:${years[i]}:${years[i+1]}`,
+                    yoyYearOpts.push({
+                        value: `${years[i]}:${years[i+1]}`,
                         text: `📅 ${years[i]} vs ${years[i+1]} (年度同比)`
                     });
                 }
+                yoyYearSelect.innerHTML = yoyYearOpts.map(o => `<option value="${o.value}">${o.text}</option>`).join('');
+                if (yoyYearOpts.length > 0 && !histSelectedYoYYear) {
+                    histSelectedYoYYear = yoyYearOpts[0].value;
+                }
+            }
+
+            // 月度 YoY Options (Same month across consecutive years)
+            const yoyMonthSelect = document.getElementById('hist-yoy-month-select');
+            if (yoyMonthSelect && yoyMonthSelect.options.length === 0) {
+                const yoyMonthOpts = [];
                 months.forEach(m => {
                     const parts = m.split('-');
                     if (parts.length === 2) {
                         const prevYM = `${parseInt(parts[0], 10) - 1}-${parts[1]}`;
                         if (months.includes(prevYM)) {
-                            yoyOpts.push({
-                                value: `month:${m}:${prevYM}`,
-                                text: `📆 ${m} vs ${prevYM} (月度同比)`
+                            yoyMonthOpts.push({
+                                value: `${m}:${prevYM}`,
+                                text: `🗓️ ${m} vs ${prevYM} (月度同比)`
                             });
                         }
                     }
                 });
-                yoySelect.innerHTML = yoyOpts.map(o => `<option value="${o.value}">${o.text}</option>`).join('');
-                if (yoyOpts.length > 0 && !histSelectedYoY) {
-                    histSelectedYoY = yoyOpts[0].value;
+                yoyMonthSelect.innerHTML = yoyMonthOpts.map(o => `<option value="${o.value}">${o.text}</option>`).join('');
+                if (yoyMonthOpts.length > 0 && !histSelectedYoYMonth) {
+                    histSelectedYoYMonth = yoyMonthOpts[0].value;
                 }
             }
 
-            // MoM Options
+            // 月度 MoM Options (Adjacent months)
             const momSelect = document.getElementById('hist-mom-select');
             if (momSelect && momSelect.options.length === 0) {
                 const momOpts = [];
                 for (let i = 0; i < months.length - 1; i++) {
                     momOpts.push({
                         value: `${months[i]}:${months[i+1]}`,
-                        text: `📆 ${months[i]} vs ${months[i+1]} (月度環比)`
+                        text: `🔄 ${months[i]} vs ${months[i+1]} (月度環比)`
                     });
                 }
                 momSelect.innerHTML = momOpts.map(o => `<option value="${o.value}">${o.text}</option>`).join('');
@@ -2879,36 +2918,49 @@
             initDistanceHistogramControls();
             const theme = getChartThemeColors();
             const binsDef = getHistogramBinsDef();
-            const isComparison = histTimeMode === 'yoy' || histTimeMode === 'mom';
+            const isComparison = histTimeMode === 'yoy_year' || histTimeMode === 'yoy_month' || histTimeMode === 'mom';
 
             if (isComparison) {
-                // 📈 YoY or 📊 MoM Comparative Distribution Mode
+                // 📅 年度 YoY, 🗓️ 月度 YoY, or 🔄 月度 MoM Comparative Distribution Mode
                 const allActs = getAllActivities();
                 let curActs = [];
                 let cmpActs = [];
                 let curTitle = '';
                 let cmpTitle = '';
                 let compTag = '';
+                let cmpColor = 'rgba(168, 85, 247, 0.85)';
+                let cmpBorderColor = '#9333ea';
+                let cmpTextClass = 'text-purple-400';
+                let cmpTextLightClass = 'text-purple-300';
 
-                if (histTimeMode === 'yoy') {
-                    compTag = 'YoY 年同比';
-                    const parts = (histSelectedYoY || '').split(':');
-                    const cType = parts[0];
-                    const p1 = parts[1] || '';
-                    const p2 = parts[2] || '';
-                    if (cType === 'year') {
-                        curActs = allActs.filter(a => a.year === p1);
-                        cmpActs = allActs.filter(a => a.year === p2);
-                        curTitle = `${p1} 年 (當期)`;
-                        cmpTitle = `${p2} 年 (去年同期)`;
-                    } else {
-                        curActs = allActs.filter(a => a.month === p1);
-                        cmpActs = allActs.filter(a => a.month === p2);
-                        curTitle = `${p1} (當期月)`;
-                        cmpTitle = `${p2} (去年同月)`;
-                    }
+                if (histTimeMode === 'yoy_year') {
+                    compTag = '年度 YoY (年同比)';
+                    const parts = (histSelectedYoYYear || '').split(':');
+                    const p1 = parts[0] || '';
+                    const p2 = parts[1] || '';
+                    curActs = allActs.filter(a => a.year === p1);
+                    cmpActs = allActs.filter(a => a.year === p2);
+                    curTitle = `${p1} 年 (當期)`;
+                    cmpTitle = `${p2} 年 (去年)`;
+                    cmpColor = 'rgba(168, 85, 247, 0.85)';
+                    cmpBorderColor = '#9333ea';
+                    cmpTextClass = 'text-purple-400';
+                    cmpTextLightClass = 'text-purple-300';
+                } else if (histTimeMode === 'yoy_month') {
+                    compTag = '月度 YoY (同月同比)';
+                    const parts = (histSelectedYoYMonth || '').split(':');
+                    const p1 = parts[0] || '';
+                    const p2 = parts[1] || '';
+                    curActs = allActs.filter(a => a.month === p1);
+                    cmpActs = allActs.filter(a => a.month === p2);
+                    curTitle = `${p1} (當期月)`;
+                    cmpTitle = `${p2} (去年同月)`;
+                    cmpColor = 'rgba(217, 70, 239, 0.85)';
+                    cmpBorderColor = '#c026d3';
+                    cmpTextClass = 'text-fuchsia-400';
+                    cmpTextLightClass = 'text-fuchsia-300';
                 } else {
-                    compTag = 'MoM 月環比';
+                    compTag = '月度 MoM (月環比)';
                     const parts = (histSelectedMoM || '').split(':');
                     const curM = parts[0] || '';
                     const prevM = parts[1] || '';
@@ -2916,6 +2968,10 @@
                     cmpActs = allActs.filter(a => a.month === prevM);
                     curTitle = `${curM} (當月)`;
                     cmpTitle = `${prevM} (上月)`;
+                    cmpColor = 'rgba(245, 158, 11, 0.85)';
+                    cmpBorderColor = '#d97706';
+                    cmpTextClass = 'text-amber-400';
+                    cmpTextLightClass = 'text-amber-300';
                 }
 
                 const desc = document.getElementById('hist-current-filter-desc');
@@ -3010,10 +3066,10 @@
                                 <tr>
                                     <th class="py-2 px-3">距離區間 (Bucket)</th>
                                     <th class="py-2 px-3 text-sky-400">當期次數 (${curTitle})</th>
-                                    <th class="py-2 px-3 ${histTimeMode === 'yoy' ? 'text-purple-400' : 'text-amber-400'}">對比期次數 (${cmpTitle})</th>
+                                    <th class="py-2 px-3 ${cmpTextClass}">對比期次數 (${cmpTitle})</th>
                                     <th class="py-2 px-3 text-white font-bold">次數差額 (Delta)</th>
                                     <th class="py-2 px-3 text-sky-300">當期里程 (km)</th>
-                                    <th class="py-2 px-3 ${histTimeMode === 'yoy' ? 'text-purple-300' : 'text-amber-300'}">對比期里程 (km)</th>
+                                    <th class="py-2 px-3 ${cmpTextLightClass}">對比期里程 (km)</th>
                                     <th class="py-2 px-3 text-slate-400">里程差額 (km)</th>
                                 </tr>
                             </thead>
@@ -3025,10 +3081,10 @@
                                         <tr class="hover:bg-slate-800/50 transition-colors">
                                             <td class="py-2 px-3 font-medium">${b.label} ${b.sublabel ? `<span class="text-[11px] text-slate-400">(${b.sublabel})</span>` : ''}</td>
                                             <td class="py-2 px-3 text-sky-400 font-mono font-bold">${b.curCount} 次</td>
-                                            <td class="py-2 px-3 ${histTimeMode === 'yoy' ? 'text-purple-400' : 'text-amber-400'} font-mono">${b.cmpCount} 次</td>
+                                            <td class="py-2 px-3 ${cmpTextClass} font-mono">${b.cmpCount} 次</td>
                                             <td class="py-2 px-3 font-mono ${diffCountColor}">${b.diffCount > 0 ? '+' : ''}${b.diffCount} 次</td>
                                             <td class="py-2 px-3 text-sky-300 font-mono">${b.curKm.toFixed(1)} km</td>
-                                            <td class="py-2 px-3 ${histTimeMode === 'yoy' ? 'text-purple-300' : 'text-amber-300'} font-mono">${b.cmpKm.toFixed(1)} km</td>
+                                            <td class="py-2 px-3 ${cmpTextLightClass} font-mono">${b.cmpKm.toFixed(1)} km</td>
                                             <td class="py-2 px-3 font-mono ${diffKmColor}">${b.diffKm > 0 ? '+' : ''}${b.diffKm} km</td>
                                         </tr>
                                     `;
@@ -3061,8 +3117,8 @@
                             {
                                 label: cmpTitle,
                                 data: compBins.map(b => b.cmpCount),
-                                backgroundColor: histTimeMode === 'yoy' ? 'rgba(168, 85, 247, 0.85)' : 'rgba(245, 158, 11, 0.85)',
-                                borderColor: histTimeMode === 'yoy' ? '#9333ea' : '#d97706',
+                                backgroundColor: cmpColor,
+                                borderColor: cmpBorderColor,
                                 borderWidth: 1,
                                 borderRadius: 4,
                                 stack: isStacked ? 'combined' : undefined

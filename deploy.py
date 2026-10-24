@@ -62,7 +62,7 @@ def main():
     run_interactive(["git", "remote", "-v"])
 
     # 4. Stage Files
-    print("\n[3/5] 加入儀表板、金句系列與 GitHub Pages 檔案 (安全排除帳密與 Token)...")
+    print("\n[3/5] 加入儀表板、分析腳本、金句系列與 GitHub Pages 檔案 (安全排除帳密與 Token)...")
     run_interactive([
         "git", "add",
         "index.html",
@@ -74,7 +74,16 @@ def main():
         ".gitignore",
         "requirements.txt",
         "deploy.py",
-        "deploy.bat"
+        "deploy.bat",
+        "html_generator.py",
+        "insights_engine.py",
+        "generate_pages.py",
+        "health_analyzer.py",
+        "garmin_client.py",
+        "download_gpx.py",
+        "main.py",
+        "一鍵推送至GitHub.bat",
+        "一鍵更新健康儀表板.bat"
     ])
 
     # 5. Commit
