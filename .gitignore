@@ -26,6 +26,7 @@ marathon_gpx/
 # Temporary, scratch & test files
 test_*.py
 test_run.py
+verification_*.png
 [Source]
 *.tmp
 *.log
