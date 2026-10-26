@@ -162,46 +162,126 @@ def generate_dashboard_html(
         /* Light Mode Theme Styles */
         html:not(.dark) body {{
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
-            color: #1e293b;
+            color: #0f172a;
         }}
         html:not(.dark) .glass-card {{
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(203, 213, 225, 0.85);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
-            color: #1e293b;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            color: #0f172a;
         }}
         html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3, html:not(.dark) h4 {{
             color: #0f172a !important;
         }}
         html:not(.dark) .text-slate-100, html:not(.dark) .text-slate-200 {{
-            color: #1e293b;
+            color: #0f172a;
         }}
         html:not(.dark) .text-slate-300 {{
-            color: #334155;
+            color: #1e293b !important;
         }}
         html:not(.dark) .text-slate-400 {{
-            color: #64748b;
+            color: #334155 !important;
         }}
+        html:not(.dark) .text-slate-500 {{
+            color: #475569 !important;
+        }}
+        html:not(.dark) .text-white:not(button):not(.tab-btn):not([class*="bg-sky"]):not([class*="bg-blue"]):not([class*="bg-emerald"]):not([class*="bg-rose"]):not([class*="bg-amber"]):not([class*="bg-purple"]) {{
+            color: #0f172a !important;
+        }}
+
+        /* Metric cards and panels in light mode */
         html:not(.dark) .bg-slate-900, html:not(.dark) .bg-slate-950 {{
-            background-color: #f1f5f9;
+            background-color: #ffffff;
             border-color: #cbd5e1;
+            color: #0f172a;
         }}
         html:not(.dark) [class*="bg-slate-900/"] {{
-            background-color: rgba(241, 245, 249, 0.95);
-            border-color: #cbd5e1;
+            background-color: #ffffff;
+            border-color: #cbd5e1 !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            color: #0f172a;
+        }}
+        html:not(.dark) [class*="border-slate-800"],
+        html:not(.dark) [class*="border-slate-700"],
+        html:not(.dark) [class*="border-slate-700/60"] {{
+            border-color: #cbd5e1 !important;
         }}
         html:not(.dark) .bg-slate-800 {{
             background-color: #e2e8f0;
             border-color: #cbd5e1;
-            color: #334155;
+            color: #1e293b;
         }}
-        html:not(.dark) thead.bg-slate-800 {{
-            background-color: #e2e8f0;
-            color: #475569;
+
+        /* High-contrast palette for colored text in light mode */
+        html:not(.dark) .text-sky-400, html:not(.dark) [class*="text-sky-400"] {{
+            color: #0284c7 !important;
         }}
-        html:not(.dark) .divide-slate-800 > :not([hidden]) ~ :not([hidden]) {{
-            border-color: #e2e8f0;
+        html:not(.dark) .text-sky-300, html:not(.dark) [class*="text-sky-300"] {{
+            color: #0369a1 !important;
+        }}
+        html:not(.dark) .text-purple-400, html:not(.dark) [class*="text-purple-400"] {{
+            color: #7e22ce !important;
+        }}
+        html:not(.dark) .text-purple-300, html:not(.dark) [class*="text-purple-300"] {{
+            color: #6b21a8 !important;
+        }}
+        html:not(.dark) .text-fuchsia-400, html:not(.dark) [class*="text-fuchsia-400"] {{
+            color: #a21caf !important;
+        }}
+        html:not(.dark) .text-emerald-400, html:not(.dark) [class*="text-emerald-400"] {{
+            color: #047857 !important;
+        }}
+        html:not(.dark) .text-emerald-300, html:not(.dark) [class*="text-emerald-300"] {{
+            color: #065f46 !important;
+        }}
+        html:not(.dark) .text-rose-400, html:not(.dark) [class*="text-rose-400"] {{
+            color: #be123c !important;
+        }}
+        html:not(.dark) .text-rose-500, html:not(.dark) [class*="text-rose-500"] {{
+            color: #be123c !important;
+        }}
+        html:not(.dark) .text-amber-400, html:not(.dark) [class*="text-amber-400"] {{
+            color: #b45309 !important;
+        }}
+        html:not(.dark) .text-amber-500, html:not(.dark) [class*="text-amber-500"] {{
+            color: #b45309 !important;
+        }}
+        html:not(.dark) .text-orange-400, html:not(.dark) [class*="text-orange-400"] {{
+            color: #c2410c !important;
+        }}
+        html:not(.dark) .text-indigo-400, html:not(.dark) [class*="text-indigo-400"] {{
+            color: #4338ca !important;
+        }}
+        html:not(.dark) .text-indigo-300, html:not(.dark) [class*="text-indigo-300"] {{
+            color: #3730a3 !important;
+        }}
+
+        /* Table & Divider Gridlines in Light Mode */
+        html:not(.dark) table {{
+            border-collapse: collapse;
+        }}
+        html:not(.dark) thead,
+        html:not(.dark) thead.bg-slate-800,
+        html:not(.dark) [class*="bg-slate-800"] {{
+            background-color: #f1f5f9 !important;
+            border-bottom: 2px solid #cbd5e1 !important;
+            color: #0f172a !important;
+        }}
+        html:not(.dark) thead th {{
+            color: #0f172a !important;
+            font-weight: 700 !important;
+            border-bottom: 2px solid #94a3b8 !important;
+        }}
+        html:not(.dark) tbody td {{
+            border-bottom: 1px solid #e2e8f0 !important;
+            color: #0f172a !important;
+        }}
+        html:not(.dark) tbody tr:hover td {{
+            background-color: #f1f5f9 !important;
+        }}
+        html:not(.dark) [class*="divide-slate-800"] > :not([hidden]) ~ :not([hidden]) {{
+            border-color: #cbd5e1 !important;
         }}
         html:not(.dark) tr:hover {{
             background-color: rgba(241, 245, 249, 0.8);
@@ -1517,10 +1597,11 @@ def generate_dashboard_html(
             const isDark = document.documentElement.classList.contains('dark');
             return {{
                 isDark: isDark,
-                gridColor: isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.07)',
-                tickColor: isDark ? '#94a3b8' : '#475569',
-                legendColor: isDark ? '#e2e8f0' : '#1e293b',
-                titleColor: isDark ? '#cbd5e1' : '#334155'
+                gridColor: isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(100, 116, 139, 0.25)',
+                tickColor: isDark ? '#94a3b8' : '#0f172a',
+                legendColor: isDark ? '#e2e8f0' : '#0f172a',
+                titleColor: isDark ? '#cbd5e1' : '#0f172a',
+                axisBorderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : '#94a3b8'
             }};
         }}
 
@@ -3667,8 +3748,8 @@ def generate_dashboard_html(
                     cmpActs = allActs.filter(a => a.year === p2);
                     curTitle = `${{p1}} 年 (當期)`;
                     cmpTitle = `${{p2}} 年 (去年)`;
-                    cmpColor = 'rgba(168, 85, 247, 0.85)';
-                    cmpBorderColor = '#9333ea';
+                    cmpColor = theme.isDark ? 'rgba(168, 85, 247, 0.85)' : 'rgba(126, 34, 206, 0.9)';
+                    cmpBorderColor = theme.isDark ? '#9333ea' : '#6b21a8';
                     cmpTextClass = 'text-purple-400';
                     cmpTextLightClass = 'text-purple-300';
                 }} else if (histTimeMode === 'yoy_month') {{
@@ -3680,8 +3761,8 @@ def generate_dashboard_html(
                     cmpActs = allActs.filter(a => a.month === p2);
                     curTitle = `${{p1}} (當期月)`;
                     cmpTitle = `${{p2}} (去年同月)`;
-                    cmpColor = 'rgba(217, 70, 239, 0.85)';
-                    cmpBorderColor = '#c026d3';
+                    cmpColor = theme.isDark ? 'rgba(217, 70, 239, 0.85)' : 'rgba(162, 28, 175, 0.9)';
+                    cmpBorderColor = theme.isDark ? '#c026d3' : '#86198f';
                     cmpTextClass = 'text-fuchsia-400';
                     cmpTextLightClass = 'text-fuchsia-300';
                 }} else {{
@@ -3693,8 +3774,8 @@ def generate_dashboard_html(
                     cmpActs = allActs.filter(a => a.month === prevM);
                     curTitle = `${{curM}} (當月)`;
                     cmpTitle = `${{prevM}} (上月)`;
-                    cmpColor = 'rgba(245, 158, 11, 0.85)';
-                    cmpBorderColor = '#d97706';
+                    cmpColor = theme.isDark ? 'rgba(245, 158, 11, 0.85)' : 'rgba(217, 119, 6, 0.9)';
+                    cmpBorderColor = theme.isDark ? '#d97706' : '#b45309';
                     cmpTextClass = 'text-amber-400';
                     cmpTextLightClass = 'text-amber-300';
                 }}
@@ -3833,8 +3914,8 @@ def generate_dashboard_html(
                             {{
                                 label: curTitle,
                                 data: compBins.map(b => b.curCount),
-                                backgroundColor: 'rgba(56, 189, 248, 0.85)',
-                                borderColor: '#0284c7',
+                                backgroundColor: theme.isDark ? 'rgba(56, 189, 248, 0.85)' : 'rgba(2, 132, 199, 0.9)',
+                                borderColor: theme.isDark ? '#0284c7' : '#0369a1',
                                 borderWidth: 1,
                                 borderRadius: isStacked ? 0 : 4,
                                 stack: isStacked ? 'combined' : undefined
@@ -3858,11 +3939,12 @@ def generate_dashboard_html(
                             x: {{
                                 stacked: isStacked,
                                 grid: {{ color: theme.gridColor }},
+                                border: {{ color: theme.axisBorderColor }},
                                 ticks: {{
                                     color: theme.tickColor,
                                     maxRotation: 45,
                                     minRotation: 0,
-                                    font: {{ size: 11 }}
+                                    font: {{ size: 11, weight: theme.isDark ? 'normal' : 'bold' }}
                                 }},
                                 title: {{
                                     display: true,
@@ -3876,10 +3958,11 @@ def generate_dashboard_html(
                                 beginAtZero: true,
                                 grace: '8%',
                                 grid: {{ color: theme.gridColor }},
+                                border: {{ color: theme.axisBorderColor }},
                                 ticks: {{
                                     color: theme.tickColor,
                                     stepSize: 1,
-                                    font: {{ size: 11 }}
+                                    font: {{ size: 11, weight: theme.isDark ? 'normal' : 'bold' }}
                                 }},
                                 title: {{
                                     display: true,
@@ -4077,8 +4160,8 @@ def generate_dashboard_html(
                     {{
                         label: '室內跑步機 (Indoor)',
                         data: binStats.map(b => b.indoorCount),
-                        backgroundColor: 'rgba(245, 158, 11, 0.85)',
-                        borderColor: '#d97706',
+                        backgroundColor: theme.isDark ? 'rgba(245, 158, 11, 0.85)' : 'rgba(217, 119, 6, 0.9)',
+                        borderColor: theme.isDark ? '#d97706' : '#b45309',
                         borderWidth: 1,
                         borderRadius: isStacked ? 0 : 4,
                         stack: 'combined'
@@ -4086,8 +4169,8 @@ def generate_dashboard_html(
                     {{
                         label: '室外路跑/操場 (Road/Track)',
                         data: binStats.map(b => Math.max(0, b.outdoorCount - b.trailCount)),
-                        backgroundColor: 'rgba(14, 165, 233, 0.85)',
-                        borderColor: '#0284c7',
+                        backgroundColor: theme.isDark ? 'rgba(14, 165, 233, 0.85)' : 'rgba(2, 132, 199, 0.9)',
+                        borderColor: theme.isDark ? '#0284c7' : '#0369a1',
                         borderWidth: 1,
                         borderRadius: isStacked ? 0 : 4,
                         stack: 'combined'
@@ -4095,8 +4178,8 @@ def generate_dashboard_html(
                     {{
                         label: '越野山徑/登山 (Trail)',
                         data: binStats.map(b => b.trailCount),
-                        backgroundColor: 'rgba(16, 185, 129, 0.85)',
-                        borderColor: '#059669',
+                        backgroundColor: theme.isDark ? 'rgba(16, 185, 129, 0.85)' : 'rgba(5, 150, 105, 0.9)',
+                        borderColor: theme.isDark ? '#059669' : '#047857',
                         borderWidth: 1,
                         borderRadius: isStacked ? 4 : 4,
                         stack: 'combined'
@@ -4108,8 +4191,8 @@ def generate_dashboard_html(
                     {{
                         label: '室內運動 (Indoor)',
                         data: binStats.map(b => b.indoorCount),
-                        backgroundColor: 'rgba(245, 158, 11, 0.85)',
-                        borderColor: '#d97706',
+                        backgroundColor: theme.isDark ? 'rgba(245, 158, 11, 0.85)' : 'rgba(217, 119, 6, 0.9)',
+                        borderColor: theme.isDark ? '#d97706' : '#b45309',
                         borderWidth: 1,
                         borderRadius: isStacked ? 0 : 4,
                         stack: isStacked ? 'combined' : undefined
@@ -4117,8 +4200,8 @@ def generate_dashboard_html(
                     {{
                         label: '室外運動 (Outdoor)',
                         data: binStats.map(b => b.outdoorCount),
-                        backgroundColor: 'rgba(14, 165, 233, 0.85)',
-                        borderColor: '#0284c7',
+                        backgroundColor: theme.isDark ? 'rgba(14, 165, 233, 0.85)' : 'rgba(2, 132, 199, 0.9)',
+                        borderColor: theme.isDark ? '#0284c7' : '#0369a1',
                         borderWidth: 1,
                         borderRadius: 4,
                         stack: isStacked ? 'combined' : undefined
@@ -4141,11 +4224,12 @@ def generate_dashboard_html(
                         x: {{
                             stacked: isStacked,
                             grid: {{ color: theme.gridColor }},
+                            border: {{ color: theme.axisBorderColor }},
                             ticks: {{
                                 color: theme.tickColor,
                                 maxRotation: 45,
                                 minRotation: 0,
-                                font: {{ size: 11 }}
+                                font: {{ size: 11, weight: theme.isDark ? 'normal' : 'bold' }}
                             }},
                             title: {{
                                 display: true,
@@ -4159,10 +4243,11 @@ def generate_dashboard_html(
                             beginAtZero: true,
                             grace: '8%',
                             grid: {{ color: theme.gridColor }},
+                            border: {{ color: theme.axisBorderColor }},
                             ticks: {{
                                 color: theme.tickColor,
                                 stepSize: 1,
-                                font: {{ size: 11 }}
+                                font: {{ size: 11, weight: theme.isDark ? 'normal' : 'bold' }}
                             }},
                             title: {{
                                 display: true,
