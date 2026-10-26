@@ -3519,6 +3519,123 @@ def generate_dashboard_html(
             }}
         }}
 
+        // Inline Chart.js Plugin: Bar Data Labels for Distance Histogram
+        function getHistogramDataLabelsPlugin(isStacked, theme) {{
+            return {{
+                id: 'histogramDataLabelsPlugin',
+                afterDatasetsDraw(chart) {{
+                    const ctx = chart.ctx;
+                    const datasets = chart.data.datasets;
+                    if (!datasets || datasets.length === 0) return;
+
+                    const isDark = theme ? theme.isDark : document.documentElement.classList.contains('dark');
+                    const topTextColor = isDark ? '#f1f5f9' : '#1e293b';
+
+                    if (isStacked) {{
+                        const numBins = chart.data.labels.length;
+                        for (let j = 0; j < numBins; j++) {{
+                            let stackTotal = 0;
+                            let nonZeroSegments = [];
+
+                            for (let i = 0; i < datasets.length; i++) {{
+                                const meta = chart.getDatasetMeta(i);
+                                if (meta.hidden) continue;
+                                const val = datasets[i].data[j];
+                                if (val && val > 0) {{
+                                    stackTotal += val;
+                                    const el = meta.data[j];
+                                    if (el) {{
+                                        nonZeroSegments.push({{
+                                            val: val,
+                                            el: el,
+                                            datasetIndex: i
+                                        }});
+                                    }}
+                                }}
+                            }}
+
+                            if (stackTotal <= 0 || nonZeroSegments.length === 0) continue;
+
+                            // 1. Draw segment counts inside segments when there are multiple non-zero segments
+                            if (nonZeroSegments.length > 1) {{
+                                nonZeroSegments.forEach(seg => {{
+                                    const segHeight = Math.abs(seg.el.base - seg.el.y);
+                                    if (segHeight >= 14 && (seg.el.width === undefined || seg.el.width >= 12)) {{
+                                        ctx.save();
+                                        ctx.font = 'bold 10px Inter, system-ui, -apple-system, sans-serif';
+                                        ctx.textAlign = 'center';
+                                        ctx.textBaseline = 'middle';
+                                        ctx.fillStyle = '#ffffff';
+                                        ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
+                                        ctx.shadowBlur = 3;
+                                        ctx.shadowOffsetX = 0;
+                                        ctx.shadowOffsetY = 1;
+                                        const midY = (seg.el.y + seg.el.base) / 2;
+                                        ctx.fillText(seg.val, seg.el.x, midY);
+                                        ctx.restore();
+                                    }}
+                                }});
+                            }}
+
+                            // 2. Draw stack total on top of the stack
+                            let topElement = nonZeroSegments[0].el;
+                            for (let k = 1; k < nonZeroSegments.length; k++) {{
+                                if (nonZeroSegments[k].el.y < topElement.y) {{
+                                    topElement = nonZeroSegments[k].el;
+                                }}
+                            }}
+
+                            ctx.save();
+                            ctx.font = 'bold 11px Inter, system-ui, -apple-system, sans-serif';
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'bottom';
+                            ctx.fillStyle = topTextColor;
+                            ctx.shadowColor = isDark ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)';
+                            ctx.shadowBlur = 3;
+                            let posY = topElement.y - 4;
+                            if (posY < chart.chartArea.top + 8) {{
+                                posY = topElement.y + 13;
+                                ctx.textBaseline = 'top';
+                                ctx.fillStyle = '#ffffff';
+                                ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+                            }}
+                            ctx.fillText(stackTotal, topElement.x, posY);
+                            ctx.restore();
+                        }}
+                    }} else {{
+                        // Grouped mode (side-by-side bars)
+                        for (let i = 0; i < datasets.length; i++) {{
+                            const meta = chart.getDatasetMeta(i);
+                            if (meta.hidden) continue;
+                            for (let j = 0; j < datasets[i].data.length; j++) {{
+                                const val = datasets[i].data[j];
+                                if (val && val > 0) {{
+                                    const el = meta.data[j];
+                                    if (!el) continue;
+                                    ctx.save();
+                                    ctx.font = 'bold 10px Inter, system-ui, -apple-system, sans-serif';
+                                    ctx.textAlign = 'center';
+                                    ctx.textBaseline = 'bottom';
+                                    ctx.fillStyle = topTextColor;
+                                    ctx.shadowColor = isDark ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)';
+                                    ctx.shadowBlur = 3;
+                                    let posY = el.y - 4;
+                                    if (posY < chart.chartArea.top + 8) {{
+                                        posY = el.y + 13;
+                                        ctx.textBaseline = 'top';
+                                        ctx.fillStyle = '#ffffff';
+                                        ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+                                    }}
+                                    ctx.fillText(val, el.x, posY);
+                                    ctx.restore();
+                                }}
+                            }}
+                        }}
+                    }}
+                }}
+            }};
+        }}
+
         function renderDistanceHistogram() {{
             const canvas = document.getElementById('chart-distance-histogram');
             if (!canvas) return;
@@ -3757,6 +3874,7 @@ def generate_dashboard_html(
                             y: {{
                                 stacked: isStacked,
                                 beginAtZero: true,
+                                grace: '8%',
                                 grid: {{ color: theme.gridColor }},
                                 ticks: {{
                                     color: theme.tickColor,
@@ -3796,7 +3914,8 @@ def generate_dashboard_html(
                                 }}
                             }}
                         }}
-                    }}
+                    }},
+                    plugins: [getHistogramDataLabelsPlugin(isStacked, theme)]
                 }});
                 return;
             }}
@@ -4038,6 +4157,7 @@ def generate_dashboard_html(
                         y: {{
                             stacked: isStacked,
                             beginAtZero: true,
+                            grace: '8%',
                             grid: {{ color: theme.gridColor }},
                             ticks: {{
                                 color: theme.tickColor,
@@ -4079,7 +4199,8 @@ def generate_dashboard_html(
                             }}
                         }}
                     }}
-                }}
+                }},
+                plugins: [getHistogramDataLabelsPlugin(isStacked, theme)]
             }});
         }}
 
