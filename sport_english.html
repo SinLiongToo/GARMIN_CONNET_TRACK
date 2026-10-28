@@ -483,7 +483,7 @@
 
         }
 
-        html:not(.dark) [class*="bg-slate-900/"] {
+        html:not(.dark) [class*="bg-slate-900/"], html:not(.dark) [class*="bg-slate-950/"] {
 
             background-color: rgba(241, 245, 249, 0.95);
 
@@ -524,6 +524,79 @@
             color: #0f172a;
 
         }
+
+        /* Light Mode Quote Cards General Styling */
+        html:not(.dark) .quote-card {
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        html:not(.dark) .quote-card blockquote {
+            color: #0f172a !important;
+        }
+
+        html:not(.dark) .quote-card p {
+            color: #b45309 !important;
+        }
+
+        html:not(.dark) .quote-card .text-white {
+            color: #0f172a !important;
+        }
+
+        /* Light Mode Spotlight Quote Card */
+        html:not(.dark) #spotlight-quote-card {
+            background: linear-gradient(135deg, #fffbeb 0%, #ffffff 50%, #fef3c7 100%) !important;
+            border-color: #f59e0b !important;
+            box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        html:not(.dark) #spotlight-en {
+            color: #78350f !important;
+        }
+
+        html:not(.dark) #spotlight-zh {
+            color: #92400e !important;
+        }
+
+        html:not(.dark) #spotlight-author-en {
+            color: #0f172a !important;
+        }
+
+        html:not(.dark) #spotlight-takeaway {
+            color: #475569 !important;
+        }
+
+        /* Light Mode Glossary General Styling */
+        html:not(.dark) .glossary-card {
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        html:not(.dark) .glossary-card .term-english {
+            color: #0f172a !important;
+        }
+
+        html:not(.dark) .glossary-card .term-mandarin {
+            color: #059669 !important;
+        }
+
+        html:not(.dark) #current-quote-display .text-white,
+        html:not(.dark) #current-word-display .text-white {
+            color: #0f172a !important;
+        }
+
+        html:not(.dark) #top-mini-player {
+            background-color: #ffffff !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+
+        html:not(.dark) #top-player-text {
+            color: #0f172a !important;
+            font-weight: 700 !important;
+        }
+
 
 
 
@@ -611,142 +684,437 @@
 
 
 
-        .active-play-card {
+        /* ==========================================================================
+           Auto-play Card & Sentence Highlight (Vibrant, High-Contrast & Accessible)
+           ========================================================================== */
 
-            border-color: #10b981 !important;
-
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.5), 0 8px 16px rgba(0, 0, 0, 0.3) !important;
-
-            transform: scale(1.03) !important;
-
-            z-index: 10;
-
+        .quote-card, .glossary-card, .nutrition-card, .injury-card, .muscle-card {
+            scroll-margin-top: 130px;
+            scroll-margin-bottom: 70px;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
         }
 
-        html.dark .active-play-card {
-
-            background: rgba(6, 78, 59, 0.45) !important;
-
-        }
-
-        html:not(.dark) .active-play-card {
-
-            background: rgba(209, 250, 229, 0.95) !important;
-
-            border-color: #059669 !important;
-
-        }
-
-
-
+        /* --------------------------------------------------------------------------
+           1. QUOTE CARDS (Auto-Play Active States)
+           -------------------------------------------------------------------------- */
         .active-play-quote {
-
             border-color: #f59e0b !important;
-
-            box-shadow: 0 0 28px rgba(245, 158, 11, 0.55), 0 8px 16px rgba(0, 0, 0, 0.4) !important;
-
+            box-shadow: 0 0 32px rgba(245, 158, 11, 0.65), 0 10px 24px rgba(0, 0, 0, 0.45) !important;
             transform: scale(1.03) !important;
-
-            z-index: 10;
-
+            z-index: 20;
         }
 
         html.dark .active-play-quote {
-
-            background: rgba(120, 53, 15, 0.45) !important;
-
+            background: linear-gradient(135deg, rgba(120, 53, 15, 0.6) 0%, rgba(30, 41, 59, 0.98) 100%) !important;
         }
 
         html:not(.dark) .active-play-quote {
-
-            background: rgba(254, 243, 199, 0.95) !important;
-
+            background: #fffbeb !important;
             border-color: #d97706 !important;
-
+            box-shadow: 0 0 32px rgba(217, 119, 6, 0.45), 0 12px 28px rgba(0, 0, 0, 0.12) !important;
         }
 
+        /* Active Quote Sentence Box */
+        .active-play-quote .quote-speaking-pill {
+            display: flex !important;
+        }
 
+        .active-play-quote .quote-sentence-box,
+        .active-play-quote div.mt-3.space-y-2 {
+            border-radius: 0.75rem !important;
+            padding: 0.85rem 1rem !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
 
+        /* Dark Mode: Luminous gold text on glowing warm translucent container */
+        html.dark .active-play-quote .quote-sentence-box,
+        html.dark .active-play-quote div.mt-3.space-y-2 {
+            background: rgba(245, 158, 11, 0.22) !important;
+            border-left: 5px solid #fbbf24 !important;
+            border-top: 1px solid rgba(245, 158, 11, 0.4) !important;
+            border-right: 1px solid rgba(245, 158, 11, 0.4) !important;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.4) !important;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.35), inset 0 0 15px rgba(245, 158, 11, 0.15) !important;
+        }
+
+        html.dark .active-play-quote blockquote,
+        html.dark .active-play-quote .quote-en-text {
+            color: #fef08a !important;
+            font-size: 1.05rem !important;
+            font-weight: 800 !important;
+            line-height: 1.45 !important;
+            text-shadow: 0 0 12px rgba(254, 240, 138, 0.45);
+        }
+
+        html.dark .active-play-quote p,
+        html.dark .active-play-quote .quote-zh-text {
+            color: #fde047 !important;
+            font-weight: 700 !important;
+            font-size: 0.95rem !important;
+            margin-top: 0.4rem !important;
+        }
+
+        /* Light Mode: Ultra-high contrast deep amber text (WCAG AAA > 11:1) on soft amber backing */
+        html:not(.dark) .active-play-quote .quote-sentence-box,
+        html:not(.dark) .active-play-quote div.mt-3.space-y-2 {
+            background: #fef3c7 !important;
+            border-left: 6px solid #b45309 !important;
+            border-top: 1.5px solid #fde68a !important;
+            border-right: 1.5px solid #fde68a !important;
+            border-bottom: 1.5px solid #fde68a !important;
+            box-shadow: 0 4px 18px rgba(180, 83, 9, 0.22) !important;
+        }
+
+        html:not(.dark) .active-play-quote .quote-speaking-label {
+            color: #92400e !important;
+            font-weight: 800 !important;
+        }
+
+        html:not(.dark) .active-play-quote .quote-speaking-dot {
+            background-color: #b45309 !important;
+        }
+
+        html:not(.dark) .active-play-quote blockquote,
+        html:not(.dark) .active-play-quote .quote-en-text {
+            color: #78350f !important;
+            font-size: 1.05rem !important;
+            font-weight: 800 !important;
+            line-height: 1.45 !important;
+        }
+
+        html:not(.dark) .active-play-quote p,
+        html:not(.dark) .active-play-quote .quote-zh-text {
+            color: #92400e !important;
+            font-weight: 700 !important;
+            font-size: 0.95rem !important;
+            margin-top: 0.4rem !important;
+        }
+
+        /* --------------------------------------------------------------------------
+           2. GLOSSARY CARDS (Auto-Play Active States)
+           -------------------------------------------------------------------------- */
+        .active-play-card {
+            border-color: #10b981 !important;
+            box-shadow: 0 0 32px rgba(16, 185, 129, 0.65), 0 10px 24px rgba(0, 0, 0, 0.35) !important;
+            transform: scale(1.03) !important;
+            z-index: 20;
+        }
+
+        html.dark .active-play-card {
+            background: linear-gradient(135deg, rgba(6, 78, 59, 0.6) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+        }
+
+        html:not(.dark) .active-play-card {
+            background: #f0fdf4 !important;
+            border-color: #059669 !important;
+            box-shadow: 0 0 32px rgba(5, 150, 105, 0.45), 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .active-play-card .glossary-speaking-pill {
+            display: flex !important;
+        }
+
+        .active-play-card .glossary-example-box,
+        .active-play-card div.mt-3.p-2\.5 {
+            border-radius: 0.75rem !important;
+            padding: 0.85rem 1rem !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        /* Dark Mode: Emerald glow & luminous text */
+        html.dark .active-play-card .term-english {
+            color: #6ee7b7 !important;
+            text-shadow: 0 0 12px rgba(110, 231, 183, 0.5);
+        }
+
+        html.dark .active-play-card .glossary-example-box,
+        html.dark .active-play-card div.mt-3.p-2\.5 {
+            background: rgba(6, 78, 59, 0.75) !important;
+            border-left: 5px solid #34d399 !important;
+            border-top: 1.5px solid #10b981 !important;
+            border-right: 1.5px solid #10b981 !important;
+            border-bottom: 1.5px solid #10b981 !important;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4), inset 0 0 12px rgba(16, 185, 129, 0.15) !important;
+        }
+
+        html.dark .active-play-card .glossary-ex-en,
+        html.dark .active-play-card div.mt-3.p-2\.5 > div.italic {
+            color: #ffffff !important;
+            font-size: 0.875rem !important;
+            font-weight: 700 !important;
+            line-height: 1.5 !important;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        html.dark .active-play-card .glossary-ex-zh,
+        html.dark .active-play-card div.mt-3.p-2\.5 > div:last-child {
+            color: #a7f3d0 !important;
+            font-size: 0.825rem !important;
+            font-weight: 600 !important;
+            margin-top: 0.25rem !important;
+        }
+
+        /* Light Mode: Forest emerald text on mint backing (WCAG AAA > 10:1) */
+        html:not(.dark) .active-play-card .term-english {
+            color: #064e3b !important;
+            font-weight: 800 !important;
+        }
+
+        html:not(.dark) .active-play-card .term-mandarin {
+            color: #047857 !important;
+            font-weight: 700 !important;
+        }
+
+        html:not(.dark) .active-play-card .glossary-example-box,
+        html:not(.dark) .active-play-card div.mt-3.p-2\.5 {
+            background: #d1fae5 !important;
+            border-left: 6px solid #047857 !important;
+            border-top: 1.5px solid #a7f3d0 !important;
+            border-right: 1.5px solid #a7f3d0 !important;
+            border-bottom: 1.5px solid #a7f3d0 !important;
+            box-shadow: 0 4px 18px rgba(4, 120, 87, 0.22) !important;
+        }
+
+        html:not(.dark) .active-play-card .glossary-speaking-label {
+            color: #064e3b !important;
+            font-weight: 800 !important;
+        }
+
+        html:not(.dark) .active-play-card .glossary-speaking-dot {
+            background-color: #047857 !important;
+        }
+
+        html:not(.dark) .active-play-card .glossary-ex-en,
+        html:not(.dark) .active-play-card div.mt-3.p-2\.5 > div.italic {
+            color: #064e3b !important;
+            font-size: 0.875rem !important;
+            font-weight: 800 !important;
+            line-height: 1.5 !important;
+        }
+
+        html:not(.dark) .active-play-card .glossary-ex-zh,
+        html:not(.dark) .active-play-card div.mt-3.p-2\.5 > div:last-child {
+            color: #047857 !important;
+            font-size: 0.825rem !important;
+            font-weight: 700 !important;
+            margin-top: 0.25rem !important;
+        }
+
+        /* --------------------------------------------------------------------------
+           3. NUTRITION CARDS (Auto-Play Active States)
+           -------------------------------------------------------------------------- */
         .active-play-nutrition {
-
             border-color: #84cc16 !important;
-
-            box-shadow: 0 0 28px rgba(132, 204, 22, 0.55), 0 8px 16px rgba(0, 0, 0, 0.4) !important;
-
+            box-shadow: 0 0 32px rgba(132, 204, 22, 0.65), 0 10px 24px rgba(0, 0, 0, 0.45) !important;
             transform: scale(1.025) !important;
-
-            z-index: 10;
-
+            z-index: 20;
         }
 
         html.dark .active-play-nutrition {
-
-            background: rgba(54, 83, 20, 0.4) !important;
-
+            background: linear-gradient(135deg, rgba(54, 83, 20, 0.6) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
         }
 
         html:not(.dark) .active-play-nutrition {
-
-            background: rgba(236, 252, 203, 0.95) !important;
-
+            background: #f7fee7 !important;
             border-color: #65a30d !important;
-
+            box-shadow: 0 0 32px rgba(101, 163, 13, 0.45), 0 12px 28px rgba(0, 0, 0, 0.12) !important;
         }
 
+        /* Nutrition example sentence container */
+        .active-play-nutrition div:has(> .italic),
+        .active-play-nutrition div.mt-3\.5 {
+            border-radius: 0.75rem !important;
+            padding: 0.85rem 1rem !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
 
+        html.dark .active-play-nutrition div:has(> .italic),
+        html.dark .active-play-nutrition div.mt-3\.5 {
+            background: rgba(54, 83, 20, 0.8) !important;
+            border-left: 5px solid #a3e635 !important;
+            border-top: 1.5px solid #84cc16 !important;
+            border-right: 1.5px solid #84cc16 !important;
+            border-bottom: 1.5px solid #84cc16 !important;
+            box-shadow: 0 0 25px rgba(132, 204, 22, 0.4) !important;
+        }
 
+        html.dark .active-play-nutrition .italic {
+            color: #ffffff !important;
+            font-size: 0.875rem !important;
+            font-weight: 700 !important;
+            line-height: 1.5 !important;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        html.dark .active-play-nutrition div:has(> .italic) > div:last-child {
+            color: #bef264 !important;
+            font-size: 0.825rem !important;
+            font-weight: 600 !important;
+        }
+
+        html:not(.dark) .active-play-nutrition div:has(> .italic),
+        html:not(.dark) .active-play-nutrition div.mt-3\.5 {
+            background: #ecfccb !important;
+            border-left: 6px solid #4d7c0f !important;
+            border-top: 1.5px solid #bef264 !important;
+            border-right: 1.5px solid #bef264 !important;
+            border-bottom: 1.5px solid #bef264 !important;
+            box-shadow: 0 4px 18px rgba(77, 124, 15, 0.25) !important;
+        }
+
+        html:not(.dark) .active-play-nutrition .italic {
+            color: #1a2e05 !important;
+            font-size: 0.875rem !important;
+            font-weight: 800 !important;
+            line-height: 1.5 !important;
+        }
+
+        html:not(.dark) .active-play-nutrition div:has(> .italic) > div:last-child {
+            color: #365314 !important;
+            font-size: 0.825rem !important;
+            font-weight: 700 !important;
+        }
+
+        /* --------------------------------------------------------------------------
+           4. MUSCLE CARDS (Auto-Play Active States)
+           -------------------------------------------------------------------------- */
         .active-play-muscle {
-
             border-color: #8b5cf6 !important;
-
-            box-shadow: 0 0 28px rgba(139, 92, 246, 0.55), 0 8px 16px rgba(0, 0, 0, 0.4) !important;
-
+            box-shadow: 0 0 32px rgba(139, 92, 246, 0.65), 0 10px 24px rgba(0, 0, 0, 0.45) !important;
             transform: scale(1.025) !important;
-
-            z-index: 10;
-
+            z-index: 20;
         }
 
         html.dark .active-play-muscle {
-
-            background: rgba(76, 29, 149, 0.4) !important;
-
+            background: linear-gradient(135deg, rgba(76, 29, 149, 0.6) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
         }
 
         html:not(.dark) .active-play-muscle {
-
-            background: rgba(245, 243, 255, 0.95) !important;
-
+            background: #faf5ff !important;
             border-color: #7c3aed !important;
-
+            box-shadow: 0 0 32px rgba(124, 58, 237, 0.45), 0 12px 28px rgba(0, 0, 0, 0.12) !important;
         }
 
+        .active-play-muscle div:has(> .italic) {
+            border-radius: 0.75rem !important;
+            padding: 0.85rem 1rem !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
 
+        html.dark .active-play-muscle div:has(> .italic) {
+            background: rgba(76, 29, 149, 0.8) !important;
+            border-left: 5px solid #a78bfa !important;
+            border-top: 1.5px solid #8b5cf6 !important;
+            border-right: 1.5px solid #8b5cf6 !important;
+            border-bottom: 1.5px solid #8b5cf6 !important;
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.4) !important;
+        }
 
+        html.dark .active-play-muscle .italic {
+            color: #ffffff !important;
+            font-size: 0.875rem !important;
+            font-weight: 700 !important;
+            line-height: 1.5 !important;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        html.dark .active-play-muscle div:has(> .italic) > div:last-child {
+            color: #ddd6fe !important;
+            font-size: 0.825rem !important;
+            font-weight: 600 !important;
+        }
+
+        html:not(.dark) .active-play-muscle div:has(> .italic) {
+            background: #f3e8ff !important;
+            border-left: 6px solid #6d28d9 !important;
+            border-top: 1.5px solid #e9d5ff !important;
+            border-right: 1.5px solid #e9d5ff !important;
+            border-bottom: 1.5px solid #e9d5ff !important;
+            box-shadow: 0 4px 18px rgba(109, 40, 217, 0.25) !important;
+        }
+
+        html:not(.dark) .active-play-muscle .italic {
+            color: #2e1065 !important;
+            font-size: 0.875rem !important;
+            font-weight: 800 !important;
+            line-height: 1.5 !important;
+        }
+
+        html:not(.dark) .active-play-muscle div:has(> .italic) > div:last-child {
+            color: #4c1d95 !important;
+            font-size: 0.825rem !important;
+            font-weight: 700 !important;
+        }
+
+        /* --------------------------------------------------------------------------
+           5. INJURY CARDS (Auto-Play Active States)
+           -------------------------------------------------------------------------- */
         .active-play-injury {
-
             border-color: #f43f5e !important;
-
-            box-shadow: 0 0 28px rgba(244, 63, 94, 0.55), 0 8px 16px rgba(0, 0, 0, 0.4) !important;
-
+            box-shadow: 0 0 32px rgba(244, 63, 94, 0.65), 0 10px 24px rgba(0, 0, 0, 0.45) !important;
             transform: scale(1.025) !important;
-
-            z-index: 10;
-
+            z-index: 20;
         }
 
         html.dark .active-play-injury {
-
-            background: rgba(136, 19, 55, 0.4) !important;
-
+            background: linear-gradient(135deg, rgba(136, 19, 55, 0.6) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
         }
 
         html:not(.dark) .active-play-injury {
-
-            background: rgba(255, 228, 230, 0.95) !important;
-
+            background: #fff1f2 !important;
             border-color: #e11d48 !important;
+            box-shadow: 0 0 32px rgba(225, 29, 72, 0.45), 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+        }
 
+        .active-play-injury div:has(> .italic) {
+            border-radius: 0.75rem !important;
+            padding: 0.85rem 1rem !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        html.dark .active-play-injury div:has(> .italic) {
+            background: rgba(136, 19, 55, 0.8) !important;
+            border-left: 5px solid #fb7185 !important;
+            border-top: 1.5px solid #f43f5e !important;
+            border-right: 1.5px solid #f43f5e !important;
+            border-bottom: 1.5px solid #f43f5e !important;
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.4) !important;
+        }
+
+        html.dark .active-play-injury .italic {
+            color: #ffffff !important;
+            font-size: 0.875rem !important;
+            font-weight: 700 !important;
+            line-height: 1.5 !important;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        html.dark .active-play-injury div:has(> .italic) > div:last-child {
+            color: #fecdd3 !important;
+            font-size: 0.825rem !important;
+            font-weight: 600 !important;
+        }
+
+        html:not(.dark) .active-play-injury div:has(> .italic) {
+            background: #ffe4e6 !important;
+            border-left: 6px solid #be123c !important;
+            border-top: 1.5px solid #fecdd3 !important;
+            border-right: 1.5px solid #fecdd3 !important;
+            border-bottom: 1.5px solid #fecdd3 !important;
+            box-shadow: 0 4px 18px rgba(190, 18, 60, 0.25) !important;
+        }
+
+        html:not(.dark) .active-play-injury .italic {
+            color: #4c0519 !important;
+            font-size: 0.875rem !important;
+            font-weight: 800 !important;
+            line-height: 1.5 !important;
+        }
+
+        html:not(.dark) .active-play-injury div:has(> .italic) > div:last-child {
+            color: #881337 !important;
+            font-size: 0.825rem !important;
+            font-weight: 700 !important;
         }
 
 
@@ -10301,9 +10669,9 @@
 
                 maxim: "Systematic phasing of volume and intensity prevents plateau and peaks performance. (有系統地規劃週期負荷與動態變化，方能避免停滯並在目標賽事迎來高峰。)",
 
-                science: "依據一般適應症候群 (GAS)：警覺 $\\rightarrow$ 抗拒 $\\rightarrow$ 耗竭。人體無法無止境承受單一強度刺激，必須透過波浪式週期循環達成最高適應。",
+                science: "依據一般適應症候群 (GAS)：警覺 → 抗拒 → 耗竭。人體無法無止境承受單一強度刺激，必須透過波浪式週期循環達成最高適應。",
 
-                garmin: "劃分【大週期 (Macrocycle: 16~24週)】 $\\rightarrow$ 【中週期 (Mesocycle: 基礎打底期、強化門檻期、巔峰比賽期、賽後過渡期)】 $\\rightarrow$ 【微週期 (Microcycle: 每 3~4 週安排一週 Deload 減量週)】。",
+                garmin: "劃分【大週期 (Macrocycle: 16~24週)】 → 【中週期 (Mesocycle: 基礎打底期、強化門檻期、巔峰比賽期、賽後過渡期)】 → 【微週期 (Microcycle: 每 3~4 週安排一週 Deload 減量週)】。",
 
                 pitfall: "一年四季都在用同一種速度跑步；沒有低強度的底層有氧基石，就無法支撐高強度的金字塔頂峰。"
 
@@ -11850,21 +12218,17 @@
 
 
                         <!-- Quote English & Mandarin -->
-
-                        <div class="mt-3 space-y-2">
-
-                            <blockquote class="text-sm sm:text-base font-bold text-white leading-snug tracking-tight font-serif group-hover:text-amber-300 transition-colors">
-
+                        <div class="quote-sentence-box mt-3 space-y-2 p-2.5 rounded-xl transition-all duration-300">
+                            <div class="quote-speaking-pill hidden items-center gap-2 text-xs font-bold mb-1 animate-pulse">
+                                <span class="quote-speaking-dot inline-flex w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping"></span>
+                                <span class="quote-speaking-label text-amber-300">🔊 正在朗讀金句</span>
+                            </div>
+                            <blockquote class="quote-en-text text-sm sm:text-base font-bold text-white leading-snug tracking-tight font-serif group-hover:text-amber-300 transition-colors">
                                 "${q.quote_en}"
-
                             </blockquote>
-
-                            <p class="text-xs sm:text-sm font-semibold text-amber-400/90 leading-relaxed">
-
+                            <p class="quote-zh-text text-xs sm:text-sm font-semibold text-amber-400/90 leading-relaxed">
                                 「${q.quote_zh}」
-
                             </p>
-
                         </div>
 
 
@@ -12812,13 +13176,13 @@
 
 
                         <!-- Example Sentences -->
-
-                        <div class="mt-3 p-2.5 rounded-lg bg-slate-900/80 border border-slate-800/80 text-[11px] space-y-1">
-
-                            <div class="text-slate-300 italic">"${item.ex_en}"</div>
-
-                            <div class="text-slate-400">${item.ex_zh}</div>
-
+                        <div class="glossary-example-box mt-3 p-2.5 rounded-lg bg-slate-900/80 border border-slate-800/80 text-[11px] space-y-1 transition-all duration-300">
+                            <div class="glossary-speaking-pill hidden items-center gap-2 text-xs font-bold mb-1 animate-pulse">
+                                <span class="glossary-speaking-dot inline-flex w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span class="glossary-speaking-label text-emerald-300">🔊 正在朗讀例句</span>
+                            </div>
+                            <div class="glossary-ex-en text-slate-300 italic font-medium leading-relaxed">"${item.ex_en}"</div>
+                            <div class="glossary-ex-zh text-slate-400 leading-relaxed">${item.ex_zh}</div>
                         </div>
 
                     </div>

@@ -109,7 +109,7 @@ To protect personal privacy when publishing to GitHub Pages:
 
 ### 5. 🏃‍♂️ 長跑耐力、馬拉松與熱量消耗分析專區 (Endurance & Marathon Hub)
 - **10K+ 長跑週期與間隔追蹤 (Long Run Cadence)**：10K+ 累積次數、平均間隔天數、距離上次長跑天數即時警示。
-- **馬拉松與長距離賽事分級統計**：全馬/超馬（$\ge 42\text{ km}$）、半馬/LSD（$21\sim 42\text{ km}$）、10K 中長跑（$10\sim 21\text{ km}$）、歷史最長單次跑量。
+- **馬拉松與長距離賽事分級統計**：全馬/超馬（≥ 42 km）、半馬/LSD（21 ~ 42 km）、10K 中長跑（10 ~ 21 km）、歷史最長單次跑量。
 - **跑量與卡路里燃燒統計**：總跑量、週均跑量、跑步總消耗卡路里、每公里平均燃燒熱量（kcal/km）。
 
 ---
