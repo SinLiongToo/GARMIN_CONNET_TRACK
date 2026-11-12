@@ -24,13 +24,14 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- 1000 Athlete Wisdom Quotes Data -->
+    <!-- 1000 Athlete Wisdom Quotes Data & 200 Clinical Running Injury Sentences -->
 
     <script>
 
-        // Synchronously load quotes_data.js: cache-bust for HTTP/HTTPS, clean path for local file:///
+        // Synchronously load quotes_data.js & injury_sentences_data.js: cache-bust for HTTP/HTTPS, clean path for local file:///
 
         document.write('<script src="quotes_data.js' + (location.protocol.indexOf('http') === 0 ? '?v=1200_20261023' : '') + '"><\/script>');
+        document.write('<script src="injury_sentences_data.js' + (location.protocol.indexOf('http') === 0 ? '?v=200_20261112' : '') + '"><\/script>');
 
     </script>
 
@@ -58,7 +59,8 @@
                 (typeof isAutoPlaying !== 'undefined' && isAutoPlaying) ||
                 (typeof isNutritionAutoPlaying !== 'undefined' && isNutritionAutoPlaying) ||
                 (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) ||
-                (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying)
+                (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying) ||
+                (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying)
             );
         }
 
@@ -138,6 +140,18 @@
                     p.classList.remove('inline-flex');
                 }
             });
+
+            // Also update the inj200 dedicated status pill
+            const injPill = document.getElementById('inj200-wakelock-pill');
+            if (injPill) {
+                if (active) {
+                    injPill.className = 'text-xs px-3 py-1.5 rounded-xl bg-emerald-950/80 text-emerald-400 border border-emerald-500/40 flex items-center gap-1.5 shadow-sm';
+                    injPill.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span><span class="font-mono text-[11px] font-semibold">螢保休眠防護: 鎖定中 (保持清醒)</span>';
+                } else {
+                    injPill.className = 'text-xs px-3 py-1.5 rounded-xl bg-slate-950/80 text-slate-400 border border-slate-800 flex items-center gap-1.5 shadow-inner';
+                    injPill.innerHTML = '<span class="w-2 h-2 rounded-full bg-slate-600"></span><span class="font-mono text-[11px]">螢保休眠防護: 待命</span>';
+                }
+            }
         }
 
         document.addEventListener('visibilitychange', () => {
@@ -6597,6 +6611,12 @@
 
                 </button>
 
+                <button onclick="switchInjuryTab('sentences200')" id="itab-btn-sentences200" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="200 句路跑運動傷害、生物力學與醫學雙語例句資料庫">
+
+                    <span>🩹</span> <span class="text-rose-400 font-bold">200 句傷害醫學例句庫 (200 Sentences)</span>
+
+                </button>
+
                 <button onclick="switchInjuryTab('musculoskeletal')" id="itab-btn-musculoskeletal" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="下肢生物力學失衡與代謝急症 (17)">
 
                     <span>🏃‍♂️</span> <span>下肢傷害與代謝急症 (17)</span>
@@ -6624,6 +6644,99 @@
             </div>
 
 
+
+            <!-- Sub-section 0: 🩹 200 句路跑運動傷害、生物力學與醫學雙語例句庫 (200 Sentences Corpus) -->
+            <div id="injury-sub-sentences200" class="injury-sub-pane mb-8">
+                <div class="rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-rose-950/30 border border-rose-500/30 p-4 sm:p-6 shadow-xl">
+                    <!-- Header & Control Bar -->
+                    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-4 border-b border-slate-700/60">
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20">🩺</span>
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+                                    <span>200 句路跑運動傷害臨床醫學雙語例句庫</span>
+                                    <span id="inj200-count-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 font-mono border border-rose-500/40">200 / 200</span>
+                                </h3>
+                                <p class="text-xs text-slate-400 mt-0.5">涵蓋膝、足底、踝腱、小腿脛骨、大腿膕繩肌、髖骨盆、脊椎核心與環境代謝急症等 8 大臨床解剖部位之成因、生物力學與防護處方。</p>
+                            </div>
+                        </div>
+
+                        <!-- Action controls -->
+                        <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                            <!-- Wake Lock Status Pill -->
+                            <span id="inj200-wakelock-pill" class="text-xs px-3 py-1.5 rounded-xl bg-slate-950/80 text-slate-400 border border-slate-800 flex items-center gap-1.5 shadow-inner" title="螢幕防休眠狀態 (Screen Wake Lock)">
+                                <span class="w-2 h-2 rounded-full bg-slate-600"></span>
+                                <span class="font-mono text-[11px]">螢保休眠防護: 待命</span>
+                            </span>
+
+                            <!-- Speed selector -->
+                            <select id="inj200-rate-select" class="px-2.5 py-1.5 rounded-xl bg-slate-950/80 text-xs font-mono text-slate-300 border border-slate-700 focus:outline-none focus:border-rose-500 cursor-pointer" title="語音朗讀語速">
+                                <option value="0.8">0.8x 慢速</option>
+                                <option value="0.9" selected>0.9x 標準</option>
+                                <option value="1.0">1.0x 常速</option>
+                                <option value="1.15">1.15x 快速</option>
+                            </select>
+
+                            <!-- Auto-play button -->
+                            <button onclick="toggleInj200AutoPlay()" id="btn-inj200-autoplay" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs sm:text-sm font-semibold border border-rose-400 transition-all flex items-center gap-2 shadow-lg shadow-rose-900/30 cursor-pointer">
+                                <span id="inj200-play-icon">▶️</span>
+                                <span id="inj200-play-text">連續自動朗讀</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Category Pills & Search Filter -->
+                    <div class="pt-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+                        <!-- Category pills -->
+                        <div class="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
+                            <button onclick="filterInj200Category('all')" id="inj200-cat-all" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-rose-600 text-white border border-rose-500 shadow-sm cursor-pointer">
+                                全部 (200)
+                            </button>
+                            <button onclick="filterInj200Category('knee')" id="inj200-cat-knee" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+                                🦵 膝關節與髕骨 (25)
+                            </button>
+                            <button onclick="filterInj200Category('foot')" id="inj200-cat-foot" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+                                🦶 足底與足弓 (25)
+                            </button>
+                            <button onclick="filterInj200Category('ankle')" id="inj200-cat-ankle" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+                                👟 踝關節與肌腱 (25)
+                            </button>
+                            <button onclick="filterInj200Category('shin')" id="inj200-cat-shin" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+                                🦯 小腿與脛骨 (25)
+                            </button>
+                            <button onclick="filterInj200Category('thigh')" id="inj200-cat-thigh" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+                                🏃 大腿與膕繩肌 (25)
+                            </button>
+                            <button onclick="filterInj200Category('hip')" id="inj200-cat-hip" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+                                🩱 髖部與骨盆 (25)
+                            </button>
+                            <button onclick="filterInj200Category('spine')" id="inj200-cat-spine" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+                                🧘 脊椎與核心 (25)
+                            </button>
+                            <button onclick="filterInj200Category('metabolic')" id="inj200-cat-metabolic" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+                                ⚠️ 環境與代謝急症 (25)
+                            </button>
+                        </div>
+
+                        <!-- Search input & jump input -->
+                        <div class="flex items-center gap-2">
+                            <div class="relative flex-1 md:w-56">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500 text-xs">🔍</span>
+                                <input type="text" id="inj200-search-input" oninput="searchInj200(this.value)" placeholder="搜尋傷害英文/中譯/關鍵字..." class="w-full pl-8 pr-3 py-1.5 rounded-xl bg-slate-950/80 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition-colors">
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <input type="number" id="inj200-jump-input" min="1" max="200" placeholder="No." class="w-16 px-2 py-1.5 rounded-xl bg-slate-950/80 border border-slate-700 text-xs text-center text-white placeholder-slate-500 focus:outline-none focus:border-rose-500">
+                                <button onclick="jumpToInj200()" class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs text-rose-300 border border-slate-600 font-semibold cursor-pointer">跳至</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sentence Cards Grid Container -->
+                    <div id="inj200-cards-container" class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-3.5 max-h-[720px] overflow-y-auto pr-1">
+                        <!-- Cards injected dynamically via renderInj200Sentences() -->
+                    </div>
+                </div>
+            </div>
 
             <!-- Sub-section 1: 典型路跑下肢運動傷害與致死急症 -->
 
@@ -14317,6 +14430,10 @@
 
             if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
 
+            if (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying) stopInj200AutoPlay();
+
+            if (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying) stopInj200AutoPlay();
+
             hideTopMiniPlayer();
 
             syncAutoPlayWakeLock();
@@ -14336,6 +14453,8 @@
             stopMuscleAutoPlay();
 
             stopInjuryAutoPlay();
+
+            if (typeof stopInj200AutoPlay === 'function') stopInj200AutoPlay();
 
             cancelAnyTTS();
 
@@ -14670,6 +14789,8 @@
             if (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying) stopInjuryAutoPlay();
 
             if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
+
+            if (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying) stopInj200AutoPlay();
 
 
 
@@ -16254,6 +16375,8 @@
 
             const panes = {
 
+                sentences200: document.getElementById('injury-sub-sentences200'),
+
                 musculoskeletal: document.getElementById('injury-sub-musculoskeletal'),
 
                 weather: document.getElementById('injury-sub-weather'),
@@ -16269,6 +16392,8 @@
             const tabBtns = {
 
                 all: document.getElementById('itab-btn-all'),
+
+                sentences200: document.getElementById('itab-btn-sentences200'),
 
                 musculoskeletal: document.getElementById('itab-btn-musculoskeletal'),
 
@@ -16303,6 +16428,10 @@
                 if (tabName === 'all') {
 
                     activeBtn.className = 'itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm';
+
+                } else if (tabName === 'sentences200') {
+
+                    activeBtn.className = 'itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-rose-600 text-white border border-rose-500 shadow-md shadow-rose-900/30';
 
                 } else if (tabName === 'musculoskeletal') {
 
@@ -16383,6 +16512,8 @@
             if (typeof isNutritionAutoPlaying !== 'undefined' && isNutritionAutoPlaying) stopNutritionAutoPlay();
 
             if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
+
+            if (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying) stopInj200AutoPlay();
 
 
 
@@ -16570,6 +16701,285 @@
 
 
 
+        // ==========================================
+        // 200 RUNNING INJURY SENTENCES CONTROLLER
+        // ==========================================
+        let inj200CurrentList = [];
+        let inj200CurrentCategory = 'all';
+        let inj200SearchQuery = '';
+        let isInj200AutoPlaying = false;
+        let inj200PlayIndex = -1;
+        let inj200AutoPlayTimeout = null;
+
+        function initInj200Sentences() {
+            if (typeof RUNNING_INJURY_SENTENCES !== 'undefined' && Array.isArray(RUNNING_INJURY_SENTENCES)) {
+                inj200CurrentList = [...RUNNING_INJURY_SENTENCES];
+            } else {
+                inj200CurrentList = [];
+            }
+            renderInj200Sentences();
+        }
+
+        function filterInj200Category(catId) {
+            inj200CurrentCategory = catId;
+            document.querySelectorAll('.inj200-cat-btn').forEach(btn => {
+                btn.className = 'inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer';
+            });
+            const activeBtn = document.getElementById(`inj200-cat-${catId}`);
+            if (activeBtn) {
+                activeBtn.className = 'inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-rose-600 text-white border border-rose-500 shadow-sm cursor-pointer';
+            }
+            applyInj200Filters();
+        }
+
+        function searchInj200(query) {
+            inj200SearchQuery = (query || '').trim().toLowerCase();
+            applyInj200Filters();
+        }
+
+        function applyInj200Filters() {
+            if (typeof RUNNING_INJURY_SENTENCES === 'undefined') return;
+            let list = [...RUNNING_INJURY_SENTENCES];
+            if (inj200CurrentCategory !== 'all') {
+                list = list.filter(item => item.cat_id === inj200CurrentCategory);
+            }
+            if (inj200SearchQuery) {
+                list = list.filter(item => 
+                    item.injury.toLowerCase().includes(inj200SearchQuery) ||
+                    item.en.toLowerCase().includes(inj200SearchQuery) ||
+                    item.zh.includes(inj200SearchQuery) ||
+                    (item.tag && item.tag.toLowerCase().includes(inj200SearchQuery)) ||
+                    String(item.id) === inj200SearchQuery
+                );
+            }
+            inj200CurrentList = list;
+            const badge = document.getElementById('inj200-count-badge');
+            if (badge) badge.innerText = `${inj200CurrentList.length} / ${RUNNING_INJURY_SENTENCES.length}`;
+            renderInj200Sentences();
+        }
+
+        function jumpToInj200() {
+            const input = document.getElementById('inj200-jump-input');
+            if (!input || !input.value) return;
+            const targetId = parseInt(input.value, 10);
+            if (isNaN(targetId) || targetId < 1 || targetId > 200) {
+                showSpeechToast('請輸入 1 至 200 之間的句子編號');
+                return;
+            }
+            filterInj200Category('all');
+            const searchInput = document.getElementById('inj200-search-input');
+            if (searchInput) searchInput.value = '';
+            inj200SearchQuery = '';
+            applyInj200Filters();
+
+            const card = document.getElementById(`inj200-card-${targetId}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.classList.add('ring-2', 'ring-rose-400');
+                setTimeout(() => card.classList.remove('ring-2', 'ring-rose-400'), 2500);
+            }
+        }
+
+        function renderInj200Sentences() {
+            const container = document.getElementById('inj200-cards-container');
+            if (!container) return;
+            if (!inj200CurrentList || inj200CurrentList.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-slate-500">
+                        <span class="text-3xl block mb-2">🔍</span>
+                        <p class="text-sm">未找到符合條件的運動傷害例句</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = inj200CurrentList.map(item => `
+                <div id="inj200-card-${item.id}" class="inj200-card rounded-xl bg-slate-950/70 border border-slate-800/80 p-4 hover:border-rose-500/50 transition-all flex flex-col justify-between group shadow-sm">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-2">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <span class="px-2 py-0.5 rounded-md bg-rose-500/20 text-rose-300 font-mono text-[11px] font-bold border border-rose-500/30">#${item.id}</span>
+                                <span class="px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 text-[11px] border border-slate-700">${item.cat_zh}</span>
+                                <span class="text-[11px] font-mono text-slate-400 hidden sm:inline">${item.tag}</span>
+                            </div>
+                            <span class="text-xs font-semibold text-rose-400/90 text-right truncate max-w-[180px]">${item.injury}</span>
+                        </div>
+
+                        <div class="mb-2.5">
+                            <p class="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">${item.en}</p>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-800/80">
+                            <p class="text-xs sm:text-[13px] text-slate-400 leading-relaxed font-normal">${item.zh}</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                        <button onclick="speakInj200Sentence(${item.id})" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-rose-300 hover:text-white border border-slate-700 flex items-center gap-1 transition-all cursor-pointer shadow-xs" title="聆聽英文臨床例句">
+                            <span>🔊</span> <span>單句朗讀</span>
+                        </button>
+                        <button onclick="speakInj200Bilingual(${item.id})" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-amber-300 hover:text-white border border-slate-700 flex items-center gap-1 transition-all cursor-pointer shadow-xs" title="中英雙語對照朗讀">
+                            <span>🗣️</span> <span>中英雙語</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function speakInj200Sentence(id) {
+            stopInj200AutoPlay();
+            const item = (typeof RUNNING_INJURY_SENTENCES !== 'undefined' ? RUNNING_INJURY_SENTENCES : []).find(x => x.id === id);
+            if (!item) return;
+
+            highlightInj200Card(id);
+            const rateSelect = document.getElementById('inj200-rate-select');
+            const rate = rateSelect ? parseFloat(rateSelect.value) || 0.9 : 0.9;
+            showSpeechToast(`[#${item.id}] ${item.injury}`);
+            resilientSpeak(item.en, {
+                lang: 'en-US',
+                rate: rate
+            });
+        }
+
+        function speakInj200Bilingual(id) {
+            stopInj200AutoPlay();
+            const item = (typeof RUNNING_INJURY_SENTENCES !== 'undefined' ? RUNNING_INJURY_SENTENCES : []).find(x => x.id === id);
+            if (!item) return;
+
+            highlightInj200Card(id);
+            const rateSelect = document.getElementById('inj200-rate-select');
+            const rate = rateSelect ? parseFloat(rateSelect.value) || 0.9 : 0.9;
+            showSpeechToast(`[#${item.id} 雙語] ${item.injury}`);
+
+            resilientSpeak(item.en, {
+                lang: 'en-US',
+                rate: rate,
+                onEnd: () => {
+                    setTimeout(() => {
+                        resilientSpeak(item.zh, {
+                            lang: 'zh-TW',
+                            rate: 0.95
+                        });
+                    }, 400);
+                }
+            });
+        }
+
+        function highlightInj200Card(id) {
+            document.querySelectorAll('.inj200-card').forEach(c => {
+                c.classList.remove('bg-rose-950/40', 'border-rose-400', 'shadow-md', 'shadow-rose-950/50');
+            });
+            const card = document.getElementById(`inj200-card-${id}`);
+            if (card) {
+                card.classList.add('bg-rose-950/40', 'border-rose-400', 'shadow-md', 'shadow-rose-950/50');
+            }
+        }
+
+        function toggleInj200AutoPlay() {
+            if (isInj200AutoPlaying) {
+                stopInj200AutoPlay();
+            } else {
+                startInj200AutoPlay();
+            }
+        }
+
+        function startInj200AutoPlay() {
+            if (typeof isQuotesAutoPlaying !== 'undefined' && isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isAutoPlaying !== 'undefined' && isAutoPlaying) pauseAutoPlay();
+            if (typeof isNutritionAutoPlaying !== 'undefined' && isNutritionAutoPlaying) stopNutritionAutoPlay();
+            if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
+            if (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying) stopInjuryAutoPlay();
+
+            if (!inj200CurrentList || inj200CurrentList.length === 0) {
+                showSpeechToast('目前清單沒有可朗讀的句子');
+                return;
+            }
+
+            isInj200AutoPlaying = true;
+            const icon = document.getElementById('inj200-play-icon');
+            const text = document.getElementById('inj200-play-text');
+            const btn = document.getElementById('btn-inj200-autoplay');
+            if (icon) icon.innerText = '⏸️';
+            if (text) text.innerText = '暫停自動朗讀';
+            if (btn) {
+                btn.classList.add('bg-rose-700', 'ring-2', 'ring-rose-400');
+            }
+
+            if (inj200PlayIndex < 0 || inj200PlayIndex >= inj200CurrentList.length) {
+                inj200PlayIndex = 0;
+            }
+
+            syncAutoPlayWakeLock();
+            playSpecificInj200(inj200PlayIndex, true);
+        }
+
+        function stopInj200AutoPlay() {
+            isInj200AutoPlaying = false;
+            if (inj200AutoPlayTimeout) clearTimeout(inj200AutoPlayTimeout);
+            window.speechSynthesis.cancel();
+
+            const icon = document.getElementById('inj200-play-icon');
+            const text = document.getElementById('inj200-play-text');
+            const btn = document.getElementById('btn-inj200-autoplay');
+            if (icon) icon.innerText = '▶️';
+            if (text) text.innerText = '連續自動朗讀';
+            if (btn) {
+                btn.classList.remove('bg-rose-700', 'ring-2', 'ring-rose-400');
+            }
+
+            syncAutoPlayWakeLock();
+        }
+
+        function playSpecificInj200(idx, continueFlow = false) {
+            if (!inj200CurrentList || idx < 0 || idx >= inj200CurrentList.length) {
+                stopInj200AutoPlay();
+                return;
+            }
+
+            inj200PlayIndex = idx;
+            const item = inj200CurrentList[idx];
+            highlightInj200Card(item.id);
+
+            const card = document.getElementById(`inj200-card-${item.id}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            showSpeechToast(`[${idx + 1}/${inj200CurrentList.length}] #${item.id} ${item.injury}`);
+
+            const rateSelect = document.getElementById('inj200-rate-select');
+            const rate = rateSelect ? parseFloat(rateSelect.value) || 0.9 : 0.9;
+
+            resilientSpeak(item.en, {
+                lang: 'en-US',
+                rate: rate,
+                onEnd: () => {
+                    if (isInj200AutoPlaying || continueFlow) {
+                        inj200AutoPlayTimeout = setTimeout(() => {
+                            if (!isInj200AutoPlaying) return;
+                            if (inj200PlayIndex + 1 < inj200CurrentList.length) {
+                                inj200PlayIndex++;
+                                playSpecificInj200(inj200PlayIndex, true);
+                            } else {
+                                inj200PlayIndex = 0;
+                                playSpecificInj200(inj200PlayIndex, true);
+                            }
+                        }, 1200);
+                    }
+                },
+                onError: () => {
+                    if (isInj200AutoPlaying || continueFlow) {
+                        inj200AutoPlayTimeout = setTimeout(() => {
+                            if (!isInj200AutoPlaying) return;
+                            inj200PlayIndex = (inj200PlayIndex + 1) % inj200CurrentList.length;
+                            playSpecificInj200(inj200PlayIndex, true);
+                        }, 1000);
+                    }
+                }
+            });
+        }
+
+
+
         function nextWord() {
 
             if (currentFilteredList.length === 0) return;
@@ -16728,6 +17138,8 @@
 
             if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
 
+            if (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying) stopInj200AutoPlay();
+
 
 
             showSpeechToast(`正在朗讀: "${text.substring(0, 36)}..."`);
@@ -16819,6 +17231,7 @@
             }
 
             renderGlossary(GLOSSARY_DATA);
+            initInj200Sentences();
 
         });
 

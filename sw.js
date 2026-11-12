@@ -3,13 +3,14 @@
    Online users always get the freshest health data and scripts.
    Offline users get the cached app shell and data.
 */
-const CACHE_NAME = 'garmin-track-v1';
+const CACHE_NAME = 'garmin-track-v2';
 const SHELL_ASSETS = [
   './',
   './index.html',
   './garmin_health_dashboard.html',
   './sport_english.html',
   './quotes_data.js',
+  './injury_sentences_data.js',
   './manifest.webmanifest',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',

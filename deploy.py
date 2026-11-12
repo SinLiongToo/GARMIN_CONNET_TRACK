@@ -69,6 +69,8 @@ def main():
         "garmin_health_dashboard.html",
         "sport_english.html",
         "quotes_data.js",
+        "injury_sentences_data.js",
+        "generate_injury_sentences.py",
         "manifest.webmanifest",
         "sw.js",
         "assets",

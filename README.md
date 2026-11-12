@@ -23,8 +23,10 @@ GARMIN_CONNET_TRACK/
 ├── 🌐 GitHub Pages 靜態網站發布檔案 (Web Frontend & PWA)
 │   ├── index.html                   # 預設首頁：純數值個人健康與耐力分析儀表板 (支援 PWA)
 │   ├── garmin_health_dashboard.html # 完整健康儀表板（獨立離線版）
-│   ├── sport_english.html           # 運動英語辭典、十大訓練原則、1200句金句自動朗讀 (防螢保常亮)
+│   ├── sport_english.html           # 運動英語辭典、十大訓練原則、1200金句與200句傷害例句自動朗讀 (防螢保常亮)
 │   ├── quotes_data.js               # 1200 句傳奇運動家經典金句庫與運動心智哲學資料集
+│   ├── injury_sentences_data.js     # 200 句路跑運動傷害、生物力學與運動醫學雙語例句資料庫
+│   ├── generate_injury_sentences.py # 200 句傷害醫學例句自動生成器
 │   ├── manifest.webmanifest         # PWA WebApp 清單設定檔 (名稱、圖示、色彩、捷徑)
 │   ├── sw.js                        # Service Worker 離線快取與網路優先管線
 │   └── assets/icons/                # PWA 與 Apple Touch 高解析度向量圖示 (192, 512, maskable)
