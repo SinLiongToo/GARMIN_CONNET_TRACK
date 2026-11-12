@@ -111,8 +111,17 @@ def generate_dashboard_html(
 <html lang="zh-TW" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Garmin 健康趨勢、長跑與每日/月度睡眠圖表分析 (支援淺色/深色模式)</title>
+    <!-- PWA WebApp Meta & Manifest -->
+    <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="GarminTrack">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="assets/icons/icon-192.png">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js CDN -->
@@ -4502,6 +4511,13 @@ def generate_dashboard_html(
             renderMonthlyTable();
             switchTab('monthly');
         }});
+
+        // Register Service Worker for PWA WebApp
+        if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {{
+            window.addEventListener('load', () => {{
+                navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW register failed:', err));
+            }});
+        }}
     </script>
 </body>
 </html>

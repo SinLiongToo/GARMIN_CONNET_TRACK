@@ -20,19 +20,23 @@ This repository is ready for instant deployment to **GitHub Pages**:
 
 ```text
 GARMIN_CONNET_TRACK/
-├── 🌐 GitHub Pages 靜態網站發布檔案 (Web Frontend)
-│   ├── index.html                   # 預設首頁：純數值個人健康與耐力分析儀表板
+├── 🌐 GitHub Pages 靜態網站發布檔案 (Web Frontend & PWA)
+│   ├── index.html                   # 預設首頁：純數值個人健康與耐力分析儀表板 (支援 PWA)
 │   ├── garmin_health_dashboard.html # 完整健康儀表板（獨立離線版）
-│   ├── sport_english.html           # 運動英語辭典、十大黃金訓練原則、熱身音訊與傷病防護指南
-│   └── quotes_data.js               # 600 句傳奇運動家經典金句庫與運動心智哲學資料集
+│   ├── sport_english.html           # 運動英語辭典、十大訓練原則、1200句金句自動朗讀 (防螢保常亮)
+│   ├── quotes_data.js               # 1200 句傳奇運動家經典金句庫與運動心智哲學資料集
+│   ├── manifest.webmanifest         # PWA WebApp 清單設定檔 (名稱、圖示、色彩、捷徑)
+│   ├── sw.js                        # Service Worker 離線快取與網路優先管線
+│   └── assets/icons/                # PWA 與 Apple Touch 高解析度向量圖示 (192, 512, maskable)
 │
 ├── ⚙️ Python 資料同步與分析後端 (Data Pipeline)
 │   ├── main.py                      # 主程式：負責抓取、增量快取、統計分析與 HTML 產生
 │   ├── garmin_client.py             # Garmin Connect API 連線與 Token/MFA 認證管理
 │   ├── health_analyzer.py           # 健康指標分析器（月度聚合、睡眠分期、去噪演算法）
-│   ├── html_generator.py            # 動態渲染生成 Chart.js 互動式儀表板 HTML
+│   ├── html_generator.py            # 動態渲染生成 Chart.js 互動式儀表板 HTML (整合 PWA)
 │   ├── insights_engine.py           # 智慧洞察引擎（生成運動與生理恢復建議）
 │   ├── generate_pages.py            # 隱私去識別化產出 GitHub Pages index.html
+│   ├── generate_pwa_icons.py        # PWA WebApp 高畫質運動脈搏圖示生成器
 │   └── download_gpx.py              # 批量下載 Garmin GPS 運動軌跡（自動跳過跑步機等室內運動）
 │
 ├── 🚀 部署與自動化批次檔 (Automation & Deployment)
@@ -111,6 +115,21 @@ To protect personal privacy when publishing to GitHub Pages:
 - **10K+ 長跑週期與間隔追蹤 (Long Run Cadence)**：10K+ 累積次數、平均間隔天數、距離上次長跑天數即時警示。
 - **馬拉松與長距離賽事分級統計**：全馬/超馬（≥ 42 km）、半馬/LSD（21 ~ 42 km）、10K 中長跑（10 ~ 21 km）、歷史最長單次跑量。
 - **跑量與卡路里燃燒統計**：總跑量、週均跑量、跑步總消耗卡路里、每公里平均燃燒熱量（kcal/km）。
+
+### 6. 📱 可安裝為獨立應用程式（PWA WebApp）
+- 遵循標準 Progressive Web App 規範（同 `project_claude_FINTECH` 架構）：
+  - 內建 `manifest.webmanifest`，設定獨立全螢幕視窗 (`standalone`)、品牌主題配色 (`#0f172a`) 與高解析度向量圖示。
+  - 內建 `assets/icons/`（192x192、512x512、maskable 自適應圖示、apple-touch-icon）。
+  - 內建 `sw.js`（Service Worker）：採用 Network-First 網路優先快取管線，在線時自動取得最新生理數據，離線時具備 App Shell 快取容災。
+  - 手機端在 Safari 或 Chrome 選擇**「加入主畫面 (Add to Home Screen)」**，電腦端點選網址列右側**「安裝應用程式」**，即可如原生 App 般在獨立無邊框視窗中秒開運作。
+
+### 7. 🔆 自動播放螢幕常亮機制（防止螢幕保護程式/休眠中斷）
+- **Screen Wake Lock API 整合**：
+  - 手機或筆電在自動朗讀運動英語、1200 句金句、補給科學、肌力與傷害防護時，手機系統常因「螢幕自動逾時鎖定/休眠（螢保）」而中斷瀏覽器語音合成（Web Speech API）。
+  - 本專案在啟動任何自動播放時，自動透過 `navigator.wakeLock.request('screen')` 要求螢幕保持常亮，防止裝置進入螢幕保護程式或自動鎖定休眠。
+  - 狀態列與控制台同步顯示 **`🔆 螢幕常亮中（防螢保鎖定）`** 醒目標籤。
+  - 當點擊暫停、停止、全部播畢或切換時，自動釋放 Wake Lock，恢復裝置原本的螢幕逾時設定。
+  - 具備 `visibilitychange` 生命週期監聽：切換分頁後返回前景時自動重新續約鎖定；並結合微音訊背景連線保持（Silent Audio Keep-Alive），確保 iOS Safari 與 Android Chrome 長時間朗讀不凍結。
 
 ---
 

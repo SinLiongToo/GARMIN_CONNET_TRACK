@@ -62,13 +62,17 @@ def main():
     run_interactive(["git", "remote", "-v"])
 
     # 4. Stage Files
-    print("\n[3/5] 加入儀表板、分析腳本、金句系列與 GitHub Pages 檔案 (安全排除帳密與 Token)...")
+    print("\n[3/5] 加入儀表板、PWA WebApp、分析腳本、金句系列與 GitHub Pages 檔案 (安全排除帳密與 Token)...")
     run_interactive([
         "git", "add",
         "index.html",
         "garmin_health_dashboard.html",
         "sport_english.html",
         "quotes_data.js",
+        "manifest.webmanifest",
+        "sw.js",
+        "assets",
+        "generate_pwa_icons.py",
         ".github",
         "README.md",
         ".gitignore",

@@ -6,9 +6,19 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <title>運動英語與訓練黃金原則 | Sport English & Athletic Training Principles</title>
+
+    <!-- PWA WebApp Meta & Manifest -->
+    <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="GarminTrack">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="assets/icons/icon-192.png">
 
     <!-- Tailwind CSS CDN -->
 
@@ -27,8 +37,118 @@
     <script>
 
         // ==========================================
+        // 0.0 PWA SERVICE WORKER REGISTRATION
+        // ==========================================
+        if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW register error:', err));
+            });
+        }
 
-        // 0. RESILIENT WEB SPEECH TTS ENGINE (Chrome/Safari/Edge Anti-Freeze & Voice Preloader)
+        // ==========================================
+        // 0.1 SCREEN WAKE LOCK & ANTI-SLEEP CONTROLLER (防止螢幕保護/休眠中斷自動朗讀)
+        // ==========================================
+        let _wakeLockSentinel = null;
+        const _hasWakeLock = ('wakeLock' in navigator);
+        let _silentAudioKeepAlive = null;
+
+        function isAnyAutoPlayingActive() {
+            return Boolean(
+                (typeof isQuotesAutoPlaying !== 'undefined' && isQuotesAutoPlaying) ||
+                (typeof isAutoPlaying !== 'undefined' && isAutoPlaying) ||
+                (typeof isNutritionAutoPlaying !== 'undefined' && isNutritionAutoPlaying) ||
+                (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) ||
+                (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying)
+            );
+        }
+
+        async function acquireScreenWakeLock() {
+            if (!_hasWakeLock) return;
+            try {
+                if (!_wakeLockSentinel) {
+                    _wakeLockSentinel = await navigator.wakeLock.request('screen');
+                    _wakeLockSentinel.addEventListener('release', () => {
+                        _wakeLockSentinel = null;
+                        updateWakeLockUI(false);
+                    });
+                    updateWakeLockUI(true);
+                }
+            } catch (err) {
+                console.warn('Screen WakeLock error:', err);
+                updateWakeLockUI(false);
+            }
+        }
+
+        async function releaseScreenWakeLock() {
+            if (_wakeLockSentinel) {
+                try {
+                    const lock = _wakeLockSentinel;
+                    _wakeLockSentinel = null;
+                    await lock.release();
+                } catch (e) {
+                    console.warn('Screen WakeLock release error:', e);
+                }
+            }
+            updateWakeLockUI(false);
+        }
+
+        function startSilentAudioKeepAlive() {
+            try {
+                if (!_silentAudioKeepAlive) {
+                    _silentAudioKeepAlive = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA');
+                    _silentAudioKeepAlive.loop = true;
+                    _silentAudioKeepAlive.volume = 0.001;
+                }
+                _silentAudioKeepAlive.play().catch(() => {});
+            } catch (e) {}
+        }
+
+        function stopSilentAudioKeepAlive() {
+            if (_silentAudioKeepAlive) {
+                try {
+                    _silentAudioKeepAlive.pause();
+                    _silentAudioKeepAlive.currentTime = 0;
+                } catch (e) {}
+            }
+        }
+
+        function syncAutoPlayWakeLock() {
+            if (isAnyAutoPlayingActive()) {
+                acquireScreenWakeLock();
+                startSilentAudioKeepAlive();
+            } else {
+                releaseScreenWakeLock();
+                stopSilentAudioKeepAlive();
+            }
+        }
+
+        function updateWakeLockUI(active) {
+            const pills = [
+                document.getElementById('top-wakelock-pill'),
+                document.getElementById('quote-wakelock-pill'),
+                document.getElementById('word-wakelock-pill')
+            ];
+            pills.forEach(p => {
+                if (!p) return;
+                if (active) {
+                    p.classList.remove('hidden');
+                    p.classList.add('inline-flex');
+                } else {
+                    p.classList.add('hidden');
+                    p.classList.remove('inline-flex');
+                }
+            });
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible' && isAnyAutoPlayingActive()) {
+                acquireScreenWakeLock();
+            }
+        });
+
+        // ==========================================
+
+        // 0.2 RESILIENT WEB SPEECH TTS ENGINE (Chrome/Safari/Edge Anti-Freeze & Voice Preloader)
 
         // ==========================================
 
@@ -1547,6 +1667,8 @@
 
                         <span id="top-player-text" class="text-white font-medium max-w-[200px] truncate">正在朗讀...</span>
 
+                        <span id="top-wakelock-pill" class="hidden items-center gap-1 px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 font-medium text-[10px]" title="自動播放中：螢幕保持常亮，防止螢幕保護程式/休眠中斷朗讀">🔆 常亮</span>
+
                         <button onclick="pauseAnyPlaying()" class="p-1 hover:text-amber-400 text-slate-300 text-xs cursor-pointer" title="暫停 (Pause)">⏸️</button>
 
                         <button onclick="stopAnyPlaying()" class="p-1 hover:text-rose-400 text-slate-300 text-xs cursor-pointer" title="停止 (Stop)">⏹️</button>
@@ -2023,13 +2145,19 @@
 
                 <div class="mt-3.5 pt-3.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-300">
 
-                    <!-- Currently Playing Quote Display -->
+                    <!-- Currently Playing Quote Display & WakeLock Indicator -->
 
-                    <div class="flex items-center gap-2" id="current-quote-display">
+                    <div class="flex items-center gap-2 flex-wrap">
 
-                        <span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-semibold border border-amber-500/30">🔊 待朗讀</span>
+                        <div class="flex items-center gap-2" id="current-quote-display">
 
-                        <span class="text-slate-400 text-xs">點擊「開始金句自動朗讀」，將循序唸出並自動滾動跳轉至對應金句卡片</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-semibold border border-amber-500/30">🔊 待朗讀</span>
+
+                            <span class="text-slate-400 text-xs">點擊「開始金句自動朗讀」，將循序唸出並自動滾動跳轉至對應金句卡片</span>
+
+                        </div>
+
+                        <span id="quote-wakelock-pill" class="hidden items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[11px] font-semibold" title="Screen Wake Lock 已啟用：螢幕將保持常亮，防止螢幕保護程式/休眠中斷自動朗讀">🔆 螢幕常亮中（防螢保鎖定）</span>
 
                     </div>
 
@@ -2345,13 +2473,19 @@
 
                 <div class="mt-3.5 pt-3.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-300">
 
-                    <!-- Currently Playing Word Display -->
+                    <!-- Currently Playing Word Display & WakeLock Indicator -->
 
-                    <div class="flex items-center gap-2" id="current-word-display">
+                    <div class="flex items-center gap-2 flex-wrap">
 
-                        <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30">🔊 待播放</span>
+                        <div class="flex items-center gap-2" id="current-word-display">
 
-                        <span class="text-slate-400 text-xs">點擊「開始英文自動播放」將循序朗讀詞彙與例句</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold border border-emerald-500/30">🔊 待播放</span>
+
+                            <span class="text-slate-400 text-xs">點擊「開始英文自動播放」將循序朗讀詞彙與例句</span>
+
+                        </div>
+
+                        <span id="word-wakelock-pill" class="hidden items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[11px] font-semibold" title="Screen Wake Lock 已啟用：螢幕將保持常亮，防止螢幕保護程式/休眠中斷自動朗讀">🔆 螢幕常亮中（防螢保鎖定）</span>
 
                     </div>
 
@@ -12655,6 +12789,8 @@
 
             }
 
+            syncAutoPlayWakeLock();
+
         }
 
 
@@ -12900,6 +13036,8 @@
                 `;
 
             }
+
+            syncAutoPlayWakeLock();
 
         }
 
@@ -13465,7 +13603,7 @@
 
             }
 
-
+            syncAutoPlayWakeLock();
 
             playSpecificWord(autoPlayIndex, true);
 
@@ -13520,6 +13658,8 @@
             }
 
             hideTopMiniPlayer();
+
+            syncAutoPlayWakeLock();
 
         }
 
@@ -13581,6 +13721,8 @@
 
             }
 
+            syncAutoPlayWakeLock();
+
         }
 
 
@@ -13601,6 +13743,8 @@
 
             hideTopMiniPlayer();
 
+            syncAutoPlayWakeLock();
+
         }
 
 
@@ -13620,6 +13764,8 @@
             cancelAnyTTS();
 
             hideTopMiniPlayer();
+
+            syncAutoPlayWakeLock();
 
         }
 
@@ -13979,6 +14125,8 @@
 
             }
 
+            syncAutoPlayWakeLock();
+
             playSpecificNutrition(nutritionPlayIndex, true);
 
         }
@@ -14014,6 +14162,8 @@
             document.querySelectorAll('.nutrition-card').forEach(c => c.classList.remove('active-play-nutrition', 'active-play-card'));
 
             hideTopMiniPlayer();
+
+            syncAutoPlayWakeLock();
 
         }
 
@@ -14476,6 +14626,8 @@
 
             }
 
+            syncAutoPlayWakeLock();
+
             playSpecificMuscle(musclePlayIndex, true);
 
         }
@@ -14515,6 +14667,8 @@
             });
 
             hideTopMiniPlayer();
+
+            syncAutoPlayWakeLock();
 
         }
 
@@ -15572,6 +15726,8 @@
 
             }
 
+            syncAutoPlayWakeLock();
+
             playSpecificInjury(injuryPlayIndex, true);
 
         }
@@ -15607,6 +15763,8 @@
             document.querySelectorAll('.injury-card').forEach(c => c.classList.remove('active-play-injury', 'active-play-card'));
 
             hideTopMiniPlayer();
+
+            syncAutoPlayWakeLock();
 
         }
 

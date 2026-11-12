@@ -1,0 +1,21 @@
+{
+  "name": "Garmin Connect Track 健康與耐力儀表板",
+  "short_name": "GarminTrack",
+  "description": "Garmin 2.7+ 年生理健康指標追蹤、長跑耐力分析與雙語運動名言學習 WebApp。",
+  "lang": "zh-Hant",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#0f172a",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "📊 健康生理儀表板", "url": "./index.html" },
+    { "name": "🎙️ 運動英語與金句", "url": "./sport_english.html" }
+  ]
+}
