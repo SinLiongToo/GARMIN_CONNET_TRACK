@@ -280,6 +280,8 @@
 
             window._activeSpeechUtterance = null;
 
+            if (typeof clearActiveKaraokeHighlight === 'function') clearActiveKaraokeHighlight();
+
         }
 
 
@@ -312,7 +314,9 @@
 
                 onEnd = null,
 
-                onError = null
+                onError = null,
+
+                onBoundary = null
 
             } = options;
 
@@ -390,6 +394,14 @@
 
 
 
+                        utterance.onboundary = (e) => {
+
+                            if (onBoundary) onBoundary(e);
+
+                        };
+
+
+
                         utterance.onend = (e) => {
 
                             if (finished) return;
@@ -460,6 +472,88 @@
 
             }
 
+        }
+
+
+
+        // ==========================================
+        // KARAOKE / REAL-TIME WORD HIGHLIGHT HELPER
+        // ==========================================
+        let _activeHighlightContainer = null;
+        let _activeHighlightOriginalHTML = null;
+
+        function clearActiveKaraokeHighlight() {
+            if (_activeHighlightContainer && _activeHighlightOriginalHTML !== null) {
+                _activeHighlightContainer.innerHTML = _activeHighlightOriginalHTML;
+            }
+            _activeHighlightContainer = null;
+            _activeHighlightOriginalHTML = null;
+        }
+
+        function setupKaraokeWords(container, text) {
+            clearActiveKaraokeHighlight();
+            if (!container) return null;
+
+            _activeHighlightContainer = container;
+            _activeHighlightOriginalHTML = container.innerHTML;
+
+            // Split sentence into words and spaces/punctuation
+            // Matches sequence of word characters or whitespace/punctuation
+            const tokens = text.match(/\S+|\s+/g) || [text];
+            let html = '';
+            let charPos = 0;
+            tokens.forEach((tok, i) => {
+                const isWord = /\S/.test(tok);
+                if (isWord) {
+                    html += `<span class="karaoke-token" data-start="${charPos}" data-len="${tok.length}">${escapeHTML(tok)}</span>`;
+                } else {
+                    html += escapeHTML(tok);
+                }
+                charPos += tok.length;
+            });
+
+            container.innerHTML = html;
+            return container;
+        }
+
+        function updateKaraokeBoundary(container, charIndex, activeClass = 'spoken-word-active') {
+            if (!container) return;
+            const spans = container.querySelectorAll('.karaoke-token');
+            if (!spans || spans.length === 0) return;
+
+            let closestSpan = null;
+            let minDistance = Infinity;
+
+            spans.forEach(span => {
+                const start = parseInt(span.getAttribute('data-start'), 10) || 0;
+                const len = parseInt(span.getAttribute('data-len'), 10) || 0;
+                span.classList.remove(activeClass, 'spoken-word-active', 'spoken-word-active-rose');
+
+                if (charIndex >= start && charIndex < start + len) {
+                    closestSpan = span;
+                    minDistance = 0;
+                } else {
+                    const dist = Math.abs(charIndex - start);
+                    if (dist < minDistance && charIndex >= start) {
+                        minDistance = dist;
+                        closestSpan = span;
+                    }
+                }
+            });
+
+            if (closestSpan) {
+                closestSpan.classList.add(activeClass);
+            }
+        }
+
+        function escapeHTML(str) {
+            return (str || '').replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag] || tag));
         }
 
 
@@ -803,6 +897,35 @@
         }
 
 
+
+        /* Karaoke / Real-time Spoken Word Highlight */
+        .spoken-word-active {
+            background-color: #facc15 !important;
+            color: #0f172a !important;
+            border-radius: 4px;
+            padding: 1px 4px;
+            box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+            font-weight: 800 !important;
+            transition: all 0.1s ease-in-out;
+            display: inline-block;
+        }
+
+        html.dark .spoken-word-active {
+            background-color: #f59e0b !important;
+            color: #050811 !important;
+            box-shadow: 0 0 14px rgba(245, 158, 11, 0.95);
+        }
+
+        .spoken-word-active-rose {
+            background-color: #fb7185 !important;
+            color: #ffffff !important;
+            border-radius: 4px;
+            padding: 1px 4px;
+            box-shadow: 0 0 12px rgba(251, 113, 133, 0.9);
+            font-weight: 800 !important;
+            transition: all 0.1s ease-in-out;
+            display: inline-block;
+        }
 
         /* Auto-play Card Highlight & Smooth Animation */
 
@@ -12922,7 +13045,35 @@
 
             if (q) {
 
-                speakText(`${q.quote_en} ... By ${q.athlete_en}`);
+                if (typeof isQuotesAutoPlaying !== 'undefined' && isQuotesAutoPlaying) stopQuotesAutoPlay();
+                if (typeof isAutoPlaying !== 'undefined' && isAutoPlaying) pauseAutoPlay();
+                if (typeof isNutritionAutoPlaying !== 'undefined' && isNutritionAutoPlaying) stopNutritionAutoPlay();
+                if (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying) stopInjuryAutoPlay();
+                if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
+                if (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying) stopInj200AutoPlay();
+
+                showSpeechToast(`正在朗讀精選金句: "${q.athlete_en}"`);
+
+                const enEl = document.getElementById('spotlight-en');
+                if (enEl) {
+                    setupKaraokeWords(enEl, `"${q.quote_en}"`);
+                }
+
+                resilientSpeak(`${q.quote_en} ... By ${q.athlete_en}`, {
+                    lang: 'en-US',
+                    rate: 0.92,
+                    onBoundary: (e) => {
+                        if (enEl && e.name === 'word') {
+                            updateKaraokeBoundary(enEl, e.charIndex, 'spoken-word-active');
+                        }
+                    },
+                    onEnd: () => {
+                        clearActiveKaraokeHighlight();
+                    },
+                    onError: () => {
+                        clearActiveKaraokeHighlight();
+                    }
+                });
 
             }
 
@@ -13582,13 +13733,27 @@
 
 
 
-            resilientSpeak(`${q.quote_en} ... By ${q.athlete_en}`, {
+            const spokenText = `${q.quote_en} ... By ${q.athlete_en}`;
+            const targetEl = card ? card.querySelector('.quote-en-text') : null;
+            if (targetEl) {
+                setupKaraokeWords(targetEl, q.quote_en);
+            }
+
+            resilientSpeak(spokenText, {
 
                 lang: 'en-US',
 
                 rate: rate,
 
+                onBoundary: (e) => {
+                    if (targetEl && e.name === 'word') {
+                        updateKaraokeBoundary(targetEl, e.charIndex, 'spoken-word-active');
+                    }
+                },
+
                 onEnd: () => {
+
+                    clearActiveKaraokeHighlight();
 
                     if (isQuotesAutoPlaying || continueFlow) {
 
@@ -13621,6 +13786,8 @@
                 },
 
                 onError: () => {
+
+                    clearActiveKaraokeHighlight();
 
                     if (isQuotesAutoPlaying || continueFlow) {
 
@@ -13699,6 +13866,8 @@
             isQuotesAutoPlaying = false;
 
             if (quotesAutoPlayTimeout) clearTimeout(quotesAutoPlayTimeout);
+
+            clearActiveKaraokeHighlight();
 
             cancelAnyTTS();
 
@@ -14148,7 +14317,13 @@
 
             if (autoPlayTimeout) clearTimeout(autoPlayTimeout);
 
+            const card = document.getElementById(`card-${idx}`);
+            const termEl = card ? card.querySelector('.term-english') : null;
+            const exEl = card ? card.querySelector('.glossary-ex-en') : null;
 
+            if (termEl) {
+                setupKaraokeWords(termEl, item.en);
+            }
 
             resilientSpeak(item.en, {
 
@@ -14156,11 +14331,23 @@
 
                 rate: rate,
 
+                onBoundary: (e) => {
+                    if (termEl && e.name === 'word') {
+                        updateKaraokeBoundary(termEl, e.charIndex, 'spoken-word-active');
+                    }
+                },
+
                 onEnd: () => {
+
+                    clearActiveKaraokeHighlight();
 
                     if (includeExample && item.ex_en) {
 
                         setTimeout(() => {
+
+                            if (exEl) {
+                                setupKaraokeWords(exEl, item.ex_en);
+                            }
 
                             resilientSpeak(item.ex_en, {
 
@@ -14168,13 +14355,23 @@
 
                                 rate: rate,
 
+                                onBoundary: (e) => {
+                                    if (exEl && e.name === 'word') {
+                                        updateKaraokeBoundary(exEl, e.charIndex, 'spoken-word-active');
+                                    }
+                                },
+
                                 onEnd: () => {
+
+                                    clearActiveKaraokeHighlight();
 
                                     scheduleNext(delay, isLoop, continueFlow);
 
                                 },
 
                                 onError: () => {
+
+                                    clearActiveKaraokeHighlight();
 
                                     scheduleNext(delay, isLoop, continueFlow);
 
@@ -14193,6 +14390,8 @@
                 },
 
                 onError: () => {
+
+                    clearActiveKaraokeHighlight();
 
                     scheduleNext(delay, isLoop, continueFlow);
 
@@ -14359,6 +14558,8 @@
             isAutoPlaying = false;
 
             if (autoPlayTimeout) clearTimeout(autoPlayTimeout);
+
+            clearActiveKaraokeHighlight();
 
             window.speechSynthesis.cancel();
 
@@ -16805,7 +17006,7 @@
                         </div>
 
                         <div class="mb-2.5">
-                            <p class="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">${item.en}</p>
+                            <p class="inj200-en-text text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">${item.en}</p>
                         </div>
 
                         <div class="pt-2 border-t border-slate-800/80">
@@ -16834,9 +17035,27 @@
             const rateSelect = document.getElementById('inj200-rate-select');
             const rate = rateSelect ? parseFloat(rateSelect.value) || 0.9 : 0.9;
             showSpeechToast(`[#${item.id}] ${item.injury}`);
+
+            const card = document.getElementById(`inj200-card-${id}`);
+            const enEl = card ? card.querySelector('.inj200-en-text') : null;
+            if (enEl) {
+                setupKaraokeWords(enEl, item.en);
+            }
+
             resilientSpeak(item.en, {
                 lang: 'en-US',
-                rate: rate
+                rate: rate,
+                onBoundary: (e) => {
+                    if (enEl && e.name === 'word') {
+                        updateKaraokeBoundary(enEl, e.charIndex, 'spoken-word-active-rose');
+                    }
+                },
+                onEnd: () => {
+                    clearActiveKaraokeHighlight();
+                },
+                onError: () => {
+                    clearActiveKaraokeHighlight();
+                }
             });
         }
 
@@ -16850,16 +17069,31 @@
             const rate = rateSelect ? parseFloat(rateSelect.value) || 0.9 : 0.9;
             showSpeechToast(`[#${item.id} 雙語] ${item.injury}`);
 
+            const card = document.getElementById(`inj200-card-${id}`);
+            const enEl = card ? card.querySelector('.inj200-en-text') : null;
+            if (enEl) {
+                setupKaraokeWords(enEl, item.en);
+            }
+
             resilientSpeak(item.en, {
                 lang: 'en-US',
                 rate: rate,
+                onBoundary: (e) => {
+                    if (enEl && e.name === 'word') {
+                        updateKaraokeBoundary(enEl, e.charIndex, 'spoken-word-active-rose');
+                    }
+                },
                 onEnd: () => {
+                    clearActiveKaraokeHighlight();
                     setTimeout(() => {
                         resilientSpeak(item.zh, {
                             lang: 'zh-TW',
                             rate: 0.95
                         });
                     }, 400);
+                },
+                onError: () => {
+                    clearActiveKaraokeHighlight();
                 }
             });
         }
@@ -16915,6 +17149,7 @@
         function stopInj200AutoPlay() {
             isInj200AutoPlaying = false;
             if (inj200AutoPlayTimeout) clearTimeout(inj200AutoPlayTimeout);
+            clearActiveKaraokeHighlight();
             window.speechSynthesis.cancel();
 
             const icon = document.getElementById('inj200-play-icon');
@@ -16949,10 +17184,21 @@
             const rateSelect = document.getElementById('inj200-rate-select');
             const rate = rateSelect ? parseFloat(rateSelect.value) || 0.9 : 0.9;
 
+            const enEl = card ? card.querySelector('.inj200-en-text') : null;
+            if (enEl) {
+                setupKaraokeWords(enEl, item.en);
+            }
+
             resilientSpeak(item.en, {
                 lang: 'en-US',
                 rate: rate,
+                onBoundary: (e) => {
+                    if (enEl && e.name === 'word') {
+                        updateKaraokeBoundary(enEl, e.charIndex, 'spoken-word-active-rose');
+                    }
+                },
                 onEnd: () => {
+                    clearActiveKaraokeHighlight();
                     if (isInj200AutoPlaying || continueFlow) {
                         inj200AutoPlayTimeout = setTimeout(() => {
                             if (!isInj200AutoPlaying) return;
@@ -16967,6 +17213,7 @@
                     }
                 },
                 onError: () => {
+                    clearActiveKaraokeHighlight();
                     if (isInj200AutoPlaying || continueFlow) {
                         inj200AutoPlayTimeout = setTimeout(() => {
                             if (!isInj200AutoPlaying) return;
@@ -17126,7 +17373,7 @@
 
         // Web Speech API Voice Pronunciation (Resilient & Non-blocking)
 
-        function speakText(text) {
+        function speakText(text, clickedBtn = null) {
 
             if (typeof isQuotesAutoPlaying !== 'undefined' && isQuotesAutoPlaying) stopQuotesAutoPlay();
 
@@ -17140,7 +17387,35 @@
 
             if (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying) stopInj200AutoPlay();
 
+            clearActiveKaraokeHighlight();
 
+            // Auto-detect button or target element if called via event
+            let btn = clickedBtn;
+            if (!btn && typeof event !== 'undefined' && event && event.currentTarget) {
+                btn = event.currentTarget;
+            }
+
+            // Find nearest sentence element in parent container
+            let targetEl = null;
+            if (btn) {
+                const parent = btn.closest('.quote-card, .injury-card, .nutrition-card, .muscle-card, .glass-card, [id^="card-"], [id^="icard-"], [id^="ncard-"], [id^="mcard-"]') || btn.parentElement;
+                if (parent) {
+                    // Try to find element whose text contains our spoken text
+                    const candidates = parent.querySelectorAll('blockquote, p, .glossary-ex-en, .quote-en-text, .inj200-en-text, span, div');
+                    for (const cand of candidates) {
+                        const cleanCand = cand.innerText.replace(/^["'“”‘’\s]+|["'“”‘’\s]+$/g, '').trim();
+                        const cleanText = text.replace(/^["'“”‘’\s]+|["'“”‘’\s]+$/g, '').trim();
+                        if (cleanCand && cleanText && (cleanCand === cleanText || cleanCand.includes(cleanText) || cleanText.includes(cleanCand))) {
+                            targetEl = cand;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (targetEl) {
+                setupKaraokeWords(targetEl, targetEl.innerText);
+            }
 
             showSpeechToast(`正在朗讀: "${text.substring(0, 36)}..."`);
 
@@ -17148,7 +17423,21 @@
 
                 lang: 'en-US',
 
-                rate: 0.92
+                rate: 0.92,
+
+                onBoundary: (e) => {
+                    if (targetEl && e.name === 'word') {
+                        updateKaraokeBoundary(targetEl, e.charIndex, 'spoken-word-active');
+                    }
+                },
+
+                onEnd: () => {
+                    clearActiveKaraokeHighlight();
+                },
+
+                onError: () => {
+                    clearActiveKaraokeHighlight();
+                }
 
             });
 
