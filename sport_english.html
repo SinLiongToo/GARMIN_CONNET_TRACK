@@ -1984,7 +1984,7 @@
 
                     <a href="#bone-section" class="px-2.5 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
 
-                        <span>🦴</span> <span>20大骨骼</span>
+                        <span>🦴</span> <span>26大骨骼</span>
 
                     </a>
 
@@ -6906,7 +6906,7 @@
 
 
 
-        <!-- Section: 🦴 人體骨骼系統與跑者骨骼生物力學 (Skeletal System & Running Osteology) -->
+                <!-- Section: 🦴 人體骨骼系統與跑者骨骼生物力學 (Skeletal System & Running Osteology) -->
         <section class="glass-card rounded-2xl p-6 border-l-4 border-l-cyan-500 scroll-mt-28 md:scroll-mt-32" id="bone-section">
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-6 border-b border-slate-700/60 pb-4">
                 <div class="flex items-center gap-3">
@@ -6919,7 +6919,7 @@
                             </span>
                         </h2>
                         <p class="text-xs text-slate-400 mt-0.5">
-                            人體 206 塊骨骼架構、下肢承重軸線、骨質重塑 (Wolff's Law) 與應力性骨折力學 (Axial & Appendicular Skeleton, Load Transmission & Bone Remodeling)
+                            人體 206 塊骨骼架構、下肢承重軸線、上肢擺臂槓桿、骨質重塑 (Wolff's Law) 與應力性骨折力學 (Axial, Upper & Lower Skeleton, Load Transmission & Bone Remodeling)
                         </p>
                     </div>
                 </div>
@@ -6929,21 +6929,24 @@
                         <span id="bone-play-text">自動朗讀骨骼系統</span>
                     </button>
                     <span class="text-xs px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 font-mono border border-cyan-500/30 hidden sm:inline-block">
-                        20 Major Bones
+                        26 Major Bones
                     </span>
                 </div>
             </div>
 
             <!-- Bone Interactive Sub-category Tab Navigation -->
             <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 border-b border-slate-700/60 no-scrollbar">
-                <button onclick="switchBoneTab('all')" id="btab-btn-all" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm" title="瀏覽全部 20 大骨骼模組">
-                    <span>📑</span> <span>全部展開 (All 20)</span>
+                <button onclick="switchBoneTab('all')" id="btab-btn-all" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm" title="瀏覽全部 26 大骨骼模組">
+                    <span>📑</span> <span>全部展開 (All 26)</span>
                 </button>
                 <button onclick="switchBoneTab('lower')" id="btab-btn-lower" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="下肢承重與推進骨骼 (6)">
                     <span>🦵</span> <span>下肢承重與推進 (6)</span>
                 </button>
                 <button onclick="switchBoneTab('foot')" id="btab-btn-foot" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="足踝跗骨、蹠骨與足弓力學 (5)">
                     <span>🦶</span> <span>足踝足弓骨骼 (5)</span>
+                </button>
+                <button onclick="switchBoneTab('upper')" id="btab-btn-upper" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="上肢擺臂軸線、肩帶與動力傳遞 (6)">
+                    <span>💪</span> <span>上肢擺臂與肩帶 (6)</span>
                 </button>
                 <button onclick="switchBoneTab('axial')" id="btab-btn-axial" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="中軸脊椎、骨盆中樞與胸廓呼吸 (5)">
                     <span>🦴</span> <span>中軸脊椎與骨盆 (5)</span>
@@ -6958,7 +6961,7 @@
                 <div class="mb-3 flex items-center justify-between">
                     <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-cyan-500 animate-pulse"></span>
-                        <span>第一篇：下肢承重軸線與推進推進骨骼 (Lower Extremity Load & Propulsion Bones)</span>
+                        <span>第一篇：下肢承重軸線與推進骨骼 (Lower Extremity Load & Propulsion Bones)</span>
                     </h3>
                     <span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 border-cyan-500/20 px-2 py-0.5 rounded border hidden sm:inline-block">
                         6 Lower Extremity Modules
@@ -6982,6 +6985,33 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="femurGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#06b6d4"/>
+                    <stop offset="100%" stop-color="#0284c7"/>
+                </linearGradient>
+            </defs>
+            <!-- Femoral Head & Neck -->
+            <circle cx="45" cy="22" r="12" fill="#22d3ee" opacity="0.9"/>
+            <path d="M 45 22 L 70 35 L 75 50 L 55 35 Z" fill="#0891b2" opacity="0.8"/>
+            <!-- Greater Trochanter -->
+            <path d="M 70 30 Q 82 25 80 42 L 72 52 Z" fill="#06b6d4"/>
+            <text x="88" y="32" fill="#67e8f9" font-size="8" font-family="monospace">大轉子 (Trochanter)</text>
+            <!-- Shaft (Curved) -->
+            <path d="M 72 45 Q 85 65 145 70 L 145 80 Q 75 75 62 48 Z" fill="url(#femurGrad)"/>
+            <!-- Condyles (Distal) -->
+            <ellipse cx="155" cy="73" rx="14" ry="11" fill="#22d3ee"/>
+            <text x="175" y="75" fill="#67e8f9" font-size="8" font-family="monospace">股骨髁</text>
+            <!-- Load Vector Line -->
+            <line x1="30" y1="12" x2="170" y2="82" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="110" y="25" fill="#fda4af" font-size="8" font-family="monospace">5x GRF 承重軸線</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>股骨 (大腿骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Femur (Thigh Bone))</span>
@@ -7021,6 +7051,25 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Tibial Plateau -->
+            <path d="M 30 35 Q 30 22 55 22 Q 80 22 80 35 Z" fill="#22d3ee"/>
+            <text x="35" y="16" fill="#67e8f9" font-size="8" font-family="monospace">脛骨平台 (Plateau)</text>
+            <!-- Shaft with Triangular Cross-section feel -->
+            <path d="M 42 35 L 50 82 L 65 82 L 68 35 Z" fill="#06b6d4" opacity="0.9"/>
+            <line x1="56" y1="35" x2="56" y2="80" stroke="#a5f3fc" stroke-width="1.5"/>
+            <!-- Medial Malleolus -->
+            <path d="M 48 82 Q 45 92 56 92 L 66 82 Z" fill="#0891b2"/>
+            <text x="75" y="88" fill="#67e8f9" font-size="8" font-family="monospace">內踝 (Malleolus)</text>
+            <!-- MTSS stress indicator -->
+            <line x1="42" y1="52" x2="42" y2="72" stroke="#f43f5e" stroke-width="2.5"/>
+            <text x="95" y="62" fill="#fda4af" font-size="8" font-family="monospace">⚠️ 85% 負荷 / MTSS 應力區</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>脛骨 (小腿主骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Tibia (Shinbone))</span>
@@ -7060,6 +7109,24 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Fibular Head -->
+            <ellipse cx="60" cy="22" rx="7" ry="5" fill="#22d3ee"/>
+            <text x="75" y="24" fill="#67e8f9" font-size="8" font-family="monospace">腓骨頭 (Head)</text>
+            <!-- Slender Shaft -->
+            <line x1="60" y1="26" x2="70" y2="75" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/>
+            <!-- Lateral Malleolus -->
+            <path d="M 67 75 Q 73 90 78 82 Q 78 75 72 73 Z" fill="#38bdf8"/>
+            <text x="90" y="82" fill="#38bdf8" font-size="8" font-family="monospace">外踝滑輪 (Pulley)</text>
+            <!-- Peroneal tendon guide arc -->
+            <path d="M 80 65 Q 85 85 65 92" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 2"/>
+            <text x="95" y="52" fill="#fcd34d" font-size="8" font-family="monospace">腓骨肌腱滑輪走向</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>腓骨 (小腿外側輔骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Fibula (Calf Bone))</span>
@@ -7099,6 +7166,24 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Quadriceps Tendon (Top) -->
+            <path d="M 60 10 L 100 10 L 95 30 L 65 30 Z" fill="#94a3b8" opacity="0.6"/>
+            <text x="110" y="20" fill="#94a3b8" font-size="8" font-family="monospace">股四頭肌腱</text>
+            <!-- Patella Sesamoid Heart Shape -->
+            <path d="M 60 32 C 60 32, 80 25, 100 32 C 105 50, 95 65, 80 72 C 65 65, 55 50, 60 32 Z" fill="#06b6d4" stroke="#22d3ee" stroke-width="2"/>
+            <text x="66" y="52" fill="#ffffff" font-size="10" font-family="monospace" font-weight="bold">髕骨</text>
+            <!-- Patellar Ligament (Bottom) -->
+            <path d="M 75 72 L 85 72 L 83 90 L 77 90 Z" fill="#94a3b8" opacity="0.6"/>
+            <!-- Mechanical Lever Fulcrum Arrow -->
+            <path d="M 125 45 L 155 45 M 150 40 L 155 45 L 150 50" fill="none" stroke="#10b981" stroke-width="2"/>
+            <text x="125" y="65" fill="#34d399" font-size="8" font-family="monospace">+30% 伸膝力矩槓桿</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>髕骨 (膝蓋骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Patella (Kneecap))</span>
@@ -7138,6 +7223,23 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Calcaneus Tuberosity -->
+            <path d="M 40 45 Q 30 75 55 82 L 115 82 Q 130 65 110 50 Q 80 48 70 38 Q 45 35 40 45 Z" fill="#06b6d4" stroke="#22d3ee" stroke-width="1.5"/>
+            <!-- Achilles Tendon Insertion -->
+            <path d="M 38 10 L 46 10 L 44 45 L 36 45 Z" fill="#f59e0b"/>
+            <text x="52" y="22" fill="#fcd34d" font-size="8" font-family="monospace">阿基里斯腱止點</text>
+            <!-- Ground Impact Arrow -->
+            <line x1="20" y1="88" x2="140" y2="88" stroke="#475569" stroke-width="2"/>
+            <path d="M 45 92 L 45 84 M 42 87 L 45 84 L 48 87" stroke="#f43f5e" stroke-width="2" fill="none"/>
+            <text x="55" y="70" fill="#ffffff" font-size="9" font-family="monospace">跟骨 (Heel)</text>
+            <text x="125" y="42" fill="#38bdf8" font-size="8" font-family="monospace">後足著地衝擊吸收</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>跟骨 (腳跟骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Calcaneus (Heel Bone))</span>
@@ -7177,6 +7279,20 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Trochlea of Talus (Convex Dome) -->
+            <path d="M 50 45 Q 80 20 110 45 L 115 70 Q 80 80 45 70 Z" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+            <path d="M 60 38 Q 80 28 100 38" fill="none" stroke="#a5f3fc" stroke-width="2"/>
+            <text x="65" y="58" fill="#ffffff" font-size="10" font-family="monospace" font-weight="bold">距骨滑車</text>
+            <text x="125" y="35" fill="#38bdf8" font-size="8" font-family="monospace">踝穴萬向樞紐</text>
+            <text x="125" y="52" fill="#67e8f9" font-size="8" font-family="monospace">60% 覆蓋軟骨</text>
+            <text x="125" y="69" fill="#94a3b8" font-size="8" font-family="monospace">無肌肉直接附著</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>距骨 (踝關節中心滑車骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Talus (Ankle Bone))</span>
@@ -7232,6 +7348,22 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Boat-shaped Navicular -->
+            <path d="M 50 35 Q 80 25 105 40 Q 115 65 95 72 Q 65 75 45 60 Z" fill="#0d9488" stroke="#2dd4bf" stroke-width="2"/>
+            <text x="58" y="54" fill="#ffffff" font-size="10" font-family="monospace" font-weight="bold">舟狀骨</text>
+            <!-- Arch Drop Arrow -->
+            <line x1="75" y1="72" x2="75" y2="88" stroke="#f43f5e" stroke-width="2"/>
+            <path d="M 72 85 L 75 88 L 78 85" stroke="#f43f5e" stroke-width="2" fill="none"/>
+            <text x="85" y="85" fill="#fda4af" font-size="8" font-family="monospace">舟骨塌陷 (Drop)</text>
+            <text x="125" y="42" fill="#2dd4bf" font-size="8" font-family="monospace">內側足弓拱心石</text>
+            <text x="125" y="58" fill="#94a3b8" font-size="8" font-family="monospace">脛後肌腱附著點</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>舟狀骨 (足舟骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Navicular Bone)</span>
@@ -7271,6 +7403,21 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cube Shape Cuboid -->
+            <polygon points="50,30 95,25 105,65 55,72" fill="#0f766e" stroke="#2dd4bf" stroke-width="2"/>
+            <text x="62" y="52" fill="#ffffff" font-size="10" font-family="monospace" font-weight="bold">骰骨</text>
+            <!-- Peroneal groove -->
+            <path d="M 55 72 Q 80 82 105 65" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="3 2"/>
+            <text x="118" y="38" fill="#2dd4bf" font-size="8" font-family="monospace">外側足弓支撐柱</text>
+            <text x="118" y="54" fill="#fcd34d" font-size="8" font-family="monospace">腓骨長肌腱溝槽</text>
+            <text x="118" y="70" fill="#94a3b8" font-size="8" font-family="monospace">防骰骨微脫位</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>骰骨 (骰子骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Cuboid Bone)</span>
@@ -7310,6 +7457,22 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- 3 Wedge blocks interlocking -->
+            <polygon points="45,35 65,30 62,70 42,65" fill="#14b8a6" stroke="#5eead4" stroke-width="1.5"/>
+            <polygon points="68,29 88,27 85,68 65,69" fill="#0d9488" stroke="#5eead4" stroke-width="1.5"/>
+            <polygon points="91,27 112,28 108,66 88,67" fill="#0f766e" stroke="#5eead4" stroke-width="1.5"/>
+            <text x="47" y="52" fill="#fff" font-size="8" font-family="monospace">內</text>
+            <text x="72" y="52" fill="#fff" font-size="8" font-family="monospace">中</text>
+            <text x="94" y="52" fill="#fff" font-size="8" font-family="monospace">外</text>
+            <text x="125" y="42" fill="#5eead4" font-size="8" font-family="monospace">三塊楔骨緊密咬合</text>
+            <text x="125" y="58" fill="#99f6e4" font-size="8" font-family="monospace">鎖定橫足弓 (Transverse)</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>楔骨 (內側、中間、外側楔狀骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Cuneiform Bones (Medial, Intermediate, Lateral))</span>
@@ -7349,6 +7512,24 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- 5 Metatarsal rays -->
+            <line x1="45" y1="65" x2="105" y2="40" stroke="#14b8a6" stroke-width="7" stroke-linecap="round"/>
+            <line x1="48" y1="68" x2="108" y2="48" stroke="#0d9488" stroke-width="4.5" stroke-linecap="round"/>
+            <line x1="50" y1="72" x2="110" y2="55" stroke="#0d9488" stroke-width="4" stroke-linecap="round"/>
+            <line x1="52" y1="76" x2="112" y2="62" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="54" y1="80" x2="114" y2="70" stroke="#0d9488" stroke-width="3" stroke-linecap="round"/>
+            <!-- 2nd metatarsal stress highlight -->
+            <circle cx="78" cy="58" r="5" fill="#f43f5e" opacity="0.8"/>
+            <text x="120" y="38" fill="#2dd4bf" font-size="8" font-family="monospace">第1-5 蹠骨推進槓桿</text>
+            <text x="120" y="56" fill="#fda4af" font-size="8" font-family="monospace">⚠️ 第2蹠骨應力骨折高發</text>
+            <text x="120" y="72" fill="#94a3b8" font-size="8" font-family="monospace">行軍骨折 (March Fracture)</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>蹠骨 (第一至第五蹠骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Metatarsal Bones (First to Fifth Metatarsals))</span>
@@ -7388,6 +7569,22 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Big toe 2 phalanges -->
+            <rect x="45" y="35" width="22" height="12" rx="3" fill="#14b8a6"/>
+            <rect x="70" y="37" width="18" height="10" rx="3" fill="#2dd4bf"/>
+            <!-- Windlass arch elevation -->
+            <path d="M 45 42 Q 65 20 85 40" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="2 2"/>
+            <text x="45" y="24" fill="#fcd34d" font-size="8" font-family="monospace">絞盤機制 (Windlass)</text>
+            <text x="105" y="42" fill="#2dd4bf" font-size="8" font-family="monospace">大腳趾背屈拉緊足筋膜</text>
+            <text x="105" y="58" fill="#94a3b8" font-size="8" font-family="monospace">足弓剛性瞬間倍增</text>
+            <text x="105" y="74" fill="#67e8f9" font-size="8" font-family="monospace">終末離地爆發推力</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>趾骨 (足趾骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Phalanges of the Foot (Toe Bones))</span>
@@ -7414,12 +7611,369 @@
                 </div>
             </div>
 
+            <!-- Sub-section: bone-sub-upper -->
+            <div id="bone-sub-upper" class="bone-sub-pane mb-8">
+                <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                        <span>第三篇：上肢擺臂軸線、肩帶與動力傳遞 (Upper Extremity Arm Drive & Shoulder Girdle)</span>
+                    </h3>
+                    <span class="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 border-indigo-500/20 px-2 py-0.5 rounded border hidden sm:inline-block">
+                        6 Upper Extremity Modules
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card: bcard-11 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-11">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    擺臂槓桿軸心 • 旋轉肌群與胸背肌止點
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Humerus (Upper Arm Bone)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The humerus acts as a swinging kinetic pendulum during distance running, transferring arm drive power down into the contralateral stride cycle.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Humeral Head -->
+            <circle cx="48" cy="28" r="10" fill="#38bdf8"/>
+            <text x="62" y="22" fill="#7dd3fc" font-size="8" font-family="monospace">肱骨頭 (Head)</text>
+            <!-- Shaft -->
+            <path d="M 50 35 L 115 65 L 110 75 L 45 45 Z" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <!-- Distal condyles (elbow joint) -->
+            <ellipse cx="120" cy="72" rx="10" ry="7" fill="#0369a1"/>
+            <text x="135" y="74" fill="#7dd3fc" font-size="8" font-family="monospace">滑車與外上髁</text>
+            <!-- Pendulum Swing Arc -->
+            <path d="M 35 65 Q 65 85 95 75" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 2"/>
+            <text x="110" y="38" fill="#fcd34d" font-size="8" font-family="monospace">鐘擺動能槓桿 (Arm Drive)</text>
+            <text x="110" y="52" fill="#94a3b8" font-size="8" font-family="monospace">對稱抵消骨盆旋轉</text>
+        </svg>
+                            </div>
+
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>肱骨 (上臂骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Humerus (Upper Arm Bone))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈhjuː.mɚ.əs/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                上肢最粗大的長管狀骨。近端球狀肱骨頭與肩胛盂構成活動度最大但最脆弱的盂肱關節。肱骨大結節與小結節分別為旋轉肌袖肌群與背闊肌腱止點；跑步時以肩關節為支點進行鐘擺式前後擺盪，直接帶動胸椎微幅旋轉並維持衝刺動能。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The humerus acts as a swinging kinetic pendulum during distance running, transferring arm drive power down into the contralateral stride cycle."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    在長跑過程中，肱骨充當擺動的動能鐘擺，將擺臂力量向下傳導至對側的步態週期中。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-12 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-12">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    前臂外側旋轉骨 • 橈骨小頭樞紐
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Radius (Lateral Forearm Bone)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Maintaining the radius in a neutral mid-pronation position prevents chronic forearm muscle cramps during ultra-marathons.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Radial Head -->
+            <ellipse cx="45" cy="40" rx="8" ry="5" fill="#38bdf8"/>
+            <text x="35" y="25" fill="#7dd3fc" font-size="8" font-family="monospace">橈骨小頭 (旋轉軸心)</text>
+            <!-- Shaft slightly curved -->
+            <path d="M 47 43 Q 85 48 115 42 L 115 50 Q 85 56 47 47 Z" fill="#0ea5e9"/>
+            <!-- Distal Styloid Process (Thumb side) -->
+            <path d="M 115 38 L 132 45 L 125 55 L 115 52 Z" fill="#0284c7"/>
+            <text x="135" y="48" fill="#7dd3fc" font-size="8" font-family="monospace">莖突 (拇指側)</text>
+            <text x="65" y="75" fill="#38bdf8" font-size="8" font-family="monospace">旋前/旋後中立位 (Thumbs-up)</text>
+        </svg>
+                            </div>
+
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>橈骨 (前臂外側骨 / 大拇指側骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Radius (Lateral Forearm Bone))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈreɪ.di.əs/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                位於前臂拇指側的長骨，其近端扁圓形的橈骨小頭與肱骨小頭及尺骨橈切跡構成樞紐，允許前臂旋前（Pronation）與旋後（Supination）。跑步時前臂自然維持半旋前中立姿態（Thumbs-up Neutral），可放鬆腕伸肌群並減輕長距離擺臂疲勞。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Maintaining the radius in a neutral mid-pronation position prevents chronic forearm muscle cramps during ultra-marathons."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    使橈骨維持在中立半旋前姿態，能防止超級馬拉松期間前臂肌肉產生慢性抽筋痙攣。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-13 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-13">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    前臂內側穩定主幹 • 鷹嘴突鉸鏈肘關節
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Ulna (Medial Forearm Bone)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The olecranon process of the ulna locks the elbow at approximately ninety degrees to minimize moment of inertia during swing turnover.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Olecranon Process Hook -->
+            <path d="M 40 45 C 35 25, 60 25, 58 45 L 60 48 L 52 50 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
+            <text x="40" y="20" fill="#7dd3fc" font-size="8" font-family="monospace">鷹嘴突 (Olecranon)</text>
+            <!-- Shaft tapering to wrist -->
+            <line x1="56" y1="48" x2="135" y2="55" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/>
+            <circle cx="138" cy="55" r="4" fill="#38bdf8"/>
+            <text x="145" y="58" fill="#7dd3fc" font-size="8" font-family="monospace">尺骨小頭</text>
+            <text x="75" y="75" fill="#38bdf8" font-size="8" font-family="monospace">肘關節 90° 剛性鎖定抗震</text>
+        </svg>
+                            </div>
+
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>尺骨 (前臂內側骨 / 小指側骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Ulna (Medial Forearm Bone))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈʌl.nə/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                前臂內側的較長骨骼。近端巨大的鷹嘴突（Olecranon）嵌合於肱骨滑車形成剛性鉸鏈關節（Hinge Joint），限制肘部過度伸展並作為三頭肌強大附著點。跑步時保持肘關節呈 90 度鎖定，可大幅減小上肢擺動轉動慣量。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The olecranon process of the ulna locks the elbow at approximately ninety degrees to minimize moment of inertia during swing turnover."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    尺骨的鷹嘴突將肘關節鎖定在約 90 度，以在擺臂交替時最小化轉動慣量。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-14 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-14">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    人體最易骨折長骨 • 上肢與軀幹唯一骨性聯結
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Clavicle (Collarbone)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The clavicle braces the shoulder girdle laterally, ensuring unimpeded thoracic lung expansion and rhythmic arm swing turnover.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- S-curved Clavicle -->
+            <path d="M 40 55 Q 70 30 110 50 Q 140 68 170 45" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="40" cy="55" r="5" fill="#0284c7"/>
+            <text x="25" y="75" fill="#7dd3fc" font-size="8" font-family="monospace">胸骨端</text>
+            <circle cx="170" cy="45" r="5" fill="#0284c7"/>
+            <text x="155" y="32" fill="#7dd3fc" font-size="8" font-family="monospace">肩峰端</text>
+            <!-- Strut Force vectors -->
+            <line x1="50" y1="20" x2="160" y2="20" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <text x="65" y="15" fill="#fcd34d" font-size="8" font-family="monospace">水平懸臂支撐架 (Strut)</text>
+            <text x="65" y="88" fill="#94a3b8" font-size="8" font-family="monospace">唯一骨性上肢軀幹連通真關節</text>
+        </svg>
+                            </div>
+
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>鎖骨 (美人骨 / 衣領骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Clavicle (Collarbone))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈklæv.ɪ.kəl/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                呈 S 形橫向橫跨胸廓前上方的長骨，是上肢與人體軀幹中軸之間「唯一的骨性真關節連結」（胸鎖關節與肩鎖關節）。鎖骨像吊桿般將肩胛骨與肱骨向外推開遠離胸壁，賦予手臂自由擺動的開闊活動空間，並保護其下方通過的臂神經叢與鎖骨下血管。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The clavicle braces the shoulder girdle laterally, ensuring unimpeded thoracic lung expansion and rhythmic arm swing turnover."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    鎖骨向外側支撐著肩帶，確保胸廓肺部擴張不受阻礙並維持節奏性擺臂交替。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-15 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-15">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    上肢動力核心樞紐 • 肩胛胸壁關節懸浮浮動骨
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Scapula (Shoulder Blade)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Active scapular retraction and depression engage the lower trapezius, anchoring thoracic stability across 42 kilometers.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Scapula Triangular Body -->
+            <polygon points="55,25 115,35 75,85" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+            <!-- Spine of Scapula & Acromion -->
+            <path d="M 60 40 L 125 30 L 132 38" fill="none" stroke="#7dd3fc" stroke-width="3"/>
+            <text x="135" y="34" fill="#7dd3fc" font-size="8" font-family="monospace">肩峰 (Acromion)</text>
+            <!-- Glenoid Cavity -->
+            <ellipse cx="120" cy="48" rx="5" ry="8" fill="#a5f3fc"/>
+            <text x="130" y="52" fill="#a5f3fc" font-size="8" font-family="monospace">關節盂</text>
+            <!-- Retraction Vector -->
+            <line x1="75" y1="65" x2="45" y2="65" stroke="#10b981" stroke-width="2"/>
+            <path d="M 48 62 L 45 65 L 48 68" stroke="#10b981" stroke-width="2" fill="none"/>
+            <text x="25" y="82" fill="#34d399" font-size="8" font-family="monospace">後收下沉力道</text>
+        </svg>
+                            </div>
+
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>肩胛骨 (肩胛板 / 胛骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Scapula (Shoulder Blade))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈskæp.jə.lə/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                附著於胸廓後壁的倒三角形扁平浮動骨，共有 17 條肌肉附著其上。其肩胛岡（Spine）、肩峰（Acromion）與喙突（Coracoid Process）提供肩關節穩定肌群強大的槓桿力臂。肩胛骨的後收（Retraction）與下沉（Depression）是維持挺拔跑姿、防止駝背圓肩的關鍵地基。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Active scapular retraction and depression engage the lower trapezius, anchoring thoracic stability across 42 kilometers."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    主動的肩胛骨後收與下沉能徵召下斜方肌，在 42 公里賽程中牢牢錨定胸椎穩定性。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-16 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-16">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    手腕與掌指骨骼基石 • 8腕骨與握拳擺臂力學
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Carpals & Metacarpals (Wrist & Hand Bones)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Relaxing the carpals with a loose hand grip prevents tension overflow from radiating up the forearm into the shoulder girdle.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- 8 Carpals clustered -->
+            <g fill="#0284c7" stroke="#38bdf8" stroke-width="1">
+                <circle cx="50" cy="45" r="4"/><circle cx="60" cy="43" r="4"/><circle cx="70" cy="44" r="4"/><circle cx="80" cy="47" r="4"/>
+                <circle cx="52" cy="54" r="4"/><circle cx="62" cy="53" r="4"/><circle cx="72" cy="54" r="4"/><circle cx="82" cy="56" r="4"/>
+            </g>
+            <!-- 5 Metacarpals fanning out -->
+            <line x1="50" y1="43" x2="35" y2="28" stroke="#38bdf8" stroke-width="3"/>
+            <line x1="60" y1="41" x2="62" y2="20" stroke="#38bdf8" stroke-width="3"/>
+            <line x1="70" y1="42" x2="78" y2="21" stroke="#38bdf8" stroke-width="3"/>
+            <line x1="80" y1="45" x2="92" y2="24" stroke="#38bdf8" stroke-width="3"/>
+            <line x1="84" y1="48" x2="102" y2="30" stroke="#38bdf8" stroke-width="3"/>
+            <text x="115" y="38" fill="#7dd3fc" font-size="8" font-family="monospace">8腕骨 + 5掌骨架構</text>
+            <text x="115" y="54" fill="#38bdf8" font-size="8" font-family="monospace">握拳放鬆 (Loose Grip)</text>
+            <text x="115" y="70" fill="#94a3b8" font-size="8" font-family="monospace">避免張力上傳肩頸</text>
+        </svg>
+                            </div>
+
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>腕骨與掌骨 (手腕 8 骨組與手掌骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Carpals & Metacarpals (Wrist & Hand Bones))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈkɑːr.pəlz/ & /ˌmet̬.əˈkɑːr.pəlz/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                手腕部排列成雙排的 8 塊腕骨（舟月三角豆、大小頭狀鉤）及 5 根手掌骨。跑步時手部應保持放鬆「微握杯狀（Loose Cup Grip）」，若雙手緊握死拳，會經由橈尺掌骨引發前臂、二頭肌與斜方肌連鎖僵硬，造成全身多餘氧氣損耗。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Relaxing the carpals with a loose hand grip prevents tension overflow from radiating up the forearm into the shoulder girdle."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    保持腕掌骨放鬆的微握拳姿態，能防止多餘張力經由前臂逆流輻射至肩帶肌群。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Sub-section: bone-sub-axial -->
             <div id="bone-sub-axial" class="bone-sub-pane mb-8">
                 <div class="mb-3 flex items-center justify-between">
                     <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
-                        <span>第三篇：中軸脊椎、骨盆中樞與軀幹抗震 (Axial Spine, Pelvic Ring & Trunk Stability)</span>
+                        <span>第四篇：中軸脊椎、骨盆中樞與軀幹抗震 (Axial Spine, Pelvic Ring & Trunk Stability)</span>
                     </h3>
                     <span class="text-[10px] font-mono text-sky-400 bg-sky-500/10 border-sky-500/20 px-2 py-0.5 rounded border hidden sm:inline-block">
                         5 Axial Core Modules
@@ -7427,8 +7981,8 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Card: bcard-11 -->
-                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-11">
+                    <!-- Card: bcard-17 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-17">
                         <div>
                             <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                                 <span class="text-[11px] font-bold text-cyan-400 font-mono">
@@ -7443,6 +7997,22 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Iliac Wings -->
+            <path d="M 45 35 C 35 15, 80 18, 90 35 C 90 55, 65 65, 55 60 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
+            <path d="M 155 35 C 165 15, 120 18, 110 35 C 110 55, 135 65, 145 60 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
+            <!-- Sacrum in center -->
+            <polygon points="90,30 110,30 100,60" fill="#0284c7"/>
+            <!-- Pubic arch -->
+            <path d="M 85 65 Q 100 75 115 65" fill="none" stroke="#38bdf8" stroke-width="2"/>
+            <text x="75" y="85" fill="#38bdf8" font-size="9" font-family="monospace" font-weight="bold">骨盆核心環</text>
+            <text x="120" y="25" fill="#94a3b8" font-size="8" font-family="monospace">中立對齊抗側傾</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>骨盆 (骨盆環與髖骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Pelvis (Pelvic Girdle & Os Coxae))</span>
@@ -7466,8 +8036,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card: bcard-12 -->
-                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-12">
+                    <!-- Card: bcard-18 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-18">
                         <div>
                             <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                                 <span class="text-[11px] font-bold text-cyan-400 font-mono">
@@ -7482,6 +8052,24 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Inverted triangle sacrum -->
+            <polygon points="65,20 115,20 90,70" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+            <!-- 4 pairs of foramina -->
+            <circle cx="80" cy="32" r="2.5" fill="#a5f3fc"/><circle cx="100" cy="32" r="2.5" fill="#a5f3fc"/>
+            <circle cx="82" cy="42" r="2.5" fill="#a5f3fc"/><circle cx="98" cy="42" r="2.5" fill="#a5f3fc"/>
+            <circle cx="84" cy="52" r="2" fill="#a5f3fc"/><circle cx="96" cy="52" r="2" fill="#a5f3fc"/>
+            <!-- Coccyx at tip -->
+            <ellipse cx="90" cy="78" rx="4" ry="6" fill="#0369a1"/>
+            <text x="125" y="35" fill="#38bdf8" font-size="8" font-family="monospace">薦髂關節 (SI Joint)</text>
+            <text x="125" y="52" fill="#7dd3fc" font-size="8" font-family="monospace">微動章動緩衝</text>
+            <text x="125" y="69" fill="#94a3b8" font-size="8" font-family="monospace">下肢脊椎力學基石</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>薦骨與尾骨 (骶骨與尾椎)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Sacrum & Coccyx)</span>
@@ -7505,8 +8093,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card: bcard-13 -->
-                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-13">
+                    <!-- Card: bcard-19 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-19">
                         <div>
                             <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                                 <span class="text-[11px] font-bold text-cyan-400 font-mono">
@@ -7521,6 +8109,28 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- 5 Lumbar Vertebrae stacked with Discs -->
+            <g fill="#0284c7" stroke="#38bdf8" stroke-width="1.5">
+                <rect x="65" y="15" width="40" height="9" rx="2"/>
+                <line x1="68" y1="26" x2="102" y2="26" stroke="#f59e0b" stroke-width="2.5"/>
+                <rect x="65" y="29" width="40" height="9" rx="2"/>
+                <line x1="68" y1="40" x2="102" y2="40" stroke="#f59e0b" stroke-width="2.5"/>
+                <rect x="65" y="43" width="40" height="9" rx="2"/>
+                <line x1="68" y1="54" x2="102" y2="54" stroke="#f59e0b" stroke-width="2.5"/>
+                <rect x="65" y="57" width="40" height="9" rx="2"/>
+                <line x1="68" y1="68" x2="102" y2="68" stroke="#f59e0b" stroke-width="2.5"/>
+                <rect x="65" y="71" width="40" height="9" rx="2"/>
+            </g>
+            <text x="115" y="32" fill="#38bdf8" font-size="8" font-family="monospace">L1-L5 厚實椎體</text>
+            <text x="115" y="48" fill="#fcd34d" font-size="8" font-family="monospace">椎間盤液壓彈簧</text>
+            <text x="115" y="65" fill="#94a3b8" font-size="8" font-family="monospace">吸收長途垂直衝擊</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>腰椎 (第 1 至第 5 腰椎)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Lumbar Vertebrae (L1–L5))</span>
@@ -7544,8 +8154,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card: bcard-14 -->
-                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-14">
+                    <!-- Card: bcard-20 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-20">
                         <div>
                             <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                                 <span class="text-[11px] font-bold text-cyan-400 font-mono">
@@ -7560,6 +8170,25 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Sternum in center -->
+            <line x1="90" y1="20" x2="90" y2="75" stroke="#38bdf8" stroke-width="4"/>
+            <!-- Rib Arches -->
+            <path d="M 90 28 Q 50 35 60 55" fill="none" stroke="#0ea5e9" stroke-width="2"/>
+            <path d="M 90 28 Q 130 35 120 55" fill="none" stroke="#0ea5e9" stroke-width="2"/>
+            <path d="M 90 42 Q 45 50 62 70" fill="none" stroke="#0ea5e9" stroke-width="2"/>
+            <path d="M 90 42 Q 135 50 118 70" fill="none" stroke="#0ea5e9" stroke-width="2"/>
+            <path d="M 90 56 Q 48 65 68 82" fill="none" stroke="#0ea5e9" stroke-width="2"/>
+            <path d="M 90 56 Q 132 65 112 82" fill="none" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="140" y="38" fill="#38bdf8" font-size="8" font-family="monospace">30° 軀幹旋轉對稱</text>
+            <text x="140" y="55" fill="#94a3b8" font-size="8" font-family="monospace">胸廓彈性保障呼吸</text>
+            <text x="140" y="72" fill="#67e8f9" font-size="8" font-family="monospace">抵消骨盆扭矩</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>胸椎與胸廓 (肋骨架)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Thoracic Vertebrae & Rib Cage)</span>
@@ -7583,30 +8212,47 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card: bcard-15 -->
-                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-15">
+                    <!-- Card: bcard-21 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-21">
                         <div>
                             <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                                 <span class="text-[11px] font-bold text-cyan-400 font-mono">
-                                    上肢擺臂槓桿軸心 • 能量節省關鍵
+                                    頭頸視野支撐 • 頸椎中立抗震
                                 </span>
                                 <div class="flex items-center gap-1.5">
-                                    <button onclick="speakText('Clavicle & Scapula (Shoulder Girdle)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                    <button onclick="speakText('Cervical Vertebrae (C1–C7)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
                                         <span>🔊</span> <span>名稱</span>
                                     </button>
-                                    <button onclick="speakText('A relaxed shoulder girdle and stable scapular retraction reduce oxygen cost and prevent upper body fatigue.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                    <button onclick="speakText('A neutral cervical spine prevents excessive lever forces on neck extensors, sustaining clear visual scanning on trail descents.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
                                         <span>🗣️</span> <span>例句</span>
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Head circle on top -->
+            <circle cx="85" cy="20" r="10" fill="#38bdf8" opacity="0.4"/>
+            <!-- C1-C7 Stack with natural lordosis curve -->
+            <path d="M 85 30 Q 92 48 85 70" fill="none" stroke="#38bdf8" stroke-width="5" stroke-dasharray="3 3"/>
+            <text x="85" y="82" fill="#7dd3fc" font-size="7" font-family="monospace" text-anchor="middle">C1-C7</text>
+            <!-- Line of sight -->
+            <line x1="95" y1="20" x2="160" y2="40" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="120" y="28" fill="#34d399" font-size="8" font-family="monospace">視線前導 15-20m</text>
+            <text x="110" y="58" fill="#38bdf8" font-size="8" font-family="monospace">避免頭部前傾 (4x 剪力)</text>
+            <text x="110" y="74" fill="#94a3b8" font-size="8" font-family="monospace">維持中立減輕肩頸負擔</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
-                                <span>鎖骨與肩胛骨 (肩胛骨帶)</span>
-                                <span class="text-xs font-mono text-cyan-400 font-normal">(Clavicle & Scapula (Shoulder Girdle))</span>
-                                <span class="text-[10px] text-slate-500 font-serif">/ˈklæv.ɪ.kəl/ & /ˈskæp.jə.lə/</span>
+                                <span>頸椎 (第 1 至第 7 頸椎)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Cervical Vertebrae (C1–C7))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈsɝː.vɪ.kəl ˈvɝː.t̬ə.brə/</span>
                                 <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
                             </h4>
                             <p class="text-xs text-slate-300 mt-2 leading-relaxed">
-                                連接上肢與軀幹中軸的懸浮骨性結構。跑步時肩胛骨在胸壁上的穩定滑動與節奏性後縮，主導了雙臂的前後擺幅，幫助維持跑步節奏、穩定重心並節省高達 3% 至 5% 的整體跑步能耗。
+                                由寰椎（C1）、樞椎（C2）等 7 節高靈活度椎骨組成，支撐重達 5 公斤的人體頭顱。跑步時維持頸椎中立對齊（視線落於前方 15~20 公尺地面），可避免頭部前傾產生的 3 至 4 倍力矩槓桿負荷。
                             </p>
 
                             <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
@@ -7614,10 +8260,10 @@
                                     <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
                                 </div>
                                 <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
-                                    "A relaxed shoulder girdle and stable scapular retraction reduce oxygen cost and prevent upper body fatigue."
+                                    "A neutral cervical spine prevents excessive lever forces on neck extensors, sustaining clear visual scanning on trail descents."
                                 </p>
                                 <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
-                                    放鬆的肩帶與穩定的肩胛後縮能降低氧氣消耗，並防止上半身過早疲勞。
+                                    中立的頸椎姿態能防止頸伸肌群承受過大的槓桿拉力，在越野下坡時維持清晰的視野掃描。
                                 </p>
                             </div>
                         </div>
@@ -7630,7 +8276,7 @@
                 <div class="mb-3 flex items-center justify-between">
                     <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
                         <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
-                        <span>第四篇：骨重塑週期、沃爾夫定律與應力損傷 (Bone Remodeling, Wolff's Law & BSI)</span>
+                        <span>第五篇：骨重塑週期、沃爾夫定律與應力損傷 (Bone Remodeling, Wolff's Law & BSI)</span>
                     </h3>
                     <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 border-blue-500/20 px-2 py-0.5 rounded border hidden sm:inline-block">
                         4 Bone Science Modules
@@ -7638,8 +8284,8 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Card: bcard-16 -->
-                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-16">
+                    <!-- Card: bcard-22 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-22">
                         <div>
                             <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                                 <span class="text-[11px] font-bold text-cyan-400 font-mono">
@@ -7654,6 +8300,24 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Bone shaft under load -->
+            <rect x="45" y="25" width="22" height="50" rx="3" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+            <rect x="75" y="20" width="30" height="60" rx="4" fill="#1d4ed8" stroke="#60a5fa" stroke-width="2.5"/>
+            <!-- Thickened cortical wall -->
+            <line x1="77" y1="22" x2="77" y2="78" stroke="#93c5fd" stroke-width="4"/>
+            <line x1="103" y1="22" x2="103" y2="78" stroke="#93c5fd" stroke-width="4"/>
+            <text x="47" y="52" fill="#94a3b8" font-size="7" font-family="monospace">負荷前</text>
+            <text x="80" y="52" fill="#ffffff" font-size="7" font-family="monospace" font-weight="bold">重塑後</text>
+            <text x="120" y="35" fill="#60a5fa" font-size="8" font-family="monospace">沃爾夫定律 (Wolff's Law)</text>
+            <text x="120" y="52" fill="#93c5fd" font-size="8" font-family="monospace">力學應變刺激皮質增厚</text>
+            <text x="120" y="69" fill="#94a3b8" font-size="8" font-family="monospace">成骨細胞活性躍升</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>沃爾夫定律 (骨骼受力適應定律)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Wolff's Law (Bone Adaptation to Mechanical Load))</span>
@@ -7677,8 +8341,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card: bcard-17 -->
-                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-17">
+                    <!-- Card: bcard-23 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-23">
                         <div>
                             <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                                 <span class="text-[11px] font-bold text-cyan-400 font-mono">
@@ -7693,6 +8357,20 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cycle arrows -->
+            <path d="M 60 30 A 25 25 0 0 1 100 45" fill="none" stroke="#f43f5e" stroke-width="3"/>
+            <path d="M 100 55 A 25 25 0 0 1 60 70" fill="none" stroke="#10b981" stroke-width="3"/>
+            <path d="M 50 65 A 25 25 0 0 1 50 35" fill="none" stroke="#3b82f6" stroke-width="3"/>
+            <text x="108" y="35" fill="#f43f5e" font-size="8" font-family="monospace">破骨吸收 (Osteoclasts)</text>
+            <text x="108" y="55" fill="#10b981" font-size="8" font-family="monospace">成骨沉積 (Osteoblasts)</text>
+            <text x="108" y="75" fill="#fcd34d" font-size="8" font-family="monospace">⚠️ 骨質脆弱修復窗口期</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>骨重塑週期 (成骨細胞與破骨細胞)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Bone Remodeling Cycle (Osteoblasts & Osteoclasts))</span>
@@ -7716,8 +8394,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card: bcard-18 -->
-                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-18">
+                    <!-- Card: bcard-24 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-24">
                         <div>
                             <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                                 <span class="text-[11px] font-bold text-cyan-400 font-mono">
@@ -7732,6 +8410,23 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Dense Cortical Outer Layer -->
+            <rect x="40" y="20" width="70" height="55" rx="5" fill="#1e293b" stroke="#3b82f6" stroke-width="4"/>
+            <!-- Spongy Trabecular Mesh Inside -->
+            <g stroke="#60a5fa" stroke-width="1.2" opacity="0.8">
+                <line x1="50" y1="30" x2="65" y2="45"/><line x1="65" y1="45" x2="80" y2="35"/><line x1="80" y1="35" x2="95" y2="50"/>
+                <line x1="55" y1="55" x2="70" y2="40"/><line x1="70" y1="40" x2="85" y2="60"/><line x1="85" y1="60" x2="100" y2="45"/>
+            </g>
+            <text x="125" y="35" fill="#60a5fa" font-size="8" font-family="monospace">皮質骨: 抗彎曲/高密度</text>
+            <text x="125" y="52" fill="#93c5fd" font-size="8" font-family="monospace">海綿骨: 骨小梁彈性減震</text>
+            <text x="125" y="69" fill="#94a3b8" font-size="8" font-family="monospace">剛柔並濟防骨折</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>皮質骨 (密質骨) 與 海綿骨 (鬆質骨)</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Cortical Bone vs Trabecular Bone)</span>
@@ -7755,8 +8450,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card: bcard-19 -->
-                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-19">
+                    <!-- Card: bcard-25 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-25">
                         <div>
                             <div class="flex items-center justify-between pb-2 border-b border-slate-800">
                                 <span class="text-[11px] font-bold text-cyan-400 font-mono">
@@ -7771,6 +8466,22 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Bone shaft with hairline crack -->
+            <rect x="45" y="25" width="55" height="45" rx="3" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+            <!-- Crack zigzag line -->
+            <path d="M 72 25 L 68 38 L 74 48 L 70 58 L 73 70" fill="none" stroke="#f43f5e" stroke-width="2.5"/>
+            <!-- Edema ring -->
+            <ellipse cx="71" cy="45" rx="18" ry="12" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <text x="115" y="35" fill="#f43f5e" font-size="8" font-family="monospace" font-weight="bold">BSI 骨應力損傷三階段</text>
+            <text x="115" y="52" fill="#fda4af" font-size="8" font-family="monospace">骨髓水腫 ➔ 骨膜炎 ➔ 骨折</text>
+            <text x="115" y="69" fill="#94a3b8" font-size="8" font-family="monospace">定點壓痛即刻停跑</text>
+        </svg>
+                            </div>
+
                             <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
                                 <span>骨應力損傷 (BSI) 與 疲勞性應力骨折</span>
                                 <span class="text-xs font-mono text-cyan-400 font-normal">(Bone Stress Injury, BSI & Stress Fractures)</span>
@@ -17023,7 +17734,7 @@
 
 
         // ==========================================
-        // 🦴 BONE SKELETAL SYSTEM AUTO PLAY ENGINE
+        // 🦴 BONE SKELETAL SYSTEM AUTO PLAY ENGINE (26 Bones)
         // ==========================================
         const BONE_ITEMS = [
             {
@@ -17105,62 +17816,104 @@
             },
             {
                         "id": "bcard-11",
+                        "title": "Humerus (Upper Arm Bone)",
+                        "zh": "肱骨 (上臂骨)",
+                        "ex_en": "The humerus acts as a swinging kinetic pendulum during distance running, transferring arm drive power down into the contralateral stride cycle.",
+                        "ex_zh": "在長跑過程中，肱骨充當擺動的動能鐘擺，將擺臂力量向下傳導至對側的步態週期中。"
+            },
+            {
+                        "id": "bcard-12",
+                        "title": "Radius (Lateral Forearm Bone)",
+                        "zh": "橈骨 (前臂外側骨 / 大拇指側骨)",
+                        "ex_en": "Maintaining the radius in a neutral mid-pronation position prevents chronic forearm muscle cramps during ultra-marathons.",
+                        "ex_zh": "使橈骨維持在中立半旋前姿態，能防止超級馬拉松期間前臂肌肉產生慢性抽筋痙攣。"
+            },
+            {
+                        "id": "bcard-13",
+                        "title": "Ulna (Medial Forearm Bone)",
+                        "zh": "尺骨 (前臂內側骨 / 小指側骨)",
+                        "ex_en": "The olecranon process of the ulna locks the elbow at approximately ninety degrees to minimize moment of inertia during swing turnover.",
+                        "ex_zh": "尺骨的鷹嘴突將肘關節鎖定在約 90 度，以在擺臂交替時最小化轉動慣量。"
+            },
+            {
+                        "id": "bcard-14",
+                        "title": "Clavicle (Collarbone)",
+                        "zh": "鎖骨 (美人骨 / 衣領骨)",
+                        "ex_en": "The clavicle braces the shoulder girdle laterally, ensuring unimpeded thoracic lung expansion and rhythmic arm swing turnover.",
+                        "ex_zh": "鎖骨向外側支撐著肩帶，確保胸廓肺部擴張不受阻礙並維持節奏性擺臂交替。"
+            },
+            {
+                        "id": "bcard-15",
+                        "title": "Scapula (Shoulder Blade)",
+                        "zh": "肩胛骨 (肩胛板 / 胛骨)",
+                        "ex_en": "Active scapular retraction and depression engage the lower trapezius, anchoring thoracic stability across 42 kilometers.",
+                        "ex_zh": "主動的肩胛骨後收與下沉能徵召下斜方肌，在 42 公里賽程中牢牢錨定胸椎穩定性。"
+            },
+            {
+                        "id": "bcard-16",
+                        "title": "Carpals & Metacarpals (Wrist & Hand Bones)",
+                        "zh": "腕骨與掌骨 (手腕 8 骨組與手掌骨)",
+                        "ex_en": "Relaxing the carpals with a loose hand grip prevents tension overflow from radiating up the forearm into the shoulder girdle.",
+                        "ex_zh": "保持腕掌骨放鬆的微握拳姿態，能防止多餘張力經由前臂逆流輻射至肩帶肌群。"
+            },
+            {
+                        "id": "bcard-17",
                         "title": "Pelvis (Pelvic Girdle & Os Coxae)",
                         "zh": "骨盆 (骨盆環與髖骨)",
                         "ex_en": "Maintaining pelvic neutral alignment during stride turnover prevents compensatory hamstring strain and lumbar stress.",
                         "ex_zh": "在步態轉換中維持骨盆中立對齊，能預防代償性腿後肌拉傷與腰椎應力。"
             },
             {
-                        "id": "bcard-12",
+                        "id": "bcard-18",
                         "title": "Sacrum & Coccyx",
                         "zh": "薦骨與尾骨 (骶骨與尾椎)",
                         "ex_en": "The sacrum anchors the pelvic ring and channels vertical spinal loads into the lower extremity kinetic chain.",
                         "ex_zh": "薦骨錨定骨盆環，並將垂直脊椎負荷傳導至下肢動力鏈。"
             },
             {
-                        "id": "bcard-13",
+                        "id": "bcard-19",
                         "title": "Lumbar Vertebrae (L1–L5)",
                         "zh": "腰椎 (第 1 至第 5 腰椎)",
                         "ex_en": "Strong core musculature supports the lumbar vertebrae to absorb repetitive spinal shock waves during ultra-distance running.",
                         "ex_zh": "強健的核心肌群支撐腰椎，在超長距離跑步中吸收反覆向脊椎傳導的衝擊波。"
             },
             {
-                        "id": "bcard-14",
+                        "id": "bcard-20",
                         "title": "Thoracic Vertebrae & Rib Cage",
                         "zh": "胸椎與胸廓 (肋骨架)",
                         "ex_en": "Adequate thoracic mobility allows smooth reciprocal trunk rotation to balance contralateral pelvis movement.",
                         "ex_zh": "足夠的胸椎活動度允許流暢的軀幹交替旋轉，以平衡對側骨盆的位移擺動。"
             },
             {
-                        "id": "bcard-15",
-                        "title": "Clavicle & Scapula (Shoulder Girdle)",
-                        "zh": "鎖骨與肩胛骨 (肩胛骨帶)",
-                        "ex_en": "A relaxed shoulder girdle and stable scapular retraction reduce oxygen cost and prevent upper body fatigue.",
-                        "ex_zh": "放鬆的肩帶與穩定的肩胛後縮能降低氧氣消耗，並防止上半身過早疲勞。"
+                        "id": "bcard-21",
+                        "title": "Cervical Vertebrae (C1–C7)",
+                        "zh": "頸椎 (第 1 至第 7 頸椎)",
+                        "ex_en": "A neutral cervical spine prevents excessive lever forces on neck extensors, sustaining clear visual scanning on trail descents.",
+                        "ex_zh": "中立的頸椎姿態能防止頸伸肌群承受過大的槓桿拉力，在越野下坡時維持清晰的視野掃描。"
             },
             {
-                        "id": "bcard-16",
+                        "id": "bcard-22",
                         "title": "Wolff's Law (Bone Adaptation to Mechanical Load)",
                         "zh": "沃爾夫定律 (骨骼受力適應定律)",
                         "ex_en": "According to Wolff's Law, weight-bearing running generates compressive strains that stimulate new cortical bone formation.",
                         "ex_zh": "依據沃爾夫定律，承重跑步產生的壓縮應變能刺激新的皮質骨生成。"
             },
             {
-                        "id": "bcard-17",
+                        "id": "bcard-23",
                         "title": "Bone Remodeling Cycle (Osteoblasts & Osteoclasts)",
                         "zh": "骨重塑週期 (成骨細胞與破骨細胞)",
                         "ex_en": "During heavy training phases, bone resorption temporarily outpaces deposition, creating a transient vulnerability window.",
                         "ex_zh": "在高強度訓練階段，骨質吸收暫時快於骨質沉積，形成短暫的骨骼脆弱窗口期。"
             },
             {
-                        "id": "bcard-18",
+                        "id": "bcard-24",
                         "title": "Cortical Bone vs Trabecular Bone",
                         "zh": "皮質骨 (密質骨) 與 海綿骨 (鬆質骨)",
                         "ex_en": "Cortical bone in the tibial shaft resists bending torques, while trabecular bone in the condyles dissipates impact shock.",
                         "ex_zh": "脛骨骨幹中的皮質骨抵抗彎曲扭矩，而骨髁中的海綿骨則分散衝擊震波。"
             },
             {
-                        "id": "bcard-19",
+                        "id": "bcard-25",
                         "title": "Bone Stress Injury, BSI & Stress Fractures",
                         "zh": "骨應力損傷 (BSI) 與 疲勞性應力骨折",
                         "ex_en": "Ignoring localized bone tenderness and throbbing night ache can convert a low-grade BSI into a frank stress fracture.",
@@ -17178,6 +17931,7 @@
             const panes = {
                 lower: document.getElementById('bone-sub-lower'),
                 foot: document.getElementById('bone-sub-foot'),
+                upper: document.getElementById('bone-sub-upper'),
                 axial: document.getElementById('bone-sub-axial'),
                 physiology: document.getElementById('bone-sub-physiology')
             };
@@ -17186,6 +17940,7 @@
                 all: document.getElementById('btab-btn-all'),
                 lower: document.getElementById('btab-btn-lower'),
                 foot: document.getElementById('btab-btn-foot'),
+                upper: document.getElementById('btab-btn-upper'),
                 axial: document.getElementById('btab-btn-axial'),
                 physiology: document.getElementById('btab-btn-physiology')
             };
@@ -17205,6 +17960,8 @@
                     activeBtn.className = 'btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-cyan-600 text-white border border-cyan-400 shadow-sm';
                 } else if (tabName === 'foot') {
                     activeBtn.className = 'btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-teal-600 text-white border border-teal-400 shadow-sm';
+                } else if (tabName === 'upper') {
+                    activeBtn.className = 'btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-indigo-600 text-white border border-indigo-400 shadow-sm';
                 } else if (tabName === 'axial') {
                     activeBtn.className = 'btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-sky-600 text-white border border-sky-400 shadow-sm';
                 } else if (tabName === 'physiology') {
@@ -17295,7 +18052,7 @@
                 card.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
 
-            const categoryTag = idx >= 16 ? '🔬 骨生理' : (idx >= 11 ? '🦴 中軸骨盆' : (idx >= 6 ? '🦶 足踝足弓' : '🦵 下肢承重'));
+            const categoryTag = idx >= 22 ? '🔬 骨生理' : (idx >= 17 ? '🦴 中軸骨盆' : (idx >= 11 ? '💪 上肢擺臂' : (idx >= 6 ? '🦶 足踝足弓' : '🦵 下肢承重')));
             showTopMiniPlayer(`${categoryTag}: ${item.zh}`, 'bone');
             if (boneAutoPlayTimeout) clearTimeout(boneAutoPlayTimeout);
             const exEl = card ? card.querySelector('.italic') : null;
@@ -17353,6 +18110,7 @@
                 }
             });
         }
+
 
 
         // --- INJURY AUTO PLAY ENGINE ---
