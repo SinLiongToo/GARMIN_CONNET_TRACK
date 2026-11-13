@@ -1984,7 +1984,7 @@
 
                     <a href="#bone-section" class="px-2.5 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
 
-                        <span>🦴</span> <span>26大骨骼</span>
+                        <span>🦴</span> <span>28大骨骼</span>
 
                     </a>
 
@@ -6929,27 +6929,27 @@
                         <span id="bone-play-text">自動朗讀骨骼系統</span>
                     </button>
                     <span class="text-xs px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 font-mono border border-cyan-500/30 hidden sm:inline-block">
-                        26 Major Bones
+                        28 Major Bones
                     </span>
                 </div>
             </div>
 
             <!-- Bone Interactive Sub-category Tab Navigation -->
             <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 border-b border-slate-700/60 no-scrollbar">
-                <button onclick="switchBoneTab('all')" id="btab-btn-all" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm" title="瀏覽全部 26 大骨骼模組">
-                    <span>📑</span> <span>全部展開 (All 26)</span>
+                <button onclick="switchBoneTab('all')" id="btab-btn-all" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm" title="瀏覽全部 28 大骨骼模組">
+                    <span>📑</span> <span>全部展開 (All 28)</span>
                 </button>
                 <button onclick="switchBoneTab('lower')" id="btab-btn-lower" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="下肢承重與推進骨骼 (6)">
                     <span>🦵</span> <span>下肢承重與推進 (6)</span>
                 </button>
-                <button onclick="switchBoneTab('foot')" id="btab-btn-foot" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="足踝跗骨、蹠骨與足弓力學 (5)">
-                    <span>🦶</span> <span>足踝足弓骨骼 (5)</span>
+                <button onclick="switchBoneTab('foot')" id="btab-btn-foot" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="足踝跗骨、蹠骨、種子骨與足弓力學 (6)">
+                    <span>🦶</span> <span>足踝足弓骨骼 (6)</span>
                 </button>
                 <button onclick="switchBoneTab('upper')" id="btab-btn-upper" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="上肢擺臂軸線、肩帶與動力傳遞 (6)">
                     <span>💪</span> <span>上肢擺臂與肩帶 (6)</span>
                 </button>
-                <button onclick="switchBoneTab('axial')" id="btab-btn-axial" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="中軸脊椎、骨盆中樞與胸廓呼吸 (5)">
-                    <span>🦴</span> <span>中軸脊椎與骨盆 (5)</span>
+                <button onclick="switchBoneTab('axial')" id="btab-btn-axial" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="頭顱枕骨、中軸脊椎、骨盆中樞與胸廓呼吸 (6)">
+                    <span>🦴</span> <span>中軸脊椎與骨盆 (6)</span>
                 </button>
                 <button onclick="switchBoneTab('physiology')" id="btab-btn-physiology" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="骨生物學、骨質重塑與應力力學 (4)">
                     <span>🔬</span> <span>骨生理與應力力學 (4)</span>
@@ -6995,8 +6995,8 @@
                             <rect width="460" height="520" fill="url(#skelGrid)" opacity="0.6"/>
                             <circle cx="230" cy="240" r="210" fill="url(#skelBgGlow)"/>
 
-                            <!-- Cranium & Mandible (Reference) -->
-                            <g class="opacity-90">
+                            <!-- Cranium & Mandible -> bcard-27 -->
+                            <g class="cursor-pointer opacity-90 hover:opacity-100" onclick="jumpToBoneCard('axial','bcard-27')" onmouseenter="previewFullBodyBone('cranium')">
                                 <path d="M 230 22 C 208 22 198 38 200 56 C 202 68 210 74 214 82 L 246 82 C 250 74 258 68 260 56 C 262 38 252 22 230 22 Z" fill="url(#skelBone)" stroke="#e2e8f0" stroke-width="1.2"/>
                                 <!-- Eye Orbits & Nasal Cavity -->
                                 <ellipse cx="219" cy="52" rx="6.5" ry="5.5" fill="#0f172a"/>
@@ -7110,6 +7110,9 @@
 
                             <!-- Anatomical Leader Callouts (Left & Right) -->
                             <g font-size="10" font-family="monospace" fill="#67e8f9">
+                                <line x1="258" y1="50" x2="328" y2="50" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="332" y="53" class="cursor-pointer" onclick="jumpToBoneCard('axial','bcard-27')">頭顱/枕骨 Cranium</text>
+
                                 <line x1="238" y1="95" x2="328" y2="95" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
                                 <text x="332" y="98" class="cursor-pointer" onclick="jumpToBoneCard('axial','bcard-21')">頸椎 C1–C7</text>
 
@@ -7172,9 +7175,9 @@
                             <div class="text-xs font-semibold text-slate-300">五大跑者骨骼系統快速導覽：</div>
                             <div class="grid grid-cols-2 gap-2 text-xs">
                                 <button onclick="switchBoneTab('lower')" class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-cyan-950/40 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all cursor-pointer">🦵 下肢承重推進 (6)</button>
-                                <button onclick="switchBoneTab('foot')" class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-cyan-950/40 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all cursor-pointer">🦶 足踝足弓骨骼 (5)</button>
+                                <button onclick="switchBoneTab('foot')" class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-cyan-950/40 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all cursor-pointer">🦶 足踝足弓骨骼 (6)</button>
                                 <button onclick="switchBoneTab('upper')" class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-cyan-950/40 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all cursor-pointer">💪 上肢擺臂肩帶 (6)</button>
-                                <button onclick="switchBoneTab('axial')" class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-cyan-950/40 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all cursor-pointer">🦴 中軸脊椎骨盆 (5)</button>
+                                <button onclick="switchBoneTab('axial')" class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-cyan-950/40 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all cursor-pointer">🦴 中軸脊椎骨盆 (6)</button>
                             </div>
                         </div>
                     </div>
@@ -7671,7 +7674,7 @@
                         <span>第二篇：足踝跗骨、橫縱足弓與離地槓桿 (Foot Tarsals, Arches & Propulsion Lever)</span>
                     </h3>
                     <span class="text-[10px] font-mono text-teal-400 bg-teal-500/10 border-teal-500/20 px-2 py-0.5 rounded border hidden sm:inline-block">
-                        5 Foot & Arch Modules
+                        6 Foot & Arch Modules
                     </span>
                 </div>
 
@@ -8041,6 +8044,78 @@
                                 </p>
                                 <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
                                     大腳趾近節趾骨的背屈能啟動絞盤機制，使足底筋膜緊繃提高剛性。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card: bcard-26 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-26">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-emerald-400 font-mono">
+                                    前足推進滑輪 • 第一蹠骨頭下方雙小骨
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Foot Sesamoid Bones')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The medial and lateral sesamoid bones beneath the first metatarsal head absorb forefoot push-off forces and enhance flexor hallucis brevis leverage.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Foot sesamoid bones diagram">
+            <defs>
+                <linearGradient id="boneIvory-26" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="cartilage-26" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- 1st Metatarsal Head & Proximal Phalanx -->
+            <path d="M 38 42 L 132 40 Q 150 40 152 54 Q 150 68 132 68 L 38 64 Z" fill="url(#boneIvory-26)" stroke="#e2e8f0" stroke-width="1.1"/>
+            <path d="M 158 42 L 222 36 L 224 54 L 158 62 Z" fill="url(#boneIvory-26)" stroke="#e2e8f0" stroke-width="1.1"/>
+            <circle cx="152" cy="53" r="6" fill="url(#cartilage-26)"/>
+            <!-- Flexor Hallucis Brevis Tendon -->
+            <path d="M 48 82 Q 128 88 214 66" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+            <!-- Medial & Lateral Sesamoid Bones -->
+            <ellipse cx="128" cy="80" rx="11" ry="7" fill="#f8fafc" stroke="#f43f5e" stroke-width="1.8"/>
+            <ellipse cx="148" cy="82" rx="10" ry="6.5" fill="#cbd5e1" stroke="#38bdf8" stroke-width="1.4"/>
+            <!-- Ground Reaction Force -->
+            <line x1="136" y1="110" x2="136" y2="91" stroke="#f43f5e" stroke-width="2"/>
+            <polygon points="136,87 132,94 140,94" fill="#f43f5e"/>
+            <text x="58" y="26" fill="#67e8f9" font-size="9" font-family="monospace">第一蹠骨頭 1st Metatarsal Head</text>
+            <text x="116" y="106" fill="#fda4af" font-size="8.5" font-family="monospace">內/外側種子骨 (Sesamoiditis)</text>
+        </svg>
+                            </div>
+
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>足部種子骨 (大腳趾籽骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Foot Sesamoid Bones)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈsɛs.ə.mɔɪd/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                嵌於第一蹠骨頭下方屈拇短肌腱內的兩塊豌豆大小籽骨（內側脛籽骨與外側腓籽骨）。它們充當生物力學滑輪，吸收前足著地與離地推進時的垂直衝擊力，並保護脆弱的屈肌腱免受地面摩擦（例句庫 #29 種子骨發炎）。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics &amp; Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The medial and lateral sesamoid bones beneath the first metatarsal head absorb forefoot push-off forces and enhance flexor hallucis brevis leverage."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    位於第一蹠骨頭下方的內側與外側種子骨能吸收前足推進衝擊力，並提升屈拇短肌的力臂槓桿。
                                 </p>
                             </div>
                         </div>
@@ -8522,7 +8597,7 @@
                         <span>第四篇：中軸脊椎、骨盆中樞與軀幹抗震 (Axial Spine, Pelvic Ring & Trunk Stability)</span>
                     </h3>
                     <span class="text-[10px] font-mono text-sky-400 bg-sky-500/10 border-sky-500/20 px-2 py-0.5 rounded border hidden sm:inline-block">
-                        5 Axial Core Modules
+                        6 Axial Core Modules
                     </span>
                 </div>
 
@@ -8921,6 +8996,74 @@
                                 </p>
                                 <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
                                     中立的頸椎姿態能防止頸伸肌群承受過大的槓桿拉力，在越野下坡時維持清晰的視野掃描。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card: bcard-27 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-27">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-amber-400 font-mono">
+                                    重心最高點與前庭平衡 • 枕下肌群附著
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Cranium and Occipital Bone')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Sustained upper trapezius tension during marathon fatigue radiates pain to the occipital bone, disrupting vestibular gaze stability.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Bony Structure SVG Diagram -->
+                            <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cranium and occipital bone diagram">
+            <defs>
+                <linearGradient id="boneIvory-27" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+            </defs>
+            <!-- Lateral Cranium Outline -->
+            <path d="M 96 86 Q 74 78 72 52 Q 72 20 116 18 Q 160 18 164 48 L 166 64 L 154 78 L 136 78 L 128 92 Q 112 94 96 86 Z" fill="url(#boneIvory-27)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <!-- Orbit & Zygomatic Hint -->
+            <circle cx="144" cy="48" r="7" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+            <!-- Occipital Bone Highlight -->
+            <path d="M 74 52 Q 72 78 98 88 L 108 76 Q 92 68 92 48 Z" fill="#f43f5e" fill-opacity="0.35" stroke="#f43f5e" stroke-width="1.6"/>
+            <!-- Cervical Spine Reference Below -->
+            <rect x="108" y="92" width="16" height="16" rx="2" fill="#475569" stroke="#64748b" stroke-width="0.9"/>
+            <!-- Tension Line from Upper Trapezius -->
+            <path d="M 48 106 Q 72 96 84 78" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3 2"/>
+            <text x="14" y="96" fill="#fcd34d" font-size="8.5" font-family="monospace">斜方肌張力</text>
+            <text x="176" y="42" fill="#67e8f9" font-size="9" font-family="monospace">頭顱 Cranium</text>
+            <text x="176" y="64" fill="#fda4af" font-size="9" font-family="monospace">枕骨 Occipital Bone</text>
+            <text x="176" y="84" fill="#94a3b8" font-size="8.5" font-family="monospace">(例句 #204 頭痛放射區)</text>
+        </svg>
+                            </div>
+
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>頭顱骨與枕骨</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Cranium &amp; Occipital Bone)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈkreɪ.ni.əm &amp; ɒkˈsɪp.ɪ.təl/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                頭顱後下方的枕骨（Occipital Bone）與第一頸椎構成寰枕關節，也是上斜方肌與枕下肌群的附著終點。長跑疲勞時若習慣性聳肩，肌群痙攣會沿枕骨脊向上引發緊張性頭痛（例句庫 #204），並干擾前庭視覺穩定。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics &amp; Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Sustained upper trapezius tension during marathon fatigue radiates pain to the occipital bone, disrupting vestibular gaze stability."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    馬拉松疲勞期間持續的上斜方肌緊繃會將疼痛放射至枕骨，干擾前庭視覺凝視穩定度。
                                 </p>
                             </div>
                         </div>
@@ -18651,11 +18794,26 @@
                         "zh": "骨應力損傷 (BSI) 與 疲勞性應力骨折",
                         "ex_en": "Ignoring localized bone tenderness and throbbing night ache can convert a low-grade BSI into a frank stress fracture.",
                         "ex_zh": "忽視局部骨壓痛與夜間陣痛可能將輕度骨應力損傷轉變為完全性應力骨折。"
+            },
+            {
+                        "id": "bcard-26",
+                        "title": "Foot Sesamoid Bones",
+                        "zh": "足部種子骨 (大腳趾籽骨)",
+                        "ex_en": "The medial and lateral sesamoid bones beneath the first metatarsal head absorb forefoot push-off forces and enhance flexor hallucis brevis leverage.",
+                        "ex_zh": "位於第一蹠骨頭下方的內側與外側種子骨能吸收前足推進衝擊力，並提升屈拇短肌的力臂槓桿。"
+            },
+            {
+                        "id": "bcard-27",
+                        "title": "Cranium and Occipital Bone",
+                        "zh": "頭顱骨與枕骨",
+                        "ex_en": "Sustained upper trapezius tension during marathon fatigue radiates pain to the occipital bone, disrupting vestibular gaze stability.",
+                        "ex_zh": "馬拉松疲勞期間持續的上斜方肌緊繃會將疼痛放射至枕骨，干擾前庭視覺凝視穩定度。"
             }
 ];
 
 
         const FULLBODY_BONE_PREVIEW = {
+            cranium: { tag: '頭顱與枕骨', title: '頭顱骨與枕骨 (Cranium & Occipital Bone)', desc: '枕骨為上斜方肌與枕下肌群終點；疲勞聳肩會引發放射至枕骨的緊張性頭痛（例句 #204）。', tab: 'axial', card: 'bcard-27', label: '頭顱與枕骨' },
             cervical: { tag: '中軸脊椎', title: '頸椎 C1–C7 (Cervical Spine)', desc: '維持頭部中立與下坡視野掃描穩定，避免疲勞時烏龜頸造成斜方肌與頸伸肌過載。', tab: 'axial', card: 'bcard-21', label: '頸椎 C1–C7' },
             clavicle: { tag: '上肢肩帶', title: '鎖骨 (Clavicle)', desc: 'S 形雙曲度支撐肩帶寬度，確保胸廓肺部完整擴張與節奏性擺臂交替。', tab: 'upper', card: 'bcard-14', label: '鎖骨 Clavicle' },
             scapula: { tag: '上肢肩帶', title: '肩胛骨 (Scapula)', desc: '主動後收與下沉可徵召下斜方肌，在馬拉松後半段維持胸椎挺拔與呼吸效率。', tab: 'upper', card: 'bcard-15', label: '肩胛骨 Scapula' },
