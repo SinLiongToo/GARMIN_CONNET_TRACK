@@ -1803,5 +1803,230 @@ const RUNNING_INJURY_SENTENCES = [
     "en": "Complete depletion of hepatic glycogen stores during long running deprives the central nervous system of glucose, triggering severe ataxia, tunnel vision, and cognitive collapse.",
     "zh": "長跑過程中若肝醣徹底耗竭，會直接切斷中樞神經系統的葡萄糖供應，誘發嚴重的步態失調、管狀視野與認知崩潰（撞牆期）。",
     "tag": "#HypoglycemicBonk"
+  },
+  {
+    "id": 201,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Forward Head Posture & Runner's Kyphosis",
+    "en": "Excessive forward head posture and rounded shoulders compress the thoracic outlet, causing early arm numbness and reducing diaphragm respiratory excursion during marathon late stages.",
+    "zh": "過度頭部前傾與圓肩駝背會壓迫胸廓出口，在馬拉松後半程引發手臂發麻並降低橫膈膜呼吸活動度。",
+    "tag": "#UpperPosturalStrain"
+  },
+  {
+    "id": 202,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Rotator Cuff Impingement & Sprint Arm Drive",
+    "en": "Imbalanced shoulder internal rotation without adequate supraspinatus and infraspinatus strength predisposes sprinters to subacromial impingement during aggressive contralateral arm swings.",
+    "zh": "若缺乏足夠的棘上肌與棘下肌肌力，失衡的肩內旋會使短跑選手在劇烈對側擺臂時引發肩峰下夾擠症候群。",
+    "tag": "#RotatorCuff"
+  },
+  {
+    "id": 203,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Scapular Winging & Serratus Anterior Weakness",
+    "en": "Weakness in the serratus anterior muscle leads to scapular winging, destabilizing the upper torso and transferring disruptive torsional shock to the cervical spine with every foot strike.",
+    "zh": "前鋸肌無力會引發肩胛翼狀突出，破壞上半身軀幹穩定性，並在每次著地時將破壞性扭轉震波傳遞至頸椎。",
+    "tag": "#ScapularWinging"
+  },
+  {
+    "id": 204,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Upper Trapezius Hypertonicity & Neck Tension",
+    "en": "Chronically hiking the shoulders upward during distance fatigue triggers severe upper trapezius spasms, causing radiating occipital tension headaches that hinder pacing focus.",
+    "zh": "在長跑疲憊時長期不自覺聳肩會誘發嚴重的上斜方肌痙攣，引發放射至枕骨的緊張性頭痛並破壞配速專注力。",
+    "tag": "#NeckTension"
+  },
+  {
+    "id": 205,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Biceps Tendon Subluxation & Cross-Body Swing",
+    "en": "Allowing the hands to cross the torso midline creates repetitive friction along the bicipital groove, provoking anterior shoulder pain and biceps tenosynovitis.",
+    "zh": "跑步時雙手越過軀幹中線會沿著結節間溝產生反覆摩擦，誘發前肩刺痛與二頭肌長頭腱鞘炎。",
+    "tag": "#BicepsTendon"
+  },
+  {
+    "id": 206,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Pectoralis Minor Tightness & Nerve Compression",
+    "en": "Shortened pectoralis minor muscles pull the coracoid process anteriorly, entrapping the brachial plexus nerves and producing distal forearm tingling during continuous distance efforts.",
+    "zh": "縮短緊繃的胸小肌會將喙突向前下方牽引，卡壓臂神經叢並在長時間耐力奔跑中引起前臂遠端麻木。",
+    "tag": "#PecMinorTOS"
+  },
+  {
+    "id": 207,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Rhomboid Strain & Hydration Pack Overload",
+    "en": "Carrying a poorly fitted hydration vest over ultra-marathon terrain places prolonged tensile strain on the rhomboid major, leading to burning interscapular muscular exhaustion.",
+    "zh": "在超馬越野地形中揹負貼合不良的補水背心會對大菱形肌造成持續拉扯，引發兩肩胛骨間灼熱性肌肉衰竭。",
+    "tag": "#RhomboidStrain"
+  },
+  {
+    "id": 208,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Thoracic Hypomobility & Pelvic Torque Leakage",
+    "en": "Stiff thoracic vertebrae force the lumbar spine and pelvis to undergo excessive twisting, increasing rotational shear on the sacroiliac joint and gluteal attachments.",
+    "zh": "僵硬受限的胸椎會迫使腰椎與骨盆產生代償性過度扭轉，增加薦髂關節與臀肌附著點的旋轉剪切力。",
+    "tag": "#ThoracicMobility"
+  },
+  {
+    "id": 209,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Elbow Angle Collapse & Triceps Kinetic Loss",
+    "en": "Opening the elbow joint past ninety degrees during arm recovery increases the moment arm of the limb, wasting significant metabolic energy and lowering running cadence.",
+    "zh": "在擺臂回彈時手臂肘關節角度若超過九十度，會增大上肢力臂半徑，浪費顯著的代謝能量並拖慢步頻節奏。",
+    "tag": "#ElbowKinematics"
+  },
+  {
+    "id": 210,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Overhead Press Strength & Scapular Elevation",
+    "en": "Performing strict overhead dumbbell presses develops the lower trapezius and serratus anterior, reinforcing the scapular upward rotation necessary to sustain upright distance posture.",
+    "zh": "執行標準啞鈴過頂肩推能強化下斜方肌與前鋸肌，增強肩胛骨上迴旋力道以維持挺拔的長跑身姿。",
+    "tag": "#OverheadPress"
+  },
+  {
+    "id": 211,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Bent-Over Rows & Posterior Torso Armor",
+    "en": "Heavy bent-over barbell rows build dense latissimus dorsi and erector spinae armor, shielding distance runners from postural collapse during grueling 30K wall phases.",
+    "zh": "大重量俯身槓鈴划船能構建厚實的背闊肌與豎脊肌護甲，保護長跑跑者在艱苦的三十公里撞牆期免於體態崩塌。",
+    "tag": "#BentOverRow"
+  },
+  {
+    "id": 212,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Pull-Up Dominance & Core Coupling",
+    "en": "Weighted pull-ups recruit the latissimus dorsi in synergy with the contralateral gluteus maximus via the thoracolumbar fascia, supercharging horizontal running propulsion.",
+    "zh": "負重引體向上透過胸腰筋膜促進背闊肌與對側臀大肌協同發力，強力提升水平推進衝力。",
+    "tag": "#PullUpDrive"
+  },
+  {
+    "id": 213,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Push-Up Variations & Anterior Core Bracing",
+    "en": "Push-ups performed on gymnastic rings integrate serratus anterior activation with intense plank-style core bracing, protecting against lumbar hyperextension under fatigue.",
+    "zh": "在體操吊環上執行俯臥撐結合了前鋸肌激活與高強度平板核心支撐，有效防止長跑疲憊時的腰椎過度前凸折壓。",
+    "tag": "#RingPushUp"
+  },
+  {
+    "id": 214,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Face Pulls & External Rotator Conditioning",
+    "en": "Cable face pulls targeting the rear deltoids and external rotators effectively reverse the forward-hunched posture caused by desk jobs and marathon training fatigue.",
+    "zh": "針對後三角肌與肩外旋肌群的滑輪面拉訓練，能有效逆轉久坐辦公與馬拉松訓練疲勞引發的圓肩駝背體態。",
+    "tag": "#FacePulls"
+  },
+  {
+    "id": 215,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Dips & Triceps Extension Power in Hill Sprints",
+    "en": "Controlled bodyweight parallel bar dips strengthen the triceps and lower chest, enhancing the explosive backward arm punch required when surging up twenty-percent trail gradients.",
+    "zh": "受控的自重雙槓臂屈伸能增強三頭肌與胸下側肌力，增強在攀爬百分之二十陡峭越野坡度時所需的爆發性後擺肘部推力。",
+    "tag": "#ParallelBarDips"
+  },
+  {
+    "id": 216,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Single-Arm Dumbbell Snatch & Kinetic Transfer",
+    "en": "The single-arm dumbbell snatch trains instantaneous kinetic energy transfer from triple extension of the lower extremity up through the shoulder girdle to overhead lockout.",
+    "zh": "單臂啞鈴抓舉能鍛鍊下肢三關節伸展瞬間將動能貫穿核心肩帶傳導至過頂鎖定的爆發傳導能力。",
+    "tag": "#DumbbellSnatch"
+  },
+  {
+    "id": 217,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Kettlebell Renegade Rows & Rotational Stability",
+    "en": "Kettlebell renegade rows force the deep abdominal wall to resist rotational torque while the upper back pulls, establishing rock-solid stability for choppy downhill running.",
+    "zh": "壺鈴叛徒划船迫使深層腹壁在背部划船發力時抵抗旋轉力矩，為崎嶇不平的快速下坡奔跑奠定磐石般的穩定基石。",
+    "tag": "#RenegadeRow"
+  },
+  {
+    "id": 218,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Farmer's Walk & Grip-Trapezius Structural Armor",
+    "en": "Heavy farmer's walks build supreme grip strength, trapezius endurance, and lateral hip stability, teaching the body to resist asymmetrical ground shock without spinal collapse.",
+    "zh": "沉重農夫行走能打造強大的握力、斜方肌耐力與外側臀肌穩定性，訓練身體在抵抗不對稱地面衝擊時保持脊柱不塌陷。",
+    "tag": "#FarmersWalk"
+  },
+  {
+    "id": 219,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Inverted Rows & Mid-Back Endurance for Pack Running",
+    "en": "Suspension trainer inverted rows condition the posterior deltoids and rhomboids to maintain upright spinal posture while running with heavy multi-day stage race packs.",
+    "zh": "懸吊阻力繩反向划船能訓練三角肌後束與菱形肌，使跑者在揹負多日極地超馬越野裝備時依然維持筆直脊椎姿態。",
+    "tag": "#InvertedRow"
+  },
+  {
+    "id": 220,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Landmine Press & Cross-Body Linear Drive",
+    "en": "The angled landmine press closely replicates the contralateral punch of the running arm swing, strengthening the anterior deltoid and serratus without shoulder joint impingement.",
+    "zh": "傾斜地雷管推舉高度模擬跑步擺臂的對側出拳發力，在不引發肩關節夾擠的前提下強化前三角肌與前鋸肌。",
+    "tag": "#LandminePress"
+  },
+  {
+    "id": 221,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Prone Y-T-W Raises & Scapular Depression",
+    "en": "Performing prone Y-T-W raises on an incline bench isolates the lower trapezius and mid-back stabilizers, eradicating forward shoulder posture caused by marathon mileage volume.",
+    "zh": "在斜背長凳上進行俯臥 Y-T-W 上抬動作能孤立強化下斜方肌與中背穩定肌群，根除長跑里程累積所帶來的肩部向前萎縮圓肩體態。",
+    "tag": "#YTWRaises"
+  },
+  {
+    "id": 222,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Medicine Ball Overhead Slams & Explosive Lats",
+    "en": "Medicine ball overhead slams generate rapid latissimus dorsi and abdominal recruitment, converting upper body pull power into rhythmic propulsion for uphill marathon surges.",
+    "zh": "藥球過頂砸地訓練能引發背闊肌與腹肌的快速神經徵召，將上肢拉力轉化為馬拉松上坡衝刺時的有節奏推進動能。",
+    "tag": "#MedBallSlam"
+  },
+  {
+    "id": 223,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Lateral Raise Tempo & Shoulder Girdle Armor",
+    "en": "Slow eccentric lateral dumbbell raises condition the medial deltoids to withstand centrifugal forces during fast road racing turns and downhill switchbacks.",
+    "zh": "慢速離心啞鈴側平舉能鍛鍊三角肌中束，承受公路賽快速急轉彎與盤山公路下坡折返跑時巨大的離心橫向剪力。",
+    "tag": "#LateralRaise"
+  },
+  {
+    "id": 224,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Push-to-Pull Balance & Rotator Cuff Protection",
+    "en": "Adhering strictly to a two-to-one pulling-to-pushing training ratio protects runners from anterior shoulder instability and ensures unrestricted rib cage breathing mechanics.",
+    "zh": "嚴格遵循二比一的拉力對推力重訓比例，能保護跑者免於前肩不穩定性，並確保胸廓肋骨呼吸力學暢通無阻。",
+    "tag": "#PushPullRatio"
+  },
+  {
+    "id": 225,
+    "cat_id": "upper",
+    "cat_zh": "上肢肌力與防護",
+    "injury": "Upper Body Strength Reserve & Marathon Economy",
+    "en": "Upper body resistance training elevates running economy by reducing excessive torso oscillation, allowing every watt of metabolic power to be directed purely forward.",
+    "zh": "上肢阻力重訓能減少跑步中過度的軀幹橫向晃動，大幅提升跑步經濟性，使每一瓦特的代謝能量都能全數專注導向正前方。",
+    "tag": "#RunningEconomy"
   }
 ];

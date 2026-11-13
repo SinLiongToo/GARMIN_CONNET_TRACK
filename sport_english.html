@@ -7865,9 +7865,9 @@
 
                 </button>
 
-                <button onclick="switchInjuryTab('sentences200')" id="itab-btn-sentences200" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="200 句路跑運動傷害、生物力學與醫學雙語例句資料庫">
+                <button onclick="switchInjuryTab('sentences200')" id="itab-btn-sentences200" class="itab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="225 句路跑運動傷害、生物力學、上肢重訓與醫學雙語例句資料庫">
 
-                    <span>🩹</span> <span class="text-rose-400 font-bold">200 句傷害醫學例句庫 (200 Sentences)</span>
+                    <span>🩹</span> <span class="text-rose-400 font-bold">225 句傷害與上肢防護例句庫 (225 Sentences)</span>
 
                 </button>
 
@@ -7944,7 +7944,7 @@
                         <!-- Category pills -->
                         <div class="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
                             <button onclick="filterInj200Category('all')" id="inj200-cat-all" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-rose-600 text-white border border-rose-500 shadow-sm cursor-pointer">
-                                全部 (200)
+                                全部 (225)
                             </button>
                             <button onclick="filterInj200Category('knee')" id="inj200-cat-knee" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
                                 🦵 膝關節與髕骨 (25)
@@ -7970,6 +7970,9 @@
                             <button onclick="filterInj200Category('metabolic')" id="inj200-cat-metabolic" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
                                 ⚠️ 環境與代謝急症 (25)
                             </button>
+                            <button onclick="filterInj200Category('upper')" id="inj200-cat-upper" class="inj200-cat-btn px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+                                💪 上肢重訓與防護 (25)
+                            </button>
                         </div>
 
                         <!-- Search input & jump input -->
@@ -7979,7 +7982,7 @@
                                 <input type="text" id="inj200-search-input" oninput="searchInj200(this.value)" placeholder="搜尋傷害英文/中譯/關鍵字..." class="w-full pl-8 pr-3 py-1.5 rounded-xl bg-slate-950/80 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition-colors">
                             </div>
                             <div class="flex items-center gap-1">
-                                <input type="number" id="inj200-jump-input" min="1" max="200" placeholder="No." class="w-16 px-2 py-1.5 rounded-xl bg-slate-950/80 border border-slate-700 text-xs text-center text-white placeholder-slate-500 focus:outline-none focus:border-rose-500">
+                                <input type="number" id="inj200-jump-input" min="1" max="225" placeholder="No." class="w-16 px-2 py-1.5 rounded-xl bg-slate-950/80 border border-slate-700 text-xs text-center text-white placeholder-slate-500 focus:outline-none focus:border-rose-500">
                                 <button onclick="jumpToInj200()" class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs text-rose-300 border border-slate-600 font-semibold cursor-pointer">跳至</button>
                             </div>
                         </div>
@@ -13243,6 +13246,62 @@
 
 
             // --- Category: strength ---
+            {
+                cat: "strength",
+                en: "Upper Body Scapular Retraction",
+                phonetic: "/ˈskæp.jə.lər rɪˈtræk.ʃən/",
+                pos: "n.",
+                zh: "肩胛骨後收力量 (菱形肌與中斜方肌發力)",
+                def: "The movement of drawing the shoulder blades together toward the spine against resistance, opening the chest and maintaining upright torso mechanics during running fatigue.",
+                ex_en: "Performing cable face pulls trains scapular retraction, counteracting slouching and expanding lung volume during marathon late stages.",
+                ex_zh: "執行滑輪面拉動作能訓練肩胛骨後收力量，對抗駝背並在馬拉松後半程擴大肺活量容積。",
+                metric: "動作檢驗: 啞鈴俯臥 Y-T-W 穩定度"
+            },
+            {
+                cat: "strength",
+                en: "Lumbopelvic Rhythm & Torso Torque",
+                phonetic: "/ˈlʌm.boʊˈpel.vɪk ˈrɪð.əm/",
+                pos: "n.",
+                zh: "腰椎-骨盆協調節律與軀幹抗扭剛性",
+                def: "The reciprocal rotational coordination between the thoracic spine, pelvis, and arms that counteracts ground torque and minimizes rotational energy loss with each stride.",
+                ex_en: "Rotational pallof presses enhance torso anti-rotation stiffness, preserving kinetic energy throughout high-speed track intervals.",
+                ex_zh: "旋轉帕羅夫推舉能強化軀幹抗旋轉剛性，在高速田徑間歇跑中保留寶貴的動力鏈能量。",
+                metric: "訓練指標: 抗旋轉等長維持時間 (Anti-rotation Isometric Hold)"
+            },
+            {
+                cat: "strength",
+                en: "Push-to-Pull Upper Body Strength Ratio",
+                phonetic: "/pʊʃ tuː pʊl ˈreɪ.ʃi.oʊ/",
+                pos: "n.",
+                zh: "上肢推拉肌力比例 (2:1 跑者抗駝背平衡)",
+                def: "The training balance between upper body posterior pulling volume (rows, face pulls, pull-ups) and anterior pushing volume (push-ups, bench press), recommended at 2:1 for distance runners.",
+                ex_en: "Endurance runners should maintain a two-to-one pull-to-push volume ratio to prevent internal shoulder rotation and neck hyperextension.",
+                ex_zh: "耐力跑者應維持二比一的拉力對推力訓練量比例，以防止肩膀內旋圓肩與頸椎過度後仰。",
+                metric: "課表原則: 水平拉與垂直拉量需為臥推推力之 2 倍"
+            },
+            {
+                cat: "strength",
+                en: "Compound Upper Body Lifts for Runners",
+                phonetic: "/ˈkɑːm.paʊnd ˈlɪfts/",
+                pos: "n.",
+                zh: "跑者多關節上肢複合重訓 (引體向上、俯臥撐與站姿肩推)",
+                def: "Multi-joint resistance exercises integrating core stabilization with upper body force production, reinforcing kinetic chain linkage between arm drive and contralateral foot strike.",
+                ex_en: "Overhead dumbbell presses while standing on a single leg simultaneously challenge upper body pressing strength, core stability, and proprioception.",
+                ex_zh: "單腳站立啞鈴過頂肩推能同時挑戰上肢推力、核心穩定性與單側本體感覺。",
+                metric: "目標指標: 自身體重嚴格引體向上 8-12 下"
+            },
+            {
+                cat: "strength",
+                en: "Time Under Tension (TUT) in Upper Body Armor",
+                phonetic: "/taɪm ˈʌn.dɚ ˈten.ʃən/",
+                pos: "n.",
+                zh: "上肢肌肉受張時間 (TUT / 增強軀幹護甲耐力)",
+                def: "The total duration a muscle group is held under mechanical strain during a resistance set, using 3-second eccentric tempos to build postural structural endurance for ultra-marathons.",
+                ex_en: "Prolonging time under tension during inverted bodyweight rows conditions the upper back to withstand hours of trail running with a weighted hydration vest.",
+                ex_zh: "在反向自重划船中延長肌肉受張時間，能鍛鍊上背部承受揹負補水背心長達數小時越野跑的耐受力。",
+                metric: "課表節奏: 3-1-1-0 (3 秒慢速離心放鬆、1 秒頂峰收縮)"
+            },
+
 
             {
 
@@ -13603,6 +13662,117 @@
 
 
             // --- Category: injury ---
+            {
+                cat: "injury",
+                en: "Rotator Cuff Tendinopathy",
+                phonetic: "/roʊˈteɪ.tər kʌf ten.dəˈnɒp.ə.θi/",
+                pos: "n.",
+                zh: "旋轉肌袖病變 (肩關節穩定肌炎)",
+                def: "Irritation and degradation of the supraspinatus, infraspinatus, teres minor, or subscapularis tendons, leading to shoulder impingement and painful arm swing turnover.",
+                ex_en: "Strengthening the rotator cuff through external rotation resistance exercises stabilizes the humeral head during vigorous sprinting arm swings.",
+                ex_zh: "透過外旋阻力訓練強化旋轉肌袖，可在劇烈衝刺擺臂時穩定肱骨頭。",
+                metric: "臨床症狀: 肩峰下撞擊測試 / 外展抗阻疼痛"
+            },
+            {
+                cat: "injury",
+                en: "Shoulder Impingement Syndrome",
+                phonetic: "/ˈʃoʊl.dər ɪmˈpɪndʒ.mənt/",
+                pos: "n.",
+                zh: "肩峰下撞擊症候群 (夾擠症候群)",
+                def: "Pinching of the subacromial bursa or supraspinatus tendon between the humeral head and the acromion process, exacerbated by prolonged forward-rounded runner posture.",
+                ex_en: "Kyphotic runner posture narrows the subacromial space, predisposing the runner to chronic shoulder impingement during distance events.",
+                ex_zh: "駝背圓肩的跑姿會縮窄肩峰下空間，使跑者在長途耐力賽中容易發生慢性肩部夾擠症候群。",
+                metric: "預防指標: 胸大肌放鬆與中下斜方肌肌力比"
+            },
+            {
+                cat: "injury",
+                en: "Scapular Dyskinesis",
+                phonetic: "/ˈskæp.jə.lər dɪs.kɪˈniː.sɪs/",
+                pos: "n.",
+                zh: "肩胛骨運動障礙 (肩胛翼狀與節律失調)",
+                def: "Abnormal static position or dynamic movement of the scapula during arm motion, causing energy dissipation and neck-shoulder tension during long runs.",
+                ex_en: "Serratus anterior weakness causes scapular dyskinesis, leading to shoulder fatigue and asymmetric arm carriage in the marathon final 10K.",
+                ex_zh: "前鋸肌無力會引發肩胛骨運動障礙，導致馬拉松最後 10 公里出現肩膀疲勞與不對稱擺臂。",
+                metric: "檢測指標: 華勒氏肩胛動態檢測 (Scapular Assistance Test)"
+            },
+            {
+                cat: "injury",
+                en: "Cervical Spine & Trapezius Strain",
+                phonetic: "/ˈsɝː.vɪ.kəl spaɪn streɪn/",
+                pos: "n.",
+                zh: "頸椎與斜方肌過度緊繃拉傷 (跑者聳肩疲勞)",
+                def: "Hypertonicity and trigger points in the upper trapezius and levator scapulae muscles caused by prolonged hunched shoulders and forward head posture while running under fatigue.",
+                ex_en: "Consciously depressing the shoulder blades every few miles prevents tension headaches and upper trapezius spasms during long training runs.",
+                ex_zh: "每隔幾公里有意識地放鬆下沉肩胛骨，能預防長距離訓練中的緊張性頭痛與上斜方肌痙攣。",
+                metric: "自我檢測: 枕下肌群壓痛與肩頸轉動角度"
+            },
+            {
+                cat: "injury",
+                en: "Thoracic Outlet Syndrome (TOS)",
+                phonetic: "/θəˈræs.ɪk ˈaʊt.let/",
+                pos: "n.",
+                zh: "胸廓出口症候群 (手臂麻木與神經血管壓迫)",
+                def: "Compression of the brachial plexus nerves or subclavian blood vessels between the neck and armpit, causing numbness, tingling, or heaviness in the arm during runs.",
+                ex_en: "Tight pectoralis minor muscles from computer work combined with distance running can trigger neurovascular compression characteristic of thoracic outlet syndrome.",
+                ex_zh: "久坐電腦前的緊繃胸小肌結合長跑衝擊，可能誘發胸廓出口症候群典型的神經血管壓迫。",
+                metric: "臨床徵象: 艾德森測試 (Adson Test) / 手臂抬高缺血測試"
+            },
+            {
+                cat: "injury",
+                en: "Delayed Onset Muscle Soreness (DOMS)",
+                phonetic: "/dɪˈleɪd ˈɑːn.set ˈmʌs.əl ˈsɔːr.nəs/",
+                pos: "n.",
+                zh: "延遲性肌肉酸痛 (DOMS / 離心微結構損傷)",
+                def: "Pain and stiffness felt in muscles several hours to days after unaccustomed or strenuous exercise, peaking between 24 and 72 hours due to micro-trauma in muscle sarcomeres.",
+                ex_en: "Steep alpine descent induces substantial eccentric quadriceps strain resulting in severe delayed onset muscle soreness 48 hours post-race.",
+                ex_zh: "陡峭的高山下坡會引發大量股四頭肌離心負荷，導致賽後 48 小時出現嚴重的延遲性肌肉酸痛。",
+                metric: "恢復監測: Garmin 心率變異度 (HRV) / 靜態心率 (RHR)"
+            },
+            {
+                cat: "injury",
+                en: "PRICE / POLICE / PEACE & LOVE Protocol",
+                phonetic: "/praɪs / pəˈliːs / piːs ænd lʌv/",
+                pos: "n.",
+                zh: "急性運動傷害處置現代準則 (保護、免冰敷、樂觀與主動負荷)",
+                def: "The modern evidence-based sports medicine management hierarchy for acute soft-tissue injuries: Protect, Elevate, Avoid anti-inflammatories, Compress, Educate, followed by Load, Optimism, Vascularisation, and Exercise.",
+                ex_en: "The modern PEACE and LOVE protocol replaces routine prolonged icing with controlled early loading and gentle active vascularization.",
+                ex_zh: "現代的 PEACE & LOVE 急性傷害處置準則以受控的早期加載與溫和主動循環取代了常規長時間冰敷。",
+                metric: "醫學指引: BJSM 英國運動醫學期刊急性軟組織處置共識"
+            },
+            {
+                cat: "injury",
+                en: "Relative Energy Deficiency in Sport (RED-s)",
+                phonetic: "/ˈrel.ə.tɪv ˈen.ɚ.dʒi dɪˈfɪʃ.ən.si/",
+                pos: "n.",
+                zh: "運動相對能量不足症候群 (RED-s / 骨質與免疫崩潰)",
+                def: "A multi-system physiological impairment caused by low energy availability (dietary intake insufficient for basal metabolic needs plus training expenditure), leading to recurrent bone stress fractures.",
+                ex_en: "Chronic caloric restriction in endurance athletes induces RED-s, dramatically suppressing bone mineral density and driving repetitive tibial stress fractures.",
+                ex_zh: "耐力運動員長期的熱量限制會引發 RED-s，劇烈抑制骨質密度並導致反覆脛骨應力性骨折。",
+                metric: "生化監測: 睪固酮/雌激素水平與骨質密度 DEXA T-score"
+            },
+            {
+                cat: "injury",
+                en: "Chronic Exertional Compartment Syndrome (CECS)",
+                phonetic: "/ˈkɑːm.pɑːrt.mənt ˈsɪn.droʊm/",
+                pos: "n.",
+                zh: "慢性運動型腔室症候群 (小腿劇烈緊繃缺血脹痛)",
+                def: "An exercise-induced neuromuscular condition characterized by elevated intramuscular pressure within a non-compliant fascial compartment, causing ischemia and numbness during running that subsides upon rest.",
+                ex_en: "Severe tightness and foot drop after twenty minutes of running that reliably resolves post-exercise strongly points to chronic exertional compartment syndrome.",
+                ex_zh: "跑步二十分鐘後出現嚴重脹痛與垂足，且在停止運動後立即緩解，高度指向慢性運動型腔室症候群。",
+                metric: "診斷標準: 運動前後腔室壓力穿刺量測 (>30 mmHg)"
+            },
+            {
+                cat: "injury",
+                en: "Hip Labral Tear & FAI",
+                phonetic: "/hɪp ˈleɪ.brəl ter/",
+                pos: "n.",
+                zh: "髖臼唇撕裂與股骨髖臼撞擊症 (FAI / 鼠蹊部深層絞痛)",
+                def: "Damage to the ring of fibrocartilage surrounding the hip socket, often caused by bony structural impingement (cam or pincer FAI) during repetitive hip flexion and internal rotation.",
+                ex_en: "A deep C-sign pinch in the anterior groin during uphill stride cycles is a classic manifestation of a hip labral tear with femoroacetabular impingement.",
+                ex_zh: "在上坡邁步週期中鼠蹊部前側深層的 C 型夾痛，是髖臼唇撕裂合併股骨髖臼撞擊症的經典表現。",
+                metric: "理學檢查: FADIR 測試 (屈曲-內收-內旋撞擊測試)"
+            },
+
 
             {
 
@@ -18487,8 +18657,8 @@
             const input = document.getElementById('inj200-jump-input');
             if (!input || !input.value) return;
             const targetId = parseInt(input.value, 10);
-            if (isNaN(targetId) || targetId < 1 || targetId > 200) {
-                showSpeechToast('請輸入 1 至 200 之間的句子編號');
+            if (isNaN(targetId) || targetId < 1 || targetId > 225) {
+                showSpeechToast('請輸入 1 至 225 之間的句子編號');
                 return;
             }
             filterInj200Category('all');
