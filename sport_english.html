@@ -481,24 +481,31 @@
         // ==========================================
         let _activeHighlightContainer = null;
         let _activeHighlightOriginalHTML = null;
+        let _karaokeBoundaryFired = false;
+        let _karaokeFallbackTimer = null;
 
         function clearActiveKaraokeHighlight() {
+            if (_karaokeFallbackTimer) {
+                clearInterval(_karaokeFallbackTimer);
+                _karaokeFallbackTimer = null;
+            }
             if (_activeHighlightContainer && _activeHighlightOriginalHTML !== null) {
                 _activeHighlightContainer.innerHTML = _activeHighlightOriginalHTML;
             }
             _activeHighlightContainer = null;
             _activeHighlightOriginalHTML = null;
+            _karaokeBoundaryFired = false;
         }
 
-        function setupKaraokeWords(container, text) {
+        function setupKaraokeWords(container, text, speechRate = 0.95, activeClass = null) {
             clearActiveKaraokeHighlight();
             if (!container) return null;
 
             _activeHighlightContainer = container;
             _activeHighlightOriginalHTML = container.innerHTML;
+            _karaokeBoundaryFired = false;
 
             // Split sentence into words and spaces/punctuation
-            // Matches sequence of word characters or whitespace/punctuation
             const tokens = text.match(/\S+|\s+/g) || [text];
             let html = '';
             let charPos = 0;
@@ -513,13 +520,91 @@
             });
 
             container.innerHTML = html;
+
+            // Mobile Safari & Android Chrome Fallback:
+            // Immediately highlight first token, and if onboundary doesn't fire within 200ms,
+            // advance word-by-word progressively (~260ms / rate)
+            const highlightClass = activeClass || getKaraokeColorClass();
+            const spans = container.querySelectorAll('.karaoke-token');
+            if (spans.length > 0) {
+                spans[0].classList.add(highlightClass);
+            }
+
+            setTimeout(() => {
+                if (!_karaokeBoundaryFired && _activeHighlightContainer === container) {
+                    if (spans.length > 1) {
+                        let currentWordIdx = 1;
+                        const wordIntervalMs = Math.max(160, Math.round(280 / (speechRate || 1.0)));
+                        _karaokeFallbackTimer = setInterval(() => {
+                            if (_karaokeBoundaryFired || _activeHighlightContainer !== container) {
+                                clearInterval(_karaokeFallbackTimer);
+                                return;
+                            }
+                            if (currentWordIdx < spans.length) {
+                                spans.forEach(s => s.classList.remove('spoken-word-active', 'spoken-word-active-rose', 'karaoke-theme-amber', 'karaoke-theme-rose', 'karaoke-theme-emerald', 'karaoke-theme-sky', 'karaoke-theme-purple', 'karaoke-theme-sunset'));
+                                spans[currentWordIdx].classList.add(highlightClass);
+                                currentWordIdx++;
+                            } else {
+                                clearInterval(_karaokeFallbackTimer);
+                            }
+                        }, wordIntervalMs);
+                    }
+                }
+            }, 250);
+
             return container;
         }
 
-        function updateKaraokeBoundary(container, charIndex, activeClass = 'spoken-word-active') {
+        let currentKaraokeColorTheme = localStorage.getItem('garmin_karaoke_theme') || 'amber';
+
+        function setKaraokeColorTheme(themeName) {
+            currentKaraokeColorTheme = themeName;
+            try {
+                localStorage.setItem('garmin_karaoke_theme', themeName);
+            } catch (e) {}
+
+            // Update selectors in UI if present
+            const sel = document.getElementById('opt-karaoke-color');
+            if (sel) sel.value = themeName;
+
+            showSpeechToast(`高亮顏色切換為: ${getKaraokeColorThemeLabel(themeName)}`);
+        }
+
+        function getKaraokeColorClass(defaultClass = 'spoken-word-active') {
+            if (currentKaraokeColorTheme === 'rose') return 'karaoke-theme-rose';
+            if (currentKaraokeColorTheme === 'emerald') return 'karaoke-theme-emerald';
+            if (currentKaraokeColorTheme === 'sky') return 'karaoke-theme-sky';
+            if (currentKaraokeColorTheme === 'purple') return 'karaoke-theme-purple';
+            if (currentKaraokeColorTheme === 'sunset') return 'karaoke-theme-sunset';
+            if (currentKaraokeColorTheme === 'amber') return 'karaoke-theme-amber';
+            return defaultClass;
+        }
+
+        function getKaraokeColorThemeLabel(theme) {
+            const map = {
+                amber: '✨ 琥珀金 (Amber Gold)',
+                rose: '🌸 玫瑰粉 (Rose Pink)',
+                emerald: '🌿 翡翠綠 (Emerald Green)',
+                sky: '🌊 晴空藍 (Sky Blue)',
+                purple: '🔮 霓虹紫 (Neon Purple)',
+                sunset: '🌅 晚霞漸層 (Sunset Glow)'
+            };
+            return map[theme] || theme;
+        }
+
+        function updateKaraokeBoundary(container, charIndex, overrideClass = null) {
             if (!container) return;
+            _karaokeBoundaryFired = true;
+            if (_karaokeFallbackTimer) {
+                clearInterval(_karaokeFallbackTimer);
+                _karaokeFallbackTimer = null;
+            }
+
             const spans = container.querySelectorAll('.karaoke-token');
             if (!spans || spans.length === 0) return;
+
+            const activeClass = overrideClass || getKaraokeColorClass();
+            const allPossibleClasses = ['spoken-word-active', 'spoken-word-active-rose', 'karaoke-theme-amber', 'karaoke-theme-rose', 'karaoke-theme-emerald', 'karaoke-theme-sky', 'karaoke-theme-purple', 'karaoke-theme-sunset'];
 
             let closestSpan = null;
             let minDistance = Infinity;
@@ -527,7 +612,7 @@
             spans.forEach(span => {
                 const start = parseInt(span.getAttribute('data-start'), 10) || 0;
                 const len = parseInt(span.getAttribute('data-len'), 10) || 0;
-                span.classList.remove(activeClass, 'spoken-word-active', 'spoken-word-active-rose');
+                span.classList.remove(...allPossibleClasses);
 
                 if (charIndex >= start && charIndex < start + len) {
                     closestSpan = span;
@@ -898,32 +983,89 @@
 
 
 
-        /* Karaoke / Real-time Spoken Word Highlight */
+        /* Karaoke / Real-time Spoken Word Highlight Theme Presets */
+        .karaoke-theme-amber,
         .spoken-word-active {
             background-color: #facc15 !important;
             color: #0f172a !important;
             border-radius: 4px;
-            padding: 1px 4px;
-            box-shadow: 0 0 10px rgba(250, 204, 21, 0.8);
+            padding: 1px 5px;
+            box-shadow: 0 0 12px rgba(250, 204, 21, 0.85);
             font-weight: 800 !important;
-            transition: all 0.1s ease-in-out;
+            transition: all 0.08s ease-in-out;
             display: inline-block;
         }
 
+        html.dark .karaoke-theme-amber,
         html.dark .spoken-word-active {
             background-color: #f59e0b !important;
             color: #050811 !important;
-            box-shadow: 0 0 14px rgba(245, 158, 11, 0.95);
+            box-shadow: 0 0 16px rgba(245, 158, 11, 0.95);
         }
 
+        .karaoke-theme-rose,
         .spoken-word-active-rose {
             background-color: #fb7185 !important;
             color: #ffffff !important;
             border-radius: 4px;
-            padding: 1px 4px;
-            box-shadow: 0 0 12px rgba(251, 113, 133, 0.9);
+            padding: 1px 5px;
+            box-shadow: 0 0 14px rgba(251, 113, 133, 0.95);
             font-weight: 800 !important;
-            transition: all 0.1s ease-in-out;
+            transition: all 0.08s ease-in-out;
+            display: inline-block;
+        }
+
+        /* 🟢 Emerald Green Preset */
+        .karaoke-theme-emerald {
+            background-color: #10b981 !important;
+            color: #ffffff !important;
+            border-radius: 4px;
+            padding: 1px 5px;
+            box-shadow: 0 0 14px rgba(16, 185, 129, 0.9);
+            font-weight: 800 !important;
+            transition: all 0.08s ease-in-out;
+            display: inline-block;
+        }
+
+        /* 🔵 Sky Blue Preset */
+        .karaoke-theme-sky {
+            background-color: #0284c7 !important;
+            color: #ffffff !important;
+            border-radius: 4px;
+            padding: 1px 5px;
+            box-shadow: 0 0 14px rgba(2, 132, 199, 0.9);
+            font-weight: 800 !important;
+            transition: all 0.08s ease-in-out;
+            display: inline-block;
+        }
+
+        html.dark .karaoke-theme-sky {
+            background-color: #38bdf8 !important;
+            color: #04101c !important;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.95);
+        }
+
+        /* 🟣 Neon Purple Preset */
+        .karaoke-theme-purple {
+            background-color: #a855f7 !important;
+            color: #ffffff !important;
+            border-radius: 4px;
+            padding: 1px 5px;
+            box-shadow: 0 0 14px rgba(168, 85, 247, 0.9);
+            font-weight: 800 !important;
+            transition: all 0.08s ease-in-out;
+            display: inline-block;
+        }
+
+        /* 🌈 Sunset Gradient Preset */
+        .karaoke-theme-sunset {
+            background: linear-gradient(135deg, #f97316 0%, #ec4899 100%) !important;
+            color: #ffffff !important;
+            border-radius: 4px;
+            padding: 1px 5px;
+            box-shadow: 0 0 16px rgba(249, 115, 22, 0.85);
+            font-weight: 800 !important;
+            transition: all 0.08s ease-in-out;
             display: inline-block;
         }
 
@@ -1306,21 +1448,25 @@
         /* --------------------------------------------------------------------------
            5. INJURY CARDS (Auto-Play Active States)
            -------------------------------------------------------------------------- */
-        .active-play-injury {
+        .active-play-injury,
+        .active-play-inj200 {
             border-color: #f43f5e !important;
-            box-shadow: 0 0 32px rgba(244, 63, 94, 0.65), 0 10px 24px rgba(0, 0, 0, 0.45) !important;
-            transform: scale(1.025) !important;
+            box-shadow: 0 0 32px rgba(244, 63, 94, 0.75), 0 0 16px rgba(251, 113, 133, 0.6), 0 10px 24px rgba(0, 0, 0, 0.45) !important;
+            transform: scale(1.02) !important;
             z-index: 20;
+            position: relative;
         }
 
-        html.dark .active-play-injury {
-            background: linear-gradient(135deg, rgba(136, 19, 55, 0.6) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+        html.dark .active-play-injury,
+        html.dark .active-play-inj200 {
+            background: linear-gradient(135deg, rgba(136, 19, 55, 0.7) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
         }
 
-        html:not(.dark) .active-play-injury {
+        html:not(.dark) .active-play-injury,
+        html:not(.dark) .active-play-inj200 {
             background: #fff1f2 !important;
             border-color: #e11d48 !important;
-            box-shadow: 0 0 32px rgba(225, 29, 72, 0.45), 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+            box-shadow: 0 0 32px rgba(225, 29, 72, 0.55), 0 12px 28px rgba(0, 0, 0, 0.12) !important;
         }
 
         .active-play-injury div:has(> .italic) {
@@ -2301,6 +2447,19 @@
 
 
                     <div class="flex flex-wrap items-center gap-3">
+
+                        <!-- Karaoke Highlight Color Selector -->
+                        <div class="flex items-center gap-1 bg-slate-900/90 px-2.5 py-1 rounded-lg border border-slate-700" title="自訂語音朗讀卡拉OK高亮光暈顏色">
+                            <span class="text-slate-400 text-[11px]">🎨 高亮:</span>
+                            <select id="opt-karaoke-color" onchange="setKaraokeColorTheme(this.value)" class="bg-transparent text-amber-300 font-semibold outline-none text-xs cursor-pointer">
+                                <option value="amber" class="bg-slate-900 text-amber-400">✨ 琥珀金 (金黃)</option>
+                                <option value="rose" class="bg-slate-900 text-rose-400">🌸 玫瑰粉 (桃紅)</option>
+                                <option value="emerald" class="bg-slate-900 text-emerald-400">🌿 翡翠綠 (薄荷)</option>
+                                <option value="sky" class="bg-slate-900 text-sky-400">🌊 晴空藍 (天藍)</option>
+                                <option value="purple" class="bg-slate-900 text-purple-400">🔮 霓虹紫 (紫色)</option>
+                                <option value="sunset" class="bg-slate-900 text-orange-400">🌅 晚霞光 (橘紅漸層)</option>
+                            </select>
+                        </div>
 
                         <!-- Speed Selector -->
 
@@ -15095,7 +15254,7 @@
 
             if (nutritionAutoPlayTimeout) clearTimeout(nutritionAutoPlayTimeout);
 
-
+            const exEl = card ? card.querySelector('.italic') : null;
 
             resilientSpeak(item.title, {
 
@@ -15107,13 +15266,25 @@
 
                     setTimeout(() => {
 
+                        if (exEl) {
+                            setupKaraokeWords(exEl, item.ex_en, 0.92, 'karaoke-theme-emerald');
+                        }
+
                         resilientSpeak(item.ex_en, {
 
                             lang: 'en-US',
 
                             rate: 0.92,
 
+                            onBoundary: (e) => {
+                                if (exEl && e.name === 'word') {
+                                    updateKaraokeBoundary(exEl, e.charIndex, 'karaoke-theme-emerald');
+                                }
+                            },
+
                             onEnd: () => {
+
+                                clearActiveKaraokeHighlight();
 
                                 if (isNutritionAutoPlaying || continueFlow) {
 
@@ -15602,7 +15773,7 @@
 
             if (muscleAutoPlayTimeout) clearTimeout(muscleAutoPlayTimeout);
 
-
+            const exEl = card ? card.querySelector('.italic') : null;
 
             resilientSpeak(item.title, {
 
@@ -15614,13 +15785,25 @@
 
                     setTimeout(() => {
 
+                        if (exEl) {
+                            setupKaraokeWords(exEl, item.ex_en, 0.92, 'karaoke-theme-sky');
+                        }
+
                         resilientSpeak(item.ex_en, {
 
                             lang: 'en-US',
 
                             rate: 0.92,
 
+                            onBoundary: (e) => {
+                                if (exEl && e.name === 'word') {
+                                    updateKaraokeBoundary(exEl, e.charIndex, 'karaoke-theme-sky');
+                                }
+                            },
+
                             onEnd: () => {
+
+                                clearActiveKaraokeHighlight();
 
                                 if (isMuscleAutoPlaying || continueFlow) {
 
@@ -16820,7 +17003,12 @@
 
             if (injuryAutoPlayTimeout) clearTimeout(injuryAutoPlayTimeout);
 
+            const titleEl = card ? card.querySelector('h4, .font-mono, span') : null;
+            const exEl = card ? card.querySelector('.italic') : null;
 
+            if (titleEl) {
+                setupKaraokeWords(titleEl, item.title, 0.95, 'spoken-word-active-rose');
+            }
 
             resilientSpeak(item.title, {
 
@@ -16828,9 +17016,21 @@
 
                 rate: 0.95,
 
+                onBoundary: (e) => {
+                    if (titleEl && e.name === 'word') {
+                        updateKaraokeBoundary(titleEl, e.charIndex, 'spoken-word-active-rose');
+                    }
+                },
+
                 onEnd: () => {
 
+                    clearActiveKaraokeHighlight();
+
                     setTimeout(() => {
+
+                        if (exEl) {
+                            setupKaraokeWords(exEl, item.ex_en, 0.92, 'spoken-word-active-rose');
+                        }
 
                         resilientSpeak(item.ex_en, {
 
@@ -16838,7 +17038,15 @@
 
                             rate: 0.92,
 
+                            onBoundary: (e) => {
+                                if (exEl && e.name === 'word') {
+                                    updateKaraokeBoundary(exEl, e.charIndex, 'spoken-word-active-rose');
+                                }
+                            },
+
                             onEnd: () => {
+
+                                clearActiveKaraokeHighlight();
 
                                 if (isInjuryAutoPlaying || continueFlow) {
 
@@ -17039,7 +17247,7 @@
             const card = document.getElementById(`inj200-card-${id}`);
             const enEl = card ? card.querySelector('.inj200-en-text') : null;
             if (enEl) {
-                setupKaraokeWords(enEl, item.en);
+                setupKaraokeWords(enEl, item.en, rate, 'spoken-word-active-rose');
             }
 
             resilientSpeak(item.en, {
@@ -17052,9 +17260,17 @@
                 },
                 onEnd: () => {
                     clearActiveKaraokeHighlight();
+                    setTimeout(() => {
+                        if (!isInj200AutoPlaying) {
+                            const c = document.getElementById(`inj200-card-${id}`);
+                            if (c) c.classList.remove('active-play-inj200');
+                        }
+                    }, 500);
                 },
                 onError: () => {
                     clearActiveKaraokeHighlight();
+                    const c = document.getElementById(`inj200-card-${id}`);
+                    if (c) c.classList.remove('active-play-inj200');
                 }
             });
         }
@@ -17072,7 +17288,7 @@
             const card = document.getElementById(`inj200-card-${id}`);
             const enEl = card ? card.querySelector('.inj200-en-text') : null;
             if (enEl) {
-                setupKaraokeWords(enEl, item.en);
+                setupKaraokeWords(enEl, item.en, rate, 'spoken-word-active-rose');
             }
 
             resilientSpeak(item.en, {
@@ -17088,23 +17304,35 @@
                     setTimeout(() => {
                         resilientSpeak(item.zh, {
                             lang: 'zh-TW',
-                            rate: 0.95
+                            rate: 0.95,
+                            onEnd: () => {
+                                if (!isInj200AutoPlaying) {
+                                    const c = document.getElementById(`inj200-card-${id}`);
+                                    if (c) c.classList.remove('active-play-inj200');
+                                }
+                            },
+                            onError: () => {
+                                const c = document.getElementById(`inj200-card-${id}`);
+                                if (c) c.classList.remove('active-play-inj200');
+                            }
                         });
                     }, 400);
                 },
                 onError: () => {
                     clearActiveKaraokeHighlight();
+                    const c = document.getElementById(`inj200-card-${id}`);
+                    if (c) c.classList.remove('active-play-inj200');
                 }
             });
         }
 
         function highlightInj200Card(id) {
             document.querySelectorAll('.inj200-card').forEach(c => {
-                c.classList.remove('bg-rose-950/40', 'border-rose-400', 'shadow-md', 'shadow-rose-950/50');
+                c.classList.remove('active-play-inj200', 'bg-rose-950/40', 'border-rose-400', 'shadow-md', 'shadow-rose-950/50');
             });
             const card = document.getElementById(`inj200-card-${id}`);
             if (card) {
-                card.classList.add('bg-rose-950/40', 'border-rose-400', 'shadow-md', 'shadow-rose-950/50');
+                card.classList.add('active-play-inj200', 'bg-rose-950/40', 'border-rose-400');
             }
         }
 
@@ -17150,6 +17378,9 @@
             isInj200AutoPlaying = false;
             if (inj200AutoPlayTimeout) clearTimeout(inj200AutoPlayTimeout);
             clearActiveKaraokeHighlight();
+            document.querySelectorAll('.inj200-card').forEach(c => {
+                c.classList.remove('active-play-inj200', 'bg-rose-950/40', 'border-rose-400');
+            });
             window.speechSynthesis.cancel();
 
             const icon = document.getElementById('inj200-play-icon');
@@ -17186,7 +17417,7 @@
 
             const enEl = card ? card.querySelector('.inj200-en-text') : null;
             if (enEl) {
-                setupKaraokeWords(enEl, item.en);
+                setupKaraokeWords(enEl, item.en, rate, 'spoken-word-active-rose');
             }
 
             resilientSpeak(item.en, {
