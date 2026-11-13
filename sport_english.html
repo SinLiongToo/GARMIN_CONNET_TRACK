@@ -1446,6 +1446,78 @@
         }
 
         /* --------------------------------------------------------------------------
+           4.5. BONE SKELETAL CARDS (Auto-Play Active States)
+           -------------------------------------------------------------------------- */
+        .active-play-bone {
+            border-color: #06b6d4 !important;
+            box-shadow: 0 0 32px rgba(6, 182, 212, 0.7), 0 0 16px rgba(34, 211, 238, 0.5), 0 10px 24px rgba(0, 0, 0, 0.45) !important;
+            transform: scale(1.02) !important;
+            z-index: 20;
+            position: relative;
+        }
+
+        html.dark .active-play-bone {
+            background: linear-gradient(135deg, rgba(8, 51, 68, 0.75) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+        }
+
+        html:not(.dark) .active-play-bone {
+            background: #ecfeff !important;
+            border-color: #0891b2 !important;
+            box-shadow: 0 0 32px rgba(8, 145, 178, 0.45), 0 12px 28px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .active-play-bone div:has(> .italic) {
+            border-radius: 0.75rem !important;
+            padding: 0.85rem 1rem !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        html.dark .active-play-bone div:has(> .italic) {
+            background: rgba(8, 51, 68, 0.85) !important;
+            border-left: 5px solid #22d3ee !important;
+            border-top: 1.5px solid #06b6d4 !important;
+            border-right: 1.5px solid #06b6d4 !important;
+            border-bottom: 1.5px solid #06b6d4 !important;
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.35) !important;
+        }
+
+        html.dark .active-play-bone .italic {
+            color: #ffffff !important;
+            font-size: 0.875rem !important;
+            font-weight: 700 !important;
+            line-height: 1.5 !important;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        html.dark .active-play-bone div:has(> .italic) > div:last-child {
+            color: #cffafe !important;
+            font-size: 0.825rem !important;
+            font-weight: 600 !important;
+        }
+
+        html:not(.dark) .active-play-bone div:has(> .italic) {
+            background: #cffafe !important;
+            border-left: 6px solid #0891b2 !important;
+            border-top: 1.5px solid #a5f3fc !important;
+            border-right: 1.5px solid #a5f3fc !important;
+            border-bottom: 1.5px solid #a5f3fc !important;
+            box-shadow: 0 4px 18px rgba(8, 145, 178, 0.25) !important;
+        }
+
+        html:not(.dark) .active-play-bone .italic {
+            color: #164e63 !important;
+            font-size: 0.875rem !important;
+            font-weight: 800 !important;
+            line-height: 1.5 !important;
+        }
+
+        html:not(.dark) .active-play-bone div:has(> .italic) > div:last-child {
+            color: #0e7490 !important;
+            font-size: 0.825rem !important;
+            font-weight: 700 !important;
+        }
+
+        /* --------------------------------------------------------------------------
            5. INJURY CARDS (Auto-Play Active States)
            -------------------------------------------------------------------------- */
         .active-play-injury,
@@ -1907,6 +1979,12 @@
                     <a href="#muscle-section" class="px-2.5 py-1.5 rounded-lg bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 border border-violet-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
 
                         <span>🏋️‍♂️</span> <span>30大肌力</span>
+
+                    </a>
+
+                    <a href="#bone-section" class="px-2.5 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/30 font-semibold transition-all whitespace-nowrap flex items-center gap-1">
+
+                        <span>🦴</span> <span>20大骨骼</span>
 
                     </a>
 
@@ -6825,6 +6903,900 @@
 
         </section>
 
+
+
+
+        <!-- Section: 🦴 人體骨骼系統與跑者骨骼生物力學 (Skeletal System & Running Osteology) -->
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-l-cyan-500 scroll-mt-28 md:scroll-mt-32" id="bone-section">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 mb-6 border-b border-slate-700/60 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🦴</span>
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                            人體骨骼系統與跑者骨力學
+                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-400 font-normal border border-cyan-500/30">
+                                Human Skeletal System & Osteology
+                            </span>
+                        </h2>
+                        <p class="text-xs text-slate-400 mt-0.5">
+                            人體 206 塊骨骼架構、下肢承重軸線、骨質重塑 (Wolff's Law) 與應力性骨折力學 (Axial & Appendicular Skeleton, Load Transmission & Bone Remodeling)
+                        </p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleBoneAutoPlay()" id="btn-bone-autoplay" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-xs sm:text-sm font-semibold text-cyan-400 border border-slate-700 transition-all flex items-center gap-1.5 shadow-sm cursor-pointer">
+                        <span id="bone-play-icon">▶️</span>
+                        <span id="bone-play-text">自動朗讀骨骼系統</span>
+                    </button>
+                    <span class="text-xs px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 font-mono border border-cyan-500/30 hidden sm:inline-block">
+                        20 Major Bones
+                    </span>
+                </div>
+            </div>
+
+            <!-- Bone Interactive Sub-category Tab Navigation -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 border-b border-slate-700/60 no-scrollbar">
+                <button onclick="switchBoneTab('all')" id="btab-btn-all" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm" title="瀏覽全部 20 大骨骼模組">
+                    <span>📑</span> <span>全部展開 (All 20)</span>
+                </button>
+                <button onclick="switchBoneTab('lower')" id="btab-btn-lower" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="下肢承重與推進骨骼 (6)">
+                    <span>🦵</span> <span>下肢承重與推進 (6)</span>
+                </button>
+                <button onclick="switchBoneTab('foot')" id="btab-btn-foot" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="足踝跗骨、蹠骨與足弓力學 (5)">
+                    <span>🦶</span> <span>足踝足弓骨骼 (5)</span>
+                </button>
+                <button onclick="switchBoneTab('axial')" id="btab-btn-axial" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="中軸脊椎、骨盆中樞與胸廓呼吸 (5)">
+                    <span>🦴</span> <span>中軸脊椎與骨盆 (5)</span>
+                </button>
+                <button onclick="switchBoneTab('physiology')" id="btab-btn-physiology" class="btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800" title="骨生物學、骨質重塑與應力力學 (4)">
+                    <span>🔬</span> <span>骨生理與應力力學 (4)</span>
+                </button>
+            </div>
+
+            <!-- Sub-section: bone-sub-lower -->
+            <div id="bone-sub-lower" class="bone-sub-pane mb-8">
+                <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-500 animate-pulse"></span>
+                        <span>第一篇：下肢承重軸線與推進推進骨骼 (Lower Extremity Load & Propulsion Bones)</span>
+                    </h3>
+                    <span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 border-cyan-500/20 px-2 py-0.5 rounded border hidden sm:inline-block">
+                        6 Lower Extremity Modules
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card: bcard-0 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-0">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    人體最長最強大骨骼 • 承重與力臂
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Femur (Thigh Bone)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The femur withstands vertical impact forces up to five times body weight during high-speed marathon downhill running.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>股骨 (大腿骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Femur (Thigh Bone))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈfiː.mər/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                人體中最長、最粗壯且抗壓能力最強的長骨。股骨幹略微向前彎曲，能有效分散著地時高達體重數倍的地面垂直反作用力（GRF）。其近端的大轉子（Greater Trochanter）是臀中肌與臀小肌的重要力臂附著點，遠端股骨髁則構成膝關節上半部關節面。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The femur withstands vertical impact forces up to five times body weight during high-speed marathon downhill running."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    在高速馬拉松下坡奔跑時，股骨承受高達體重五倍的垂直衝擊力道。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-1 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-1">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    小腿主要承重軸心 • 應力骨折高發區
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Tibia (Shinbone)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Repetitive impact on hard pavement without progressive overload can trigger micro-damage along the posteromedial tibial border.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>脛骨 (小腿主骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Tibia (Shinbone))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈtɪb.i.ə/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                小腿內側主要的承重長骨，承擔小腿約 85% 至 90% 的垂直負荷。脛骨前緣缺乏厚實肌肉緩衝，容易因跑量驟增、過度內旋或比目魚肌筋膜牽拉而引發脛骨內側壓力症候群（MTSS）乃至皮質應力性骨折。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Repetitive impact on hard pavement without progressive overload can trigger micro-damage along the posteromedial tibial border."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    在堅硬柏油路上反覆衝擊且缺乏循序漸進超負荷，容易在脛骨後內側緣引發微結構損傷。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-2 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-2">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    踝關節外側側壁 • 肌肉附著與力傳導
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Fibula (Calf Bone)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The lateral malleolus of the fibula acts as a bony pulley for the peroneal tendons during lateral ankle stabilization.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>腓骨 (小腿外側輔骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Fibula (Calf Bone))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈfɪb.jə.lə/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                位於小腿外側的細長骨骼，約承擔小腿 10% 至 15% 的軸向負重。腓骨下端膨大形成外踝（Lateral Malleolus），深入踝穴外側防止距骨過度外翻。其骨幹為腓骨長短肌與比目魚肌提供穩固的肌腱滑輪基底。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The lateral malleolus of the fibula acts as a bony pulley for the peroneal tendons during lateral ankle stabilization."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    腓骨的外踝在踝關節外側穩定過程中，充當腓骨肌腱的骨性滑輪結構。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-3 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-3">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    人體最大籽骨 • 股四頭肌力矩槓桿
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Patella (Kneecap)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The patella increases the mechanical leverage of the quadriceps tendon throughout knee extension and hill climbing.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>髕骨 (膝蓋骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Patella (Kneecap))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/pəˈtel.ə/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                人體中體積最大的籽骨（Sesamoid Bone），包埋於股四頭肌腱與髕韌帶內部。髕骨將股四頭肌的作用力線向前推離膝關節轉動軸心，使伸膝肌力臂槓桿效率大幅提升 30% 以上，並在股骨滑車溝內精準滑動。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The patella increases the mechanical leverage of the quadriceps tendon throughout knee extension and hill climbing."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    髕骨在整個膝伸展與爬坡過程中，顯著增強股四頭肌肌腱的機械槓桿力矩。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-4 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-4">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    足底第一著地點 • 阿基里斯腱止點
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Calcaneus (Heel Bone)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The calcaneus serves as the robust mechanical insertion for the Achilles tendon and absorbs the initial rearfoot strike impact.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>跟骨 (腳跟骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Calcaneus (Heel Bone))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/kælˈkeɪ.ni.əs/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                足部體積最大的跗骨，是足弓後側柱的基石。跟骨後結節是人體最強韌肌腱——阿基里斯腱（Achilles Tendon）的止點，足底表面則附著厚實的足底筋膜。後足著地跑者在觸地瞬間，跟骨需承受極強的剪力與撞擊。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The calcaneus serves as the robust mechanical insertion for the Achilles tendon and absorbs the initial rearfoot strike impact."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    跟骨作為阿基里斯腱的強固機械附著點，並負責吸收後足著地時的初始衝擊。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-5 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-5">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    小腿與足部樞紐 • 鞍狀萬向關節
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Talus (Ankle Bone)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The talus transmits compressive body weight from the shin down into the medial and lateral columns of the foot.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>距骨 (踝關節中心滑車骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Talus (Ankle Bone))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈteɪ.ləs/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                位於脛骨、腓骨與跟骨之間的關鍵樞紐骨，表面超過 60% 覆蓋著關節軟骨，且沒有任何肌肉直接附著其上。距骨滑車嵌合於踝穴中負責背屈與蹠屈，其下方的距下關節則控制足部旋前（Pronation）與旋後（Supination）。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The talus transmits compressive body weight from the shin down into the medial and lateral columns of the foot."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    距骨將來自小腿的下壓體重精準傳導至足部的內側與外側支柱。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-section: bone-sub-foot -->
+            <div id="bone-sub-foot" class="bone-sub-pane mb-8">
+                <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-teal-500 animate-pulse"></span>
+                        <span>第二篇：足踝跗骨、橫縱足弓與離地槓桿 (Foot Tarsals, Arches & Propulsion Lever)</span>
+                    </h3>
+                    <span class="text-[10px] font-mono text-teal-400 bg-teal-500/10 border-teal-500/20 px-2 py-0.5 rounded border hidden sm:inline-block">
+                        5 Foot & Arch Modules
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card: bcard-6 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-6">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    內側足弓拱心石 • 脛後肌腱附著
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Navicular Bone')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Excessive navicular drop during midstance indicates medial longitudinal arch collapse and overpronation.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>舟狀骨 (足舟骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Navicular Bone)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/nəˈvɪk.jə.lər boʊn/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                位於內側縱弓最高點的船型跗骨，被譽為內側足弓的「拱心石（Keystone）」。脛後肌腱附著於舟骨結節，當跑者支撐期過度內旋時，舟骨會向下塌陷（Navicular Drop），增加足底筋膜炎與舟骨應力骨折風險。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Excessive navicular drop during midstance indicates medial longitudinal arch collapse and overpronation."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    在站立中期過度的舟骨塌陷，代表內側縱足弓下陷以及步態過度內旋。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-7 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-7">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    外側足弓支撐柱 • 腓骨長肌滑輪溝
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Cuboid Bone')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Subluxation of the cuboid bone can cause sharp lateral midfoot pain often mistaken for a ligament sprain.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>骰骨 (骰子骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Cuboid Bone)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈkjuː.bɔɪd boʊn/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                位於足外側柱中段的立方體狀跗骨，介於跟骨與第四、五蹠骨之間。骰骨底部具有深溝供腓骨長肌腱穿行，形成維持橫足弓橫向穩定與外側動態支撐的關鍵槓桿點。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Subluxation of the cuboid bone can cause sharp lateral midfoot pain often mistaken for a ligament sprain."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    骰骨微脫位會引發外側中足劇烈刺痛，在臨床上經常被誤診為韌帶扭傷。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-8 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-8">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    橫足弓成型楔骨 • 內中外三骨組
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Cuneiform Bones (Medial, Intermediate, Lateral)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The three cuneiform bones interlock to form the transverse arch, locking the midfoot into a rigid lever for propulsion.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>楔骨 (內側、中間、外側楔狀骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Cuneiform Bones (Medial, Intermediate, Lateral))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/kjuːˈniː.ə.fɔːrm boʊnz/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                三塊相鄰呈楔形的跗骨，與舟骨和前方的第一至第三蹠骨相接。三塊楔骨像羅馬拱橋石磚般緊密咬合，構成足部橫足弓（Transverse Arch）的拱形頂部，負責在推進時鎖定中足剛性。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The three cuneiform bones interlock to form the transverse arch, locking the midfoot into a rigid lever for propulsion."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    三塊楔骨緊密咬合構成橫足弓，在最後推進時將中足鎖定為剛性推進槓桿。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-9 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-9">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    前足蹬地槓桿 • 第二蹠骨應力骨折高發
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Metatarsal Bones (First to Fifth Metatarsals)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The second metatarsal shaft is the most common site of bone stress injuries in high-mileage distance runners.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>蹠骨 (第一至第五蹠骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Metatarsal Bones (First to Fifth Metatarsals))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˌmet̬.əˈtɑːr.səl boʊnz/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                連接跗骨與趾骨的五根長管狀骨。第一蹠骨最粗壯，支撐終末離地推力；第二、三蹠骨活動度最小，承受巨大的長途反覆彎曲應力，是長跑跑者「行軍骨折（March Fracture）」最常見的解剖部位。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The second metatarsal shaft is the most common site of bone stress injuries in high-mileage distance runners."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    第二蹠骨骨幹是高跑量耐力跑者中最常發生骨應力損傷的部位。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-10 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-10">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    終末離地抓地 • 絞盤機制終點
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Phalanges of the Foot (Toe Bones)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Dorsiflexion of the hallux proximal phalanx engages the windlass mechanism to stiffen the plantar fascia.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>趾骨 (足趾骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Phalanges of the Foot (Toe Bones))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/fəˈlæn.dʒiːz/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                構成五根腳趾的 14 塊骨骼（大腳趾兩節，其餘三節）。大腳趾（Hallux）在步態末期的背屈動作會拉緊足底筋膜，啟動「絞盤機制（Windlass Mechanism）」，使足弓自然升高收緊，提供爆發性離地推力。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Dorsiflexion of the hallux proximal phalanx engages the windlass mechanism to stiffen the plantar fascia."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    大腳趾近節趾骨的背屈能啟動絞盤機制，使足底筋膜緊繃提高剛性。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-section: bone-sub-axial -->
+            <div id="bone-sub-axial" class="bone-sub-pane mb-8">
+                <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
+                        <span>第三篇：中軸脊椎、骨盆中樞與軀幹抗震 (Axial Spine, Pelvic Ring & Trunk Stability)</span>
+                    </h3>
+                    <span class="text-[10px] font-mono text-sky-400 bg-sky-500/10 border-sky-500/20 px-2 py-0.5 rounded border hidden sm:inline-block">
+                        5 Axial Core Modules
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card: bcard-11 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-11">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    力量傳遞中樞骨架 • 髂骨、坐骨與恥骨複合
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Pelvis (Pelvic Girdle & Os Coxae)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Maintaining pelvic neutral alignment during stride turnover prevents compensatory hamstring strain and lumbar stress.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>骨盆 (骨盆環與髖骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Pelvis (Pelvic Girdle & Os Coxae))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈpel.vɪs/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                由左右兩側髖骨（由髂骨、坐骨、恥骨融合）與後方薦骨構成的剛性骨環。骨盆負責將上半身重力均勻分配至雙下肢，也是臀肌、髂腰肌與腿後肌群的發力基底。骨盆前傾或側向傾斜會劇烈改變下肢力線。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Maintaining pelvic neutral alignment during stride turnover prevents compensatory hamstring strain and lumbar stress."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    在步態轉換中維持骨盆中立對齊，能預防代償性腿後肌拉傷與腰椎應力。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-12 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-12">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    脊椎與下肢骨性橋樑 • 薦髂關節微動緩衝
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Sacrum & Coccyx')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('The sacrum anchors the pelvic ring and channels vertical spinal loads into the lower extremity kinetic chain.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>薦骨與尾骨 (骶骨與尾椎)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Sacrum & Coccyx)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈseɪ.krəm/ & /ˈkɑːk.sɪks/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                由五塊融合薦椎構成的倒三角形骨骼，楔入骨盆兩側髂骨之間形成薦髂關節（SI Joint）。薦骨是脊柱力線直接落入下肢的骨性橋樑，其微小的章動（Nutation）與反章動提供天然的衝擊吸收彈性。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "The sacrum anchors the pelvic ring and channels vertical spinal loads into the lower extremity kinetic chain."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    薦骨錨定骨盆環，並將垂直脊椎負荷傳導至下肢動力鏈。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-13 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-13">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    跑者直立承重基柱 • 核心剛性與抗震
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Lumbar Vertebrae (L1–L5)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Strong core musculature supports the lumbar vertebrae to absorb repetitive spinal shock waves during ultra-distance running.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>腰椎 (第 1 至第 5 腰椎)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Lumbar Vertebrae (L1–L5))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈlʌm.bɚ ˈvɝː.t̬ə.brə/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                脊柱中椎體體積最大、承重力最強的五節椎骨。腰椎具有天然前凸生理曲度（Lordosis），配合椎間盤（Intervertebral Discs）如同強力彈簧吸收每次跑步著地時向頭側傳遞的軸向震波。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Strong core musculature supports the lumbar vertebrae to absorb repetitive spinal shock waves during ultra-distance running."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    強健的核心肌群支撐腰椎，在超長距離跑步中吸收反覆向脊椎傳導的衝擊波。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-14 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-14">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    軀幹旋轉協調 • 手臂擺動反作用力
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Thoracic Vertebrae & Rib Cage')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Adequate thoracic mobility allows smooth reciprocal trunk rotation to balance contralateral pelvis movement.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>胸椎與胸廓 (肋骨架)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Thoracic Vertebrae & Rib Cage)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/θəˈræs.ɪk ˈvɝː.t̬ə.brə/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                由 12 節胸椎、12 對肋骨與前方胸骨構成的胸廓。跑步時胸椎提供約 30 度的主動軀幹軸向旋轉，用以抵消下肢骨盆的反向扭矩；靈活的胸廓亦確保最大攝氧量（VO2 Max）時肺部充分擴張。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Adequate thoracic mobility allows smooth reciprocal trunk rotation to balance contralateral pelvis movement."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    足夠的胸椎活動度允許流暢的軀幹交替旋轉，以平衡對側骨盆的位移擺動。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-15 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-15">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    上肢擺臂槓桿軸心 • 能量節省關鍵
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Clavicle & Scapula (Shoulder Girdle)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('A relaxed shoulder girdle and stable scapular retraction reduce oxygen cost and prevent upper body fatigue.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>鎖骨與肩胛骨 (肩胛骨帶)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Clavicle & Scapula (Shoulder Girdle))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈklæv.ɪ.kəl/ & /ˈskæp.jə.lə/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                連接上肢與軀幹中軸的懸浮骨性結構。跑步時肩胛骨在胸壁上的穩定滑動與節奏性後縮，主導了雙臂的前後擺幅，幫助維持跑步節奏、穩定重心並節省高達 3% 至 5% 的整體跑步能耗。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "A relaxed shoulder girdle and stable scapular retraction reduce oxygen cost and prevent upper body fatigue."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    放鬆的肩帶與穩定的肩胛後縮能降低氧氣消耗，並防止上半身過早疲勞。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-section: bone-sub-physiology -->
+            <div id="bone-sub-physiology" class="bone-sub-pane mb-8">
+                <div class="mb-3 flex items-center justify-between">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
+                        <span>第四篇：骨重塑週期、沃爾夫定律與應力損傷 (Bone Remodeling, Wolff's Law & BSI)</span>
+                    </h3>
+                    <span class="text-[10px] font-mono text-blue-400 bg-blue-500/10 border-blue-500/20 px-2 py-0.5 rounded border hidden sm:inline-block">
+                        4 Bone Science Modules
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Card: bcard-16 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-16">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    外力負荷重塑骨密 • 跑步強化骨骼金律
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Wolff\'s Law (Bone Adaptation to Mechanical Load)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('According to Wolff\'s Law, weight-bearing running generates compressive strains that stimulate new cortical bone formation.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>沃爾夫定律 (骨骼受力適應定律)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Wolff's Law (Bone Adaptation to Mechanical Load))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/wʊlfs lɔː/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                骨骼生物力學的基礎黃金定律：健康人體的骨骼會依據其承受的機械外力方向與大小而自我調整結構與骨質密度。規律有衝擊力的跑步運動能刺激成骨細胞活性，使承重骨骼的皮質骨加厚、抗折力倍增。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "According to Wolff's Law, weight-bearing running generates compressive strains that stimulate new cortical bone formation."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    依據沃爾夫定律，承重跑步產生的壓縮應變能刺激新的皮質骨生成。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-17 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-17">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    破骨與成骨動態平衡 • 骨吸收與沉積之窗
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Bone Remodeling Cycle (Osteoblasts & Osteoclasts)')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('During heavy training phases, bone resorption temporarily outpaces deposition, creating a transient vulnerability window.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>骨重塑週期 (成骨細胞與破骨細胞)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Bone Remodeling Cycle (Osteoblasts & Osteoclasts))</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/boʊn ˌriːˈmɑː.dəl.ɪŋ ˈsaɪ.kəl/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                由破骨細胞（Osteoclasts）清除微損傷舊骨、再由成骨細胞（Osteoblasts）分泌膠原基質並沉積鈣質的循環過程。高強度訓練後破骨吸收往往早於成骨沉積，若未給予足夠恢復期，此「骨質脆弱窗口」極易惡化為骨折。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "During heavy training phases, bone resorption temporarily outpaces deposition, creating a transient vulnerability window."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    在高強度訓練階段，骨質吸收暫時快於骨質沉積，形成短暫的骨骼脆弱窗口期。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-18 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-18">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    密質骨 vs 鬆質骨 • 剛性抗彎與彈性減震
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Cortical Bone vs Trabecular Bone')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Cortical bone in the tibial shaft resists bending torques, while trabecular bone in the condyles dissipates impact shock.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>皮質骨 (密質骨) 與 海綿骨 (鬆質骨)</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Cortical Bone vs Trabecular Bone)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/ˈkɔːr.tɪ.kəl/ vs /trəˈbek.jə.lər/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                骨骼結構的兩種主要組織。皮質骨構成骨幹外殼，密度高、抗彎曲與抗扭轉強度大；海綿骨由蜂窩狀骨小梁（Trabeculae）組成，多見於長骨兩端與椎體，負責沿應力線方向吸收震波與微形變緩衝。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Cortical bone in the tibial shaft resists bending torques, while trabecular bone in the condyles dissipates impact shock."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    脛骨骨幹中的皮質骨抵抗彎曲扭矩，而骨髁中的海綿骨則分散衝擊震波。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card: bcard-19 -->
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between bone-card" id="bcard-19">
+                        <div>
+                            <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+                                <span class="text-[11px] font-bold text-cyan-400 font-mono">
+                                    過度訓練微裂紋累積 • 早期預警與預防
+                                </span>
+                                <div class="flex items-center gap-1.5">
+                                    <button onclick="speakText('Bone Stress Injury, BSI & Stress Fractures')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-cyan-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽名稱發音">
+                                        <span>🔊</span> <span>名稱</span>
+                                    </button>
+                                    <button onclick="speakText('Ignoring localized bone tenderness and throbbing night ache can convert a low-grade BSI into a frank stress fracture.')" class="px-2 py-0.5 rounded hover:bg-slate-800 text-emerald-400 text-xs flex items-center gap-1 border border-slate-700/80 transition-all cursor-pointer" title="聽例句朗讀">
+                                        <span>🗣️</span> <span>例句</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <h4 class="text-base font-bold text-white mt-2 flex flex-wrap items-center gap-2">
+                                <span>骨應力損傷 (BSI) 與 疲勞性應力骨折</span>
+                                <span class="text-xs font-mono text-cyan-400 font-normal">(Bone Stress Injury, BSI & Stress Fractures)</span>
+                                <span class="text-[10px] text-slate-500 font-serif">/boʊn stres ˈɪn.dʒər.i/</span>
+                                <span class="text-[10px] text-slate-400 font-mono">[n.]</span>
+                            </h4>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+                                長跑中反覆亞極限負荷造成的骨骼漸進性病變，從骨髓水腫、骨膜炎逐步演變為不可逆的完全皮質骨折。常見於脛骨、第二蹠骨與股骨頸。主要危險因子包含跑量突增、低能量可用性（RED-s）與缺乏維生素 D/鈣質。
+                            </p>
+
+                            <div class="mt-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1">
+                                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                    <span>🩺</span> <span>跑者臨床與生物力學例句 (Running Biomechanics & Clinical Sentence)</span>
+                                </div>
+                                <p class="italic text-cyan-300/90 leading-relaxed font-mono text-[11px] sm:text-xs">
+                                    "Ignoring localized bone tenderness and throbbing night ache can convert a low-grade BSI into a frank stress fracture."
+                                </p>
+                                <p class="text-slate-400 text-[11px] pt-1 border-t border-slate-800/80">
+                                    忽視局部骨壓痛與夜間陣痛可能將輕度骨應力損傷轉變為完全性應力骨折。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
         <!-- Section: 🩹 長途路跑常見運動傷害、過度使用與急症防護 (Running Injuries, Overuse & Medical Hazards) -->
@@ -14790,6 +15762,8 @@
 
             if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
 
+            if (typeof isBoneAutoPlaying !== 'undefined' && isBoneAutoPlaying) stopBoneAutoPlay();
+
             if (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying) stopInj200AutoPlay();
 
             if (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying) stopInj200AutoPlay();
@@ -14811,6 +15785,8 @@
             stopNutritionAutoPlay();
 
             stopMuscleAutoPlay();
+
+            stopBoneAutoPlay();
 
             stopInjuryAutoPlay();
 
@@ -14859,6 +15835,12 @@
                 el.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-violet-500/50 text-xs shadow-inner';
 
                 if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-violet-400 animate-ping';
+
+            } else if (type === 'bone') {
+
+                el.className = 'flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/95 border border-cyan-500/50 text-xs shadow-inner';
+
+                if (dotEl) dotEl.className = 'w-2 h-2 rounded-full bg-cyan-400 animate-ping';
 
             } else if (type === 'injury') {
 
@@ -15867,6 +16849,340 @@
 
 
 
+
+
+
+        // ==========================================
+        // 🦴 BONE SKELETAL SYSTEM AUTO PLAY ENGINE
+        // ==========================================
+        const BONE_ITEMS = [
+            {
+                        "id": "bcard-0",
+                        "title": "Femur (Thigh Bone)",
+                        "zh": "股骨 (大腿骨)",
+                        "ex_en": "The femur withstands vertical impact forces up to five times body weight during high-speed marathon downhill running.",
+                        "ex_zh": "在高速馬拉松下坡奔跑時，股骨承受高達體重五倍的垂直衝擊力道。"
+            },
+            {
+                        "id": "bcard-1",
+                        "title": "Tibia (Shinbone)",
+                        "zh": "脛骨 (小腿主骨)",
+                        "ex_en": "Repetitive impact on hard pavement without progressive overload can trigger micro-damage along the posteromedial tibial border.",
+                        "ex_zh": "在堅硬柏油路上反覆衝擊且缺乏循序漸進超負荷，容易在脛骨後內側緣引發微結構損傷。"
+            },
+            {
+                        "id": "bcard-2",
+                        "title": "Fibula (Calf Bone)",
+                        "zh": "腓骨 (小腿外側輔骨)",
+                        "ex_en": "The lateral malleolus of the fibula acts as a bony pulley for the peroneal tendons during lateral ankle stabilization.",
+                        "ex_zh": "腓骨的外踝在踝關節外側穩定過程中，充當腓骨肌腱的骨性滑輪結構。"
+            },
+            {
+                        "id": "bcard-3",
+                        "title": "Patella (Kneecap)",
+                        "zh": "髕骨 (膝蓋骨)",
+                        "ex_en": "The patella increases the mechanical leverage of the quadriceps tendon throughout knee extension and hill climbing.",
+                        "ex_zh": "髕骨在整個膝伸展與爬坡過程中，顯著增強股四頭肌肌腱的機械槓桿力矩。"
+            },
+            {
+                        "id": "bcard-4",
+                        "title": "Calcaneus (Heel Bone)",
+                        "zh": "跟骨 (腳跟骨)",
+                        "ex_en": "The calcaneus serves as the robust mechanical insertion for the Achilles tendon and absorbs the initial rearfoot strike impact.",
+                        "ex_zh": "跟骨作為阿基里斯腱的強固機械附著點，並負責吸收後足著地時的初始衝擊。"
+            },
+            {
+                        "id": "bcard-5",
+                        "title": "Talus (Ankle Bone)",
+                        "zh": "距骨 (踝關節中心滑車骨)",
+                        "ex_en": "The talus transmits compressive body weight from the shin down into the medial and lateral columns of the foot.",
+                        "ex_zh": "距骨將來自小腿的下壓體重精準傳導至足部的內側與外側支柱。"
+            },
+            {
+                        "id": "bcard-6",
+                        "title": "Navicular Bone",
+                        "zh": "舟狀骨 (足舟骨)",
+                        "ex_en": "Excessive navicular drop during midstance indicates medial longitudinal arch collapse and overpronation.",
+                        "ex_zh": "在站立中期過度的舟骨塌陷，代表內側縱足弓下陷以及步態過度內旋。"
+            },
+            {
+                        "id": "bcard-7",
+                        "title": "Cuboid Bone",
+                        "zh": "骰骨 (骰子骨)",
+                        "ex_en": "Subluxation of the cuboid bone can cause sharp lateral midfoot pain often mistaken for a ligament sprain.",
+                        "ex_zh": "骰骨微脫位會引發外側中足劇烈刺痛，在臨床上經常被誤診為韌帶扭傷。"
+            },
+            {
+                        "id": "bcard-8",
+                        "title": "Cuneiform Bones (Medial, Intermediate, Lateral)",
+                        "zh": "楔骨 (內側、中間、外側楔狀骨)",
+                        "ex_en": "The three cuneiform bones interlock to form the transverse arch, locking the midfoot into a rigid lever for propulsion.",
+                        "ex_zh": "三塊楔骨緊密咬合構成橫足弓，在最後推進時將中足鎖定為剛性推進槓桿。"
+            },
+            {
+                        "id": "bcard-9",
+                        "title": "Metatarsal Bones (First to Fifth Metatarsals)",
+                        "zh": "蹠骨 (第一至第五蹠骨)",
+                        "ex_en": "The second metatarsal shaft is the most common site of bone stress injuries in high-mileage distance runners.",
+                        "ex_zh": "第二蹠骨骨幹是高跑量耐力跑者中最常發生骨應力損傷的部位。"
+            },
+            {
+                        "id": "bcard-10",
+                        "title": "Phalanges of the Foot (Toe Bones)",
+                        "zh": "趾骨 (足趾骨)",
+                        "ex_en": "Dorsiflexion of the hallux proximal phalanx engages the windlass mechanism to stiffen the plantar fascia.",
+                        "ex_zh": "大腳趾近節趾骨的背屈能啟動絞盤機制，使足底筋膜緊繃提高剛性。"
+            },
+            {
+                        "id": "bcard-11",
+                        "title": "Pelvis (Pelvic Girdle & Os Coxae)",
+                        "zh": "骨盆 (骨盆環與髖骨)",
+                        "ex_en": "Maintaining pelvic neutral alignment during stride turnover prevents compensatory hamstring strain and lumbar stress.",
+                        "ex_zh": "在步態轉換中維持骨盆中立對齊，能預防代償性腿後肌拉傷與腰椎應力。"
+            },
+            {
+                        "id": "bcard-12",
+                        "title": "Sacrum & Coccyx",
+                        "zh": "薦骨與尾骨 (骶骨與尾椎)",
+                        "ex_en": "The sacrum anchors the pelvic ring and channels vertical spinal loads into the lower extremity kinetic chain.",
+                        "ex_zh": "薦骨錨定骨盆環，並將垂直脊椎負荷傳導至下肢動力鏈。"
+            },
+            {
+                        "id": "bcard-13",
+                        "title": "Lumbar Vertebrae (L1–L5)",
+                        "zh": "腰椎 (第 1 至第 5 腰椎)",
+                        "ex_en": "Strong core musculature supports the lumbar vertebrae to absorb repetitive spinal shock waves during ultra-distance running.",
+                        "ex_zh": "強健的核心肌群支撐腰椎，在超長距離跑步中吸收反覆向脊椎傳導的衝擊波。"
+            },
+            {
+                        "id": "bcard-14",
+                        "title": "Thoracic Vertebrae & Rib Cage",
+                        "zh": "胸椎與胸廓 (肋骨架)",
+                        "ex_en": "Adequate thoracic mobility allows smooth reciprocal trunk rotation to balance contralateral pelvis movement.",
+                        "ex_zh": "足夠的胸椎活動度允許流暢的軀幹交替旋轉，以平衡對側骨盆的位移擺動。"
+            },
+            {
+                        "id": "bcard-15",
+                        "title": "Clavicle & Scapula (Shoulder Girdle)",
+                        "zh": "鎖骨與肩胛骨 (肩胛骨帶)",
+                        "ex_en": "A relaxed shoulder girdle and stable scapular retraction reduce oxygen cost and prevent upper body fatigue.",
+                        "ex_zh": "放鬆的肩帶與穩定的肩胛後縮能降低氧氣消耗，並防止上半身過早疲勞。"
+            },
+            {
+                        "id": "bcard-16",
+                        "title": "Wolff's Law (Bone Adaptation to Mechanical Load)",
+                        "zh": "沃爾夫定律 (骨骼受力適應定律)",
+                        "ex_en": "According to Wolff's Law, weight-bearing running generates compressive strains that stimulate new cortical bone formation.",
+                        "ex_zh": "依據沃爾夫定律，承重跑步產生的壓縮應變能刺激新的皮質骨生成。"
+            },
+            {
+                        "id": "bcard-17",
+                        "title": "Bone Remodeling Cycle (Osteoblasts & Osteoclasts)",
+                        "zh": "骨重塑週期 (成骨細胞與破骨細胞)",
+                        "ex_en": "During heavy training phases, bone resorption temporarily outpaces deposition, creating a transient vulnerability window.",
+                        "ex_zh": "在高強度訓練階段，骨質吸收暫時快於骨質沉積，形成短暫的骨骼脆弱窗口期。"
+            },
+            {
+                        "id": "bcard-18",
+                        "title": "Cortical Bone vs Trabecular Bone",
+                        "zh": "皮質骨 (密質骨) 與 海綿骨 (鬆質骨)",
+                        "ex_en": "Cortical bone in the tibial shaft resists bending torques, while trabecular bone in the condyles dissipates impact shock.",
+                        "ex_zh": "脛骨骨幹中的皮質骨抵抗彎曲扭矩，而骨髁中的海綿骨則分散衝擊震波。"
+            },
+            {
+                        "id": "bcard-19",
+                        "title": "Bone Stress Injury, BSI & Stress Fractures",
+                        "zh": "骨應力損傷 (BSI) 與 疲勞性應力骨折",
+                        "ex_en": "Ignoring localized bone tenderness and throbbing night ache can convert a low-grade BSI into a frank stress fracture.",
+                        "ex_zh": "忽視局部骨壓痛與夜間陣痛可能將輕度骨應力損傷轉變為完全性應力骨折。"
+            }
+];
+
+        let currentBoneTab = 'all';
+        let isBoneAutoPlaying = false;
+        let bonePlayIndex = -1;
+        let boneAutoPlayTimeout = null;
+
+        function switchBoneTab(tabName) {
+            currentBoneTab = tabName;
+            const panes = {
+                lower: document.getElementById('bone-sub-lower'),
+                foot: document.getElementById('bone-sub-foot'),
+                axial: document.getElementById('bone-sub-axial'),
+                physiology: document.getElementById('bone-sub-physiology')
+            };
+
+            const tabBtns = {
+                all: document.getElementById('btab-btn-all'),
+                lower: document.getElementById('btab-btn-lower'),
+                foot: document.getElementById('btab-btn-foot'),
+                axial: document.getElementById('btab-btn-axial'),
+                physiology: document.getElementById('btab-btn-physiology')
+            };
+
+            // Reset all buttons to inactive style
+            Object.values(tabBtns).forEach(b => {
+                if (!b) return;
+                b.className = 'btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-900/90 text-slate-400 hover:text-slate-200 border border-slate-800';
+            });
+
+            // Set active button style
+            const activeBtn = tabBtns[tabName];
+            if (activeBtn) {
+                if (tabName === 'all') {
+                    activeBtn.className = 'btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-slate-700 text-white border border-slate-500 shadow-sm';
+                } else if (tabName === 'lower') {
+                    activeBtn.className = 'btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-cyan-600 text-white border border-cyan-400 shadow-sm';
+                } else if (tabName === 'foot') {
+                    activeBtn.className = 'btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-teal-600 text-white border border-teal-400 shadow-sm';
+                } else if (tabName === 'axial') {
+                    activeBtn.className = 'btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-sky-600 text-white border border-sky-400 shadow-sm';
+                } else if (tabName === 'physiology') {
+                    activeBtn.className = 'btab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer bg-blue-600 text-white border border-blue-400 shadow-sm';
+                }
+            }
+
+            // Show / hide panes
+            if (tabName === 'all') {
+                Object.values(panes).forEach(p => { if (p) p.classList.remove('hidden'); });
+            } else {
+                Object.entries(panes).forEach(([k, p]) => {
+                    if (!p) return;
+                    if (k === tabName) {
+                        p.classList.remove('hidden');
+                    } else {
+                        p.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        function toggleBoneAutoPlay() {
+            if (isBoneAutoPlaying) {
+                stopBoneAutoPlay();
+            } else {
+                startBoneAutoPlay();
+            }
+        }
+
+        function startBoneAutoPlay() {
+            if (typeof isQuotesAutoPlaying !== 'undefined' && isQuotesAutoPlaying) stopQuotesAutoPlay();
+            if (typeof isAutoPlaying !== 'undefined' && isAutoPlaying) pauseAutoPlay();
+            if (typeof isNutritionAutoPlaying !== 'undefined' && isNutritionAutoPlaying) stopNutritionAutoPlay();
+            if (typeof isMuscleAutoPlaying !== 'undefined' && isMuscleAutoPlaying) stopMuscleAutoPlay();
+            if (typeof isInjuryAutoPlaying !== 'undefined' && isInjuryAutoPlaying) stopInjuryAutoPlay();
+            if (typeof isInj200AutoPlaying !== 'undefined' && isInj200AutoPlaying) stopInj200AutoPlay();
+
+            isBoneAutoPlaying = true;
+            const icon = document.getElementById('bone-play-icon');
+            const text = document.getElementById('bone-play-text');
+            const btn = document.getElementById('btn-bone-autoplay');
+            if (icon) icon.innerText = '⏸️';
+            if (text) text.innerText = '暫停朗讀骨骼系統';
+            if (btn) {
+                btn.classList.add('bg-cyan-600', 'text-white');
+                btn.classList.remove('text-cyan-400');
+            }
+
+            if (bonePlayIndex < 0 || bonePlayIndex >= BONE_ITEMS.length) {
+                bonePlayIndex = 0;
+            }
+            syncAutoPlayWakeLock();
+            playSpecificBone(bonePlayIndex, true);
+        }
+
+        function stopBoneAutoPlay() {
+            isBoneAutoPlaying = false;
+            if (boneAutoPlayTimeout) clearTimeout(boneAutoPlayTimeout);
+            clearActiveKaraokeHighlight();
+            window.speechSynthesis.cancel();
+            const icon = document.getElementById('bone-play-icon');
+            const text = document.getElementById('bone-play-text');
+            const btn = document.getElementById('btn-bone-autoplay');
+            if (icon) icon.innerText = '▶️';
+            if (text) text.innerText = '自動朗讀骨骼系統';
+            if (btn) {
+                btn.classList.remove('bg-cyan-600', 'text-white');
+                btn.classList.add('text-cyan-400');
+            }
+
+            document.querySelectorAll('.bone-card').forEach(c => {
+                c.classList.remove('active-play-bone');
+            });
+            hideTopMiniPlayer();
+            syncAutoPlayWakeLock();
+        }
+
+        function playSpecificBone(idx, continueFlow = false) {
+            if (idx < 0 || idx >= BONE_ITEMS.length) return;
+            bonePlayIndex = idx;
+            const item = BONE_ITEMS[idx];
+
+            document.querySelectorAll('.bone-card').forEach(c => c.classList.remove('active-play-bone', 'active-play-card'));
+            const card = document.getElementById(item.id);
+            if (card) {
+                card.classList.add('active-play-bone');
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            const categoryTag = idx >= 16 ? '🔬 骨生理' : (idx >= 11 ? '🦴 中軸骨盆' : (idx >= 6 ? '🦶 足踝足弓' : '🦵 下肢承重'));
+            showTopMiniPlayer(`${categoryTag}: ${item.zh}`, 'bone');
+            if (boneAutoPlayTimeout) clearTimeout(boneAutoPlayTimeout);
+            const exEl = card ? card.querySelector('.italic') : null;
+
+            resilientSpeak(item.title, {
+                lang: 'en-US',
+                rate: 0.95,
+                onEnd: () => {
+                    setTimeout(() => {
+                        if (exEl) {
+                            setupKaraokeWords(exEl, item.ex_en, 0.92, 'karaoke-theme-sky');
+                        }
+
+                        resilientSpeak(item.ex_en, {
+                            lang: 'en-US',
+                            rate: 0.92,
+                            onBoundary: (e) => {
+                                if (exEl && e.name === 'word') {
+                                    updateKaraokeBoundary(exEl, e.charIndex, 'karaoke-theme-sky');
+                                }
+                            },
+                            onEnd: () => {
+                                clearActiveKaraokeHighlight();
+                                if (isBoneAutoPlaying || continueFlow) {
+                                    boneAutoPlayTimeout = setTimeout(() => {
+                                        if (!isBoneAutoPlaying) return;
+                                        if (bonePlayIndex + 1 < BONE_ITEMS.length) {
+                                            bonePlayIndex++;
+                                            playSpecificBone(bonePlayIndex, true);
+                                        } else {
+                                            bonePlayIndex = 0;
+                                            playSpecificBone(bonePlayIndex, true);
+                                        }
+                                    }, 1200);
+                                }
+                            },
+                            onError: () => {
+                                clearActiveKaraokeHighlight();
+                                if (isBoneAutoPlaying || continueFlow) {
+                                    boneAutoPlayTimeout = setTimeout(() => {
+                                        if (!isBoneAutoPlaying) return;
+                                        bonePlayIndex = (bonePlayIndex + 1) % BONE_ITEMS.length;
+                                        playSpecificBone(bonePlayIndex, true);
+                                    }, 1000);
+                                }
+                            }
+                        });
+                    }, 400);
+                },
+                onError: () => {
+                    if (isBoneAutoPlaying || continueFlow) {
+                        bonePlayIndex = (bonePlayIndex + 1) % BONE_ITEMS.length;
+                        playSpecificBone(bonePlayIndex, true);
+                    }
+                }
+            });
+        }
 
 
         // --- INJURY AUTO PLAY ENGINE ---
