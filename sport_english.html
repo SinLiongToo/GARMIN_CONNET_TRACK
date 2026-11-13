@@ -6956,6 +6956,231 @@
                 </button>
             </div>
 
+
+            <!-- Interactive Full-Body Human Skeleton Overview (全身骨骼系統解剖總覽) -->
+            <div id="bone-fullbody-overview" class="mb-8 rounded-2xl bg-gradient-to-br from-slate-950/95 via-slate-900/90 to-cyan-950/30 border border-cyan-500/30 p-4 sm:p-6 shadow-xl">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-800/80 mb-5">
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                            <span>🧍</span>
+                            <span>全身骨骼解剖總覽 (Full-Body Skeletal Atlas)</span>
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-0.5">點擊或游標懸停全身骨骼各解剖部位，即可即時檢視跑者力學角色並快速跳轉至對應骨骼詳解卡片。</p>
+                    </div>
+                    <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 self-start sm:self-auto">
+                        Interactive 206-Bone Map
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <!-- Left: Full-Body Anatomical Skeleton SVG -->
+                    <div class="lg:col-span-7 flex justify-center bg-slate-950/80 rounded-2xl border border-slate-800/90 p-3 sm:p-4 relative overflow-hidden">
+                        <svg viewBox="0 0 460 520" class="w-full max-w-[440px] h-auto select-none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive Full-Body Human Skeleton">
+                            <defs>
+                                <radialGradient id="skelBgGlow" cx="50%" cy="45%" r="50%">
+                                    <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.14"/>
+                                    <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+                                </radialGradient>
+                                <linearGradient id="skelBone" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#f8fafc"/>
+                                    <stop offset="55%" stop-color="#cbd5e1"/>
+                                    <stop offset="100%" stop-color="#94a3b8"/>
+                                </linearGradient>
+                                <pattern id="skelGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e293b" stroke-width="0.6"/>
+                                </pattern>
+                            </defs>
+
+                            <!-- Medical X-ray Grid & Subtle Glow -->
+                            <rect width="460" height="520" fill="url(#skelGrid)" opacity="0.6"/>
+                            <circle cx="230" cy="240" r="210" fill="url(#skelBgGlow)"/>
+
+                            <!-- Cranium & Mandible (Reference) -->
+                            <g class="opacity-90">
+                                <path d="M 230 22 C 208 22 198 38 200 56 C 202 68 210 74 214 82 L 246 82 C 250 74 258 68 260 56 C 262 38 252 22 230 22 Z" fill="url(#skelBone)" stroke="#e2e8f0" stroke-width="1.2"/>
+                                <!-- Eye Orbits & Nasal Cavity -->
+                                <ellipse cx="219" cy="52" rx="6.5" ry="5.5" fill="#0f172a"/>
+                                <ellipse cx="241" cy="52" rx="6.5" ry="5.5" fill="#0f172a"/>
+                                <path d="M 230 57 L 227 65 L 233 65 Z" fill="#0f172a"/>
+                                <path d="M 218 72 Q 230 76 242 72" fill="none" stroke="#475569" stroke-width="1.5"/>
+                            </g>
+
+                            <!-- Cervical Spine (C1-C7) -> bcard-21 -->
+                            <g class="cursor-pointer transition-opacity hover:opacity-100" onclick="jumpToBoneCard('axial','bcard-21')" onmouseenter="previewFullBodyBone('cervical')">
+                                <rect x="223" y="83" width="14" height="24" rx="3" fill="url(#skelBone)" stroke="#38bdf8" stroke-width="1"/>
+                                <line x1="224" y1="89" x2="236" y2="89" stroke="#64748b" stroke-width="1"/>
+                                <line x1="224" y1="95" x2="236" y2="95" stroke="#64748b" stroke-width="1"/>
+                                <line x1="224" y1="101" x2="236" y2="101" stroke="#64748b" stroke-width="1"/>
+                            </g>
+
+                            <!-- Clavicles (L/R) -> bcard-14 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('upper','bcard-14')" onmouseenter="previewFullBodyBone('clavicle')">
+                                <path d="M 224 108 Q 196 102 168 112" fill="none" stroke="url(#skelBone)" stroke-width="5.5" stroke-linecap="round"/>
+                                <path d="M 236 108 Q 264 102 292 112" fill="none" stroke="url(#skelBone)" stroke-width="5.5" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Scapulae (L/R) -> bcard-15 -->
+                            <g class="cursor-pointer opacity-85 hover:opacity-100" onclick="jumpToBoneCard('upper','bcard-15')" onmouseenter="previewFullBodyBone('scapula')">
+                                <path d="M 172 114 L 196 118 L 184 156 Z" fill="#94a3b8" stroke="#cbd5e1" stroke-width="1"/>
+                                <path d="M 288 114 L 264 118 L 276 156 Z" fill="#94a3b8" stroke="#cbd5e1" stroke-width="1"/>
+                            </g>
+
+                            <!-- Thoracic Spine & Rib Cage -> bcard-20 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('axial','bcard-20')" onmouseenter="previewFullBodyBone('thoracic')">
+                                <!-- Sternum -->
+                                <path d="M 225 110 L 235 110 L 233 172 L 227 172 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.9"/>
+                                <!-- Ribs -->
+                                <path d="M 225 118 Q 192 118 190 132 Q 194 140 225 138" fill="none" stroke="url(#skelBone)" stroke-width="3.2" stroke-linecap="round"/>
+                                <path d="M 235 118 Q 268 118 270 132 Q 266 140 235 138" fill="none" stroke="url(#skelBone)" stroke-width="3.2" stroke-linecap="round"/>
+                                <path d="M 225 132 Q 182 134 182 150 Q 188 158 225 154" fill="none" stroke="url(#skelBone)" stroke-width="3.2" stroke-linecap="round"/>
+                                <path d="M 235 132 Q 278 134 278 150 Q 272 158 235 154" fill="none" stroke="url(#skelBone)" stroke-width="3.2" stroke-linecap="round"/>
+                                <path d="M 225 148 Q 180 152 184 168 Q 192 174 225 168" fill="none" stroke="url(#skelBone)" stroke-width="3.2" stroke-linecap="round"/>
+                                <path d="M 235 148 Q 280 152 276 168 Q 268 174 235 168" fill="none" stroke="url(#skelBone)" stroke-width="3.2" stroke-linecap="round"/>
+                                <path d="M 225 164 Q 186 170 192 184 Q 202 188 225 180" fill="none" stroke="url(#skelBone)" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M 235 164 Q 274 170 268 184 Q 258 188 235 180" fill="none" stroke="url(#skelBone)" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Lumbar Spine (L1-L5) -> bcard-19 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('axial','bcard-19')" onmouseenter="previewFullBodyBone('lumbar')">
+                                <rect x="222" y="182" width="16" height="44" rx="3" fill="url(#skelBone)" stroke="#38bdf8" stroke-width="1"/>
+                                <line x1="223" y1="191" x2="237" y2="191" stroke="#64748b" stroke-width="1.2"/>
+                                <line x1="223" y1="200" x2="237" y2="200" stroke="#64748b" stroke-width="1.2"/>
+                                <line x1="223" y1="209" x2="237" y2="209" stroke="#64748b" stroke-width="1.2"/>
+                                <line x1="223" y1="218" x2="237" y2="218" stroke="#64748b" stroke-width="1.2"/>
+                            </g>
+
+                            <!-- Pelvis & Sacrum -> bcard-17 / bcard-18 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('axial','bcard-17')" onmouseenter="previewFullBodyBone('pelvis')">
+                                <path d="M 218 226 Q 186 212 178 236 Q 178 258 198 268 L 218 258 Z" fill="url(#skelBone)" stroke="#e2e8f0" stroke-width="1.1"/>
+                                <path d="M 242 226 Q 274 212 282 236 Q 282 258 262 268 L 242 258 Z" fill="url(#skelBone)" stroke="#e2e8f0" stroke-width="1.1"/>
+                                <path d="M 198 268 Q 208 286 230 278 Q 252 286 262 268 L 244 260 L 230 270 L 216 260 Z" fill="url(#skelBone)" stroke="#e2e8f0" stroke-width="1"/>
+                                <!-- Sacrum -->
+                                <path d="M 219 226 L 241 226 L 235 258 L 225 258 Z" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1" onclick="event.stopPropagation(); jumpToBoneCard('axial','bcard-18')"/>
+                            </g>
+
+                            <!-- Upper Limbs: Humerus -> bcard-11 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('upper','bcard-11')" onmouseenter="previewFullBodyBone('humerus')">
+                                <circle cx="164" cy="118" r="7" fill="url(#skelBone)"/>
+                                <path d="M 161 124 L 152 192 L 159 193 L 168 125 Z" fill="url(#skelBone)" stroke="#cbd5e1" stroke-width="0.8"/>
+                                <circle cx="296" cy="118" r="7" fill="url(#skelBone)"/>
+                                <path d="M 299 124 L 308 192 L 301 193 L 292 125 Z" fill="url(#skelBone)" stroke="#cbd5e1" stroke-width="0.8"/>
+                            </g>
+
+                            <!-- Radius & Ulna -> bcard-12 / bcard-13 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('upper','bcard-12')" onmouseenter="previewFullBodyBone('forearm')">
+                                <path d="M 152 196 L 140 260" fill="none" stroke="url(#skelBone)" stroke-width="4" stroke-linecap="round"/>
+                                <path d="M 158 196 L 147 260" fill="none" stroke="#94a3b8" stroke-width="3.2" stroke-linecap="round"/>
+                                <path d="M 308 196 L 320 260" fill="none" stroke="url(#skelBone)" stroke-width="4" stroke-linecap="round"/>
+                                <path d="M 302 196 L 313 260" fill="none" stroke="#94a3b8" stroke-width="3.2" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Carpals & Metacarpals -> bcard-16 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('upper','bcard-16')" onmouseenter="previewFullBodyBone('hand')">
+                                <path d="M 138 264 L 130 292 M 142 264 L 138 296 M 146 264 L 146 293" fill="none" stroke="url(#skelBone)" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M 322 264 L 330 292 M 318 264 L 322 296 M 314 264 L 314 293" fill="none" stroke="url(#skelBone)" stroke-width="2.5" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Femur (L/R) -> bcard-0 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('lower','bcard-0')" onmouseenter="previewFullBodyBone('femur')">
+                                <circle cx="195" cy="266" r="7.5" fill="url(#skelBone)" stroke="#38bdf8" stroke-width="0.9"/>
+                                <path d="M 192 268 L 182 276 L 196 368 L 206 368 L 194 276 Z" fill="url(#skelBone)" stroke="#e2e8f0" stroke-width="0.9"/>
+                                <circle cx="265" cy="266" r="7.5" fill="url(#skelBone)" stroke="#38bdf8" stroke-width="0.9"/>
+                                <path d="M 268 268 L 278 276 L 264 368 L 254 368 L 266 276 Z" fill="url(#skelBone)" stroke="#e2e8f0" stroke-width="0.9"/>
+                            </g>
+
+                            <!-- Patella (L/R) -> bcard-3 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('lower','bcard-3')" onmouseenter="previewFullBodyBone('patella')">
+                                <ellipse cx="201" cy="374" rx="6" ry="7" fill="#38bdf8" stroke="#f8fafc" stroke-width="1"/>
+                                <ellipse cx="259" cy="374" rx="6" ry="7" fill="#38bdf8" stroke="#f8fafc" stroke-width="1"/>
+                            </g>
+
+                            <!-- Tibia & Fibula (L/R) -> bcard-1 / bcard-2 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('lower','bcard-1')" onmouseenter="previewFullBodyBone('tibia')">
+                                <path d="M 196 382 L 206 382 L 204 468 L 196 468 Z" fill="url(#skelBone)" stroke="#e2e8f0" stroke-width="0.9"/>
+                                <path d="M 188 386 L 189 466" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M 254 382 L 264 382 L 264 468 L 256 468 Z" fill="url(#skelBone)" stroke="#e2e8f0" stroke-width="0.9"/>
+                                <path d="M 272 386 L 271 466" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Foot & Arch (Tarsals, Metatarsals, Phalanges) -> bcard-6 / bcard-4 -->
+                            <g class="cursor-pointer" onclick="jumpToBoneCard('foot','bcard-6')" onmouseenter="previewFullBodyBone('foot')">
+                                <path d="M 192 470 L 206 470 L 204 494 L 180 496 Q 178 486 192 470 Z" fill="url(#skelBone)" stroke="#38bdf8" stroke-width="1"/>
+                                <path d="M 254 470 L 268 470 Q 282 486 280 496 L 256 494 Z" fill="url(#skelBone)" stroke="#38bdf8" stroke-width="1"/>
+                            </g>
+
+                            <!-- Anatomical Leader Callouts (Left & Right) -->
+                            <g font-size="10" font-family="monospace" fill="#67e8f9">
+                                <line x1="238" y1="95" x2="328" y2="95" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="332" y="98" class="cursor-pointer" onclick="jumpToBoneCard('axial','bcard-21')">頸椎 C1–C7</text>
+
+                                <line x1="278" y1="110" x2="328" y2="115" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="332" y="118" class="cursor-pointer" onclick="jumpToBoneCard('upper','bcard-14')">鎖骨 Clavicle</text>
+
+                                <line x1="276" y1="148" x2="328" y2="148" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="332" y="151" class="cursor-pointer" onclick="jumpToBoneCard('axial','bcard-20')">胸廓 Rib Cage</text>
+
+                                <line x1="306" y1="176" x2="335" y2="176" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="338" y="179" class="cursor-pointer" onclick="jumpToBoneCard('upper','bcard-11')">肱骨 Humerus</text>
+
+                                <line x1="280" y1="242" x2="328" y2="242" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="332" y="245" class="cursor-pointer" onclick="jumpToBoneCard('axial','bcard-17')">骨盆 Pelvis</text>
+
+                                <line x1="268" y1="322" x2="328" y2="322" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="332" y="325" class="cursor-pointer" onclick="jumpToBoneCard('lower','bcard-0')">股骨 Femur</text>
+
+                                <line x1="265" y1="374" x2="328" y2="374" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="332" y="377" class="cursor-pointer" onclick="jumpToBoneCard('lower','bcard-3')">髕骨 Patella</text>
+
+                                <line x1="265" y1="425" x2="328" y2="425" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="332" y="428" class="cursor-pointer" onclick="jumpToBoneCard('lower','bcard-1')">脛腓骨 Tibia</text>
+
+                                <line x1="278" y1="486" x2="328" y2="486" stroke="#38bdf8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="332" y="489" class="cursor-pointer" onclick="jumpToBoneCard('foot','bcard-6')">足踝跗蹠骨 Foot</text>
+
+                                <!-- Left Side Callouts -->
+                                <line x1="146" y1="226" x2="108" y2="226" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="12" y="229" fill="#cbd5e1" class="cursor-pointer" onclick="jumpToBoneCard('upper','bcard-12')">橈尺骨 Radius/Ulna</text>
+
+                                <line x1="222" y1="202" x2="108" y2="196" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="26" y="199" fill="#cbd5e1" class="cursor-pointer" onclick="jumpToBoneCard('axial','bcard-19')">腰椎 L1–L5</text>
+
+                                <line x1="132" y1="280" x2="100" y2="280" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="2 2"/>
+                                <text x="14" y="283" fill="#cbd5e1" class="cursor-pointer" onclick="jumpToBoneCard('upper','bcard-16')">腕掌骨 Carpals</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Right: Interactive Region Inspector & Quick Jump -->
+                    <div class="lg:col-span-5 flex flex-col gap-3">
+                        <div id="fullbody-bone-info" class="p-4 rounded-xl bg-slate-900/90 border border-cyan-500/30 space-y-2.5">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-mono uppercase tracking-wider text-cyan-400">部位力學解析 (Region Inspector)</span>
+                                <span id="fb-bone-tag" class="text-[11px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">下肢承重軸線</span>
+                            </div>
+                            <h4 id="fb-bone-title" class="text-lg font-bold text-white">股骨 &amp; 下肢動力鏈 (Femur &amp; Lower Kinetic Chain)</h4>
+                            <p id="fb-bone-desc" class="text-xs text-slate-300 leading-relaxed">
+                                長跑著地瞬間，地面垂直反作用力（GRF）達體重 2.5–5 倍，經足弓→距骨→脛腓骨→股骨→骨盆與腰椎逐級吸收傳導；上肢鎖骨、肩胛骨與肱橈尺骨則透過擺臂鐘擺平衡骨盆旋轉。
+                            </p>
+                            <div class="pt-1 flex flex-wrap gap-2" id="fb-bone-actions">
+                                <button onclick="jumpToBoneCard('lower','bcard-0')" class="px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold cursor-pointer transition-colors">跳至 股骨 Femur →</button>
+                                <button onclick="jumpToBoneCard('lower','bcard-1')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-semibold border border-slate-700 cursor-pointer transition-colors">脛骨 Tibia</button>
+                                <button onclick="jumpToBoneCard('foot','bcard-6')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-semibold border border-slate-700 cursor-pointer transition-colors">足弓舟狀骨</button>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
+                            <div class="text-xs font-semibold text-slate-300">五大跑者骨骼系統快速導覽：</div>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <button onclick="switchBoneTab('lower')" class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-cyan-950/40 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all cursor-pointer">🦵 下肢承重推進 (6)</button>
+                                <button onclick="switchBoneTab('foot')" class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-cyan-950/40 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all cursor-pointer">🦶 足踝足弓骨骼 (5)</button>
+                                <button onclick="switchBoneTab('upper')" class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-cyan-950/40 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all cursor-pointer">💪 上肢擺臂肩帶 (6)</button>
+                                <button onclick="switchBoneTab('axial')" class="text-left px-3 py-2 rounded-lg bg-slate-950/70 hover:bg-cyan-950/40 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-300 transition-all cursor-pointer">🦴 中軸脊椎骨盆 (5)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Sub-section: bone-sub-lower -->
             <div id="bone-sub-lower" class="bone-sub-pane mb-8">
                 <div class="mb-3 flex items-center justify-between">
@@ -6988,27 +7213,45 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Femur anatomical diagram">
             <defs>
-                <linearGradient id="femurGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#06b6d4"/>
-                    <stop offset="100%" stop-color="#0284c7"/>
+                <linearGradient id="boneIvory-0" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-0" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-0" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
                 </linearGradient>
             </defs>
             <!-- Femoral Head & Neck -->
-            <circle cx="45" cy="22" r="12" fill="#22d3ee" opacity="0.9"/>
-            <path d="M 45 22 L 70 35 L 75 50 L 55 35 Z" fill="#0891b2" opacity="0.8"/>
-            <!-- Greater Trochanter -->
-            <path d="M 70 30 Q 82 25 80 42 L 72 52 Z" fill="#06b6d4"/>
-            <text x="88" y="32" fill="#67e8f9" font-size="8" font-family="monospace">大轉子 (Trochanter)</text>
-            <!-- Shaft (Curved) -->
-            <path d="M 72 45 Q 85 65 145 70 L 145 80 Q 75 75 62 48 Z" fill="url(#femurGrad)"/>
-            <!-- Condyles (Distal) -->
-            <ellipse cx="155" cy="73" rx="14" ry="11" fill="#22d3ee"/>
-            <text x="175" y="75" fill="#67e8f9" font-size="8" font-family="monospace">股骨髁</text>
-            <!-- Load Vector Line -->
-            <line x1="30" y1="12" x2="170" y2="82" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3 2"/>
-            <text x="110" y="25" fill="#fda4af" font-size="8" font-family="monospace">5x GRF 承重軸線</text>
+            <circle cx="46" cy="34" r="13" fill="url(#boneIvory-0)" stroke="#e2e8f0" stroke-width="1"/>
+            <path d="M 46 34 A 13 13 0 0 0 35 41" fill="none" stroke="url(#cartilage-0)" stroke-width="3" stroke-linecap="round"/>
+            <!-- Femoral Neck -->
+            <path d="M 55 29 L 76 42 L 70 55 L 50 42 Z" fill="url(#boneIvory-0)" stroke="#94a3b8" stroke-width="0.8"/>
+            <!-- Greater & Lesser Trochanters -->
+            <path d="M 74 26 Q 88 22 92 38 L 86 58 Q 74 58 68 48 Z" fill="url(#boneIvory-0)" stroke="#e2e8f0" stroke-width="1"/>
+            <ellipse cx="74" cy="59" rx="5" ry="4" fill="#cbd5e1" stroke="#94a3b8" stroke-width="0.8"/>
+            <!-- Femoral Shaft (anatomical anterior bow) -->
+            <path d="M 86 44 Q 145 50 212 56 L 212 72 Q 145 68 80 56 Z" fill="url(#boneShaft-0)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- Distal Condyles -->
+            <path d="M 208 52 Q 228 45 236 58 Q 240 68 232 76 Q 222 84 208 75 Z" fill="url(#boneIvory-0)" stroke="#e2e8f0" stroke-width="1"/>
+            <path d="M 232 54 Q 240 64 231 76" fill="none" stroke="url(#cartilage-0)" stroke-width="3" stroke-linecap="round"/>
+            <!-- Mechanical Load Axis (5x GRF) -->
+            <line x1="46" y1="14" x2="232" y2="92" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle cx="46" cy="34" r="2.5" fill="#f43f5e"/>
+            <circle cx="222" cy="64" r="2.5" fill="#f43f5e"/>
+            <!-- Callout Labels -->
+            <line x1="84" y1="26" x2="102" y2="16" stroke="#38bdf8" stroke-width="0.9"/>
+            <text x="105" y="19" fill="#67e8f9" font-size="9" font-family="monospace">大轉子 Greater Trochanter</text>
+            <text x="125" y="88" fill="#fda4af" font-size="9" font-family="monospace">5x BW 承重軸線</text>
+            <text x="214" y="103" fill="#94a3b8" font-size="8.5" font-family="monospace">股骨髁 Condyles</text>
         </svg>
                             </div>
 
@@ -7054,19 +7297,38 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Tibial Plateau -->
-            <path d="M 30 35 Q 30 22 55 22 Q 80 22 80 35 Z" fill="#22d3ee"/>
-            <text x="35" y="16" fill="#67e8f9" font-size="8" font-family="monospace">脛骨平台 (Plateau)</text>
-            <!-- Shaft with Triangular Cross-section feel -->
-            <path d="M 42 35 L 50 82 L 65 82 L 68 35 Z" fill="#06b6d4" opacity="0.9"/>
-            <line x1="56" y1="35" x2="56" y2="80" stroke="#a5f3fc" stroke-width="1.5"/>
-            <!-- Medial Malleolus -->
-            <path d="M 48 82 Q 45 92 56 92 L 66 82 Z" fill="#0891b2"/>
-            <text x="75" y="88" fill="#67e8f9" font-size="8" font-family="monospace">內踝 (Malleolus)</text>
-            <!-- MTSS stress indicator -->
-            <line x1="42" y1="52" x2="42" y2="72" stroke="#f43f5e" stroke-width="2.5"/>
-            <text x="95" y="62" fill="#fda4af" font-size="8" font-family="monospace">⚠️ 85% 負荷 / MTSS 應力區</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tibia anatomical diagram">
+            <defs>
+                <linearGradient id="boneIvory-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-1" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Tibial Plateau (Proximal) -->
+            <path d="M 38 38 Q 52 28 68 38 L 64 56 Q 52 54 42 56 Z" fill="url(#boneIvory-1)" stroke="#e2e8f0" stroke-width="1"/>
+            <path d="M 40 36 Q 52 30 66 36" fill="none" stroke="url(#cartilage-1)" stroke-width="3" stroke-linecap="round"/>
+            <!-- Tibial Tuberosity -->
+            <path d="M 62 46 Q 74 48 72 56 L 62 56 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.8"/>
+            <!-- Tibial Shaft -->
+            <path d="M 44 54 Q 128 56 220 58 L 220 70 Q 128 66 46 66 Z" fill="url(#boneShaft-1)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- Medial Malleolus (Distal) -->
+            <path d="M 218 54 L 236 56 Q 244 64 238 74 L 222 76 L 218 70 Z" fill="url(#boneIvory-1)" stroke="#e2e8f0" stroke-width="1"/>
+            <path d="M 238 58 Q 243 65 237 73" fill="none" stroke="url(#cartilage-1)" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Shin Splints (MTSS) Stress Zone -->
+            <rect x="115" y="64" width="66" height="8" rx="3" fill="#f43f5e" fill-opacity="0.28" stroke="#f43f5e" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="108" y="90" fill="#fda4af" font-size="9" font-family="monospace">MTSS 脛骨後內側應力區</text>
+            <text x="26" y="22" fill="#67e8f9" font-size="9" font-family="monospace">脛骨平台 Plateau</text>
+            <text x="206" y="96" fill="#cbd5e1" font-size="8.5" font-family="monospace">內踝 Malleolus</text>
         </svg>
                             </div>
 
@@ -7112,18 +7374,37 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fibula anatomical diagram">
+            <defs>
+                <linearGradient id="boneIvory-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Reference Tibia Ghost -->
+            <path d="M 46 28 L 232 32 L 232 45 L 46 42 Z" fill="#334155" fill-opacity="0.45" stroke="#475569" stroke-width="0.8" stroke-dasharray="3 2"/>
+            <text x="105" y="24" fill="#94a3b8" font-size="8.5" font-family="monospace">脛骨 Tibia (對照主骨)</text>
             <!-- Fibular Head -->
-            <ellipse cx="60" cy="22" rx="7" ry="5" fill="#22d3ee"/>
-            <text x="75" y="24" fill="#67e8f9" font-size="8" font-family="monospace">腓骨頭 (Head)</text>
-            <!-- Slender Shaft -->
-            <line x1="60" y1="26" x2="70" y2="75" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/>
+            <path d="M 42 58 Q 52 50 62 60 L 60 72 Q 48 74 42 66 Z" fill="url(#boneIvory-2)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- Slender Fibular Shaft -->
+            <path d="M 60 62 L 222 66 L 222 72 L 60 69 Z" fill="url(#boneShaft-2)" stroke="#e2e8f0" stroke-width="0.9"/>
             <!-- Lateral Malleolus -->
-            <path d="M 67 75 Q 73 90 78 82 Q 78 75 72 73 Z" fill="#38bdf8"/>
-            <text x="90" y="82" fill="#38bdf8" font-size="8" font-family="monospace">外踝滑輪 (Pulley)</text>
-            <!-- Peroneal tendon guide arc -->
-            <path d="M 80 65 Q 85 85 65 92" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 2"/>
-            <text x="95" y="52" fill="#fcd34d" font-size="8" font-family="monospace">腓骨肌腱滑輪走向</text>
+            <path d="M 220 62 L 240 64 Q 248 70 240 78 L 220 75 Z" fill="url(#boneIvory-2)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- Peroneal Tendon Pulley Path -->
+            <path d="M 205 84 Q 238 86 246 72" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4 2"/>
+            <circle cx="236" cy="74" r="3" fill="#fbbf24"/>
+            <text x="32" y="92" fill="#67e8f9" font-size="9" font-family="monospace">腓骨頭 Head</text>
+            <text x="155" y="102" fill="#fcd34d" font-size="9" font-family="monospace">外踝腓骨肌腱滑輪</text>
         </svg>
                             </div>
 
@@ -7169,18 +7450,38 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Quadriceps Tendon (Top) -->
-            <path d="M 60 10 L 100 10 L 95 30 L 65 30 Z" fill="#94a3b8" opacity="0.6"/>
-            <text x="110" y="20" fill="#94a3b8" font-size="8" font-family="monospace">股四頭肌腱</text>
-            <!-- Patella Sesamoid Heart Shape -->
-            <path d="M 60 32 C 60 32, 80 25, 100 32 C 105 50, 95 65, 80 72 C 65 65, 55 50, 60 32 Z" fill="#06b6d4" stroke="#22d3ee" stroke-width="2"/>
-            <text x="66" y="52" fill="#ffffff" font-size="10" font-family="monospace" font-weight="bold">髕骨</text>
-            <!-- Patellar Ligament (Bottom) -->
-            <path d="M 75 72 L 85 72 L 83 90 L 77 90 Z" fill="#94a3b8" opacity="0.6"/>
-            <!-- Mechanical Lever Fulcrum Arrow -->
-            <path d="M 125 45 L 155 45 M 150 40 L 155 45 L 150 50" fill="none" stroke="#10b981" stroke-width="2"/>
-            <text x="125" y="65" fill="#34d399" font-size="8" font-family="monospace">+30% 伸膝力矩槓桿</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Patella anatomical diagram">
+            <defs>
+                <linearGradient id="boneIvory-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-3" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Femur Distal & Tibia Proximal Reference -->
+            <path d="M 42 20 L 130 40 Q 142 54 128 66 L 42 56 Z" fill="#334155" fill-opacity="0.55" stroke="#64748b" stroke-width="1"/>
+            <path d="M 55 82 L 135 76 L 140 105 L 55 105 Z" fill="#334155" fill-opacity="0.55" stroke="#64748b" stroke-width="1"/>
+            <!-- Quadriceps Tendon -->
+            <path d="M 105 12 Q 138 22 152 44" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>
+            <!-- Patella (Sesamoid Bone) -->
+            <path d="M 144 38 Q 164 36 168 54 Q 166 72 150 74 Q 140 60 144 38 Z" fill="url(#boneIvory-3)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <path d="M 145 42 Q 142 56 149 70" fill="none" stroke="url(#cartilage-3)" stroke-width="3" stroke-linecap="round"/>
+            <!-- Patellar Tendon -->
+            <path d="M 152 73 L 136 96" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>
+            <!-- Force Vector -->
+            <line x1="168" y1="56" x2="205" y2="56" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="172" y="42" fill="#fcd34d" font-size="9" font-family="monospace">股四頭肌腱槓桿</text>
+            <text x="174" y="68" fill="#67e8f9" font-size="9" font-family="monospace">髕骨 Patella (種子骨)</text>
+            <text x="150" y="102" fill="#94a3b8" font-size="8.5" font-family="monospace">髕韌帶 → 脛骨粗隆</text>
         </svg>
                             </div>
 
@@ -7226,17 +7527,37 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Calcaneus Tuberosity -->
-            <path d="M 40 45 Q 30 75 55 82 L 115 82 Q 130 65 110 50 Q 80 48 70 38 Q 45 35 40 45 Z" fill="#06b6d4" stroke="#22d3ee" stroke-width="1.5"/>
-            <!-- Achilles Tendon Insertion -->
-            <path d="M 38 10 L 46 10 L 44 45 L 36 45 Z" fill="#f59e0b"/>
-            <text x="52" y="22" fill="#fcd34d" font-size="8" font-family="monospace">阿基里斯腱止點</text>
-            <!-- Ground Impact Arrow -->
-            <line x1="20" y1="88" x2="140" y2="88" stroke="#475569" stroke-width="2"/>
-            <path d="M 45 92 L 45 84 M 42 87 L 45 84 L 48 87" stroke="#f43f5e" stroke-width="2" fill="none"/>
-            <text x="55" y="70" fill="#ffffff" font-size="9" font-family="monospace">跟骨 (Heel)</text>
-            <text x="125" y="42" fill="#38bdf8" font-size="8" font-family="monospace">後足著地衝擊吸收</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Calcaneus anatomical diagram">
+            <defs>
+                <linearGradient id="boneIvory-4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-4" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Talus Reference Above -->
+            <path d="M 110 28 Q 138 20 162 34 L 154 50 L 106 48 Z" fill="#334155" fill-opacity="0.6" stroke="#64748b" stroke-width="1"/>
+            <!-- Achilles Tendon -->
+            <path d="M 74 14 L 78 56" fill="none" stroke="#fbbf24" stroke-width="5" stroke-linecap="round"/>
+            <text x="20" y="26" fill="#fcd34d" font-size="9" font-family="monospace">阿基里斯腱</text>
+            <!-- Calcaneus Body -->
+            <path d="M 74 52 Q 112 46 168 48 L 176 74 Q 145 84 102 82 Q 72 80 68 66 Q 66 56 74 52 Z" fill="url(#boneIvory-4)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <!-- Plantar Fascia -->
+            <path d="M 102 84 Q 165 92 232 88" fill="none" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Ground Impact Arrows -->
+            <line x1="88" y1="106" x2="88" y2="86" stroke="#38bdf8" stroke-width="2"/>
+            <polygon points="88,82 84,89 92,89" fill="#38bdf8"/>
+            <text x="108" y="106" fill="#fda4af" font-size="9" font-family="monospace">足底筋膜附著 &amp; 後足衝擊吸收</text>
+            <text x="184" y="62" fill="#67e8f9" font-size="9" font-family="monospace">跟骨 Calcaneus</text>
         </svg>
                             </div>
 
@@ -7282,14 +7603,37 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Trochlea of Talus (Convex Dome) -->
-            <path d="M 50 45 Q 80 20 110 45 L 115 70 Q 80 80 45 70 Z" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
-            <path d="M 60 38 Q 80 28 100 38" fill="none" stroke="#a5f3fc" stroke-width="2"/>
-            <text x="65" y="58" fill="#ffffff" font-size="10" font-family="monospace" font-weight="bold">距骨滑車</text>
-            <text x="125" y="35" fill="#38bdf8" font-size="8" font-family="monospace">踝穴萬向樞紐</text>
-            <text x="125" y="52" fill="#67e8f9" font-size="8" font-family="monospace">60% 覆蓋軟骨</text>
-            <text x="125" y="69" fill="#94a3b8" font-size="8" font-family="monospace">無肌肉直接附著</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Talus anatomical diagram">
+            <defs>
+                <linearGradient id="boneIvory-5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-5" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Tibia Above -->
+            <path d="M 96 14 L 138 14 L 134 36 L 98 36 Z" fill="#334155" fill-opacity="0.6" stroke="#64748b" stroke-width="1"/>
+            <!-- Calcaneus Below -->
+            <path d="M 72 74 L 166 76 L 172 96 L 68 94 Z" fill="#334155" fill-opacity="0.5" stroke="#64748b" stroke-width="1"/>
+            <!-- Talus Dome / Trochlea + Neck + Head -->
+            <path d="M 92 46 Q 116 32 142 44 L 170 50 Q 184 56 176 68 L 146 72 L 94 70 Q 86 58 92 46 Z" fill="url(#boneIvory-5)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <path d="M 96 43 Q 116 34 138 42" fill="none" stroke="url(#cartilage-5)" stroke-width="3" stroke-linecap="round"/>
+            <!-- Load Distribution Arrows -->
+            <line x1="116" y1="20" x2="116" y2="38" stroke="#f43f5e" stroke-width="1.8"/>
+            <line x1="116" y1="66" x2="94" y2="86" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <line x1="138" y1="66" x2="176" y2="78" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="152" y="34" fill="#67e8f9" font-size="9" font-family="monospace">距骨滑車 Trochlea</text>
+            <text x="184" y="66" fill="#cbd5e1" font-size="8.5" font-family="monospace">→ 舟狀骨</text>
+            <text x="72" y="110" fill="#fda4af" font-size="9" font-family="monospace">體重應力分流樞紐</text>
         </svg>
                             </div>
 
@@ -7351,16 +7695,35 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Boat-shaped Navicular -->
-            <path d="M 50 35 Q 80 25 105 40 Q 115 65 95 72 Q 65 75 45 60 Z" fill="#0d9488" stroke="#2dd4bf" stroke-width="2"/>
-            <text x="58" y="54" fill="#ffffff" font-size="10" font-family="monospace" font-weight="bold">舟狀骨</text>
-            <!-- Arch Drop Arrow -->
-            <line x1="75" y1="72" x2="75" y2="88" stroke="#f43f5e" stroke-width="2"/>
-            <path d="M 72 85 L 75 88 L 78 85" stroke="#f43f5e" stroke-width="2" fill="none"/>
-            <text x="85" y="85" fill="#fda4af" font-size="8" font-family="monospace">舟骨塌陷 (Drop)</text>
-            <text x="125" y="42" fill="#2dd4bf" font-size="8" font-family="monospace">內側足弓拱心石</text>
-            <text x="125" y="58" fill="#94a3b8" font-size="8" font-family="monospace">脛後肌腱附著點</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Navicular bone diagram">
+            <defs>
+                <linearGradient id="boneIvory-6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-6" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Medial Longitudinal Arch Curve -->
+            <path d="M 42 86 Q 130 28 232 86" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <!-- Talus & Cuneiform Context -->
+            <path d="M 70 52 L 104 42 L 106 66 L 72 72 Z" fill="#334155" fill-opacity="0.55" stroke="#64748b" stroke-width="1"/>
+            <path d="M 152 44 L 188 52 L 186 72 L 150 68 Z" fill="#334155" fill-opacity="0.55" stroke="#64748b" stroke-width="1"/>
+            <!-- Navicular (Boat-shaped Keystone) -->
+            <path d="M 110 38 Q 128 32 146 40 Q 150 56 144 70 Q 126 74 110 66 Q 106 52 110 38 Z" fill="url(#boneIvory-6)" stroke="#38bdf8" stroke-width="1.5"/>
+            <!-- Navicular Drop Arrow -->
+            <line x1="128" y1="74" x2="128" y2="96" stroke="#f43f5e" stroke-width="2"/>
+            <polygon points="128,100 124,93 132,93" fill="#f43f5e"/>
+            <text x="92" y="24" fill="#67e8f9" font-size="9" font-family="monospace">舟狀骨 Navicular (足弓拱心石)</text>
+            <text x="142" y="96" fill="#fda4af" font-size="9" font-family="monospace">Navicular Drop 塌陷指標</text>
         </svg>
                             </div>
 
@@ -7406,15 +7769,33 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Cube Shape Cuboid -->
-            <polygon points="50,30 95,25 105,65 55,72" fill="#0f766e" stroke="#2dd4bf" stroke-width="2"/>
-            <text x="62" y="52" fill="#ffffff" font-size="10" font-family="monospace" font-weight="bold">骰骨</text>
-            <!-- Peroneal groove -->
-            <path d="M 55 72 Q 80 82 105 65" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="3 2"/>
-            <text x="118" y="38" fill="#2dd4bf" font-size="8" font-family="monospace">外側足弓支撐柱</text>
-            <text x="118" y="54" fill="#fcd34d" font-size="8" font-family="monospace">腓骨長肌腱溝槽</text>
-            <text x="118" y="70" fill="#94a3b8" font-size="8" font-family="monospace">防骰骨微脫位</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cuboid bone diagram">
+            <defs>
+                <linearGradient id="boneIvory-7" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-7" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-7" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Calcaneus & 4th/5th Metatarsal Context -->
+            <path d="M 42 44 L 96 42 L 96 76 L 42 74 Z" fill="#334155" fill-opacity="0.55" stroke="#64748b" stroke-width="1"/>
+            <path d="M 164 42 L 234 48 L 234 60 L 164 58 Z" fill="#334155" fill-opacity="0.55" stroke="#64748b" stroke-width="1"/>
+            <path d="M 164 62 L 228 68 L 228 78 L 164 76 Z" fill="#334155" fill-opacity="0.55" stroke="#64748b" stroke-width="1"/>
+            <!-- Cuboid Bone (Cube-like Wedge) -->
+            <path d="M 104 38 L 156 38 L 160 76 L 102 78 Z" fill="url(#boneIvory-7)" stroke="#e2e8f0" stroke-width="1.3"/>
+            <!-- Peroneus Longus Tendon Groove -->
+            <path d="M 112 88 Q 132 76 158 64" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="4 2"/>
+            <text x="94" y="25" fill="#67e8f9" font-size="9" font-family="monospace">骰骨 Cuboid (外側柱支柱)</text>
+            <text x="72" y="104" fill="#fcd34d" font-size="9" font-family="monospace">腓骨長肌腱溝 Peroneal Groove</text>
         </svg>
                             </div>
 
@@ -7460,16 +7841,34 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- 3 Wedge blocks interlocking -->
-            <polygon points="45,35 65,30 62,70 42,65" fill="#14b8a6" stroke="#5eead4" stroke-width="1.5"/>
-            <polygon points="68,29 88,27 85,68 65,69" fill="#0d9488" stroke="#5eead4" stroke-width="1.5"/>
-            <polygon points="91,27 112,28 108,66 88,67" fill="#0f766e" stroke="#5eead4" stroke-width="1.5"/>
-            <text x="47" y="52" fill="#fff" font-size="8" font-family="monospace">內</text>
-            <text x="72" y="52" fill="#fff" font-size="8" font-family="monospace">中</text>
-            <text x="94" y="52" fill="#fff" font-size="8" font-family="monospace">外</text>
-            <text x="125" y="42" fill="#5eead4" font-size="8" font-family="monospace">三塊楔骨緊密咬合</text>
-            <text x="125" y="58" fill="#99f6e4" font-size="8" font-family="monospace">鎖定橫足弓 (Transverse)</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cuneiform bones transverse arch diagram">
+            <defs>
+                <linearGradient id="boneIvory-8" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-8" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-8" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Transverse Arch Curve -->
+            <path d="M 52 84 Q 140 24 228 84" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <!-- Three Interlocking Wedge Cuneiforms -->
+            <path d="M 74 56 L 114 42 L 118 76 L 80 78 Z" fill="url(#boneIvory-8)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <path d="M 120 40 L 156 40 L 154 74 L 122 74 Z" fill="url(#boneIvory-8)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <path d="M 162 42 L 202 56 L 196 78 L 160 76 Z" fill="url(#boneIvory-8)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <text x="86" y="64" fill="#0f172a" font-size="8.5" font-weight="bold" font-family="monospace">內側</text>
+            <text x="128" y="62" fill="#0f172a" font-size="8.5" font-weight="bold" font-family="monospace">中間</text>
+            <text x="170" y="64" fill="#0f172a" font-size="8.5" font-weight="bold" font-family="monospace">外側</text>
+            <text x="76" y="24" fill="#67e8f9" font-size="9" font-family="monospace">三楔骨鎖定橫足弓 Transverse Arch</text>
+            <text x="82" y="102" fill="#cbd5e1" font-size="8.5" font-family="monospace">剛性推進槓桿 (Midfoot Lock)</text>
         </svg>
                             </div>
 
@@ -7515,18 +7914,35 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- 5 Metatarsal rays -->
-            <line x1="45" y1="65" x2="105" y2="40" stroke="#14b8a6" stroke-width="7" stroke-linecap="round"/>
-            <line x1="48" y1="68" x2="108" y2="48" stroke="#0d9488" stroke-width="4.5" stroke-linecap="round"/>
-            <line x1="50" y1="72" x2="110" y2="55" stroke="#0d9488" stroke-width="4" stroke-linecap="round"/>
-            <line x1="52" y1="76" x2="112" y2="62" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/>
-            <line x1="54" y1="80" x2="114" y2="70" stroke="#0d9488" stroke-width="3" stroke-linecap="round"/>
-            <!-- 2nd metatarsal stress highlight -->
-            <circle cx="78" cy="58" r="5" fill="#f43f5e" opacity="0.8"/>
-            <text x="120" y="38" fill="#2dd4bf" font-size="8" font-family="monospace">第1-5 蹠骨推進槓桿</text>
-            <text x="120" y="56" fill="#fda4af" font-size="8" font-family="monospace">⚠️ 第2蹠骨應力骨折高發</text>
-            <text x="120" y="72" fill="#94a3b8" font-size="8" font-family="monospace">行軍骨折 (March Fracture)</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Metatarsal bones diagram">
+            <defs>
+                <linearGradient id="boneIvory-9" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-9" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-9" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- 5 Metatarsals (Top-down Dorsal View) -->
+            <path d="M 48 22 L 210 18 Q 222 24 210 32 L 48 34 Z" fill="url(#boneIvory-9)" stroke="#e2e8f0" stroke-width="1.1"/>
+            <path d="M 48 40 L 226 38 Q 234 43 226 48 L 48 49 Z" fill="url(#boneIvory-9)" stroke="#f43f5e" stroke-width="1.4"/>
+            <path d="M 48 56 L 216 55 Q 224 59 216 63 L 48 64 Z" fill="url(#boneShaft-9)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <path d="M 48 72 L 204 71 Q 212 75 204 79 L 48 80 Z" fill="url(#boneShaft-9)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <path d="M 48 88 L 190 88 Q 198 92 190 96 L 48 96 Z" fill="url(#boneShaft-9)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <!-- 2nd Metatarsal Stress Fracture Hotspot -->
+            <ellipse cx="145" cy="43" rx="18" ry="8" fill="#f43f5e" fill-opacity="0.35" stroke="#f43f5e" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <text x="18" y="29" fill="#67e8f9" font-size="8.5" font-family="monospace">1st</text>
+            <text x="18" y="46" fill="#fda4af" font-size="8.5" font-weight="bold" font-family="monospace">2nd</text>
+            <text x="18" y="94" fill="#94a3b8" font-size="8.5" font-family="monospace">5th</text>
+            <text x="92" y="112" fill="#fda4af" font-size="9" font-family="monospace">第二蹠骨骨幹應力性骨折熱點</text>
         </svg>
                             </div>
 
@@ -7572,16 +7988,37 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Big toe 2 phalanges -->
-            <rect x="45" y="35" width="22" height="12" rx="3" fill="#14b8a6"/>
-            <rect x="70" y="37" width="18" height="10" rx="3" fill="#2dd4bf"/>
-            <!-- Windlass arch elevation -->
-            <path d="M 45 42 Q 65 20 85 40" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="2 2"/>
-            <text x="45" y="24" fill="#fcd34d" font-size="8" font-family="monospace">絞盤機制 (Windlass)</text>
-            <text x="105" y="42" fill="#2dd4bf" font-size="8" font-family="monospace">大腳趾背屈拉緊足筋膜</text>
-            <text x="105" y="58" fill="#94a3b8" font-size="8" font-family="monospace">足弓剛性瞬間倍增</text>
-            <text x="105" y="74" fill="#67e8f9" font-size="8" font-family="monospace">終末離地爆發推力</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Foot phalanges windlass mechanism">
+            <defs>
+                <linearGradient id="boneIvory-10" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-10" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-10" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Metatarsal + Hallux Dorsiflexion -->
+            <path d="M 38 64 L 138 64 L 138 78 L 38 78 Z" fill="url(#boneShaft-10)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- Proximal & Distal Phalanx (Dorsiflexed 45 deg) -->
+            <path d="M 144 64 L 188 42 L 196 52 L 152 74 Z" fill="url(#boneIvory-10)" stroke="#e2e8f0" stroke-width="1.1"/>
+            <path d="M 194 38 L 222 24 L 228 34 L 200 48 Z" fill="url(#boneIvory-10)" stroke="#e2e8f0" stroke-width="1.1"/>
+            <!-- MTP Joint -->
+            <circle cx="144" cy="70" r="6" fill="url(#cartilage-10)" opacity="0.85"/>
+            <!-- Plantar Fascia Windlass Tension -->
+            <path d="M 38 86 Q 105 90 154 74" fill="none" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Angle Arc -->
+            <path d="M 176 70 A 32 32 0 0 0 166 52" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+            <text x="176" y="68" fill="#fcd34d" font-size="9" font-family="monospace">背屈 45°+</text>
+            <text x="48" y="106" fill="#fda4af" font-size="9" font-family="monospace">絞盤機制 Windlass Mechanism</text>
+            <text x="52" y="34" fill="#67e8f9" font-size="9" font-family="monospace">大腳趾背屈拉緊足底筋膜</text>
         </svg>
                             </div>
 
@@ -7643,19 +8080,37 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Humeral Head -->
-            <circle cx="48" cy="28" r="10" fill="#38bdf8"/>
-            <text x="62" y="22" fill="#7dd3fc" font-size="8" font-family="monospace">肱骨頭 (Head)</text>
-            <!-- Shaft -->
-            <path d="M 50 35 L 115 65 L 110 75 L 45 45 Z" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
-            <!-- Distal condyles (elbow joint) -->
-            <ellipse cx="120" cy="72" rx="10" ry="7" fill="#0369a1"/>
-            <text x="135" y="74" fill="#7dd3fc" font-size="8" font-family="monospace">滑車與外上髁</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Humerus anatomical diagram">
+            <defs>
+                <linearGradient id="boneIvory-11" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-11" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-11" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Humeral Head & Greater Tubercle -->
+            <circle cx="52" cy="48" r="14" fill="url(#boneIvory-11)" stroke="#e2e8f0" stroke-width="1.1"/>
+            <path d="M 40 44 A 14 14 0 0 1 56 35" fill="none" stroke="url(#cartilage-11)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 62 38 Q 74 34 78 46 L 70 58 L 58 54 Z" fill="url(#boneIvory-11)" stroke="#94a3b8" stroke-width="0.9"/>
+            <!-- Humeral Shaft -->
+            <path d="M 68 48 L 210 52 L 210 64 L 68 62 Z" fill="url(#boneShaft-11)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- Distal Epicondyles & Trochlea -->
+            <path d="M 206 46 Q 224 42 232 54 Q 232 68 218 72 L 206 66 Z" fill="url(#boneIvory-11)" stroke="#e2e8f0" stroke-width="1"/>
+            <path d="M 228 50 Q 235 58 225 68" fill="none" stroke="url(#cartilage-11)" stroke-width="2.5"/>
             <!-- Pendulum Swing Arc -->
-            <path d="M 35 65 Q 65 85 95 75" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3 2"/>
-            <text x="110" y="38" fill="#fcd34d" font-size="8" font-family="monospace">鐘擺動能槓桿 (Arm Drive)</text>
-            <text x="110" y="52" fill="#94a3b8" font-size="8" font-family="monospace">對稱抵消骨盆旋轉</text>
+            <path d="M 192 86 Q 228 88 248 64" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="4 3"/>
+            <polygon points="250,60 244,65 251,68" fill="#fbbf24"/>
+            <text x="32" y="22" fill="#67e8f9" font-size="9" font-family="monospace">肱骨頭 Humeral Head</text>
+            <text x="108" y="96" fill="#fcd34d" font-size="9" font-family="monospace">擺臂鐘擺動能傳導軸</text>
         </svg>
                             </div>
 
@@ -7701,16 +8156,35 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Radial Head -->
-            <ellipse cx="45" cy="40" rx="8" ry="5" fill="#38bdf8"/>
-            <text x="35" y="25" fill="#7dd3fc" font-size="8" font-family="monospace">橈骨小頭 (旋轉軸心)</text>
-            <!-- Shaft slightly curved -->
-            <path d="M 47 43 Q 85 48 115 42 L 115 50 Q 85 56 47 47 Z" fill="#0ea5e9"/>
-            <!-- Distal Styloid Process (Thumb side) -->
-            <path d="M 115 38 L 132 45 L 125 55 L 115 52 Z" fill="#0284c7"/>
-            <text x="135" y="48" fill="#7dd3fc" font-size="8" font-family="monospace">莖突 (拇指側)</text>
-            <text x="65" y="75" fill="#38bdf8" font-size="8" font-family="monospace">旋前/旋後中立位 (Thumbs-up)</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Radius anatomical diagram">
+            <defs>
+                <linearGradient id="boneIvory-12" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-12" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-12" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Ulna Ghost Reference -->
+            <path d="M 46 72 L 222 76 L 222 84 L 46 82 Z" fill="#334155" fill-opacity="0.45" stroke="#475569" stroke-width="0.8" stroke-dasharray="3 2"/>
+            <!-- Radial Head (Disc) & Neck -->
+            <ellipse cx="48" cy="46" rx="7" ry="11" fill="url(#boneIvory-12)" stroke="#e2e8f0" stroke-width="1.1"/>
+            <path d="M 55 41 L 78 44 L 78 52 L 55 51 Z" fill="url(#boneShaft-12)" stroke="#94a3b8" stroke-width="0.9"/>
+            <!-- Curved Radial Shaft -->
+            <path d="M 78 44 Q 150 36 220 42 L 220 58 Q 150 50 78 52 Z" fill="url(#boneIvory-12)" stroke="#e2e8f0" stroke-width="1.1"/>
+            <!-- Distal Styloid Process -->
+            <path d="M 220 40 L 240 44 L 244 54 L 220 58 Z" fill="url(#boneIvory-12)" stroke="#e2e8f0" stroke-width="1"/>
+            <text x="36" y="24" fill="#67e8f9" font-size="9" font-family="monospace">橈骨頭 Radial Head</text>
+            <text x="188" y="28" fill="#cbd5e1" font-size="8.5" font-family="monospace">莖突 Styloid</text>
+            <text x="90" y="102" fill="#fcd34d" font-size="9" font-family="monospace">前臂外側 / 旋前旋後軸</text>
         </svg>
                             </div>
 
@@ -7756,15 +8230,34 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Olecranon Process Hook -->
-            <path d="M 40 45 C 35 25, 60 25, 58 45 L 60 48 L 52 50 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="2"/>
-            <text x="40" y="20" fill="#7dd3fc" font-size="8" font-family="monospace">鷹嘴突 (Olecranon)</text>
-            <!-- Shaft tapering to wrist -->
-            <line x1="56" y1="48" x2="135" y2="55" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round"/>
-            <circle cx="138" cy="55" r="4" fill="#38bdf8"/>
-            <text x="145" y="58" fill="#7dd3fc" font-size="8" font-family="monospace">尺骨小頭</text>
-            <text x="75" y="75" fill="#38bdf8" font-size="8" font-family="monospace">肘關節 90° 剛性鎖定抗震</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ulna anatomical diagram">
+            <defs>
+                <linearGradient id="boneIvory-13" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-13" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-13" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Olecranon Process (Hook / C-notch) -->
+            <path d="M 38 36 Q 58 28 68 42 L 58 50 Q 48 44 46 56 L 68 62 L 66 72 L 38 66 Z" fill="url(#boneIvory-13)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <path d="M 50 44 Q 58 50 56 58" fill="none" stroke="url(#cartilage-13)" stroke-width="2.5"/>
+            <!-- Ulnar Shaft (Tapering Distally) -->
+            <path d="M 66 56 L 226 60 L 226 68 L 66 70 Z" fill="url(#boneShaft-13)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- Distal Ulnar Head -->
+            <circle cx="232" cy="64" r="6" fill="url(#boneIvory-13)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- 90-degree Elbow Angle Indicator -->
+            <path d="M 46 22 L 46 36" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="76" y="34" fill="#fda4af" font-size="9" font-family="monospace">鷹嘴突 Olecranon (鎖定肘關節 90°)</text>
+            <text x="115" y="96" fill="#67e8f9" font-size="9" font-family="monospace">尺骨骨幹 Ulnar Shaft</text>
         </svg>
                             </div>
 
@@ -7810,17 +8303,33 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- S-curved Clavicle -->
-            <path d="M 40 55 Q 70 30 110 50 Q 140 68 170 45" fill="none" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
-            <circle cx="40" cy="55" r="5" fill="#0284c7"/>
-            <text x="25" y="75" fill="#7dd3fc" font-size="8" font-family="monospace">胸骨端</text>
-            <circle cx="170" cy="45" r="5" fill="#0284c7"/>
-            <text x="155" y="32" fill="#7dd3fc" font-size="8" font-family="monospace">肩峰端</text>
-            <!-- Strut Force vectors -->
-            <line x1="50" y1="20" x2="160" y2="20" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2 2"/>
-            <text x="65" y="15" fill="#fcd34d" font-size="8" font-family="monospace">水平懸臂支撐架 (Strut)</text>
-            <text x="65" y="88" fill="#94a3b8" font-size="8" font-family="monospace">唯一骨性上肢軀幹連通真關節</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Clavicle S-curve diagram">
+            <defs>
+                <linearGradient id="boneIvory-14" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-14" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-14" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Sternum Reference -->
+            <rect x="34" y="42" width="16" height="44" rx="4" fill="#334155" fill-opacity="0.6" stroke="#64748b" stroke-width="1"/>
+            <!-- S-Curved Clavicle -->
+            <path d="M 52 50 Q 98 28 144 52 Q 190 74 232 48 L 234 58 Q 190 86 142 64 Q 98 42 52 62 Z" fill="url(#boneIvory-14)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <!-- SC & AC Joints -->
+            <circle cx="52" cy="56" r="5" fill="url(#cartilage-14)"/>
+            <circle cx="232" cy="53" r="5" fill="url(#cartilage-14)"/>
+            <text x="28" y="32" fill="#67e8f9" font-size="9" font-family="monospace">胸鎖關節 SC</text>
+            <text x="198" y="34" fill="#67e8f9" font-size="9" font-family="monospace">肩鎖關節 AC</text>
+            <text x="86" y="102" fill="#cbd5e1" font-size="9" font-family="monospace">S 形雙曲度鎖骨支撐胸廓擴張</text>
         </svg>
                             </div>
 
@@ -7866,19 +8375,36 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Scapula Triangular Body -->
-            <polygon points="55,25 115,35 75,85" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
-            <!-- Spine of Scapula & Acromion -->
-            <path d="M 60 40 L 125 30 L 132 38" fill="none" stroke="#7dd3fc" stroke-width="3"/>
-            <text x="135" y="34" fill="#7dd3fc" font-size="8" font-family="monospace">肩峰 (Acromion)</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scapula anatomical diagram">
+            <defs>
+                <linearGradient id="boneIvory-15" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-15" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-15" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Triangular Scapular Blade -->
+            <path d="M 78 24 L 182 32 Q 194 46 184 62 L 106 102 Q 94 102 88 90 L 78 24 Z" fill="url(#boneIvory-15)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <!-- Scapular Spine & Acromion -->
+            <path d="M 80 42 L 194 26 L 204 34 L 178 44 L 80 48 Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="1"/>
             <!-- Glenoid Cavity -->
-            <ellipse cx="120" cy="48" rx="5" ry="8" fill="#a5f3fc"/>
-            <text x="130" y="52" fill="#a5f3fc" font-size="8" font-family="monospace">關節盂</text>
-            <!-- Retraction Vector -->
-            <line x1="75" y1="65" x2="45" y2="65" stroke="#10b981" stroke-width="2"/>
-            <path d="M 48 62 L 45 65 L 48 68" stroke="#10b981" stroke-width="2" fill="none"/>
-            <text x="25" y="82" fill="#34d399" font-size="8" font-family="monospace">後收下沉力道</text>
+            <ellipse cx="186" cy="48" rx="6" ry="11" fill="url(#cartilage-15)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- Retraction / Depression Arrows -->
+            <line x1="66" y1="58" x2="44" y2="58" stroke="#38bdf8" stroke-width="2"/>
+            <polygon points="40,58 47,54 47,62" fill="#38bdf8"/>
+            <line x1="100" y1="104" x2="100" y2="115" stroke="#fbbf24" stroke-width="2"/>
+            <text x="198" y="26" fill="#67e8f9" font-size="9" font-family="monospace">肩峰 Acromion</text>
+            <text x="18" y="80" fill="#38bdf8" font-size="8.5" font-family="monospace">後收</text>
+            <text x="120" y="112" fill="#fcd34d" font-size="9" font-family="monospace">下沉穩定胸椎</text>
         </svg>
                             </div>
 
@@ -7924,21 +8450,41 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- 8 Carpals clustered -->
-            <g fill="#0284c7" stroke="#38bdf8" stroke-width="1">
-                <circle cx="50" cy="45" r="4"/><circle cx="60" cy="43" r="4"/><circle cx="70" cy="44" r="4"/><circle cx="80" cy="47" r="4"/>
-                <circle cx="52" cy="54" r="4"/><circle cx="62" cy="53" r="4"/><circle cx="72" cy="54" r="4"/><circle cx="82" cy="56" r="4"/>
-            </g>
-            <!-- 5 Metacarpals fanning out -->
-            <line x1="50" y1="43" x2="35" y2="28" stroke="#38bdf8" stroke-width="3"/>
-            <line x1="60" y1="41" x2="62" y2="20" stroke="#38bdf8" stroke-width="3"/>
-            <line x1="70" y1="42" x2="78" y2="21" stroke="#38bdf8" stroke-width="3"/>
-            <line x1="80" y1="45" x2="92" y2="24" stroke="#38bdf8" stroke-width="3"/>
-            <line x1="84" y1="48" x2="102" y2="30" stroke="#38bdf8" stroke-width="3"/>
-            <text x="115" y="38" fill="#7dd3fc" font-size="8" font-family="monospace">8腕骨 + 5掌骨架構</text>
-            <text x="115" y="54" fill="#38bdf8" font-size="8" font-family="monospace">握拳放鬆 (Loose Grip)</text>
-            <text x="115" y="70" fill="#94a3b8" font-size="8" font-family="monospace">避免張力上傳肩頸</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Carpals and metacarpals diagram">
+            <defs>
+                <linearGradient id="boneIvory-16" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-16" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-16" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- 8 Carpal Bones (2 rows of 4) -->
+            <rect x="46" y="34" width="14" height="12" rx="3" fill="url(#boneIvory-16)" stroke="#94a3b8" stroke-width="0.9"/>
+            <rect x="46" y="48" width="14" height="12" rx="3" fill="url(#boneIvory-16)" stroke="#94a3b8" stroke-width="0.9"/>
+            <rect x="46" y="62" width="14" height="12" rx="3" fill="url(#boneIvory-16)" stroke="#94a3b8" stroke-width="0.9"/>
+            <rect x="46" y="76" width="14" height="12" rx="3" fill="url(#boneIvory-16)" stroke="#94a3b8" stroke-width="0.9"/>
+            <rect x="64" y="32" width="14" height="13" rx="3" fill="url(#boneIvory-16)" stroke="#94a3b8" stroke-width="0.9"/>
+            <rect x="64" y="47" width="14" height="13" rx="3" fill="url(#boneIvory-16)" stroke="#94a3b8" stroke-width="0.9"/>
+            <rect x="64" y="62" width="14" height="13" rx="3" fill="url(#boneIvory-16)" stroke="#94a3b8" stroke-width="0.9"/>
+            <rect x="64" y="77" width="14" height="13" rx="3" fill="url(#boneIvory-16)" stroke="#94a3b8" stroke-width="0.9"/>
+            <!-- 5 Metacarpals + Proximal Phalanges -->
+            <path d="M 82 32 L 128 20 L 130 28 L 84 40 Z" fill="url(#boneShaft-16)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <path d="M 84 48 L 154 42 L 154 50 L 84 55 Z" fill="url(#boneShaft-16)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <path d="M 84 62 L 158 60 L 158 68 L 84 69 Z" fill="url(#boneShaft-16)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <path d="M 84 74 L 150 74 L 150 81 L 84 81 Z" fill="url(#boneShaft-16)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <path d="M 84 85 L 138 87 L 138 94 L 84 91 Z" fill="url(#boneShaft-16)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <text x="36" y="22" fill="#67e8f9" font-size="9" font-family="monospace">8 塊腕骨</text>
+            <text x="166" y="54" fill="#cbd5e1" font-size="9" font-family="monospace">5 掌骨 (微握放鬆)</text>
+            <text x="166" y="74" fill="#34d399" font-size="8.5" font-family="monospace">避免握拳張力逆流</text>
         </svg>
                             </div>
 
@@ -8000,16 +8546,39 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Iliac Wings -->
-            <path d="M 45 35 C 35 15, 80 18, 90 35 C 90 55, 65 65, 55 60 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
-            <path d="M 155 35 C 165 15, 120 18, 110 35 C 110 55, 135 65, 145 60 Z" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
-            <!-- Sacrum in center -->
-            <polygon points="90,30 110,30 100,60" fill="#0284c7"/>
-            <!-- Pubic arch -->
-            <path d="M 85 65 Q 100 75 115 65" fill="none" stroke="#38bdf8" stroke-width="2"/>
-            <text x="75" y="85" fill="#38bdf8" font-size="9" font-family="monospace" font-weight="bold">骨盆核心環</text>
-            <text x="120" y="25" fill="#94a3b8" font-size="8" font-family="monospace">中立對齊抗側傾</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pelvis anatomical diagram">
+            <defs>
+                <linearGradient id="boneIvory-17" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-17" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-17" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Left & Right Iliac Wings -->
+            <path d="M 122 36 Q 88 18 72 42 Q 70 62 94 74 L 120 68 Z" fill="url(#boneIvory-17)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <path d="M 158 36 Q 192 18 208 42 Q 210 62 186 74 L 160 68 Z" fill="url(#boneIvory-17)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <!-- Sacrum Center -->
+            <path d="M 122 36 L 158 36 L 150 68 L 130 68 Z" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1"/>
+            <!-- Pubic Ring & Obturator Foramina -->
+            <path d="M 94 74 Q 104 98 136 92 L 144 92 Q 176 98 186 74 L 164 70 L 140 82 L 116 70 Z" fill="url(#boneIvory-17)" stroke="#e2e8f0" stroke-width="1.1"/>
+            <ellipse cx="114" cy="82" rx="9" ry="6" fill="#0f172a" stroke="#94a3b8" stroke-width="0.9"/>
+            <ellipse cx="166" cy="82" rx="9" ry="6" fill="#0f172a" stroke="#94a3b8" stroke-width="0.9"/>
+            <!-- Acetabulum Sockets -->
+            <circle cx="88" cy="66" r="6" fill="url(#cartilage-17)"/>
+            <circle cx="192" cy="66" r="6" fill="url(#cartilage-17)"/>
+            <!-- Neutral Alignment Line -->
+            <line x1="56" y1="28" x2="224" y2="28" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="86" y="18" fill="#6ee7b7" font-size="9" font-family="monospace">骨盆中立水平線 Neutral Pelvis</text>
+            <text x="108" y="110" fill="#67e8f9" font-size="8.5" font-family="monospace">恥骨聯合 &amp; 髖臼窩</text>
         </svg>
                             </div>
 
@@ -8055,18 +8624,39 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Inverted triangle sacrum -->
-            <polygon points="65,20 115,20 90,70" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
-            <!-- 4 pairs of foramina -->
-            <circle cx="80" cy="32" r="2.5" fill="#a5f3fc"/><circle cx="100" cy="32" r="2.5" fill="#a5f3fc"/>
-            <circle cx="82" cy="42" r="2.5" fill="#a5f3fc"/><circle cx="98" cy="42" r="2.5" fill="#a5f3fc"/>
-            <circle cx="84" cy="52" r="2" fill="#a5f3fc"/><circle cx="96" cy="52" r="2" fill="#a5f3fc"/>
-            <!-- Coccyx at tip -->
-            <ellipse cx="90" cy="78" rx="4" ry="6" fill="#0369a1"/>
-            <text x="125" y="35" fill="#38bdf8" font-size="8" font-family="monospace">薦髂關節 (SI Joint)</text>
-            <text x="125" y="52" fill="#7dd3fc" font-size="8" font-family="monospace">微動章動緩衝</text>
-            <text x="125" y="69" fill="#94a3b8" font-size="8" font-family="monospace">下肢脊椎力學基石</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sacrum and coccyx diagram">
+            <defs>
+                <linearGradient id="boneIvory-18" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-18" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-18" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Iliac SI Joint Context -->
+            <path d="M 68 26 L 94 30 L 90 74 L 64 68 Z" fill="#334155" fill-opacity="0.5" stroke="#64748b" stroke-width="1"/>
+            <path d="M 186 30 L 212 26 L 216 68 L 190 74 Z" fill="#334155" fill-opacity="0.5" stroke="#64748b" stroke-width="1"/>
+            <!-- Sacrum Inverted Triangle -->
+            <path d="M 96 24 Q 140 18 184 24 L 166 72 Q 140 82 114 72 Z" fill="url(#boneIvory-18)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <!-- Sacral Foramina (4 pairs) -->
+            <circle cx="122" cy="36" r="2.5" fill="#0f172a"/><circle cx="158" cy="36" r="2.5" fill="#0f172a"/>
+            <circle cx="124" cy="48" r="2.3" fill="#0f172a"/><circle cx="156" cy="48" r="2.3" fill="#0f172a"/>
+            <circle cx="127" cy="60" r="2" fill="#0f172a"/><circle cx="153" cy="60" r="2" fill="#0f172a"/>
+            <!-- Coccyx -->
+            <path d="M 132 80 L 148 80 L 143 98 L 137 98 Z" fill="url(#boneShaft-18)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- SI Load Vectors -->
+            <line x1="140" y1="8" x2="140" y2="24" stroke="#f43f5e" stroke-width="2"/>
+            <line x1="112" y1="54" x2="82" y2="66" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <line x1="168" y1="54" x2="198" y2="66" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="192" y="96" fill="#67e8f9" font-size="9" font-family="monospace">薦髂關節 SI Joint</text>
         </svg>
                             </div>
 
@@ -8112,22 +8702,45 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- 5 Lumbar Vertebrae stacked with Discs -->
-            <g fill="#0284c7" stroke="#38bdf8" stroke-width="1.5">
-                <rect x="65" y="15" width="40" height="9" rx="2"/>
-                <line x1="68" y1="26" x2="102" y2="26" stroke="#f59e0b" stroke-width="2.5"/>
-                <rect x="65" y="29" width="40" height="9" rx="2"/>
-                <line x1="68" y1="40" x2="102" y2="40" stroke="#f59e0b" stroke-width="2.5"/>
-                <rect x="65" y="43" width="40" height="9" rx="2"/>
-                <line x1="68" y1="54" x2="102" y2="54" stroke="#f59e0b" stroke-width="2.5"/>
-                <rect x="65" y="57" width="40" height="9" rx="2"/>
-                <line x1="68" y1="68" x2="102" y2="68" stroke="#f59e0b" stroke-width="2.5"/>
-                <rect x="65" y="71" width="40" height="9" rx="2"/>
-            </g>
-            <text x="115" y="32" fill="#38bdf8" font-size="8" font-family="monospace">L1-L5 厚實椎體</text>
-            <text x="115" y="48" fill="#fcd34d" font-size="8" font-family="monospace">椎間盤液壓彈簧</text>
-            <text x="115" y="65" fill="#94a3b8" font-size="8" font-family="monospace">吸收長途垂直衝擊</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lumbar vertebrae lordosis diagram">
+            <defs>
+                <linearGradient id="boneIvory-19" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-19" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-19" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- 5 Lumbar Vertebral Bodies in Lordotic Curve (Lateral View) -->
+            <rect x="64" y="20" width="24" height="14" rx="3" fill="url(#boneIvory-19)" stroke="#e2e8f0" stroke-width="1"/>
+            <rect x="70" y="38" width="25" height="14" rx="3" fill="url(#boneIvory-19)" stroke="#e2e8f0" stroke-width="1"/>
+            <rect x="74" y="56" width="26" height="14" rx="3" fill="url(#boneIvory-19)" stroke="#e2e8f0" stroke-width="1"/>
+            <rect x="71" y="74" width="26" height="14" rx="3" fill="url(#boneIvory-19)" stroke="#e2e8f0" stroke-width="1"/>
+            <rect x="65" y="92" width="27" height="14" rx="3" fill="url(#boneIvory-19)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- Intervertebral Discs -->
+            <rect x="67" y="34" width="22" height="3.5" rx="1.5" fill="url(#cartilage-19)"/>
+            <rect x="72" y="52" width="23" height="3.5" rx="1.5" fill="url(#cartilage-19)"/>
+            <rect x="73" y="70" width="23" height="3.5" rx="1.5" fill="url(#cartilage-19)"/>
+            <rect x="68" y="88" width="24" height="3.5" rx="1.5" fill="url(#cartilage-19)"/>
+            <!-- Spinous Processes -->
+            <path d="M 88 26 L 106 28 L 104 33 L 88 31 Z" fill="#94a3b8"/>
+            <path d="M 95 44 L 112 46 L 110 51 L 95 49 Z" fill="#94a3b8"/>
+            <path d="M 100 62 L 116 64 L 114 69 L 100 67 Z" fill="#94a3b8"/>
+            <path d="M 97 80 L 112 82 L 110 87 L 97 85 Z" fill="#94a3b8"/>
+            <path d="M 92 98 L 106 100 L 104 105 L 92 103 Z" fill="#94a3b8"/>
+            <!-- Shock Wave Absorption -->
+            <line x1="138" y1="98" x2="138" y2="26" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3"/>
+            <polygon points="138,20 134,27 142,27" fill="#f43f5e"/>
+            <text x="150" y="48" fill="#67e8f9" font-size="9" font-family="monospace">L1–L5 腰椎前凸弧度</text>
+            <text x="150" y="68" fill="#fda4af" font-size="9" font-family="monospace">椎間盤吸收垂直衝擊波</text>
         </svg>
                             </div>
 
@@ -8173,19 +8786,39 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Sternum in center -->
-            <line x1="90" y1="20" x2="90" y2="75" stroke="#38bdf8" stroke-width="4"/>
-            <!-- Rib Arches -->
-            <path d="M 90 28 Q 50 35 60 55" fill="none" stroke="#0ea5e9" stroke-width="2"/>
-            <path d="M 90 28 Q 130 35 120 55" fill="none" stroke="#0ea5e9" stroke-width="2"/>
-            <path d="M 90 42 Q 45 50 62 70" fill="none" stroke="#0ea5e9" stroke-width="2"/>
-            <path d="M 90 42 Q 135 50 118 70" fill="none" stroke="#0ea5e9" stroke-width="2"/>
-            <path d="M 90 56 Q 48 65 68 82" fill="none" stroke="#0ea5e9" stroke-width="2"/>
-            <path d="M 90 56 Q 132 65 112 82" fill="none" stroke="#0ea5e9" stroke-width="2"/>
-            <text x="140" y="38" fill="#38bdf8" font-size="8" font-family="monospace">30° 軀幹旋轉對稱</text>
-            <text x="140" y="55" fill="#94a3b8" font-size="8" font-family="monospace">胸廓彈性保障呼吸</text>
-            <text x="140" y="72" fill="#67e8f9" font-size="8" font-family="monospace">抵消骨盆扭矩</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Thoracic rib cage diagram">
+            <defs>
+                <linearGradient id="boneIvory-20" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-20" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-20" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Thoracic Spine Column -->
+            <rect x="134" y="14" width="12" height="90" rx="3" fill="#64748b" stroke="#94a3b8" stroke-width="0.9"/>
+            <!-- Symmetrical Rib Pairs -->
+            <path d="M 134 24 Q 98 20 92 34 Q 94 42 128 42" fill="none" stroke="url(#boneIvory-20)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M 146 24 Q 182 20 188 34 Q 186 42 152 42" fill="none" stroke="url(#boneIvory-20)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M 134 40 Q 84 38 78 56 Q 82 66 128 62" fill="none" stroke="url(#boneIvory-20)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M 146 40 Q 196 38 202 56 Q 198 66 152 62" fill="none" stroke="url(#boneIvory-20)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M 134 58 Q 82 60 80 78 Q 86 88 128 82" fill="none" stroke="url(#boneIvory-20)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M 146 58 Q 198 60 200 78 Q 194 88 152 82" fill="none" stroke="url(#boneIvory-20)" stroke-width="3.5" stroke-linecap="round"/>
+            <!-- Sternum -->
+            <path d="M 135 28 L 145 28 L 143 84 L 137 84 Z" fill="url(#cartilage-20)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <!-- Rotation Arrows -->
+            <path d="M 62 52 Q 52 60 62 68" fill="none" stroke="#34d399" stroke-width="1.8"/>
+            <path d="M 218 52 Q 228 60 218 68" fill="none" stroke="#34d399" stroke-width="1.8"/>
+            <text x="10" y="46" fill="#6ee7b7" font-size="8.5" font-family="monospace">流暢旋轉</text>
+            <text x="210" y="96" fill="#67e8f9" font-size="9" font-family="monospace">胸廓肺擴張</text>
         </svg>
                             </div>
 
@@ -8231,17 +8864,41 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Head circle on top -->
-            <circle cx="85" cy="20" r="10" fill="#38bdf8" opacity="0.4"/>
-            <!-- C1-C7 Stack with natural lordosis curve -->
-            <path d="M 85 30 Q 92 48 85 70" fill="none" stroke="#38bdf8" stroke-width="5" stroke-dasharray="3 3"/>
-            <text x="85" y="82" fill="#7dd3fc" font-size="7" font-family="monospace" text-anchor="middle">C1-C7</text>
-            <!-- Line of sight -->
-            <line x1="95" y1="20" x2="160" y2="40" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 2"/>
-            <text x="120" y="28" fill="#34d399" font-size="8" font-family="monospace">視線前導 15-20m</text>
-            <text x="110" y="58" fill="#38bdf8" font-size="8" font-family="monospace">避免頭部前傾 (4x 剪力)</text>
-            <text x="110" y="74" fill="#94a3b8" font-size="8" font-family="monospace">維持中立減輕肩頸負擔</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cervical spine C1-C7 diagram">
+            <defs>
+                <linearGradient id="boneIvory-21" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-21" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-21" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Cranial Base Hint -->
+            <path d="M 62 12 Q 90 8 104 20 L 66 22 Z" fill="#334155" fill-opacity="0.6" stroke="#64748b" stroke-width="1"/>
+            <!-- C1-C7 Cervical Stack -->
+            <rect x="74" y="24" width="22" height="9" rx="2" fill="url(#boneIvory-21)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <rect x="76" y="36" width="20" height="9" rx="2" fill="url(#boneIvory-21)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <rect x="77" y="48" width="20" height="9" rx="2" fill="url(#boneIvory-21)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <rect x="77" y="60" width="21" height="9" rx="2" fill="url(#boneIvory-21)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <rect x="76" y="72" width="22" height="9" rx="2" fill="url(#boneIvory-21)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <rect x="74" y="84" width="23" height="9" rx="2" fill="url(#boneIvory-21)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <rect x="72" y="96" width="24" height="10" rx="2" fill="url(#boneIvory-21)" stroke="#e2e8f0" stroke-width="0.9"/>
+            <!-- Neutral Vertical Axis -->
+            <line x1="86" y1="12" x2="86" y2="112" stroke="#34d399" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <!-- Visual Scanning Arrow -->
+            <line x1="112" y1="16" x2="180" y2="16" stroke="#38bdf8" stroke-width="1.8"/>
+            <polygon points="185,16 178,12 178,20" fill="#38bdf8"/>
+            <text x="115" y="42" fill="#6ee7b7" font-size="9" font-family="monospace">C1–C7 中立軸線</text>
+            <text x="115" y="64" fill="#67e8f9" font-size="9" font-family="monospace">下坡視野穩定掃描</text>
+            <text x="115" y="84" fill="#cbd5e1" font-size="8.5" font-family="monospace">避免烏龜頸力臂過載</text>
         </svg>
                             </div>
 
@@ -8303,18 +8960,36 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Bone shaft under load -->
-            <rect x="45" y="25" width="22" height="50" rx="3" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
-            <rect x="75" y="20" width="30" height="60" rx="4" fill="#1d4ed8" stroke="#60a5fa" stroke-width="2.5"/>
-            <!-- Thickened cortical wall -->
-            <line x1="77" y1="22" x2="77" y2="78" stroke="#93c5fd" stroke-width="4"/>
-            <line x1="103" y1="22" x2="103" y2="78" stroke="#93c5fd" stroke-width="4"/>
-            <text x="47" y="52" fill="#94a3b8" font-size="7" font-family="monospace">負荷前</text>
-            <text x="80" y="52" fill="#ffffff" font-size="7" font-family="monospace" font-weight="bold">重塑後</text>
-            <text x="120" y="35" fill="#60a5fa" font-size="8" font-family="monospace">沃爾夫定律 (Wolff's Law)</text>
-            <text x="120" y="52" fill="#93c5fd" font-size="8" font-family="monospace">力學應變刺激皮質增厚</text>
-            <text x="120" y="69" fill="#94a3b8" font-size="8" font-family="monospace">成骨細胞活性躍升</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wolff's Law bone adaptation diagram">
+            <defs>
+                <linearGradient id="boneIvory-22" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-22" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-22" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Thin Bone (Before Load) -->
+            <rect x="34" y="34" width="66" height="52" rx="8" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+            <rect x="44" y="44" width="46" height="32" rx="4" fill="#0f172a"/>
+            <text x="38" y="102" fill="#94a3b8" font-size="8.5" font-family="monospace">未受載 (較薄皮質)</text>
+            <!-- Mechanical Load Arrow -->
+            <line x1="112" y1="60" x2="152" y2="60" stroke="#38bdf8" stroke-width="2.5"/>
+            <polygon points="158,60 150,55 150,65" fill="#38bdf8"/>
+            <text x="108" y="46" fill="#67e8f9" font-size="8.5" font-family="monospace">適度跑步</text>
+            <text x="108" y="76" fill="#67e8f9" font-size="8.5" font-family="monospace">壓縮應變</text>
+            <!-- Dense Thickened Bone (After Adaptation) -->
+            <rect x="172" y="28" width="76" height="62" rx="10" fill="url(#boneIvory-22)" stroke="#38bdf8" stroke-width="2"/>
+            <rect x="192" y="46" width="36" height="26" rx="4" fill="#0f172a" stroke="#64748b" stroke-width="1"/>
+            <text x="166" y="104" fill="#6ee7b7" font-size="8.5" font-family="monospace">皮質增厚強化 (Wolff)</text>
         </svg>
                             </div>
 
@@ -8360,14 +9035,36 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Cycle arrows -->
-            <path d="M 60 30 A 25 25 0 0 1 100 45" fill="none" stroke="#f43f5e" stroke-width="3"/>
-            <path d="M 100 55 A 25 25 0 0 1 60 70" fill="none" stroke="#10b981" stroke-width="3"/>
-            <path d="M 50 65 A 25 25 0 0 1 50 35" fill="none" stroke="#3b82f6" stroke-width="3"/>
-            <text x="108" y="35" fill="#f43f5e" font-size="8" font-family="monospace">破骨吸收 (Osteoclasts)</text>
-            <text x="108" y="55" fill="#10b981" font-size="8" font-family="monospace">成骨沉積 (Osteoblasts)</text>
-            <text x="108" y="75" fill="#fcd34d" font-size="8" font-family="monospace">⚠️ 骨質脆弱修復窗口期</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bone remodeling cycle diagram">
+            <defs>
+                <linearGradient id="boneIvory-23" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-23" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-23" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Osteoclast Resorption Pit -->
+            <path d="M 28 66 L 88 66 Q 106 86 126 66 L 252 66 L 252 94 L 28 94 Z" fill="url(#boneIvory-23)" stroke="#e2e8f0" stroke-width="1"/>
+            <!-- Osteoclast Cell -->
+            <circle cx="107" cy="56" r="11" fill="#f43f5e" fill-opacity="0.85" stroke="#fda4af" stroke-width="1.2"/>
+            <text x="64" y="34" fill="#fda4af" font-size="9" font-family="monospace">破骨細胞吸收期</text>
+            <!-- Transition Arrow -->
+            <line x1="132" y1="48" x2="168" y2="48" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3 2"/>
+            <polygon points="174,48 166,44 166,52" fill="#fbbf24"/>
+            <!-- Osteoblast Formation -->
+            <rect x="182" y="54" width="52" height="12" rx="3" fill="url(#cartilage-23)" stroke="#67e8f9" stroke-width="1"/>
+            <circle cx="208" cy="40" r="8" fill="#10b981" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="172" y="24" fill="#6ee7b7" font-size="9" font-family="monospace">成骨細胞重建沉積</text>
+            <text x="68" y="110" fill="#fcd34d" font-size="8.5" font-family="monospace">吸收期 &gt; 沉積期 = 脆弱窗口</text>
         </svg>
                             </div>
 
@@ -8413,17 +9110,34 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Dense Cortical Outer Layer -->
-            <rect x="40" y="20" width="70" height="55" rx="5" fill="#1e293b" stroke="#3b82f6" stroke-width="4"/>
-            <!-- Spongy Trabecular Mesh Inside -->
-            <g stroke="#60a5fa" stroke-width="1.2" opacity="0.8">
-                <line x1="50" y1="30" x2="65" y2="45"/><line x1="65" y1="45" x2="80" y2="35"/><line x1="80" y1="35" x2="95" y2="50"/>
-                <line x1="55" y1="55" x2="70" y2="40"/><line x1="70" y1="40" x2="85" y2="60"/><line x1="85" y1="60" x2="100" y2="45"/>
-            </g>
-            <text x="125" y="35" fill="#60a5fa" font-size="8" font-family="monospace">皮質骨: 抗彎曲/高密度</text>
-            <text x="125" y="52" fill="#93c5fd" font-size="8" font-family="monospace">海綿骨: 骨小梁彈性減震</text>
-            <text x="125" y="69" fill="#94a3b8" font-size="8" font-family="monospace">剛柔並濟防骨折</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cortical vs Trabecular bone diagram">
+            <defs>
+                <linearGradient id="boneIvory-24" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-24" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-24" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Left: Cortical Bone (Dense Osteons) -->
+            <rect x="28" y="24" width="96" height="68" rx="8" fill="url(#boneIvory-24)" stroke="#e2e8f0" stroke-width="1.5"/>
+            <circle cx="54" cy="46" r="9" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+            <circle cx="80" cy="44" r="8" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+            <circle cx="102" cy="54" r="9" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+            <circle cx="64" cy="70" r="9" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+            <text x="34" y="108" fill="#67e8f9" font-size="9" font-family="monospace">皮質骨 (密質抗彎矩)</text>
+            <!-- Right: Trabecular Bone (Spongy Lattice) -->
+            <rect x="156" y="24" width="96" height="68" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
+            <path d="M 164 34 L 244 82 M 164 60 L 218 90 M 192 26 L 244 58 M 244 34 L 164 82 M 214 26 L 164 58 M 244 60 L 194 90" stroke="#cbd5e1" stroke-width="2.2" stroke-linecap="round"/>
+            <text x="160" y="108" fill="#6ee7b7" font-size="9" font-family="monospace">海綿骨 (網狀吸震)</text>
         </svg>
                             </div>
 
@@ -8469,16 +9183,35 @@
                             
                             <!-- Bony Structure SVG Diagram -->
                             <div class="my-2.5 p-2 rounded-xl bg-slate-950/80 border border-slate-800/80 flex items-center justify-center">
-                                <svg viewBox="0 0 220 95" class="w-full max-w-[210px] h-24" xmlns="http://www.w3.org/2000/svg">
-            <!-- Bone shaft with hairline crack -->
-            <rect x="45" y="25" width="55" height="45" rx="3" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
-            <!-- Crack zigzag line -->
-            <path d="M 72 25 L 68 38 L 74 48 L 70 58 L 73 70" fill="none" stroke="#f43f5e" stroke-width="2.5"/>
-            <!-- Edema ring -->
-            <ellipse cx="71" cy="45" rx="18" ry="12" fill="none" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="2 2"/>
-            <text x="115" y="35" fill="#f43f5e" font-size="8" font-family="monospace" font-weight="bold">BSI 骨應力損傷三階段</text>
-            <text x="115" y="52" fill="#fda4af" font-size="8" font-family="monospace">骨髓水腫 ➔ 骨膜炎 ➔ 骨折</text>
-            <text x="115" y="69" fill="#94a3b8" font-size="8" font-family="monospace">定點壓痛即刻停跑</text>
+                                <svg viewBox="0 0 280 120" class="w-full max-w-[280px] h-28 sm:h-32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bone Stress Injury progression diagram">
+            <defs>
+                <linearGradient id="boneIvory-25" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f8fafc"/>
+                    <stop offset="55%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#94a3b8"/>
+                </linearGradient>
+                <linearGradient id="boneShaft-25" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#f1f5f9"/>
+                    <stop offset="50%" stop-color="#cbd5e1"/>
+                    <stop offset="100%" stop-color="#64748b"/>
+                </linearGradient>
+                <linearGradient id="cartilage-25" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.75"/>
+                </linearGradient>
+            </defs>
+            <!-- Bone Shaft Cross-Section -->
+            <path d="M 32 42 L 248 42 L 248 76 L 32 76 Z" fill="url(#boneShaft-25)" stroke="#e2e8f0" stroke-width="1.2"/>
+            <!-- Stage 1: Bone Marrow Edema -->
+            <ellipse cx="74" cy="59" rx="22" ry="12" fill="#fbbf24" fill-opacity="0.45" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <text x="42" y="28" fill="#fcd34d" font-size="9" font-family="monospace">1. 骨髓水腫 (BSI)</text>
+            <!-- Stage 2: Micro-crack -->
+            <path d="M 144 42 L 148 54 L 142 60" fill="none" stroke="#f97316" stroke-width="2.2" stroke-linecap="round"/>
+            <text x="122" y="28" fill="#fdba74" font-size="9" font-family="monospace">2. 微裂痕</text>
+            <!-- Stage 3: Frank Stress Fracture -->
+            <path d="M 212 41 L 218 54 L 208 62 L 215 77" fill="none" stroke="#f43f5e" stroke-width="2.8" stroke-linecap="round"/>
+            <text x="192" y="28" fill="#fda4af" font-size="9" font-family="monospace">3. 完全骨折</text>
+            <text x="64" y="102" fill="#fda4af" font-size="9" font-family="monospace">警訊：局部定點壓痛 + 夜間陣痛</text>
         </svg>
                             </div>
 
@@ -8610,7 +9343,7 @@
 
 
 
-            <!-- Sub-section 0: 🩹 200 句路跑運動傷害、生物力學與醫學雙語例句庫 (200 Sentences Corpus) -->
+            <!-- Sub-section 0: 🩹 225 句路跑運動傷害、上肢重訓與醫學雙語例句庫 (225 Sentences Corpus) -->
             <div id="injury-sub-sentences200" class="injury-sub-pane mb-8">
                 <div class="rounded-2xl bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-rose-950/30 border border-rose-500/30 p-4 sm:p-6 shadow-xl">
                     <!-- Header & Control Bar -->
@@ -8619,10 +9352,10 @@
                             <span class="text-3xl p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20">🩺</span>
                             <div>
                                 <h3 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
-                                    <span>200 句路跑運動傷害臨床醫學雙語例句庫</span>
-                                    <span id="inj200-count-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 font-mono border border-rose-500/40">200 / 200</span>
+                                    <span>225 句路跑運動傷害與上肢防護雙語例句庫</span>
+                                    <span id="inj200-count-badge" class="text-xs px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 font-mono border border-rose-500/40">225 / 225</span>
                                 </h3>
-                                <p class="text-xs text-slate-400 mt-0.5">涵蓋膝、足底、踝腱、小腿脛骨、大腿膕繩肌、髖骨盆、脊椎核心與環境代謝急症等 8 大臨床解剖部位之成因、生物力學與防護處方。</p>
+                                <p class="text-xs text-slate-400 mt-0.5">涵蓋膝、足底、踝腱、小腿脛骨、大腿膕繩肌、髖骨盆、脊椎核心、環境代謝急症與上肢重訓防護等 9 大臨床解剖部位之成因、生物力學與防護處方。</p>
                             </div>
                         </div>
 
@@ -17921,6 +18654,52 @@
             }
 ];
 
+
+        const FULLBODY_BONE_PREVIEW = {
+            cervical: { tag: '中軸脊椎', title: '頸椎 C1–C7 (Cervical Spine)', desc: '維持頭部中立與下坡視野掃描穩定，避免疲勞時烏龜頸造成斜方肌與頸伸肌過載。', tab: 'axial', card: 'bcard-21', label: '頸椎 C1–C7' },
+            clavicle: { tag: '上肢肩帶', title: '鎖骨 (Clavicle)', desc: 'S 形雙曲度支撐肩帶寬度，確保胸廓肺部完整擴張與節奏性擺臂交替。', tab: 'upper', card: 'bcard-14', label: '鎖骨 Clavicle' },
+            scapula: { tag: '上肢肩帶', title: '肩胛骨 (Scapula)', desc: '主動後收與下沉可徵召下斜方肌，在馬拉松後半段維持胸椎挺拔與呼吸效率。', tab: 'upper', card: 'bcard-15', label: '肩胛骨 Scapula' },
+            thoracic: { tag: '中軸胸廓', title: '胸椎與胸廓 (Thoracic & Rib Cage)', desc: '足夠的胸椎旋轉活動度能流暢抵銷對側骨盆擺動，並保護心肺呼吸空間。', tab: 'axial', card: 'bcard-20', label: '胸椎與胸廓' },
+            lumbar: { tag: '中軸核心', title: '腰椎 L1–L5 (Lumbar Vertebrae)', desc: '配合深層核心肌群形成剛性柱體，吸收每一步從下肢上傳的垂直衝擊震波。', tab: 'axial', card: 'bcard-19', label: '腰椎 L1–L5' },
+            pelvis: { tag: '動力轉換中樞', title: '骨盆與薦骨 (Pelvis & Sacrum)', desc: '連結軀幹與雙腿的動力樞紐，維持骨盆水平中立可預防臀中肌無力與髂脛束症候群。', tab: 'axial', card: 'bcard-17', label: '骨盆 Pelvis' },
+            humerus: { tag: '上肢擺臂', title: '肱骨 (Humerus)', desc: '如同擺動鐘擺，透過前後擺臂產生角動量平衡下肢跨步的旋轉力矩。', tab: 'upper', card: 'bcard-11', label: '肱骨 Humerus' },
+            forearm: { tag: '上肢擺臂', title: '橈骨與尺骨 (Radius & Ulna)', desc: '尺骨鷹嘴突將肘關節穩定鎖在約 90°，減少擺臂轉動慣量並節省體能。', tab: 'upper', card: 'bcard-12', label: '橈骨 / 尺骨' },
+            hand: { tag: '上肢末梢', title: '腕骨與掌骨 (Carpals & Metacarpals)', desc: '微握拳放鬆腕部可避免緊繃張力沿前臂逆流至肩膀，維持省力跑姿。', tab: 'upper', card: 'bcard-16', label: '腕骨與掌骨' },
+            femur: { tag: '下肢主承重', title: '股骨 (Femur)', desc: '人體最長最強壯的長骨，下坡衝刺時承受高達體重 5 倍的地面垂直反作用力。', tab: 'lower', card: 'bcard-0', label: '股骨 Femur' },
+            patella: { tag: '膝關節力臂', title: '髕骨 (Patella)', desc: '全身最大的種子骨，顯著放大股四頭肌肌腱的伸膝力矩與爬坡推進力。', tab: 'lower', card: 'bcard-3', label: '髕骨 Patella' },
+            tibia: { tag: '下肢傳導', title: '脛骨與腓骨 (Tibia & Fibula)', desc: '脛骨承擔 85%+ 小腿軸向負荷，後內側緣為脛骨內側應力症候群 (MTSS) 好發處。', tab: 'lower', card: 'bcard-1', label: '脛骨 / 腓骨' },
+            foot: { tag: '足弓避震器', title: '足踝跗骨與蹠趾骨 (Foot & Arch)', desc: '跟骨吸震、距骨分流、舟狀骨與三楔骨構成彈性足弓，並靠大腳趾絞盤機制推進。', tab: 'foot', card: 'bcard-6', label: '足踝足弓骨骼' }
+        };
+
+        function previewFullBodyBone(key) {
+            const info = FULLBODY_BONE_PREVIEW[key];
+            if (!info) return;
+            const tagEl = document.getElementById('fb-bone-tag');
+            const titleEl = document.getElementById('fb-bone-title');
+            const descEl = document.getElementById('fb-bone-desc');
+            const actEl = document.getElementById('fb-bone-actions');
+            if (tagEl) tagEl.textContent = info.tag;
+            if (titleEl) titleEl.textContent = info.title;
+            if (descEl) descEl.textContent = info.desc;
+            if (actEl) {
+                actEl.innerHTML = `<button onclick="jumpToBoneCard('${info.tab}','${info.card}')" class="px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold cursor-pointer transition-colors">跳至 ${info.label} 詳解 →</button>`;
+            }
+        }
+
+        function jumpToBoneCard(tabName, cardId) {
+            if (typeof switchBoneTab === 'function' && currentBoneTab !== 'all' && currentBoneTab !== tabName) {
+                switchBoneTab(tabName);
+            }
+            setTimeout(() => {
+                const el = document.getElementById(cardId);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    el.classList.add('ring-2', 'ring-cyan-400');
+                    setTimeout(() => el.classList.remove('ring-2', 'ring-cyan-400'), 2400);
+                }
+            }, 60);
+        }
+
         let currentBoneTab = 'all';
         let isBoneAutoPlaying = false;
         let bonePlayIndex = -1;
@@ -19367,6 +20146,8 @@
         function initInj200Sentences() {
             if (typeof RUNNING_INJURY_SENTENCES !== 'undefined' && Array.isArray(RUNNING_INJURY_SENTENCES)) {
                 inj200CurrentList = [...RUNNING_INJURY_SENTENCES];
+                const badge = document.getElementById('inj200-count-badge');
+                if (badge) badge.innerText = `${inj200CurrentList.length} / ${RUNNING_INJURY_SENTENCES.length}`;
             } else {
                 inj200CurrentList = [];
             }
